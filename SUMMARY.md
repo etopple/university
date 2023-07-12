@@ -29,6 +29,7 @@
     * [📅 Using Teams](education/etop-tools/office-365-guides/using-teams.md)
     * [🗄 Online Archiving](education/etop-tools/office-365-guides/online-archiving.md)
     * [➡ Microsoft Authenticator](education/etop-tools/office-365-guides/microsoft-authenticator.md)
+* [Self Help Guides](education/self-help-guides.md)
 * [📺 Media - Education!](education/media-education/README.md)
   * [📻 Podcast - Business Tech Playbook](education/media-education/podcast-business-tech-playbook.md)
   * [📹 Youtube Education!](education/media-education/youtube-education.md)
