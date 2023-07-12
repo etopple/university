@@ -30,10 +30,15 @@
     * [🗄 Online Archiving](education/etop-tools/office-365-guides/online-archiving.md)
     * [➡ Microsoft Authenticator](education/etop-tools/office-365-guides/microsoft-authenticator.md)
 * [🆘 Self Help Guides](education/self-help-guides/README.md)
-  * [🎒 Page 1](education/self-help-guides/page-1.md)
-* [📺 Media - Education!](education/media-education/README.md)
-  * [📻 Podcast - Business Tech Playbook](education/media-education/podcast-business-tech-playbook.md)
-  * [📹 Youtube Education!](education/media-education/youtube-education.md)
+  * [🎒 Backups!](education/self-help-guides/backups/README.md)
+    * [Server - Previous Versions](education/self-help-guides/backups/server-previous-versions.md)
+    * [OneDrive for Business Versions](education/self-help-guides/backups/onedrive-for-business-versions.md)
+
+***
+
+* [📺 Media - Education!](media-education/README.md)
+  * [📻 Podcast - Business Tech Playbook](media-education/podcast-business-tech-playbook.md)
+  * [📹 Youtube Education!](media-education/youtube-education.md)
 
 ## Policies
 
