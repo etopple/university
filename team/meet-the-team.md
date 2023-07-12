@@ -12,9 +12,9 @@ coverY: 0
 
 ## William Pote
 
-👋 CEO — 💌 William Pote — 🇺🇸 Redlands Ca (GMT-7)&#x20;
+👋 CEO — 💌 William Pote — 🇺🇸 Redlands Ca (GMT-7 PST)
 
-<figure><img src="https://i.imgur.com/Szr4umQ.jpg" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="https://i.imgur.com/Szr4umQ.jpg" alt="" width="375"><figcaption><p>William Pote - So hear me out I have an idea</p></figcaption></figure>
 
 ### Bio
 
@@ -22,22 +22,30 @@ coverY: 0
 
 ## Sara Pote
 
-👋 CFO — 💌 Sara Pote -- US Redlands Ca (GMT -7)
+👋 CFO — 💌 Sara Pote -- US Redlands Ca (GMT -7 PST)
 
-<figure><img src="https://media.licdn.com/dms/image/C5603AQHKEF1AFekEHA/profile-displayphoto-shrink_800_800/0/1517341709347?e=1692230400&#x26;v=beta&#x26;t=O9WImfdmOp_5nYOYnc7gVz-WuNJNAhso6MO61d5QwSw" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://media.licdn.com/dms/image/C5603AQHKEF1AFekEHA/profile-displayphoto-shrink_800_800/0/1517341709347?e=1692230400&#x26;v=beta&#x26;t=O9WImfdmOp_5nYOYnc7gVz-WuNJNAhso6MO61d5QwSw" alt=""><figcaption><p>Sara Pote - The glue that makes it all run!</p></figcaption></figure>
 
 ### Bio
 
 "Sara Pote serves as the Chief Financial Officer at eTop Technology, bringing with her a wealth of experience from her healthcare background. Trained as a nurse, Sara has worked in high-pressure environments such as Neurosurgery Trauma at Loma Linda University and the Pediatric ICU and Pediatric Cancer Unit. Her medical training, combined with her Bachelor's degree from Union College in Nebraska, provide her with a unique perspective and skill set. Her expertise lies in making strategic financial decisions with a deep understanding of the human impact, blending her clinical experience with her financial acuity. Sara's diverse background and compassionate approach make her an integral part of eTop's mission to make learning accessible and meaningful."
 
-
-
 ## Brandon Martinez
 
-👋 Senior IT Manager — 💌 — USA Redlands (GMT -7)
+👋 Senior IT Manager — 💌 — USA Redlands (GMT -7 PST)
 
-<figure><img src="https://media.licdn.com/dms/image/C5603AQGgxMcg-1_Dvw/profile-displayphoto-shrink_800_800/0/1581046829463?e=1692230400&#x26;v=beta&#x26;t=cDRTXeXG1kCFVg3GK9JMDbrbcR-Tryb8Cpc1JpWLt3c" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/MicrosoftTeams-image (11) (1).png" alt="" width="375"><figcaption><p>Brandon Martinez - not working! :)</p></figcaption></figure>
 
-### Bio
+Bio
 
 "Brandon Martinez is eTop Technology's Senior IT Manager, a testament to his dedication and upward mobility within the company. Starting as a Tier 2 technician, Brandon has progressively taken on more responsibility, now owning and managing the company's platforms. His primary focus lies in security and automation, ensuring eTop's systems are not only efficient but also robustly secure. Brandon's deep technical expertise and commitment to continuous improvement have been instrumental in shaping the technological backbone of eTop. His work continually propels the company forward in a world where security and automation are paramount. He also enjoyes teaching William about Git!"
+
+## Jamie Myers
+
+👋 Tier 2 Engineer and Documentation Rockstar — 💌 — USA Austin TX (GMT -5 CST)
+
+<figure><img src="../.gitbook/assets/Nisa Hunt Photography - Greg Print-51.jpg" alt="" width="375"><figcaption></figcaption></figure>
+
+BIO
+
+Mission statement: to keep technology from getting in the way of productivity. I have over ten years of experience helping people from all walks of life use the technology around us to help them do their jobs. Even with that many years' experience supporting Windows, Macintosh, and Mobile Devices, I still talk like a human being, not a robot. I highly value customer service and treating people with respect, no matter their level of experience. No question is too small and no project too complex for me. She also really owns making documentation functional and readable for both eTop Technology and clients!
