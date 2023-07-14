@@ -18,6 +18,7 @@
 
 * [🔧 eTop Tools](education/etop-tools/README.md)
   * [🔨 Deployed Tools](education/etop-tools/deployed-tools/README.md)
+    * [Cloudflare ZTNA Info](education/etop-tools/deployed-tools/cloudflare-ztna-info.md)
     * [◽ UBlock - Origin Ad Blocker](education/etop-tools/deployed-tools/ublock-origin-ad-blocker.md)
     * [📨 Sophos Email - Self Service Portal](education/etop-tools/deployed-tools/sophos-email-self-service-portal.md)
   * [⚙ Welcome to Working with eTop](education/etop-tools/welcome-to-working-with-etop/README.md)
