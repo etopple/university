@@ -8,7 +8,7 @@ Inside Windows File Explorer, right click on the file you need to restore the pr
 ![](<../../../.gitbook/assets/image (4) (1).png>)
 
 A OneDrive menu will come up with a list of available previous versions.\
-![](<../../../.gitbook/assets/image (13).png>)
+![](<../../../.gitbook/assets/image (13) (1).png>)
 
 You can select the version desired, click the three dot menu, then Restore, download, or delete the version\
 ![](<../../../.gitbook/assets/image (3) (1).png>)
