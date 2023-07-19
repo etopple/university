@@ -24,7 +24,7 @@ We highly recommend keeping individual issues or topics in a team channel -> top
 
 \*To ask for assistance with a ticket, **please include the ticket number, client name, subject, and a link to the ticket within Manage.** Describe as succinctly as possible what is going on and what you need assistance with. This a great place to brainstorm troubleshooting steps or determine if something needs escalation&#x20;
 
-![](<../../../.gitbook/assets/image (13).png>)
+![](<../../../.gitbook/assets/image (13) (1).png>)
 
 ### Direct Messaging
 
@@ -36,4 +36,4 @@ Direct Messaging should be for issues and communications that only concern 1 or 
 
 Teams allows users to book meetings with others in the same organization or with clients/prospects. If you navigate to the Calendar button (teams integrates with your existing outlook calendar) You can choose new meeting inside teams and start/manage meetings!
 
-![](<../../../.gitbook/assets/image (14).png>)![](<../../../.gitbook/assets/image (2) (1).png>)![](<../../../.gitbook/assets/image (9).png>)
+![](<../../../.gitbook/assets/image (14).png>)![](<../../../.gitbook/assets/image (2) (1) (1).png>)![](<../../../.gitbook/assets/image (9).png>)
