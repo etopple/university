@@ -20,6 +20,6 @@ Similar to your VPN, this should be enabled when you work outside the office and
 
 ## Getting Help
 
-If you have any questions on using this new tool, please contact out helpdesk at 951-398-0021 or [helpdesk@etoptechnology.com](mailto:helpdesk@etoptechnology.com) - You can also use [how-to-hdb.md](../welcome-to-working-with-etop/helpdesk-buttons/how-to-hdb.md "mention")
+If you have any questions on using this new tool, please contact out helpdesk at 951-398-0021 or [helpdesk@etoptechnology.com](mailto:helpdesk@etoptechnology.com) - You can also use [how-to-hdb.md](../../../welcome-to-working-with-etop/helpdesk-buttons/how-to-hdb.md "mention")
 
-&#x20;![](<../../../.gitbook/assets/image (2) (2).png>)&#x20;
+&#x20;![](<../../../../.gitbook/assets/image (2) (2).png>)&#x20;

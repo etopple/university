@@ -16,24 +16,24 @@
 
 ## 📚 Education
 
-* [🔧 eTop Tools](education/etop-tools/README.md)
-  * [🔨 Deployed Tools](education/etop-tools/deployed-tools/README.md)
-    * [🌨 Cloudflare ZTNA Info](education/etop-tools/deployed-tools/cloudflare-ztna-info.md)
-    * [◽ UBlock - Origin Ad Blocker](education/etop-tools/deployed-tools/ublock-origin-ad-blocker.md)
-    * [📨 Sophos Email - Self Service Portal](education/etop-tools/deployed-tools/sophos-email-self-service-portal.md)
-  * [⚙ Welcome to Working with eTop](education/etop-tools/welcome-to-working-with-etop/README.md)
-    * [📭 eMail - Helpdesk@etoptechnology.com](education/etop-tools/welcome-to-working-with-etop/email-helpdesk-etoptechnology.com.md)
-    * [📱 Phone Call - 951-398-0021](education/etop-tools/welcome-to-working-with-etop/phone-call-951-398-0021.md)
-    * [🆘 Helpdesk Buttons!](education/etop-tools/welcome-to-working-with-etop/helpdesk-buttons/README.md)
-      * [🔘 How to HDB!](education/etop-tools/welcome-to-working-with-etop/helpdesk-buttons/how-to-hdb.md)
-  * [Office 365 Guides!](education/etop-tools/office-365-guides/README.md)
-    * [📅 Using Teams](education/etop-tools/office-365-guides/using-teams.md)
-    * [🗄 Online Archiving](education/etop-tools/office-365-guides/online-archiving.md)
-    * [➡ Microsoft Authenticator](education/etop-tools/office-365-guides/microsoft-authenticator.md)
 * [🆘 Self Help Guides](education/self-help-guides/README.md)
   * [🎒 Backups!](education/self-help-guides/backups/README.md)
     * [Windows Server - Previous Versions](education/self-help-guides/backups/server-previous-versions.md)
     * [OneDrive for Business Versions](education/self-help-guides/backups/onedrive-for-business-versions.md)
+  * [Office 365 Guides!](education/self-help-guides/office-365-guides/README.md)
+    * [📅 Using Teams](education/self-help-guides/office-365-guides/using-teams.md)
+    * [🗄 Online Archiving](education/self-help-guides/office-365-guides/online-archiving.md)
+    * [➡ Microsoft Authenticator](education/self-help-guides/office-365-guides/microsoft-authenticator.md)
+  * [🔧 eTop Tools](education/self-help-guides/etop-tools/README.md)
+    * [🔨 Deployed Tools](education/self-help-guides/etop-tools/deployed-tools/README.md)
+      * [🌨 Cloudflare ZTNA Info](education/self-help-guides/etop-tools/deployed-tools/cloudflare-ztna-info.md)
+      * [◽ UBlock - Origin Ad Blocker](education/self-help-guides/etop-tools/deployed-tools/ublock-origin-ad-blocker.md)
+      * [📨 Sophos Email - Self Service Portal](education/self-help-guides/etop-tools/deployed-tools/sophos-email-self-service-portal.md)
+* [⚙ Welcome to Working with eTop](education/welcome-to-working-with-etop/README.md)
+  * [📭 eMail - Helpdesk@etoptechnology.com](education/welcome-to-working-with-etop/email-helpdesk-etoptechnology.com.md)
+  * [📱 Phone Call - 951-398-0021](education/welcome-to-working-with-etop/phone-call-951-398-0021.md)
+  * [🆘 Helpdesk Buttons!](education/welcome-to-working-with-etop/helpdesk-buttons/README.md)
+    * [🔘 How to HDB!](education/welcome-to-working-with-etop/helpdesk-buttons/how-to-hdb.md)
 
 ***
 
