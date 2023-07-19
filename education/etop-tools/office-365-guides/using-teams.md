@@ -36,4 +36,4 @@ Direct Messaging should be for issues and communications that only concern 1 or 
 
 Teams allows users to book meetings with others in the same organization or with clients/prospects. If you navigate to the Calendar button (teams integrates with your existing outlook calendar) You can choose new meeting inside teams and start/manage meetings!
 
-![](<../../../.gitbook/assets/image (14).png>)![](<../../../.gitbook/assets/image (2) (1) (1).png>)![](<../../../.gitbook/assets/image (9).png>)
+![](<../../../.gitbook/assets/image (14) (1).png>)![](<../../../.gitbook/assets/image (2) (1) (1).png>)![](<../../../.gitbook/assets/image (9).png>)

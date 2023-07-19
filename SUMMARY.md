@@ -32,7 +32,7 @@
     * [➡ Microsoft Authenticator](education/etop-tools/office-365-guides/microsoft-authenticator.md)
 * [🆘 Self Help Guides](education/self-help-guides/README.md)
   * [🎒 Backups!](education/self-help-guides/backups/README.md)
-    * [Server - Previous Versions](education/self-help-guides/backups/server-previous-versions.md)
+    * [Windows Server - Previous Versions](education/self-help-guides/backups/server-previous-versions.md)
     * [OneDrive for Business Versions](education/self-help-guides/backups/onedrive-for-business-versions.md)
 
 ***

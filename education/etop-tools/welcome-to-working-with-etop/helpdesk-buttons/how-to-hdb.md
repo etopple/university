@@ -12,7 +12,7 @@ You can either press the button on the taskbar or press the F1 Key!&#x20;
 
 ## Wait 5-10 seconds
 
-![](<../../../../.gitbook/assets/image (18) (1).png>)
+![](<../../../../.gitbook/assets/image (18) (2).png>)
 
 If it doesn't put your name and email go ahead and enter it so it generates a ticket just for you!
 
@@ -28,5 +28,5 @@ The more information you submit the easier it is for us to help you!&#x20;
 
 You might even get a golden ticket! :smile:
 
-![](<../../../../.gitbook/assets/image (4) (1).png>)
+![](<../../../../.gitbook/assets/image (4) (2).png>)
 
