@@ -2,7 +2,7 @@
 
 [https://www.microsoft.com/en-us/security/mobile-authenticator-app](https://www.microsoft.com/en-us/security/mobile-authenticator-app)&#x20;
 
-Certainly, I can revise the guide to be more generic for clients using the Microsoft Authenticator app. Here's the revised guide:
+In order to secure your environment, your Microsoft account has been configured with multi-factor authentication. eTop recommends setting up Microsoft Authenticator on your mobile device.
 
 ## Microsoft Authenticator Setup Guide
 
@@ -13,6 +13,8 @@ Certainly, I can revise the guide to be more generic for clients using the Micro
 5. **Using Microsoft Authenticator:** Microsoft Authenticator can be used to conveniently and securely sign in to all your online accounts. It supports multifactor authentication and passwordless sign-in, making it a comprehensive tool for safeguarding your digital presence​[1](https://www.microsoft.com/en-us/security/mobile-authenticator-app)​.
 
 Remember, using two-factor authentication like Microsoft Authenticator provides an additional layer of security to your accounts. It helps protect your accounts even if your password is compromised.
+
+It's important to remember to leave the application installed on your phone so you can continue to sign in.
 
 Please note that exact procedures might vary slightly depending on your mobile device and its operating system. If you need further assistance, don't hesitate to contact your IT support.
 
