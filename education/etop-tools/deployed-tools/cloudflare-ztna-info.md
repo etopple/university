@@ -8,15 +8,23 @@ description: Using Cloudflare Zero Trust Network Access (ZTNA)
 
 ## Using ZTNA
 
-In your computers task bar to the left of the clock, similar to your existing VPN, you will find the following icon:&#x20;
+In your computers task bar to the left of the clock, similar to your existing VPN, you will find the following icon:
 
-![Cloudflare Logo](https://cdn.changelog.com/uploads/icons/news\_sources/nG/icon\_small.png)
+<div align="left">
 
-> :bulb: Tip: you may need to click the up arrow icon to expand hidden apps if you do not see this icon next to your PC's clock  
+<img src="https://cdn.changelog.com/uploads/icons/news_sources/nG/icon_small.png" alt="Cloudflare Logo">
 
-This is the icon for Cloudflare, the security provider eTop Technology has partnered with to bring you your remote network access. If your remote connection is disabled, the logo will show as gray instead of filled in with orange. When you click this icon, you will be shown a toggle switch to enable or disable your access.&#x20;
+</div>
 
-![ZTNA Switch](https://etopassetstore.blob.core.windows.net/publicassets/DocPics/tzclFBAKs2.png)
+> :bulb: Tip: you may need to click the up arrow icon to expand hidden apps if you do not see this icon next to your PC's clock
+
+This is the icon for Cloudflare, the security provider eTop Technology has partnered with to bring you your remote network access. If your remote connection is disabled, the logo will show as gray instead of filled in with orange. When you click this icon, you will be shown a toggle switch to enable or disable your access.
+
+<div align="left">
+
+<img src="https://etopassetstore.blob.core.windows.net/publicassets/DocPics/tzclFBAKs2.png" alt="ZTNA Switch">
+
+</div>
 
 Enabling this connection will allow you to access resources such as network files, applications, and other in-office resources from a remote location with internet access. Similar to your VPN, this should be enabled when you work outside the office and disabled when working from within the physical office network. The ZTNA application will also attempt to identify your location and automatically enable or disable as needed.
 
@@ -24,4 +32,8 @@ Enabling this connection will allow you to access resources such as network file
 
 If you have any questions on using this new tool, please contact out helpdesk at 951-398-0021 or [helpdesk@etoptechnology.com](mailto:helpdesk@etoptechnology.com) - You can also use [how-to-hdb.md](../welcome-to-working-with-etop/helpdesk-buttons/how-to-hdb.md "mention")
 
-&#x20;![HelpdeskButton](<../../../.gitbook/assets/image (2) (2).png>)&#x20;
+<div align="left">
+
+<img src="../../../.gitbook/assets/image (2) (2).png" alt="HelpdeskButton">
+
+</div>
