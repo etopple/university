@@ -20,7 +20,7 @@
   * [🎒 Backups!](education/self-help-guides/backups/README.md)
     * [Windows Server - Previous Versions](education/self-help-guides/backups/server-previous-versions.md)
     * [OneDrive for Business Versions](education/self-help-guides/backups/onedrive-for-business-versions.md)
-  * [Office 365 Guides!](education/etop-tools/office-365-guides/README.md)
+  * [🦮 Office 365 Guides!](education/etop-tools/office-365-guides/README.md)
     * [📅 Using Teams](education/etop-tools/office-365-guides/using-teams.md)
     * [🗄 Online Archiving](education/etop-tools/office-365-guides/online-archiving.md)
     * [➡ Microsoft Authenticator](education/etop-tools/office-365-guides/microsoft-authenticator.md)
