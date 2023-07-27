@@ -47,4 +47,5 @@
 * [🌴 Policies](policies/policies/README.md)
   * [🔓 Multi Factor](policies/policies/multi-factor.md)
   * [🗄 Online Archiving](policies/policies/online-archiving.md)
-  * [🔧 Patching](policies/policies/patching.md)
+  * [🔧 Patching](policies/policies/patching/README.md)
+    * [On Wednesdays, We Patch](policies/policies/patching/on-wednesdays-we-patch.md)
