@@ -44,6 +44,7 @@
   * [📱 Phone Call - 951-398-0021](education/etop-tools/welcome-to-working-with-etop/phone-call-951-398-0021.md)
   * [🆘 Helpdesk Buttons!](education/etop-tools/welcome-to-working-with-etop/helpdesk-buttons/README.md)
     * [🔘 How to HDB!](education/etop-tools/welcome-to-working-with-etop/helpdesk-buttons/how-to-hdb.md)
+* [🆙 Onboarding - Process!](education/onboarding-process.md)
 
 ***
 
