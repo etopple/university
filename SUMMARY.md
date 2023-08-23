@@ -33,6 +33,7 @@
       * [📱 Outlook Mobile Setup](education/self-help-guides/office-365-guides/outlook/outlook-mobile-setup.md)
       * [🤝 Accessing Another Mailbox](education/self-help-guides/office-365-guides/outlook/accessing-another-mailbox.md)
       * [🗄 Online Archiving](education/self-help-guides/office-365-guides/outlook/online-archiving.md)
+    * [📆 Microsoft Bookings - Personal Set up](education/self-help-guides/office-365-guides/microsoft-bookings-personal-set-up.md)
   * [🔧 eTop Tools](education/etop-tools/README.md)
     * [🔨 Deployed Tools](education/etop-tools/deployed-tools/README.md)
       * [⌚ AutoElevate](education/self-help-guides/etop-tools/deployed-tools/autoelevate.md)
