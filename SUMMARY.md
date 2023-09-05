@@ -17,6 +17,7 @@
 ## 📚 Education
 
 * [🆘 Self Help Guides](education/self-help-guides/README.md)
+  * [📃 Change the Default Application](education/self-help-guides/change-the-default-application.md)
   * [🎒 Backups!](education/self-help-guides/backups/README.md)
     * [Windows Server - Previous Versions](education/self-help-guides/backups/server-previous-versions.md)
     * [OneDrive for Business Versions](education/self-help-guides/backups/onedrive-for-business-versions.md)
