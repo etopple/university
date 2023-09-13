@@ -60,6 +60,9 @@
 * [📺 Media - Education!](media-education/README.md)
   * [📻 Podcast - Business Tech Playbook](media-education/podcast-business-tech-playbook.md)
   * [📹 Youtube Education!](media-education/youtube-education.md)
+* [🔒 Security - Insights](security-insights/README.md)
+  * [👨⚖ CISA - Briefs](security-insights/cisa-briefs/README.md)
+    * [NSA, FBI, and CISA Release Cybersecurity Information Sheet on Deepfake Threats](security-insights/cisa-briefs/nsa-fbi-and-cisa-release-cybersecurity-information-sheet-on-deepfake-threats.md)
 
 ## Policies
 
