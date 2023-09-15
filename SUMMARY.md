@@ -39,7 +39,7 @@
     * [📆 Microsoft Bookings](education/self-help-guides/office-365-guides/microsoft-bookings/README.md)
       * [Create a Booking Page](education/self-help-guides/office-365-guides/microsoft-bookings/create-a-booking-page.md)
       * [Public and Private Bookings](education/self-help-guides/office-365-guides/microsoft-bookings/public-and-private-bookings.md)
-      * [Schedule a meeting with Bookings](education/self-help-guides/office-365-guides/microsoft-bookings/schedule-a-meeting-with-bookings.md)
+      * [🤙 Schedule a meeting with Bookings](education/self-help-guides/office-365-guides/microsoft-bookings/schedule-a-meeting-with-bookings.md)
   * [🔧 eTop Tools](education/etop-tools/README.md)
     * [🔨 Deployed Tools](education/etop-tools/deployed-tools/README.md)
       * [⌚ AutoElevate](education/self-help-guides/etop-tools/deployed-tools/autoelevate.md)
