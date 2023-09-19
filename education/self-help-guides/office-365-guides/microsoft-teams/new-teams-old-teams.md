@@ -10,4 +10,4 @@ We don’t recommend one over the other as they both still receive feature and s
 
 ![](<../../../../.gitbook/assets/image (4).png>)Old teams asking you to try the new version
 
-![](<../../../../.gitbook/assets/image (2).png>)In case you want to go back!
+![](<../../../../.gitbook/assets/image (2) (1).png>)In case you want to go back!

@@ -9,4 +9,4 @@ OneDrive shows up as a separate directory and has multiple icons that show the s
 The default set up will leave all items in "have not been downloaded" status, but if there is a file or folder you need to access offline, you can right click on the file and select "Always keep on this device."
 
 OneDrive is also great at storage - if you want to remove the downloaded copy of a file, right click on the file and select "Free up space"\
-![](<../../../../.gitbook/assets/image (1) (1) (1).png>)
+![](<../../../../.gitbook/assets/image (1) (1) (1) (1).png>)
