@@ -17,6 +17,7 @@
 ## 📚 Education
 
 * [🆘 Self Help Guides](education/self-help-guides/README.md)
+  * [🖱 Three things to fix your computer](education/self-help-guides/three-things-to-fix-your-computer.md)
   * [📃 Change the Default Application](education/self-help-guides/change-the-default-application.md)
   * [🎒 Backups!](education/self-help-guides/backups/README.md)
     * [Windows Server - Previous Versions](education/self-help-guides/backups/server-previous-versions.md)
@@ -55,6 +56,7 @@
   * [📱 Phone Call - 951-398-0021](education/etop-tools/welcome-to-working-with-etop/phone-call-951-398-0021.md)
   * [🆘 Helpdesk Buttons!](education/etop-tools/welcome-to-working-with-etop/helpdesk-buttons/README.md)
     * [🔘 How to HDB!](education/etop-tools/welcome-to-working-with-etop/helpdesk-buttons/how-to-hdb.md)
+  * [🎫 eTop Ticket Forms](education/welcome-to-working-with-etop/etop-ticket-forms.md)
 * [🆙 Onboarding - Process!](education/onboarding-process/README.md)
   * [📋 Client User Onboarding](education/onboarding-process/client-user-onboarding.md)
   * [🏁 Prospect Onboarding](education/onboarding-process/prospect-onboarding.md)
