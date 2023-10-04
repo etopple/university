@@ -69,6 +69,7 @@
 * [🔒 Security - Insights](security-insights/README.md)
   * [👨⚖ CISA - Briefs](security-insights/cisa-briefs/README.md)
     * [NSA, FBI, and CISA Release Cybersecurity Information Sheet on Deepfake Threats](security-insights/cisa-briefs/nsa-fbi-and-cisa-release-cybersecurity-information-sheet-on-deepfake-threats.md)
+    * [🔐 Oct 3 Secure our World!](security-insights/cisa-briefs/oct-3-secure-our-world.md)
 
 ## Policies
 
