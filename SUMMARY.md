@@ -47,6 +47,7 @@
     * [📯 Secure Remote Connection](education/self-help-guides/etop-tools/secure-remote-connection/README.md)
       * [👩💻 Sophos Connect VPN](education/self-help-guides/etop-tools/secure-remote-connection/sophos-connect-vpn.md)
       * [🌨 Cloudflare ZTNA Info](education/self-help-guides/etop-tools/secure-remote-connection/cloudflare-ztna-info.md)
+      * [💻 Screen Connect](education/self-help-guides/etop-tools/secure-remote-connection/screen-connect.md)
     * [🔨 Deployed Tools](education/etop-tools/deployed-tools/README.md)
       * [⌚ AutoElevate](education/self-help-guides/etop-tools/deployed-tools/autoelevate.md)
       * [◽ UBlock - Origin Ad Blocker](education/etop-tools/deployed-tools/ublock-origin-ad-blocker.md)
