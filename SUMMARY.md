@@ -43,6 +43,7 @@
       * [Create a Booking Page](education/self-help-guides/office-365-guides/microsoft-bookings/create-a-booking-page.md)
       * [Public and Private Bookings](education/self-help-guides/office-365-guides/microsoft-bookings/public-and-private-bookings.md)
       * [🤙 Schedule a meeting with Bookings](education/self-help-guides/office-365-guides/microsoft-bookings/schedule-a-meeting-with-bookings.md)
+  * [↗ Open a page in Internet Explorer](education/self-help-guides/open-a-page-in-internet-explorer.md)
   * [🔧 eTop Tools](education/etop-tools/README.md)
     * [📯 Secure Remote Connection](education/self-help-guides/etop-tools/secure-remote-connection/README.md)
       * [👩💻 Sophos Connect VPN](education/self-help-guides/etop-tools/secure-remote-connection/sophos-connect-vpn.md)
