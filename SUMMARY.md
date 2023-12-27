@@ -61,6 +61,7 @@
   * [🎫 eTop Ticket Forms](education/welcome-to-working-with-etop/etop-ticket-forms.md)
 * [🆙 Onboarding - Process!](education/onboarding-process/README.md)
   * [📋 Client User Onboarding](education/onboarding-process/client-user-onboarding.md)
+  * [📋 User Offboarding](education/onboarding-process/user-offboarding.md)
   * [🏁 Prospect Onboarding](education/onboarding-process/prospect-onboarding.md)
 
 ***
