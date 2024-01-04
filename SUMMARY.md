@@ -50,6 +50,7 @@
       * [🌨 Cloudflare ZTNA Info](education/self-help-guides/etop-tools/secure-remote-connection/cloudflare-ztna-info.md)
       * [💻 Screen Connect](education/self-help-guides/etop-tools/secure-remote-connection/screen-connect.md)
     * [🔨 Deployed Tools](education/etop-tools/deployed-tools/README.md)
+      * [🖊 Exclaimer Cloud -synchronized signatures](education/self-help-guides/etop-tools/deployed-tools/exclaimer-cloud-synchronized-signatures.md)
       * [⌚ AutoElevate](education/self-help-guides/etop-tools/deployed-tools/autoelevate.md)
       * [◽ UBlock - Origin Ad Blocker](education/etop-tools/deployed-tools/ublock-origin-ad-blocker.md)
       * [📨 Sophos Email - Self Service Portal](education/etop-tools/deployed-tools/sophos-email-self-service-portal.md)
