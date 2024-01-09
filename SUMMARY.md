@@ -64,6 +64,8 @@
   * [📋 Client User Onboarding](education/onboarding-process/client-user-onboarding.md)
   * [📋 User Offboarding](education/onboarding-process/user-offboarding.md)
   * [🏁 Prospect Onboarding](education/onboarding-process/prospect-onboarding.md)
+* [🌐 Global Client Updates](education/global-client-updates/README.md)
+  * [🛑 Bad Patch Update](education/global-client-updates/bad-patch-update.md)
 
 ***
 
