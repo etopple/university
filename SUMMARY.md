@@ -67,6 +67,8 @@
   * [🏁 Prospect Onboarding](education/onboarding-process/prospect-onboarding.md)
 * [🌐 Global Client Updates](education/global-client-updates/README.md)
   * [🛑 Bad Patch Update](education/global-client-updates/bad-patch-update.md)
+  * [🔬 Microsoft Issues](education/global-client-updates/microsoft-issues/README.md)
+    * [Some users may experience multiple issues with their Microsoft Teams TM710344](education/global-client-updates/microsoft-issues/some-users-may-experience-multiple-issues-with-their-microsoft-teams-tm710344.md)
 
 ***
 
