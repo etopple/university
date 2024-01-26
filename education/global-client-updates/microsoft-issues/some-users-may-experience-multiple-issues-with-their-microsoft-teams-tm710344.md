@@ -17,3 +17,5 @@ More info: Affected scenarios include, but aren't limited to:
 Current status: We’ve identified that a portion of the Microsoft Teams service is experiencing a networking issue. We’re performing a failover to an alternate infrastructure to remediate impact and estimate this should take approximately an hour to complete.
 
 Scope of impact: This issue can potentially impact any Microsoft Teams user in the scenarios outlined in the More info section.
+
+[https://downdetector.com/status/teams/](https://downdetector.com/status/teams/)
