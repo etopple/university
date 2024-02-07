@@ -14,22 +14,32 @@ Click "Login"&#x20;
 
 
 
-Type your User Name (Work email) and ScreenConnect password.&#x20;
+Type your User Name (Work email) and ScreenConnect password. Click Login\
+\
+![](<../../../../.gitbook/assets/image (40).png>)
 
-<figure><img src="../../../../.gitbook/assets/image (37).png" alt=""><figcaption></figcaption></figure>
+
 
 If prompted to change your password, enter initial password and a new memorable and secure password and select Change Password
 
-You will be prompted for a One-Time Password. This is emailed to your work email from control@etop.tech.
+You will be prompted for a One-Time Password. This is emailed to your work email from control@etop.tech.\
+\
+![](<../../../../.gitbook/assets/image (41).png>)
 
-Click the "One-Time Password" field and enter the code from your email..&#x20;
-
+Click the "One-Time Password" field and enter the code from your email\
 Check the box next to "Trust this device for 7 days"
 
-Click this button.
+<figure><img src="../../../../.gitbook/assets/image (38).png" alt=""><figcaption></figcaption></figure>
 
-You will have one assigned machine click Join and it will prompt you to download a small access application. Once downloaded, run the application, and log into your work computer with your work computer credentials, just like you're sitting in front of it.
+Click Login.
 
-Please note this is from your PC out and does NOT give eTop access to personal machines.
+On the left, click Access\
+You will have one assigned machine. Click Join \
+![](<../../../../.gitbook/assets/image (42).png>)\
+and it will prompt you to download a small access application.&#x20;
+
+Once downloaded, run the application, and log into your work computer with your work computer credentials, just like you're sitting in front of it.
+
+_Please note this is from your PC out and does NOT give eTop access to personal machines._
 
 \
