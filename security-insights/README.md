@@ -1,5 +1,5 @@
 ---
-description: Interesting post's on security from around the internet
+description: Interesting posts on security from around the internet
 ---
 
 # 🔒 Security - Insights

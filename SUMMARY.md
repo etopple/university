@@ -55,6 +55,7 @@
       * [⌚ AutoElevate](education/self-help-guides/etop-tools/deployed-tools/autoelevate.md)
       * [◽ UBlock - Origin Ad Blocker](education/etop-tools/deployed-tools/ublock-origin-ad-blocker.md)
       * [📨 Sophos Email - Self Service Portal](education/etop-tools/deployed-tools/sophos-email-self-service-portal.md)
+  * [🎣 How to spot a Phish](education/self-help-guides/how-to-spot-a-phish.md)
 * [⚙ Welcome to Working with eTop](education/etop-tools/welcome-to-working-with-etop/README.md)
   * [📭 eMail - Helpdesk@etoptechnology.com](education/etop-tools/welcome-to-working-with-etop/email-helpdesk-etoptechnology.com.md)
   * [📱 Phone Call - 951-398-0021](education/etop-tools/welcome-to-working-with-etop/phone-call-951-398-0021.md)
