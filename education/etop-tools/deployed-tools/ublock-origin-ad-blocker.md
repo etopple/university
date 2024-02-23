@@ -7,7 +7,7 @@
 If you need to temporarily disable uBlock Origin for a specific domain while browsing, follow the steps below:
 
 1. **Navigate to the top of your browser:** Look for the shield and mouse over
-   * ![](<../../../.gitbook/assets/image (5) (1) (1) (1) (1).png>)
+   * ![](<../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1).png>)
 2. Press The power button:&#x20;
    * ![](<../../../.gitbook/assets/image (12).png>)
 3. **Once off press refresh:**
