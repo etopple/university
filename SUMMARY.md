@@ -45,6 +45,7 @@
       * [🤙 Schedule a meeting with Bookings](education/self-help-guides/office-365-guides/microsoft-bookings/schedule-a-meeting-with-bookings.md)
     * [📲 Mobile Phone Setup](education/self-help-guides/office-365-guides/mobile-phone-setup/README.md)
       * [📱 Android Phone Setup](education/self-help-guides/office-365-guides/mobile-phone-setup/android-phone-setup.md)
+      * [📱 iOS Phone Setup](education/self-help-guides/office-365-guides/mobile-phone-setup/ios-phone-setup.md)
   * [💲 QuickBooks Troubleshooting](education/self-help-guides/quickbooks-troubleshooting.md)
   * [↗️ Open a page in Internet Explorer](education/self-help-guides/open-a-page-in-internet-explorer.md)
   * [🔧 eTop Tools](education/etop-tools/README.md)

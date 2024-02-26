@@ -1,22 +1,16 @@
 ---
 description: >-
-  Step by Step instructions for setting up your phone for your Microsoft 365
-  accounts!
+  Step by Step instructions for setting up your Android phone for your Microsoft
+  365 accounts!
 ---
 
 # 📱 Android Phone Setup
 
 ### Install applications
 
-1. Open the Google Play store and search for Authenticator
-2. Install Microsoft Authenticator\
-   ![](../../../../.gitbook/assets/image.png)
-3. Search for Microsoft Outlook
-4. Install Outlook\
-   ![](<../../../../.gitbook/assets/image (1).png>)
-5. Search for Microsoft Teams
-6. Install Teams\
-   ![](<../../../../.gitbook/assets/image (2).png>)
+1. Open the Google Play store and search for Authenticator, Outlook, and Teams
+2. Install Microsoft Authenticator, Microsoft Outlook, and Microsoft Teams\
+   ![](../../../../.gitbook/assets/image.png)![](<../../../../.gitbook/assets/image (1).png>)![](<../../../../.gitbook/assets/image (2).png>)
 
 \
 
@@ -36,7 +30,7 @@ description: >-
 6. Go back to the home screen and open Authenticator
 7. When prompted, allow Authenticator to send notifications\
    ![](<../../../../.gitbook/assets/image (50).png>)
-8. The Next two screens are prompts that will accept the license agreement and send user data to Microsoft. Select Accept the license agreement, but the send user data is up to you\
+8. The Next two screens are prompts that will accept the license agreement and send user data to Microsoft. Select Accept the license agreement, but the send user data is up to you.\
    Select Continue\
    ![](<../../../../.gitbook/assets/image (51).png>)![](<../../../../.gitbook/assets/image (52).png>)
 9. The next screen is where we add your account. Select "**Add Work or School account**\
