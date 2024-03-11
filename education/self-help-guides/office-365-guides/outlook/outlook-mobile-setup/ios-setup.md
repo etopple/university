@@ -18,5 +18,5 @@ To set up your email on your iOS device, follow these simple steps:
    ![](<../../../../../.gitbook/assets/Image (1).jpg>)\
    ![](<../../../../../.gitbook/assets/Image (2).jpg>)\
 
-4. If your organization uses [Microsoft Authenticator](../../../../etop-tools/office-365-guides/microsoft-authenticator.md) or another form of MFA, you will be prompted to authenticate. If you don't, input your password. \
+4. If your organization uses [Microsoft Authenticator](../../microsoft-authenticator/) or another form of MFA, you will be prompted to authenticate. If you don't, input your password. \
    ![](<../../../../../.gitbook/assets/Image (3).jpg>)

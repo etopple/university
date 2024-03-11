@@ -17,7 +17,7 @@ Get the Outlook mobile app
 ![QR code to download the Outlook mobile app](https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/outlook-qrcode?resMode=sharp2\&op\_usm=1.5,0.65,15,0\&wid=200\&hei=200\&qlt=100\&fit=constrain)\
 **Note: Ensure you are downloading the application created by the Microsoft Organization.**
 
-There might be some prerequisites for your account, such as [Microsoft Authenticator](../../../../etop-tools/office-365-guides/microsoft-authenticator.md) or Microsoft Intune Company Portal. These applications provide additional security for your account on your device.&#x20;
+There might be some prerequisites for your account, such as [Microsoft Authenticator](../../microsoft-authenticator/) or Microsoft Intune Company Portal. These applications provide additional security for your account on your device.&#x20;
 
 
 

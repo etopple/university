@@ -20,6 +20,6 @@ To set up your email on your iOS device, follow these simple steps:
    ![](<../../../../../.gitbook/assets/Image (1).jpg>)\
    ![](<../../../../../.gitbook/assets/Image (2).jpg>)\
 
-5. If your organization uses [Microsoft Authenticator](../../../../etop-tools/office-365-guides/microsoft-authenticator.md) or another form of MFA, you will be prompted to authenticate. If you don't, input your password. \
+5. If your organization uses [Microsoft Authenticator](../../microsoft-authenticator/) or another form of MFA, you will be prompted to authenticate. If you don't, input your password. \
    ![](<../../../../../.gitbook/assets/Image (3).jpg>)
 6. You might be prompted to install the Microsoft Intune Company Portal app. Tap "Go to store" to continue and install the Company Portal app. The Intune Company Portal application will check to ensure your device is compliant with your company's security policies.&#x20;

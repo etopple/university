@@ -67,4 +67,4 @@ description: >-
    ![](<../../../../.gitbook/assets/image (98).png>)
 2. The next splash screens are all about preferences. Choose the preferences that are appropriate to your needs.
 
-Your phone is now set up with [multi-factor.md](../../../../policies/policies/multi-factor.md "mention")authentication using [microsoft-authenticator.md](../../../etop-tools/office-365-guides/microsoft-authenticator.md "mention"). You also have set up [microsoft-teams](../microsoft-teams/ "mention")and [outlook](../outlook/ "mention").&#x20;
+Your phone is now set up with [multi-factor.md](../../../../policies/policies/multi-factor.md "mention")authentication using [microsoft-authenticator](../microsoft-authenticator/ "mention"). You also have set up [microsoft-teams](../microsoft-teams/ "mention")and [outlook](../outlook/ "mention").&#x20;
