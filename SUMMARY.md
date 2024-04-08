@@ -72,9 +72,10 @@
   * [📋 User Offboarding](education/onboarding-process/user-offboarding.md)
   * [🏁 Prospect Onboarding](education/onboarding-process/prospect-onboarding.md)
 * [🌐 Global Client Updates](education/global-client-updates/README.md)
-  * [🛑 Bad Patch Update](education/global-client-updates/bad-patch-update.md)
   * [🔬 Microsoft Issues](education/global-client-updates/microsoft-issues/README.md)
     * [Some users may experience multiple issues with their Microsoft Teams TM710344](education/global-client-updates/microsoft-issues/some-users-may-experience-multiple-issues-with-their-microsoft-teams-tm710344.md)
+  * [🛑 Bad Patch Update](education/global-client-updates/bad-patch-update.md)
+  * [📮 New sender rules when sending to Yahoo and Gmail](education/global-client-updates/new-sender-rules-when-sending-to-yahoo-and-gmail.md)
 
 ***
 
