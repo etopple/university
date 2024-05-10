@@ -5,7 +5,7 @@ When you receive a new PDF tool, get your prefered browser installed, or even ha
 1. In Windows File Explorer or on the Desktop, locate a file that has the right file type: in this case PDF.\
    ![](<../../.gitbook/assets/image (5) (1).png>)
 2. Right-click and select "Properties"\
-   &#x20;![](<../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png>)
+   &#x20;![](<../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png>)
 3. In the Properties Window, click "Change"\
    ![](<../../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png>)
 4. In the popup that appears, select the application you wish to use and click "OK"\

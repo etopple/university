@@ -10,7 +10,7 @@ To set up your email on your iOS device, follow these simple steps:
 3.  The first time, you will be prompted for setup.&#x20;
 
     * If it is not the first time you've set up Outlook, click Menu (icon or initials at the top left) > Settings (Gear at the bottom)> Add Mail account > Add Email Account\
-      ![](<../../../../../.gitbook/assets/image (1) (1) (1) (1).png>)\
+      ![](<../../../../../.gitbook/assets/image (1) (1) (1) (1) (1).png>)\
       ![](<../../../../../.gitbook/assets/image (2) (1) (1) (1).png>)\
 
 

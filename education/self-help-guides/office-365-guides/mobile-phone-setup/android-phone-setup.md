@@ -10,7 +10,7 @@ description: >-
 
 1. Open the Google Play store and search for Authenticator, Outlook, and Teams
 2. Install Microsoft Authenticator, Microsoft Outlook, and Microsoft Teams\
-   ![](../../../../.gitbook/assets/image.png)![](<../../../../.gitbook/assets/image (1).png>)![](<../../../../.gitbook/assets/image (2).png>)
+   ![](<../../../../.gitbook/assets/image (1).png>)![](<../../../../.gitbook/assets/image (1) (1).png>)![](<../../../../.gitbook/assets/image (2).png>)
 
 \
 
