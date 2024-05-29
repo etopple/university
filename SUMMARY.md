@@ -24,6 +24,7 @@
     * [OneDrive for Business Versions](education/self-help-guides/backups/onedrive-for-business-versions.md)
   * [Microsoft 365 Guides!](education/etop-tools/office-365-guides/README.md)
     * [The Art of the Microsoft Minute: A Humorous Guide for eTop Users](education/self-help-guides/office-365-guides/the-art-of-the-microsoft-minute-a-humorous-guide-for-etop-users.md)
+    * [📉 PowerBI License Association](education/self-help-guides/office-365-guides/powerbi-license-association.md)
     * [☁️ OneDrive for Business](education/self-help-guides/office-365-guides/onedrive-for-business/README.md)
       * [📂 OneDrive Files On-Demand](education/self-help-guides/office-365-guides/onedrive-for-business/onedrive-files-on-demand.md)
       * [📁 Known Folder Move](education/self-help-guides/office-365-guides/onedrive-for-business/known-folder-move.md)
