@@ -58,6 +58,7 @@
       * [💻 Screen Connect](education/self-help-guides/etop-tools/secure-remote-connection/screen-connect.md)
     * [🔨 Deployed Tools](education/etop-tools/deployed-tools/README.md)
       * [🗝️ Keeper - Getting Started](education/self-help-guides/etop-tools/deployed-tools/keeper-getting-started.md)
+      * [Keeper Security](education/self-help-guides/etop-tools/deployed-tools/keeper-security.md)
       * [🖊️ Exclaimer Cloud -synchronized signatures](education/self-help-guides/etop-tools/deployed-tools/exclaimer-cloud-synchronized-signatures.md)
       * [⌚ AutoElevate](education/self-help-guides/etop-tools/deployed-tools/autoelevate.md)
       * [◽ UBlock - Origin Ad Blocker](education/etop-tools/deployed-tools/ublock-origin-ad-blocker.md)
