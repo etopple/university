@@ -51,7 +51,7 @@
       * [📱 iOS Phone Setup](education/self-help-guides/office-365-guides/mobile-phone-setup/ios-phone-setup.md)
   * [💲 QuickBooks Troubleshooting](education/self-help-guides/quickbooks-troubleshooting.md)
   * [Browser Help](education/self-help-guides/browser-help/README.md)
-    * [↗️ Open a page in Internet Explorer](education/self-help-guides/browser-help/open-a-page-in-internet-explorer.md)
+    * [↗️ Open a page in Internet Explorer](education/self-help-guides/open-a-page-in-internet-explorer.md)
     * [Setting up Microsoft Edge Sync](education/self-help-guides/browser-help/setting-up-microsoft-edge-sync.md)
   * [🔧 eTop Tools](education/etop-tools/README.md)
     * [📯 Secure Remote Connection](education/self-help-guides/etop-tools/secure-remote-connection/README.md)

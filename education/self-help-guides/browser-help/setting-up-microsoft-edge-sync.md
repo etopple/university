@@ -23,6 +23,6 @@ Microsoft Edge has the built-in ability to sync favorites, history, and other cu
    ![](<../../../.gitbook/assets/image (2).png>)
 7. Close the settings tab.
 
-This is an easy and supported way to ensure that your important favorites (bookmarks) and passwords are backed up to your Microsoft account
+This is an easy and supported way to ensure that your important favorites (bookmarks) are backed up to your Microsoft account
 
 _source:_ [https://support.microsoft.com/en-us/microsoft-edge/sign-in-to-sync-microsoft-edge-across-devices-e6ffa79b-ed52-aa32-47e2-5d5597fe4674](https://support.microsoft.com/en-us/microsoft-edge/sign-in-to-sync-microsoft-edge-across-devices-e6ffa79b-ed52-aa32-47e2-5d5597fe4674)
