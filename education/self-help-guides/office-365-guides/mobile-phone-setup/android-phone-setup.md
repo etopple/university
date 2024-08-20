@@ -10,7 +10,7 @@ description: >-
 
 1. Open the Google Play store and search for Authenticator, Outlook, and Teams
 2. Install Microsoft Authenticator, Microsoft Outlook, and Microsoft Teams\
-   ![](<../../../../.gitbook/assets/image (1).png>)![](<../../../../.gitbook/assets/image (1) (1).png>)![](<../../../../.gitbook/assets/image (2).png>)
+   ![](<../../../../.gitbook/assets/image (1) (1).png>)![](<../../../../.gitbook/assets/image (1) (1) (1).png>)![](<../../../../.gitbook/assets/image (2) (1).png>)
 
 \
 
@@ -20,7 +20,7 @@ description: >-
 ### Set up Applications and Multifactor Authentication
 
 1. Open Outlook first. Select "Add Account"\
-   ![](<../../../../.gitbook/assets/image (3).png>)
+   ![](<../../../../.gitbook/assets/image (3) (1).png>)
 2. Enter your work email address in the "Enter your Email" box. Select "Continue"\
    ![](<../../../../.gitbook/assets/image (4).png>)
 3. Enter your work email password in the Password field. Select "Sign In"\

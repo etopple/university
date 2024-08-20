@@ -8,7 +8,7 @@ You can either press the button on the taskbar or press the F1 Key!&#x20;
 
 ## Press F1 on your Keyboard
 
-![](<../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png>)
+![](<../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png>)
 
 ## Wait 5-10 seconds
 
