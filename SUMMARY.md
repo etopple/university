@@ -53,6 +53,8 @@
   * [Browser Help](education/self-help-guides/browser-help/README.md)
     * [↗️ Open a page in Internet Explorer](education/self-help-guides/open-a-page-in-internet-explorer.md)
     * [Setting up Microsoft Edge Sync](education/self-help-guides/browser-help/setting-up-microsoft-edge-sync.md)
+    * [🔖 Migrating Bookmarks to Microsoft Edge](education/self-help-guides/browser-help/migrating-bookmarks-to-microsoft-edge.md)
+    * [🎁 Extensions in Microsoft Edge](education/self-help-guides/browser-help/extensions-in-microsoft-edge.md)
   * [🔧 eTop Tools](education/etop-tools/README.md)
     * [📯 Secure Remote Connection](education/self-help-guides/etop-tools/secure-remote-connection/README.md)
       * [👩‍💻 Sophos Connect VPN](education/self-help-guides/etop-tools/secure-remote-connection/sophos-connect-vpn.md)
