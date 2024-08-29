@@ -13,6 +13,6 @@ Remember, the Microsoft Minute is less of a specific duration and more of a myst
 
 
 
-<figure><img src="../../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 \
