@@ -10,9 +10,9 @@ In Outlook for desktop or mobile the instructions are slightly different. If the
 
 1. Sign into [https://outlook.office.com](https://outlook.office.com/) with your own account
 2. In the top right corner, click your icon and select "Open another mailbox"\
-   ![](<../../../../.gitbook/assets/image (22).png>)
+   ![](<../../../../.gitbook/assets/image (82).png>)
 3. Enter the email address of them mailbox you need to access and click Open\
-   ![](<../../../../.gitbook/assets/image (23).png>)
+   ![](<../../../../.gitbook/assets/image (83).png>)
 4. The mailbox will open in a new tab. This will allow you to access the mailbox and easily switch back to your mailbox as well.\
 
 

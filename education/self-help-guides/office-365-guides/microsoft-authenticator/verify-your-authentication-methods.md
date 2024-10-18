@@ -17,7 +17,7 @@ There are multiple reasons your Authentication methods may need to change. Let's
 
     <div align="left">
 
-    <figure><img src="../../../../.gitbook/assets/image (99).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../../.gitbook/assets/image (159).png" alt=""><figcaption></figcaption></figure>
 
     </div>
 

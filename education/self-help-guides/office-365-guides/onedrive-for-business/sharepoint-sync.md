@@ -6,8 +6,8 @@ In order to set this up, access the SharePoint library URL in your web browser. 
 
 Once there, click the Documents on the left, and Sync at the top.&#x20;
 
-![](<../../../../.gitbook/assets/image (5) (1) (1) (1) (1).png>)
+![](<../../../../.gitbook/assets/image (43).png>)
 
 This adds the folder structure to your Windows File Explorer to work with it as you would any other folder and files.
 
-![](<../../../../.gitbook/assets/image (6) (1).png>)
+![](<../../../../.gitbook/assets/image (44).png>)

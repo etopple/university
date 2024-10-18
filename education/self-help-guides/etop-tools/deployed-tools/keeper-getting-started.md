@@ -11,7 +11,7 @@ eTop offers a [password-manager.md](../../password-manager.md "mention")called K
 ## Accessing Keeper
 
 The easiest way to access Keeper for the first time is to login at [https://keepersecurity.com](https://keepersecurity.com/vault/). \
-![](<../../../../.gitbook/assets/image (101).png>)
+![](<../../../../.gitbook/assets/image (161).png>)
 
 
 
@@ -36,7 +36,7 @@ Keeper Importer can automatically import unprotected passwords from web browsers
 ## Using Keeper
 
 KeeperFill is Keeper's browser extension. Once you sign in, it will put a Keeper icon in username and password fields, prompting you to fill in the information needed to login to all saved sites. You can install the one you need here: [https://docs.keeper.io/en/v/user-guides/browser-extensions](https://docs.keeper.io/en/v/user-guides/browser-extensions)\
-![](<../../../../.gitbook/assets/image (100).png>)
+![](<../../../../.gitbook/assets/image (160).png>)
 
 We hope these items are useful when you let eTop secure your passwords with Keeper Security!
 

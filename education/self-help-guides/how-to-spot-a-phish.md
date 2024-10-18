@@ -30,7 +30,7 @@ Examine the sender's email address carefully. Phishing emails often come from ad
 For example: mary@mainstbamk.com is not the same as mary@mainstbank.com\
 
 
-<figure><img src="../../.gitbook/assets/image (49).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (109).png" alt=""><figcaption></figcaption></figure>
 
 #### 2. Is it real?
 
@@ -39,13 +39,13 @@ If the service or request is unfamiliar to you but it's asking you to click a li
 &#x20;\
 
 
-<figure><img src="../../.gitbook/assets/image (47).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (107).png" alt=""><figcaption></figcaption></figure>
 
 #### 3. Be Wary of Unsolicited Attachments or Links
 
 Be cautious if the email encourages you to download an attachment or click on a link, especially if it creates a sense of urgency or invokes fear. Verify the legitimacy of the email before taking any action.
 
-<figure><img src="../../.gitbook/assets/image (48).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (108).png" alt=""><figcaption></figcaption></figure>
 
 
 

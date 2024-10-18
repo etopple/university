@@ -5,13 +5,13 @@ To set up your email on your iOS device, follow these simple steps:
 1. If you haven't already done so, download the Microsoft Outlook for Android devices here: \
    [https://play.google.com/store/apps/details?id=com.microsoft.office.outlook\&hl=en\_GB](https://play.google.com/store/apps/details?id=com.microsoft.office.outlook\&hl=en\_GB)\
    _Note: ensure that the application you're downloading is by Microsoft Corporation. The icon looks like this:_ \
-   ![](<../../../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png>)
+   ![](<../../../../../.gitbook/assets/image (25).png>)
 2. Launch the application
 3.  The first time, you will be prompted for setup.&#x20;
 
     * If it is not the first time you've set up Outlook, click Menu (icon or initials at the top left) > Settings (Gear at the bottom)> Add Mail account > Add Email Account\
-      ![](<../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png>)\
-      ![](<../../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png>)\
+      ![](<../../../../../.gitbook/assets/image (26).png>)\
+      ![](<../../../../../.gitbook/assets/image (27).png>)\
 
 
 

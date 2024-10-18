@@ -14,11 +14,11 @@ In this guide, we will walk you through the steps to add extensions to Microsoft
 2. Click on the three dots `...` in the upper right corner.\
    ![](<../../../.gitbook/assets/image (5).png>)
 3. Select `Extensions`.\
-   ![](<../../../.gitbook/assets/image (1) (1).png>)
+   ![](<../../../.gitbook/assets/image (6).png>)
 4. Click on `Get extensions for Microsoft Edge`.
 5. Browse or search for the desired extension.\
-   ![](<../../../.gitbook/assets/image (2) (1).png>)
+   ![](<../../../.gitbook/assets/image (7).png>)
 6. Click `Get` next to the extension you want to add.\
 
 7. Follow the on-screen instructions to install the extension.\
-   ![](<../../../.gitbook/assets/image (3) (1).png>)
+   ![](<../../../.gitbook/assets/image (8).png>)

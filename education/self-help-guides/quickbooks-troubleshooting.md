@@ -19,5 +19,5 @@ Here are some basic things **you** can do that resolve most QuickBooks issues. O
 5. Search QuickBooks support site for the specific error and perform any listed steps.&#x20;
 6. Contact Intuit support.&#x20;
 
-As always, eTop is happy to help with any of the above steps should you need assistance. Create a [ticket ](../etop-tools/welcome-to-working-with-etop/helpdesk-buttons/)and we will be in touch!
+As always, eTop is happy to help with any of the above steps should you need assistance. Create a [ticket ](../welcome-to-working-with-etop/helpdesk-buttons/)and we will be in touch!
 

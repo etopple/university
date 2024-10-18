@@ -9,6 +9,6 @@ At eTop Technology, we take the stability and performance of your IT environment
 
 Please be assured that our team is working tirelessly to ensure that your IT infrastructure remains reliable and efficient. We understand that such disruptions can be frustrating, and we apologize for any inconvenience this may have caused.
 
-We will keep you updated on our progress, and if you have any immediate concerns or questions, please do not hesitate to reach out to our support team [welcome-to-working-with-etop](../etop-tools/welcome-to-working-with-etop/ "mention"). Your satisfaction and the smooth operation of your systems are our top priorities.
+We will keep you updated on our progress, and if you have any immediate concerns or questions, please do not hesitate to reach out to our support team [welcome-to-working-with-etop](../welcome-to-working-with-etop/ "mention"). Your satisfaction and the smooth operation of your systems are our top priorities.
 
 Thank you for your trust in eTop Technology as your IT Managed Service Provider. We appreciate your patience as we work to resolve this situation promptly.

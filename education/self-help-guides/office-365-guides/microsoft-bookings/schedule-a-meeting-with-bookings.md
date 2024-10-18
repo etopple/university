@@ -7,7 +7,7 @@ description: or "I got this link for a bookings page and need to know how to sch
 If you are scheduling a meeting with someone on their Bookings page, you will receive a link that directs you to "https://outlook.office.com/bookwithme/user(long information here)"
 
 If you are not signed into your Microsoft 365 account you will receive 2 options:\
-![](<../../../../.gitbook/assets/image (30).png>)
+![](<../../../../.gitbook/assets/image (90).png>)
 
 You can select Sign in with a Microsoft 365 work or school account or Continue as Guest.&#x20;
 
