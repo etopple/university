@@ -10,4 +10,4 @@ There are 3 things you can do. These things don't take any time and could be a q
 2. Check the connections: If your computer has a loose connection somewhere, it causes odd behavior. Simply disconnecting and reconnecting the items connected to your comptuer can fix this odd behavior.&#x20;
 3. Clear your browser cache and cookies: If it's related to web issues such as slow loading times or errors, clearing your cache and cookies can help.
 
-If these are not the resolution, [contacting eTop](../welcome-to-working-with-etop/) is a great way to get on the path to things working again!
+If these are not the resolution, [contacting eTop](../etop-tools/welcome-to-working-with-etop/) is a great way to get on the path to things working again!

@@ -13,7 +13,7 @@ You can have a mix of public and private meetings associated with your personal 
 ### **Creating a new meeting type**&#x20;
 
 1\. Click the plus sign next to either Public or Private type.\
-![](<../../../../.gitbook/assets/image (85).png>)\
+![](<../../../../.gitbook/assets/image (25).png>)\
 2\. Create a meeting type. Some possible examples:\
 \- Interview\
 \- One on One\
@@ -22,7 +22,7 @@ You can have a mix of public and private meetings associated with your personal 
 \- Conference\
 \- Mentoring\
 3\. Fill out the required fields and click **Save**. If you wish to customize further, scroll down and select the schedule and reminder items that work for you and your needs.\
-![](<../../../../.gitbook/assets/image (87).png>)
+![](<../../../../.gitbook/assets/image (27).png>)
 
 In order for time to show up, it is important for time to be made available on the site.
 
@@ -31,7 +31,7 @@ In order for time to show up, it is important for time to be made available on t
 #### Public meeting
 
 The public meeting types appear on the booking page. You can share your new bookings page by clicking the Share icon at the top. You can add it to your email signature (check with your company's signature requirements), share it via email, or copy it to share in an email/site/or other communication.\
-&#x20; ![](<../../../../.gitbook/assets/image (84).png>)
+&#x20; ![](<../../../../.gitbook/assets/image (24).png>)
 
 #### Private meeting type
 

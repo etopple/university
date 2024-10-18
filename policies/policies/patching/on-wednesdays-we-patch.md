@@ -8,7 +8,7 @@ After years of testing and research, we find that Wednesday at 4pm is a good tim
 
 When patches are installed that require a restart of the machine, the following message appears:
 
-<figure><img src="../../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (3).png" alt=""><figcaption></figcaption></figure>
 
 If you select the "Reboot Now" button, the computer will restart and install updates.&#x20;
 

@@ -20,9 +20,9 @@ Your application will be called "Applicationname (Remote Workspaces)" It will al
 2. In the window that opens, select "View Details"\
    ![](<../../.gitbook/assets/view details.png>)
 3. In this window, you can see when the most recent update occured. To update immediately, click "Update Now"\
-   ![](<../../.gitbook/assets/image (19).png>)
+   ![](<../../.gitbook/assets/image (6).png>)
 4. You will receive a window that looks like this. (note: the number of programs and/or desktops will depend on your organization's configuration)\
-   ![](<../../.gitbook/assets/image (20).png>)
+   ![](<../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png>)
 5. You can view the applications either by clicking View Resources in the first window, or under the start menu.\
-   ![](<../../.gitbook/assets/image (21).png>)\
+   ![](<../../.gitbook/assets/image (2) (1) (1) (1) (1).png>)\
    ![](../../.gitbook/assets/application.png)

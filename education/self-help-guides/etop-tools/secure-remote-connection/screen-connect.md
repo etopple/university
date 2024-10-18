@@ -10,13 +10,13 @@ Navigate to [https://etop.hostedrmm.com:8040/](https://etop.hostedrmm.com:8040/)
 
 Click "Login"&#x20;
 
-<figure><img src="../../../../.gitbook/assets/image (96).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (36).png" alt=""><figcaption></figcaption></figure>
 
 
 
 Type your User Name (Work email) and ScreenConnect password. Click Login\
 \
-![](<../../../../.gitbook/assets/image (100).png>)
+![](<../../../../.gitbook/assets/image (40).png>)
 
 
 
@@ -24,18 +24,18 @@ If prompted to change your password, enter initial password and a new memorable 
 
 You will be prompted for a One-Time Password. This is emailed to your work email from control@etop.tech.\
 \
-![](<../../../../.gitbook/assets/image (101).png>)
+![](<../../../../.gitbook/assets/image (41).png>)
 
 Click the "One-Time Password" field and enter the code from your email\
 Check the box next to "Trust this device for 7 days"
 
-<figure><img src="../../../../.gitbook/assets/image (98).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (38).png" alt=""><figcaption></figcaption></figure>
 
 Click Login.
 
 On the left, click Access\
 You will have one assigned machine. Click Join \
-![](<../../../../.gitbook/assets/image (102).png>)\
+![](<../../../../.gitbook/assets/image (42).png>)\
 and it will prompt you to download a small access application.&#x20;
 
 Once downloaded, run the application, and log into your work computer with your work computer credentials, just like you're sitting in front of it.

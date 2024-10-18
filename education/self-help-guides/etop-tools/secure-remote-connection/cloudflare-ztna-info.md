@@ -30,10 +30,10 @@ Enabling this connection will allow you to access resources such as network file
 
 ## Getting Help
 
-If you have any questions on using this new tool, please contact out helpdesk at 951-398-0021 or [helpdesk@etoptechnology.com](mailto:helpdesk@etoptechnology.com) - You can also use [how-to-hdb.md](../../../welcome-to-working-with-etop/helpdesk-buttons/how-to-hdb.md "mention")
+If you have any questions on using this new tool, please contact out helpdesk at 951-398-0021 or [helpdesk@etoptechnology.com](mailto:helpdesk@etoptechnology.com) - You can also use [how-to-hdb.md](../../../etop-tools/welcome-to-working-with-etop/helpdesk-buttons/how-to-hdb.md "mention")
 
 <div align="left">
 
-<img src="../../../../.gitbook/assets/image (53).png" alt="HelpdeskButton">
+<img src="../../../../.gitbook/assets/image (2) (2).png" alt="HelpdeskButton">
 
 </div>
