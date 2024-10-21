@@ -60,6 +60,7 @@
       * [👩‍💻 Sophos Connect VPN](education/self-help-guides/etop-tools/secure-remote-connection/sophos-connect-vpn.md)
       * [🌨️ Cloudflare ZTNA Info](education/self-help-guides/etop-tools/secure-remote-connection/cloudflare-ztna-info.md)
       * [💻 Screen Connect](education/self-help-guides/etop-tools/secure-remote-connection/screen-connect.md)
+      * [ScreenConnect on MacOS](education/self-help-guides/etop-tools/secure-remote-connection/screenconnect-on-macos.md)
     * [🔨 Deployed Tools](education/etop-tools/deployed-tools/README.md)
       * [🗝️ Keeper - Getting Started](education/self-help-guides/etop-tools/deployed-tools/keeper-getting-started.md)
       * [🖊️ Exclaimer Cloud -synchronized signatures](education/self-help-guides/etop-tools/deployed-tools/exclaimer-cloud-synchronized-signatures.md)
