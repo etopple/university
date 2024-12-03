@@ -10,8 +10,8 @@ eTop offers a [password-manager.md](../../password-manager.md "mention")called K
 
 ## Accessing Keeper
 
-The easiest way to access Keeper for the first time is to login at [https://keepersecurity.com](https://keepersecurity.com/vault/). \
-![](<../../../../.gitbook/assets/image (101).png>)
+The easiest way to access Keeper for the first time is to access the Single Sign-On application in your Office 365 Apps panel: [https://www.office.com/apps](https://www.office.com/apps)\
+![](../../../../.gitbook/assets/image.png)
 
 
 
