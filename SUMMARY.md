@@ -51,6 +51,7 @@
       * [Microsoft Company Portal](education/self-help-guides/office-365-guides/mobile-phone-setup/microsoft-company-portal.md)
       * [📱 Android Phone Setup](education/self-help-guides/office-365-guides/mobile-phone-setup/android-phone-setup.md)
       * [📱 iOS Phone Setup](education/self-help-guides/office-365-guides/mobile-phone-setup/ios-phone-setup.md)
+      * [Microsoft Company Portal](education/self-help-guides/office-365-guides/mobile-phone-setup/microsoft-company-portal-1.md)
   * [💲 QuickBooks Troubleshooting](education/self-help-guides/quickbooks-troubleshooting.md)
   * [Browser Help](education/self-help-guides/browser-help/README.md)
     * [↗️ Open a page in Internet Explorer](education/self-help-guides/open-a-page-in-internet-explorer.md)
