@@ -8,8 +8,8 @@ description: >-
 
 ### Install applications
 
-1. Open the App store and search for Authenticator, Outlook, and Teams
-2. Install Microsoft Authenticator, Microsoft Outlook, and Microsoft Teams. Ensure these applications are by Microsoft Corporation.\
+1. Open the App store and search for Microsoft Company Portal, Authenticator, Outlook, and Teams
+2. Install Microsoft Company Portal, Authenticator, Microsoft Outlook, and Microsoft Teams. Ensure these applications are by Microsoft Corporation.\
    ![](<../../../../.gitbook/assets/image (72).png>)\
    ![](<../../../../.gitbook/assets/image (73).png>)\
    ![](<../../../../.gitbook/assets/image (74).png>)

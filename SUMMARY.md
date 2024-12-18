@@ -48,6 +48,7 @@
       * [Public and Private Bookings](education/self-help-guides/office-365-guides/microsoft-bookings/public-and-private-bookings.md)
       * [🤙 Schedule a meeting with Bookings](education/self-help-guides/office-365-guides/microsoft-bookings/schedule-a-meeting-with-bookings.md)
     * [📲 Mobile Phone Setup](education/self-help-guides/office-365-guides/mobile-phone-setup/README.md)
+      * [Microsoft Company Portal](education/self-help-guides/office-365-guides/mobile-phone-setup/microsoft-company-portal.md)
       * [📱 Android Phone Setup](education/self-help-guides/office-365-guides/mobile-phone-setup/android-phone-setup.md)
       * [📱 iOS Phone Setup](education/self-help-guides/office-365-guides/mobile-phone-setup/ios-phone-setup.md)
   * [💲 QuickBooks Troubleshooting](education/self-help-guides/quickbooks-troubleshooting.md)
