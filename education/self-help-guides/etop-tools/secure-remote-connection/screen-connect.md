@@ -6,7 +6,7 @@ How to Login and Access your Work Computer Securely
 
 
 
-Navigate to [https://etop.hostedrmm.com:8040/](https://etop.hostedrmm.com:8040/)
+Navigate to https://etopclient.screenconnect.com&#x20;
 
 Click "Login"&#x20;
 
