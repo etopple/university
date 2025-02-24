@@ -26,3 +26,9 @@ Your application will be called "Applicationname (Remote Workspaces)" It will al
 5. You can view the applications either by clicking View Resources in the first window, or under the start menu.\
    ![](<../../.gitbook/assets/image (2) (1) (1) (1) (1).png>)\
    ![](../../.gitbook/assets/application.png)
+
+## Steps to Create Desktop Shortcut of Remote Resource
+
+1. Click the View Resources link in the RemoteApp and Desktop Connections window\
+   ![](<../../.gitbook/assets/image (112).png>)
+2. Right-click on the item you need a shortcut for, select "Show more options", then "Send to > Desktop (Create Shortcut)"
