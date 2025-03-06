@@ -37,6 +37,7 @@
       * [🔐 Verify your Authentication methods](education/self-help-guides/office-365-guides/microsoft-authenticator/verify-your-authentication-methods.md)
     * [📩 Outlook](education/self-help-guides/office-365-guides/outlook/README.md)
       * [🔐 Managing Quarantine](education/self-help-guides/office-365-guides/outlook/managing-quarantine.md)
+      * [🚩 Report messages to Microsoft](education/self-help-guides/office-365-guides/outlook/report-messages-to-microsoft.md)
       * [🗓️ Shared Calendars](education/self-help-guides/office-365-guides/outlook/shared-calendars.md)
       * [📱 Outlook Mobile Setup](education/self-help-guides/office-365-guides/outlook/outlook-mobile-setup/README.md)
         * [📥 iOS setup](education/self-help-guides/office-365-guides/outlook/outlook-mobile-setup/ios-setup.md)
