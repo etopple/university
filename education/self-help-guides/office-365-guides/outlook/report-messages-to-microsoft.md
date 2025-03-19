@@ -11,10 +11,10 @@ Reporting phishing or junk mail is crucial for maintaining digital security and 
 1. Select a message that is not in the Junk Email folder
 2.  Click Report, then select the correct option of Phishing or Junk
 
-    <figure><img src="../../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Here are the steps for reporting messages that were marked as junk but are not junk**
 
 1. Select a message that is in the Junk Email folder
 2. Click Report, then select "Not Junk"\
-   ![](<../../../../.gitbook/assets/image (2).png>)
+   ![](<../../../../.gitbook/assets/image (2) (1).png>)

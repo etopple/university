@@ -1,2 +1,6 @@
-# Office 365 Guides!
+---
+icon: microsoft
+---
+
+# Microsoft 365 Guides!
 
