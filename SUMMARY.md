@@ -109,6 +109,7 @@
 ## Policies
 
 * [🌴 Policies](policies/policies/README.md)
+  * [💻 Endpoint Procurement](policies/policies/endpoint-procurement.md)
   * [🔓 Multi Factor](policies/policies/multi-factor.md)
   * [🗄️ Online Archiving](policies/policies/online-archiving.md)
   * [🔧 Patching](policies/policies/patching/README.md)
