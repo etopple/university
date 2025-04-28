@@ -113,7 +113,7 @@
   * [🔓 Multi Factor](policies/policies/multi-factor.md)
   * [🗄️ Online Archiving](policies/policies/online-archiving.md)
   * [🔧 Patching](policies/policies/patching/README.md)
-    * [On Wednesdays, We Patch](policies/policies/patching/on-wednesdays-we-patch.md)
+    * [ImmyBot Maintenance Emails](policies/policies/patching/immybot-maintenance-emails.md)
   * [⬆️ Culture of Security](policies/policies/culture-of-security/README.md)
     * [🔐 Terminology Guide](policies/policies/culture-of-security/terminology-guide.md)
     * [🕵️ EDR](policies/policies/culture-of-security/edr.md)
