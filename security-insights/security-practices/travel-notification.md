@@ -47,3 +47,5 @@ To avoid losing access to your accounts due to a false alert, please [send eTop 
 * Out of office message
 * If you need someone to access your mailbox, and who that person is.&#x20;
 * If you'd like to automatically decline meetings within travel time
+
+Thanks for helping us keep your accounts safe!
