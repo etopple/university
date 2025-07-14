@@ -77,6 +77,7 @@
   * [🧾 Password Manager](education/self-help-guides/password-manager.md)
   * [🖊️ Exclaimer Cloud -synchronized signatures](education/self-help-guides/exclaimer-cloud-synchronized-signatures/README.md)
     * [Using Exclaimer](education/self-help-guides/exclaimer-cloud-synchronized-signatures/using-exclaimer.md)
+  * [🔁 Resetting computers](education/self-help-guides/resetting-computers.md)
 * [⚙️ Welcome to Working with eTop](education/etop-tools/welcome-to-working-with-etop/README.md)
   * [📭 eMail - Helpdesk@etoptechnology.com](education/etop-tools/welcome-to-working-with-etop/email-helpdesk-etoptechnology.com.md)
   * [📱 Phone Call - 951-398-0021](education/etop-tools/welcome-to-working-with-etop/phone-call-951-398-0021.md)
