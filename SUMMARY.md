@@ -72,6 +72,7 @@
       * [⌚ AutoElevate](education/self-help-guides/etop-tools/deployed-tools/autoelevate.md)
       * [◽ UBlock - Origin Ad Blocker](education/etop-tools/deployed-tools/ublock-origin-ad-blocker.md)
       * [📨 Sophos Email - Self Service Portal](education/etop-tools/deployed-tools/sophos-email-self-service-portal.md)
+      * [Maintenance Bot](education/self-help-guides/etop-tools/deployed-tools/maintenance-bot.md)
   * [🎣 How to spot a Phish](education/self-help-guides/how-to-spot-a-phish.md)
   * [🛣️ Remote Applications](education/self-help-guides/remote-applications.md)
   * [🧾 Password Manager](education/self-help-guides/password-manager.md)

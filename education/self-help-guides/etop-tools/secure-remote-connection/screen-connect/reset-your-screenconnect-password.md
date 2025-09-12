@@ -5,7 +5,7 @@ Everyone's done it. The password was lost and not saved to the password manager.
 1. Access your work email. If needed, sign into [https://outlook.office.com](https://outlook.office.com) or use your mobile phone to access. \
    ![](<../../../../../.gitbook/assets/Screenshot 2025-03-19 094913.png>)
 2. In another tab or window, access [https://etopclient.screenconnect.com](https://etopclient.screenconnect.com)\
-   ![](<../../../../../.gitbook/assets/image (1).png>)
+   ![](<../../../../../.gitbook/assets/image (1) (1).png>)
 3. Click Login at the top right, then "Forgot Password"\
    ![](<../../../../../.gitbook/assets/image (2).png>)
 4. On the Reset Password screen, enter your work email address, then click "Get Reset Code"\
