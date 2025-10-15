@@ -21,15 +21,11 @@ This guide explains how to **sort folders A to Z** or use a **custom folder orde
 3. **Open the Folder Pane Settings**
    * Under the **View** tab, locate the **Folder Pane** section.
    * Click the **Folder Pane** button to open its menu.
-4.  **Select Sort Folders**
-
-    * In the dropdown, hover over **Sort folders**.\
-      You’ll see two options:
-      * ✅ **Order folders A to Z** – Sorts all folders alphabetically.
-      * ✅ **Custom folder order** – Lets you manually drag and reorder folders.
-
-    Example view:\
-    ![Sort Folders in Outlook](https://university.etop.tech/assets/outlook-sort-folders.png)
+4. **Select Sort Folders**
+   * In the dropdown, hover over **Sort folders**.\
+     You’ll see two options:
+     * ✅ **Order folders A to Z** – Sorts all folders alphabetically.
+     * ✅ **Custom folder order** – Lets you manually drag and reorder folders.
 5. **Choose Your Preferred Option**
    * Select **Order folders A to Z** if you want Outlook to automatically alphabetize all your folders.
    * Select **Custom folder order** if you prefer to manually arrange folders in a specific order.
