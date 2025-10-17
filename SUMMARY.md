@@ -34,6 +34,7 @@
       * [📅 Using Teams](education/etop-tools/office-365-guides/using-teams.md)
       * [🆕 New Teams/Old Teams](education/self-help-guides/office-365-guides/microsoft-teams/new-teams-old-teams.md)
     * [➡️ Microsoft Authenticator](education/self-help-guides/office-365-guides/microsoft-authenticator/README.md)
+      * [Yubikey setup for Microsoft MFA](education/self-help-guides/office-365-guides/microsoft-authenticator/yubikey-setup-for-microsoft-mfa.md)
       * [🔐 Verify your Authentication methods](education/self-help-guides/office-365-guides/microsoft-authenticator/verify-your-authentication-methods.md)
     * [📩 Outlook](education/self-help-guides/office-365-guides/outlook/README.md)
       * [🔐 Managing Quarantine](education/self-help-guides/office-365-guides/outlook/managing-quarantine.md)
