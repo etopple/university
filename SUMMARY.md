@@ -17,7 +17,7 @@
 ## 📚 Education
 
 * [🆘 Self Help Guides](education/self-help-guides/README.md)
-  * [🖱️ Three things to fix your computer](education/self-help-guides/three-things-to-fix-your-computer.md)
+  * [🖱️ Three Quick Fixes for Common Computer Issues  If your computer isn’t behaving the way it should,](education/self-help-guides/three-quick-fixes-for-common-computer-issues-if-your-computer-isnt-behaving-the-way-it-should.md)
   * [📃 Change the Default Application](education/self-help-guides/change-the-default-application.md)
   * [🎒 Backups!](education/self-help-guides/backups/README.md)
     * [Windows Server - Previous Versions](education/self-help-guides/backups/server-previous-versions.md)
