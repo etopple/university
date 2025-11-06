@@ -87,6 +87,7 @@
   * [🆘 Helpdesk Buttons!](education/etop-tools/welcome-to-working-with-etop/helpdesk-buttons/README.md)
     * [🔘 How to HDB!](education/etop-tools/welcome-to-working-with-etop/helpdesk-buttons/how-to-hdb.md)
   * [🎫 eTop Ticket Forms](education/welcome-to-working-with-etop/etop-ticket-forms.md)
+  * [🧭 How to Use the eTop Client Portal](education/welcome-to-working-with-etop/how-to-use-the-etop-client-portal.md)
 * [🆙 eTop- Process!](education/etop-process/README.md)
   * [When to Escalate a Ticket](education/etop-process/when-to-escalate-a-ticket.md)
   * [📋 Client User Onboarding](education/etop-process/client-user-onboarding.md)
