@@ -10,6 +10,16 @@ Here’s what you need to know to make the process smooth:
 
 ***
 
+#### About Resets
+
+🕧 **It takes time**\
+Resetting a computer can take a couple of hours, depending on your internet connection and computer setup
+
+🪫 **Requires power and internet connection**\
+Your computer will need to stay connected to power and network during the time the system resets.
+
+***
+
 #### **Before the Reset**
 
 ✅ **Back up your files**\
