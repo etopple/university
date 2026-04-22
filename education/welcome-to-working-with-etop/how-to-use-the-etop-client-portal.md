@@ -7,13 +7,13 @@
 The **eTop Company Portal** is your one-stop site for managing employee access, user updates, and IT support requests.\
 Through the portal, you can **add or remove users**, **update contact details**, or **submit support tickets** — all with secure Microsoft 365 sign-in.
 
-**Portal Address:** [https://portal.etop.tech](https://portal.etop.tech)
+**Portal Address:** <a href="https://portal.etop.tech" target="_blank" rel="noopener noreferrer">https://portal.etop.tech</a>
 
 ***
 
 ### 🔑 Signing In
 
-1. Visit [**portal.etop.tech**](https://portal.etop.tech).
+1. Visit <a href="https://portal.etop.tech" target="_blank" rel="noopener noreferrer"><strong>portal.etop.tech</strong></a>.
 2. Click **Sign in with Microsoft**.
 3. Use your work Microsoft 365 email and password.
 4. Once signed in, you’ll see your company dashboard with tabs for **User Management** and **Ticketing**.
