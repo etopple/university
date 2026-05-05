@@ -1,0 +1,644 @@
+[
+  {
+    "label": "\ud83d\udc4b Welcome to eTop University: Your Learning Hub",
+    "link": "/"
+  },
+  {
+    "label": "About us",
+    "items": [
+      {
+        "label": "\ud83d\ude80 Vision, Mission & Focus",
+        "items": [
+          {
+            "label": "Overview",
+            "link": "/about-us/vision-mission-and-focus"
+          },
+          {
+            "label": "Vision",
+            "link": "/about-us/vision-mission-and-focus/vision"
+          },
+          {
+            "label": "Mission",
+            "link": "/about-us/vision-mission-and-focus/mission"
+          },
+          {
+            "label": "Focus",
+            "link": "/about-us/vision-mission-and-focus/focus"
+          }
+        ]
+      },
+      {
+        "label": "\ud83d\udc96 Values",
+        "link": "/about-us/values"
+      }
+    ]
+  },
+  {
+    "label": "Team",
+    "items": [
+      {
+        "label": "\ud83d\udc4b Meet the Team!",
+        "link": "/team/meet-the-team"
+      }
+    ]
+  },
+  {
+    "label": "\ud83d\udcda Education",
+    "items": [
+      {
+        "label": "\ud83c\udd98 Self Help Guides",
+        "items": [
+          {
+            "label": "Overview",
+            "link": "/education/self-help-guides"
+          },
+          {
+            "label": "\ud83d\uddb1\ufe0f Three Quick Fixes for Common Computer Issues  If your computer isn\u2019t behaving the way it should,",
+            "link": "/education/self-help-guides/three-quick-fixes-for-common-computer-issues-if-your-computer-isnt-behaving-the-way-it-should"
+          },
+          {
+            "label": "\ud83d\udc22 My Computer Is Running Slow: Self-Help Steps",
+            "link": "/education/self-help-guides/my-computer-is-running-slow"
+          },
+          {
+            "label": "\ud83d\udda8\ufe0f Troubleshooting Common Printer Issues",
+            "link": "/education/self-help-guides/troubleshooting-common-printer-issues"
+          },
+          {
+            "label": "\ud83c\udd95 New Employee IT Setup: What to Expect",
+            "link": "/education/self-help-guides/new-employee-it-setup-what-to-expect"
+          },
+          {
+            "label": "\ud83d\udcc3 Change the Default Application",
+            "link": "/education/self-help-guides/change-the-default-application"
+          },
+          {
+            "label": "\ud83c\udf92 Backups!",
+            "items": [
+              {
+                "label": "Overview",
+                "link": "/education/self-help-guides/backups"
+              },
+              {
+                "label": "Windows Server - Previous Versions",
+                "link": "/education/self-help-guides/backups/server-previous-versions"
+              },
+              {
+                "label": "OneDrive for Business Versions",
+                "link": "/education/self-help-guides/backups/onedrive-for-business-versions"
+              }
+            ]
+          },
+          {
+            "label": "Microsoft 365 Guides!",
+            "items": [
+              {
+                "label": "Overview",
+                "link": "/education/etop-tools/office-365-guides"
+              },
+              {
+                "label": "\ud83d\udd11 How to Reset Your Microsoft 365 Password",
+                "link": "/education/self-help-guides/office-365-guides/how-to-reset-your-microsoft-365-password"
+              },
+              {
+                "label": "\ud83e\udd16 Getting Started with Microsoft Copilot",
+                "link": "/education/self-help-guides/office-365-guides/getting-started-with-microsoft-copilot"
+              },
+              {
+                "label": "The Art of the Microsoft Minute: A Humorous Guide for eTop Users",
+                "link": "/education/self-help-guides/office-365-guides/the-art-of-the-microsoft-minute-a-humorous-guide-for-etop-users"
+              },
+              {
+                "label": "\ud83d\udcc9 PowerBI License Association",
+                "link": "/education/self-help-guides/office-365-guides/powerbi-license-association"
+              },
+              {
+                "label": "\u2601\ufe0f OneDrive for Business",
+                "items": [
+                  {
+                    "label": "Overview",
+                    "link": "/education/self-help-guides/office-365-guides/onedrive-for-business"
+                  },
+                  {
+                    "label": "\ud83d\udcc2 OneDrive Files On-Demand",
+                    "link": "/education/self-help-guides/office-365-guides/onedrive-for-business/onedrive-files-on-demand"
+                  },
+                  {
+                    "label": "\ud83d\udcc1 Known Folder Move",
+                    "link": "/education/self-help-guides/office-365-guides/onedrive-for-business/known-folder-move"
+                  },
+                  {
+                    "label": "\ud83e\udd1d File sharing with OneDrive",
+                    "link": "/education/self-help-guides/office-365-guides/onedrive-for-business/file-sharing-with-onedrive"
+                  },
+                  {
+                    "label": "\ud83d\udd01 SharePoint Sync",
+                    "link": "/education/self-help-guides/office-365-guides/onedrive-for-business/sharepoint-sync"
+                  }
+                ]
+              },
+              {
+                "label": "\ud83d\udcc6 Microsoft Teams",
+                "items": [
+                  {
+                    "label": "Overview",
+                    "link": "/education/self-help-guides/office-365-guides/microsoft-teams"
+                  },
+                  {
+                    "label": "\ud83d\udcc5 Using Teams",
+                    "link": "/education/etop-tools/office-365-guides/using-teams"
+                  },
+                  {
+                    "label": "\ud83d\udd27 Teams Troubleshooting: Sign-In and Common Issues",
+                    "link": "/education/self-help-guides/office-365-guides/microsoft-teams/teams-troubleshooting-sign-in-and-common-issues"
+                  },
+                  {
+                    "label": "\ud83c\udd95 New Teams/Old Teams",
+                    "link": "/education/self-help-guides/office-365-guides/microsoft-teams/new-teams-old-teams"
+                  }
+                ]
+              },
+              {
+                "label": "\u27a1\ufe0f Microsoft Authenticator",
+                "items": [
+                  {
+                    "label": "Overview",
+                    "link": "/education/self-help-guides/office-365-guides/microsoft-authenticator"
+                  },
+                  {
+                    "label": "Yubikey setup for Microsoft MFA",
+                    "link": "/education/self-help-guides/office-365-guides/microsoft-authenticator/yubikey-setup-for-microsoft-mfa"
+                  },
+                  {
+                    "label": "\ud83d\udd10 Verify your Authentication methods",
+                    "link": "/education/self-help-guides/office-365-guides/microsoft-authenticator/verify-your-authentication-methods"
+                  },
+                  {
+                    "label": "\ud83d\udcf2 Setting Up MFA on a New Phone",
+                    "link": "/education/self-help-guides/office-365-guides/microsoft-authenticator/setting-up-mfa-on-a-new-phone"
+                  }
+                ]
+              },
+              {
+                "label": "\ud83d\udce9 Outlook",
+                "items": [
+                  {
+                    "label": "Overview",
+                    "link": "/education/self-help-guides/office-365-guides/outlook"
+                  },
+                  {
+                    "label": "\ud83d\udd10 Managing Quarantine",
+                    "link": "/education/self-help-guides/office-365-guides/outlook/managing-quarantine"
+                  },
+                  {
+                    "label": "\ud83d\udce7 \ud83d\udce8 How to Sort Folders in the New Outlook",
+                    "link": "/education/self-help-guides/office-365-guides/outlook/how-to-sort-folders-in-the-new-outlook"
+                  },
+                  {
+                    "label": "\ud83d\udea9 Report messages to Microsoft",
+                    "link": "/education/self-help-guides/office-365-guides/outlook/report-messages-to-microsoft"
+                  },
+                  {
+                    "label": "\ud83d\uddd3\ufe0f Shared Calendars",
+                    "link": "/education/self-help-guides/office-365-guides/outlook/shared-calendars"
+                  },
+                  {
+                    "label": "\ud83d\udcf1 Outlook Mobile Setup",
+                    "items": [
+                      {
+                        "label": "Overview",
+                        "link": "/education/self-help-guides/office-365-guides/outlook/outlook-mobile-setup"
+                      },
+                      {
+                        "label": "\ud83d\udce5 iOS setup",
+                        "link": "/education/self-help-guides/office-365-guides/outlook/outlook-mobile-setup/ios-setup"
+                      },
+                      {
+                        "label": "\u2709\ufe0f Android Setup",
+                        "link": "/education/self-help-guides/office-365-guides/outlook/outlook-mobile-setup/android-setup"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "\ud83e\udd1d Accessing Another Mailbox",
+                    "link": "/education/self-help-guides/office-365-guides/outlook/accessing-another-mailbox"
+                  },
+                  {
+                    "label": "\ud83d\uddc4\ufe0f Online Archiving",
+                    "link": "/education/self-help-guides/office-365-guides/outlook/online-archiving"
+                  },
+                  {
+                    "label": "\ud83d\udc0c Outlook Running Slow or Search Not Working",
+                    "link": "/education/self-help-guides/office-365-guides/outlook/outlook-running-slow-or-search-not-working"
+                  }
+                ]
+              },
+              {
+                "label": "\ud83d\udcc6 Microsoft Bookings",
+                "items": [
+                  {
+                    "label": "Overview",
+                    "link": "/education/self-help-guides/office-365-guides/microsoft-bookings"
+                  },
+                  {
+                    "label": "Create a Booking Page",
+                    "link": "/education/self-help-guides/office-365-guides/microsoft-bookings/create-a-booking-page"
+                  },
+                  {
+                    "label": "Public and Private Bookings",
+                    "link": "/education/self-help-guides/office-365-guides/microsoft-bookings/public-and-private-bookings"
+                  },
+                  {
+                    "label": "\ud83e\udd19 Schedule a meeting with Bookings",
+                    "link": "/education/self-help-guides/office-365-guides/microsoft-bookings/schedule-a-meeting-with-bookings"
+                  }
+                ]
+              },
+              {
+                "label": "\ud83d\udcf2 Mobile Phone Setup",
+                "items": [
+                  {
+                    "label": "Overview",
+                    "link": "/education/self-help-guides/office-365-guides/mobile-phone-setup"
+                  },
+                  {
+                    "label": "Microsoft Company Portal",
+                    "link": "/education/self-help-guides/office-365-guides/mobile-phone-setup/microsoft-company-portal"
+                  },
+                  {
+                    "label": "\ud83d\udcf1 Android Phone Setup",
+                    "link": "/education/self-help-guides/office-365-guides/mobile-phone-setup/android-phone-setup"
+                  },
+                  {
+                    "label": "\ud83d\udcf1 iOS Phone Setup",
+                    "link": "/education/self-help-guides/office-365-guides/mobile-phone-setup/ios-phone-setup"
+                  },
+                  {
+                    "label": "Microsoft Company Portal",
+                    "link": "/education/self-help-guides/office-365-guides/mobile-phone-setup/microsoft-company-portal-1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "label": "\ud83d\udcb2 QuickBooks Troubleshooting",
+            "link": "/education/self-help-guides/quickbooks-troubleshooting"
+          },
+          {
+            "label": "Browser Help",
+            "items": [
+              {
+                "label": "Overview",
+                "link": "/education/self-help-guides/browser-help"
+              },
+              {
+                "label": "\u2197\ufe0f Open a page in Internet Explorer",
+                "link": "/education/self-help-guides/open-a-page-in-internet-explorer"
+              },
+              {
+                "label": "Setting up Microsoft Edge Sync",
+                "link": "/education/self-help-guides/browser-help/setting-up-microsoft-edge-sync"
+              },
+              {
+                "label": "\ud83d\udd16 Migrating Bookmarks to Microsoft Edge",
+                "link": "/education/self-help-guides/browser-help/migrating-bookmarks-to-microsoft-edge"
+              },
+              {
+                "label": "\ud83c\udf81 Extensions in Microsoft Edge",
+                "link": "/education/self-help-guides/browser-help/extensions-in-microsoft-edge"
+              }
+            ]
+          },
+          {
+            "label": "\ud83d\udd27 eTop Tools",
+            "items": [
+              {
+                "label": "Overview",
+                "link": "/education/etop-tools"
+              },
+              {
+                "label": "\ud83d\udcef Secure Remote Connection",
+                "items": [
+                  {
+                    "label": "Overview",
+                    "link": "/education/self-help-guides/etop-tools/secure-remote-connection"
+                  },
+                  {
+                    "label": "\ud83d\udc69\u200d\ud83d\udcbb Sophos Connect VPN",
+                    "link": "/education/self-help-guides/etop-tools/secure-remote-connection/sophos-connect-vpn"
+                  },
+                  {
+                    "label": "\ud83c\udf28\ufe0f Cloudflare ZTNA Info",
+                    "items": [
+                      {
+                        "label": "Overview",
+                        "link": "/education/self-help-guides/etop-tools/secure-remote-connection/cloudflare-ztna-info"
+                      },
+                      {
+                        "label": "CloudFlare Zero Trust for iOS",
+                        "link": "/education/self-help-guides/etop-tools/secure-remote-connection/cloudflare-ztna-info/cloudflare-zero-trust-for-ios"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "\ud83d\udcbb Screen Connect",
+                    "items": [
+                      {
+                        "label": "Overview",
+                        "link": "/education/self-help-guides/etop-tools/secure-remote-connection/screen-connect"
+                      },
+                      {
+                        "label": "\ud83d\udd11 Reset your ScreenConnect Password",
+                        "link": "/education/self-help-guides/etop-tools/secure-remote-connection/screen-connect/reset-your-screenconnect-password"
+                      },
+                      {
+                        "label": "ScreenConnect on MacOS",
+                        "link": "/education/self-help-guides/etop-tools/secure-remote-connection/screen-connect/screenconnect-on-macos"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "\ud83d\udd28 Deployed Tools",
+                "items": [
+                  {
+                    "label": "Overview",
+                    "link": "/education/etop-tools/deployed-tools"
+                  },
+                  {
+                    "label": "\ud83d\udddd\ufe0f Keeper - Getting Started",
+                    "link": "/education/self-help-guides/etop-tools/deployed-tools/keeper-getting-started"
+                  },
+                  {
+                    "label": "\u231a AutoElevate",
+                    "link": "/education/self-help-guides/etop-tools/deployed-tools/autoelevate"
+                  },
+                  {
+                    "label": "\u25fd UBlock - Origin Ad Blocker",
+                    "link": "/education/etop-tools/deployed-tools/ublock-origin-ad-blocker"
+                  },
+                  {
+                    "label": "\ud83d\udce8 Sophos Email - Self Service Portal",
+                    "link": "/education/etop-tools/deployed-tools/sophos-email-self-service-portal"
+                  },
+                  {
+                    "label": "Maintenance Bot",
+                    "link": "/education/self-help-guides/etop-tools/deployed-tools/maintenance-bot"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "label": "\ud83c\udfa3 How to spot a Phish",
+            "link": "/education/self-help-guides/how-to-spot-a-phish"
+          },
+          {
+            "label": "\ud83d\udea8 What to Do If You Clicked a Suspicious Link",
+            "link": "/education/self-help-guides/what-to-do-if-you-clicked-a-suspicious-link"
+          },
+          {
+            "label": "\ud83d\udd10 Understanding VPN Security Alerts",
+            "link": "/education/self-help-guides/understanding-vpn-security-alerts"
+          },
+          {
+            "label": "\ud83d\udee3\ufe0f Remote Applications",
+            "link": "/education/self-help-guides/remote-applications"
+          },
+          {
+            "label": "\ud83e\uddfe Password Manager",
+            "link": "/education/self-help-guides/password-manager"
+          },
+          {
+            "label": "\ud83d\udd8a\ufe0f Exclaimer Cloud -synchronized signatures",
+            "items": [
+              {
+                "label": "Overview",
+                "link": "/education/self-help-guides/exclaimer-cloud-synchronized-signatures"
+              },
+              {
+                "label": "Using Exclaimer",
+                "link": "/education/self-help-guides/exclaimer-cloud-synchronized-signatures/using-exclaimer"
+              }
+            ]
+          },
+          {
+            "label": "\ud83d\udd01 Resetting computers",
+            "link": "/education/self-help-guides/resetting-computers"
+          }
+        ]
+      },
+      {
+        "label": "\u2699\ufe0f Welcome to Working with eTop",
+        "items": [
+          {
+            "label": "Overview",
+            "link": "/education/etop-tools/welcome-to-working-with-etop"
+          },
+          {
+            "label": "\ud83d\udced eMail - Helpdesk@etoptechnology.com",
+            "link": "/education/etop-tools/welcome-to-working-with-etop/email-helpdesk-etoptechnology.com"
+          },
+          {
+            "label": "\ud83d\udcf1 Phone Call - 951-398-0021",
+            "link": "/education/etop-tools/welcome-to-working-with-etop/phone-call-951-398-0021"
+          },
+          {
+            "label": "\ud83c\udd98 Helpdesk Buttons!",
+            "items": [
+              {
+                "label": "Overview",
+                "link": "/education/etop-tools/welcome-to-working-with-etop/helpdesk-buttons"
+              },
+              {
+                "label": "\ud83d\udd18 How to HDB!",
+                "link": "/education/etop-tools/welcome-to-working-with-etop/helpdesk-buttons/how-to-hdb"
+              }
+            ]
+          },
+          {
+            "label": "\ud83c\udfab eTop Ticket Forms",
+            "link": "/education/welcome-to-working-with-etop/etop-ticket-forms"
+          },
+          {
+            "label": "\ud83e\udded How to Use the eTop Client Portal",
+            "link": "/education/welcome-to-working-with-etop/how-to-use-the-etop-client-portal"
+          }
+        ]
+      },
+      {
+        "label": "\ud83c\udd99 eTop- Process!",
+        "items": [
+          {
+            "label": "Overview",
+            "link": "/education/etop-process"
+          },
+          {
+            "label": "When to Escalate a Ticket",
+            "link": "/education/etop-process/when-to-escalate-a-ticket"
+          },
+          {
+            "label": "\ud83d\udccb Client User Onboarding",
+            "link": "/education/etop-process/client-user-onboarding"
+          },
+          {
+            "label": "\ud83d\udccb User Offboarding",
+            "link": "/education/etop-process/user-offboarding"
+          },
+          {
+            "label": "\ud83c\udfc1 Prospect Onboarding",
+            "link": "/education/etop-process/prospect-onboarding"
+          }
+        ]
+      },
+      {
+        "label": "\ud83c\udf10 Global Client Updates",
+        "items": [
+          {
+            "label": "Overview",
+            "link": "/education/global-client-updates"
+          },
+          {
+            "label": "\ud83d\udd2c Microsoft Issues",
+            "items": [
+              {
+                "label": "Overview",
+                "link": "/education/global-client-updates/microsoft-issues"
+              },
+              {
+                "label": "Some users may experience multiple issues with their Microsoft Teams TM710344",
+                "link": "/education/global-client-updates/microsoft-issues/some-users-may-experience-multiple-issues-with-their-microsoft-teams-tm710344"
+              }
+            ]
+          },
+          {
+            "label": "\ud83d\uded1 Bad Patch Update",
+            "link": "/education/global-client-updates/bad-patch-update"
+          },
+          {
+            "label": "\ud83d\udcee New sender rules when sending to Yahoo and Gmail",
+            "link": "/education/global-client-updates/new-sender-rules-when-sending-to-yahoo-and-gmail"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "\ud83d\udcfa Media - Education!",
+    "items": [
+      {
+        "label": "Overview",
+        "link": "/media-education"
+      },
+      {
+        "label": "\ud83d\udcfb Podcast - Business Tech Playbook",
+        "link": "/media-education/podcast-business-tech-playbook"
+      },
+      {
+        "label": "\ud83d\udcf9 Youtube Education!",
+        "link": "/media-education/youtube-education"
+      }
+    ]
+  },
+  {
+    "label": "\ud83d\udd12 Security - Insights",
+    "items": [
+      {
+        "label": "Overview",
+        "link": "/security-insights"
+      },
+      {
+        "label": "Security Practices",
+        "items": [
+          {
+            "label": "Overview",
+            "link": "/security-insights/security-practices"
+          },
+          {
+            "label": "Important Notice on Password Security Practices",
+            "link": "/security-insights/security-practices/important-notice-on-password-security-practices"
+          },
+          {
+            "label": "\ud83c\udfd6\ufe0f Travel Notification",
+            "link": "/security-insights/security-practices/travel-notification"
+          }
+        ]
+      },
+      {
+        "label": "\ud83d\udc68\u200d\u2696\ufe0f CISA - Briefs",
+        "items": [
+          {
+            "label": "Overview",
+            "link": "/security-insights/cisa-briefs"
+          },
+          {
+            "label": "NSA, FBI, and CISA Release Cybersecurity Information Sheet on Deepfake Threats",
+            "link": "/security-insights/cisa-briefs/nsa-fbi-and-cisa-release-cybersecurity-information-sheet-on-deepfake-threats"
+          },
+          {
+            "label": "\ud83d\udd10 Oct 3 Secure our World!",
+            "link": "/security-insights/cisa-briefs/oct-3-secure-our-world"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "Policies",
+    "items": [
+      {
+        "label": "\ud83c\udf34 Policies",
+        "items": [
+          {
+            "label": "Overview",
+            "link": "/policies/policies"
+          },
+          {
+            "label": "\ud83d\udcbb Endpoint Procurement",
+            "link": "/policies/policies/endpoint-procurement"
+          },
+          {
+            "label": "\ud83d\udd13 Multi Factor",
+            "link": "/policies/policies/multi-factor"
+          },
+          {
+            "label": "\ud83d\uddc4\ufe0f Online Archiving",
+            "link": "/policies/policies/online-archiving"
+          },
+          {
+            "label": "\ud83d\udd27 Patching",
+            "items": [
+              {
+                "label": "Overview",
+                "link": "/policies/policies/patching"
+              },
+              {
+                "label": "ImmyBot Maintenance Emails",
+                "link": "/policies/policies/patching/immybot-maintenance-emails"
+              }
+            ]
+          },
+          {
+            "label": "\u2b06\ufe0f Culture of Security",
+            "items": [
+              {
+                "label": "Overview",
+                "link": "/policies/policies/culture-of-security"
+              },
+              {
+                "label": "\ud83d\udd10 Terminology Guide",
+                "link": "/policies/policies/culture-of-security/terminology-guide"
+              },
+              {
+                "label": "\ud83d\udd75\ufe0f EDR",
+                "link": "/policies/policies/culture-of-security/edr"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

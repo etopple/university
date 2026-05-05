@@ -1,39 +1,66 @@
+# eTop University
+
+Public docs site for [university.etop.tech](https://university.etop.tech) — tutorials, self-help guides, policies, and security briefs from eTop Technology.
+
+## Stack
+
+- **[Astro v5](https://astro.build/)** + **[Starlight](https://starlight.astro.build/)** for the docs framework
+- **Cloudflare Pages** for hosting (replaces GitBook)
+- Content is plain markdown in `src/content/docs/`
+
+## Local development
+
+```bash
+npm install
+npm run dev
+```
+
+Dev server runs at http://localhost:4321/.
+
+```bash
+npm run build      # production build to ./dist
+npm run preview    # preview the built site locally
+```
+
+## Editing content
+
+All pages live under `src/content/docs/`. The directory layout drives the URL:
+
+| File | URL |
+| --- | --- |
+| `src/content/docs/index.md` | `/` |
+| `src/content/docs/team/meet-the-team.md` | `/team/meet-the-team` |
+| `src/content/docs/policies/policies/index.md` | `/policies/policies/` |
+
+Frontmatter is optional. The most useful keys:
+
+```yaml
 ---
-cover: >-
-  https://images.unsplash.com/photo-1528605248644-14dd04022da1?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwxOTcwMjR8MHwxfHNlYXJjaHwxMHx8dGVhbSUyMG9mJTIwcGVvcGxlfGVufDB8fHx8MTY2MDMxNzQzNg&ixlib=rb-1.2.1&q=80
-coverY: 0
+title: "Page Title"
+description: "Short summary used for SEO + sidebar tooltips."
 ---
+```
 
-# 👋 Welcome to eTop University: Your Learning Hub
+## Sidebar / nav
 
-Hello, and welcome to eTop University!
+The sidebar is generated from `SUMMARY.md` (legacy GitBook table of contents) into `src/_generated/sidebar.json` by `scripts/migrate.py`. To regenerate after edits to `SUMMARY.md`:
 
-We're thrilled to have you here. As a leading Managed Service Provider, we are dedicated to providing our clients with more than just excellent IT services - we want to empower you to use technology effectively and efficiently in your business. That's why we've created eTop University, a one-stop learning hub designed with our clients' needs in mind.
+```bash
+python scripts/migrate.py
+```
 
-eTop University is a platform dedicated to providing resources, tutorials, and how-to guides covering a wide range of technical topics. This platform aims to enhance your understanding of the various digital tools, systems, and best practices integral to your business operations.
+The migration script is idempotent — re-running won't re-move already-migrated content.
 
-Here's what you can find at eTop University:
+## Assets
 
-**1. User Guides:** Step-by-step tutorials on using essential software, setting up your systems, and troubleshooting common issues.
+Old GitBook assets live at `public/.gitbook/assets/` and are referenced by absolute path (`/.gitbook/assets/foo.png`). New images can go anywhere under `src/assets/` (Astro image pipeline) or `public/` (raw passthrough).
 
-**2. Software Tutorials:** Our extensive library of software tutorials includes guides for Microsoft Office 365, Adobe Suite, and many more.
+## Deployment
 
-**3. Best Practice Standards and Procedures:** To help you maintain a secure and efficient IT environment, we provide clear guidelines and protocols for your systems.
+Pushed to `starlight` branch → Cloudflare Pages auto-deploys.
 
-**4. IT Security & Privacy Education:** Safeguard your business with our tips and guides on password management, identifying phishing attempts, securing personal data, and more.
-
-**5. System Optimization Tips:** Learn how to get the most out of your systems with guides on computer optimization, connectivity issues, and file backup and recovery.
-
-**6. Personalized Learning Pathways:** We know every business is unique. Find or request guides that meet your specific needs and business goals.
-
-**7. Feedback and Support:** We value your input. If there's a resource you need but can't find, let us know. Our team is continually updating and adding to our guides based on user feedback.
-
-We're confident that eTop University will be an invaluable tool for your business. Remember, we're just a click away should you need any assistance.
-
-Join us on this digital journey, and together, let's leverage the power of technology to take your business to new heights.
-
-Happy learning!
-
-Best regards,
-
-The eTop MSP Team
+Build settings (configured in CF Pages):
+- Framework preset: **Astro**
+- Build command: `npm run build`
+- Build output directory: `dist`
+- Node version: `20` (or higher)

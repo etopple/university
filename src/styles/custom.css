@@ -1,0 +1,43 @@
+/* eTop University - Starlight theme overrides */
+
+:root {
+  --sl-font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --sl-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, "Cascadia Code", "Liberation Mono", Menlo, Consolas, monospace;
+}
+
+:root[data-theme="dark"] {
+  --sl-color-accent-low: #0d2540;
+  --sl-color-accent: #2a72d4;
+  --sl-color-accent-high: #b9d3f5;
+}
+
+:root[data-theme="light"] {
+  --sl-color-accent-low: #d9e7fb;
+  --sl-color-accent: #1d5dab;
+  --sl-color-accent-high: #0c2c55;
+}
+
+/* Slightly tighter content padding for long policy/help docs */
+.sl-markdown-content {
+  --sl-content-pad-x: clamp(1rem, 4vw, 2rem);
+}
+
+/* GitBook used emoji-prefixed headings; keep them looking clean */
+.sl-markdown-content h1,
+.sl-markdown-content h2,
+.sl-markdown-content h3 {
+  letter-spacing: -0.01em;
+}
+
+/* Old GitBook <figure> blocks — make sure they don't blow out width */
+.sl-markdown-content figure img {
+  max-width: 100%;
+  height: auto;
+}
+
+.sl-markdown-content figcaption {
+  font-size: 0.875rem;
+  color: var(--sl-color-gray-3);
+  text-align: center;
+  margin-top: 0.5rem;
+}
