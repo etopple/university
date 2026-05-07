@@ -20,18 +20,10 @@ export default defineConfig({
         replacesTitle: false,
       },
       favicon: "/favicon.svg",
-      social: [
-        {
-          icon: "linkedin",
-          label: "LinkedIn",
-          href: "https://www.linkedin.com/company/etop-technology",
-        },
-        {
-          icon: "github",
-          label: "GitHub",
-          href: "https://github.com/etopple",
-        },
-      ],
+      social: {
+        linkedin: "https://www.linkedin.com/company/etop-technology",
+        github: "https://github.com/etopple",
+      },
       editLink: {
         baseUrl:
           "https://github.com/etopple/university/edit/starlight/src/content/docs/",
