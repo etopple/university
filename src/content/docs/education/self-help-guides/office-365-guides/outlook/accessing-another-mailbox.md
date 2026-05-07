@@ -1,8 +1,7 @@
 ---
+title: "🤝 Accessing Another Mailbox"
 description: Sharing is caring!
 ---
-# 🤝 Accessing Another Mailbox
-
 Whether you are covering for another user while they're away or your organization has a shared mailbox to monitor and use, opening another mailbox in Outlook is common and a great way to stay updated with important information. Please note that the appropriate permissions need to be applied prior to accessing the mailbox.
 
 In Outlook for desktop or mobile the instructions are slightly different. If the mailbox is mapped to your account it should happen automatically. These instructions are geared toward accessing the shared mailbox in Outlook on the web.

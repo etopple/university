@@ -1,12 +1,11 @@
 ---
+title: "When to Escalate a Ticket"
 description: >-
   Our team has been working to build better processes and this is one of the big
   ones we rely on daily to keep our team from spinning their wheels and to
   minimize wasting clients time.
 hidden: true
 ---
-# When to Escalate a Ticket
-
 At eTop Technology, our goal is to resolve issues as quickly as possible, but sometimes problems require more expertise. Here's how to know when to escalate a ticket to ensure a smooth resolution:
 
 **Things to Keep in Mind:**

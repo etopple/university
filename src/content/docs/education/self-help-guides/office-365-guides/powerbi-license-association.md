@@ -1,5 +1,6 @@
-# 📉 PowerBI License Association
-
+---
+title: "📉 PowerBI License Association"
+---
 Picture it: you've been granted a license for PowerBI through your team, only to attempt to open a report and be greeted with a "you need a license to view this report" error. How frustrating!
 
 There is a simple fix for this:

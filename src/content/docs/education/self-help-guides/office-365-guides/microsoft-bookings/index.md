@@ -1,8 +1,7 @@
 ---
+title: "📆 Microsoft Bookings"
 description: Schedule appointments with ease!
 ---
-# 📆 Microsoft Bookings
-
 Have you ever had this email thread happen?\
 &#xNAN;_"Let's meet soon!"_\
 _"Yes, let's. How does Thursday look?"_\

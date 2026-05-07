@@ -1,8 +1,7 @@
 ---
+title: "🛣️ Remote Applications"
 description: How to refresh published applications
 ---
-# 🛣️ Remote Applications
-
 If your organization uses RemoteApps, or applications published and run on a remote server, then you may occasionally need to update the applications. This article describes how to refresh the list of remote applications, which needs to be done if there are new applications or updates to existing applications.
 
 There are two (2) ways to refresh remote applications on a Windows desktop. You can either wait - the applications are refreshed every 24 hours - or refresh manually.

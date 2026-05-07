@@ -1,8 +1,7 @@
 ---
+title: "📱 Outlook Mobile Setup"
 description: Take your email anywhere!
 ---
-# 📱 Outlook Mobile Setup
-
 eTop recommends Outlook on mobile devices to access company email. The following pages will describe how to connect on iOS and Android mobile devices
 
 Download and install Outlook by the Microsoft Organization on your mobile device.

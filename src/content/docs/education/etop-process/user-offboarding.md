@@ -1,10 +1,9 @@
 ---
+title: "📋 User Offboarding"
 description: >-
   A short description of what we do in user termination and offboarding of
   employees from clients.
 ---
-# 📋 User Offboarding
-
 **User Offboarding/Termination Guide**
 
 Effectively managing the departure of an employee involves several key steps to ensure security and continuity within your Office 365 environment. Here’s a straightforward guide:

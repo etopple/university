@@ -1,5 +1,6 @@
-# 📃 Change the Default Application
-
+---
+title: "📃 Change the Default Application"
+---
 When you receive a new PDF tool, get your prefered browser installed, or even have a new image editor, you may want to change your system to open those file types with the new software automatically. There are a number of ways to do this, but this guide will show you one of the easiest ways.
 
 1. In Windows File Explorer or on the Desktop, locate a file that has the right file type: in this case PDF.\

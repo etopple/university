@@ -1,8 +1,7 @@
 ---
+title: "📨 Sophos Email - Self Service Portal"
 description: Using the Sophos self-service portal
 ---
-# 📨 Sophos Email - Self Service Portal
-
 ### Signing into the Sophos portal <a href="#signing-into-the-sophos-portal" id="signing-into-the-sophos-portal"></a>
 
 The Sophos Self-Service portal is accessible at the following link: [https://cloud.sophos.com/manage/self-service](https://cloud.sophos.com/manage/self-service). If you do not have a login for this page yet, please check your email for a registration message. If you cannot locate any emails from Sophos requesting you activate your account, please contact our helpdesk at 951-398-0021 to have the link resent

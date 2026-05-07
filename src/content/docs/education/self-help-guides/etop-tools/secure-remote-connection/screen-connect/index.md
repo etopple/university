@@ -1,5 +1,6 @@
-# 💻 Screen Connect
-
+---
+title: "💻 Screen Connect"
+---
 How to Login and Access your Work Computer Securely
 
 * William Pote | 10 steps | 3 minute

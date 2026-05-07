@@ -1,8 +1,7 @@
 ---
+title: "🗝️ Keeper - Getting Started"
 description: Protect your passwords
 ---
-# 🗝️ Keeper - Getting Started
-
 eTop offers a [password-manager.md](../../password-manager.md "mention")called Keeper. It does everything a good password manager does and then some.
 
 [https://vimeo.com/582974925](https://vimeo.com/582974925)

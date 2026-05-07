@@ -1,8 +1,7 @@
 ---
+title: "💖 Values"
 description: eTop Technology's core values!
 ---
-# 💖 Values
-
 ## Our Values
 
 <details>

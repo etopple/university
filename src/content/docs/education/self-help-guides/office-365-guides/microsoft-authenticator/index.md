@@ -1,5 +1,6 @@
-# ➡ Microsoft Authenticator
-
+---
+title: "➡ Microsoft Authenticator"
+---
 [https://www.microsoft.com/en-us/security/mobile-authenticator-app](https://www.microsoft.com/en-us/security/mobile-authenticator-app)&#x20;
 
 In order to secure your environment, your Microsoft account has been configured with multi-factor authentication. eTop recommends setting up Microsoft Authenticator on your mobile device.

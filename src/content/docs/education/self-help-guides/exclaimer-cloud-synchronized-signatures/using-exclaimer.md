@@ -1,5 +1,6 @@
-# Using Exclaimer
-
+---
+title: "Using Exclaimer"
+---
 Exclaimer signatures are applied automatically to outgoing email, no matter what client (or program or platform) you use. By default, it will not show up in the body of your outgoing email, but your recipient will see it.&#x20;
 
 Enabling the **Exclaimer Outlook add-in** opens a couple of new features. Most notably, it inserts your default signature into the email. [Click here](https://support.exclaimer.com/hc/en-gb/articles/360020605057-Using-the-Exclaimer-Outlook-Add-in) for more information and a video on how to use the Add-in for Outlook on the web or Outlook Desktop.\

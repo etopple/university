@@ -1,5 +1,6 @@
-# ✉️ Android Setup
-
+---
+title: "✉️ Android Setup"
+---
 To set up your email on your iOS device, follow these simple steps:
 
 1. If you haven't already done so, download the Microsoft Outlook for Android devices here: \

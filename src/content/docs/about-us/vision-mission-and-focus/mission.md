@@ -1,5 +1,6 @@
-# Mission
-
+---
+title: "Mission"
+---
 ## Our Mission 🚀
 
 🚀 Our mission at eTop University is to simplify the complexities of modern technology and provide our clients with the tools, resources, and knowledge they need to navigate their IT environments effectively. We strive to create an intuitive, accessible, and comprehensive platform that fosters continuous learning and growth.

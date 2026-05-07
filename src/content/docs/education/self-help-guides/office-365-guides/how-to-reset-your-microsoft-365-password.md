@@ -1,8 +1,7 @@
 ---
+title: "🔑 How to Reset Your Microsoft 365 Password"
 description: Step-by-step guide to resetting your Microsoft 365 password using self-service password reset.
 ---
-# 🔑 How to Reset Your Microsoft 365 Password
-
 If you've forgotten your password or your account is locked out, you can often reset it yourself without contacting the helpdesk. Microsoft's Self-Service Password Reset (SSPR) lets you get back into your account in just a few minutes.
 
 ---

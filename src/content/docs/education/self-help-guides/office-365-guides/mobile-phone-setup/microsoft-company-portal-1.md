@@ -1,8 +1,7 @@
 ---
+title: "Microsoft Company Portal"
 description: Install assigned applictions on Mobile
 ---
-# Microsoft Company Portal
-
 The Microsoft Company Portal allows you to reinstall the applications assigned to you by your Microsoft Admin Team
 
 <figure><img src="/.gitbook/assets/image (110).png" alt=""><figcaption></figcaption></figure>

@@ -1,5 +1,6 @@
-# 🛑 Bad Patch Update
-
+---
+title: "🛑 Bad Patch Update"
+---
 I hope this message finds you well. We wanted to bring to your attention a recent development concerning Microsoft updates KB5032189 and KB5033372. These updates have caused some unexpected issues, including Edge freezing, Outlook not loading, and anomalies in other Microsoft products.
 
 At eTop Technology, we take the stability and performance of your IT environment seriously. In response to these challenges, we have initiated a proactive approach to mitigate any potential disruptions to your operations:

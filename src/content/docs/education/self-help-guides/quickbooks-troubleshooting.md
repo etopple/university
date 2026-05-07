@@ -1,8 +1,7 @@
 ---
+title: "💲 QuickBooks Troubleshooting"
 description: Do you have the QuickBooks blues?
 ---
-# 💲 QuickBooks Troubleshooting
-
 QuickBooks, by Intuit, is commonly used accounting software. If you use it on a regular basis, you might be familiar with the following symptoms:
 
 * QuickBooks requires an update

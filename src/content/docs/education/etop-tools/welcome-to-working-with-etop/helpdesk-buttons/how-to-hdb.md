@@ -1,8 +1,7 @@
 ---
+title: "🔘 How to HDB!"
 description: A few quick screenshots on how to best utilize HDB
 ---
-# 🔘 How to HDB!
-
 You can either press the button on the taskbar or press the F1 Key!&#x20;
 
 ## Press F1 on your Keyboard

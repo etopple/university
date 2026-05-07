@@ -1,5 +1,6 @@
-# 🔑 Reset your ScreenConnect Password
-
+---
+title: "🔑 Reset your ScreenConnect Password"
+---
 Everyone's done it. The password was lost and not saved to the password manager. When that happens with ScreenConnect, the password can be reset.
 
 1. Access your work email. If needed, sign into [https://outlook.office.com](https://outlook.office.com) or use your mobile phone to access. \

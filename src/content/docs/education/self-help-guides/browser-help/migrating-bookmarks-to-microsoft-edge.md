@@ -1,8 +1,7 @@
 ---
+title: "🔖 Migrating Bookmarks to Microsoft Edge"
 description: Moving your bookmarks to Edge
 ---
-# 🔖 Migrating Bookmarks to Microsoft Edge
-
 ### Introduction
 
 This help article provides step-by-step instructions for users looking to migrate their browsing data from Google Chrome or Mozilla Firefox to Microsoft Edge. Whether you are switching browsers for better performance, more features, or improved security, this guide will ensure a seamless transition so that all your bookmarks, saved passwords, and other browsing data are transferred efficiently. Follow the specific instructions below based on the browser you are migrating from to get started.

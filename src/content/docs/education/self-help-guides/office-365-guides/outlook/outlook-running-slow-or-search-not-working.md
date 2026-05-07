@@ -1,8 +1,7 @@
 ---
+title: "🐌 Outlook Running Slow or Search Not Working"
 description: Fixes for slow Outlook performance, search issues, and emails not loading properly.
 ---
-# 🐌 Outlook Running Slow or Search Not Working
-
 If Outlook is taking forever to open, emails are slow to load, or search isn't returning results, these steps will help you get things running smoothly again.
 
 ---

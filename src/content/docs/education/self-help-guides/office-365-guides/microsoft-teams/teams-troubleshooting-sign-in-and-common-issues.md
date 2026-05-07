@@ -1,8 +1,7 @@
 ---
+title: "🔧 Teams Troubleshooting: Sign-In and Common Issues"
 description: Fixes for common Microsoft Teams issues including sign-in loops, missing chats, and app crashes.
 ---
-# 🔧 Teams Troubleshooting: Sign-In and Common Issues
-
 Microsoft Teams is the hub for communication and collaboration, so when it's not working, it can really disrupt your day. Here are fixes for the most common Teams issues.
 
 ---

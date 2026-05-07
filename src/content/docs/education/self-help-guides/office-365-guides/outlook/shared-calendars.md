@@ -1,5 +1,6 @@
-# 🗓 Shared Calendars
-
+---
+title: "🗓 Shared Calendars"
+---
 Whether you manage a calendar for another person, or your office has a shared calendar for the conference room, you can access that calendar in Outlook. Here are two ways to access that calendar.
 
 1. If you have an invitation to access a calendar in your inbox, open that and accept the invitation. That will open the calendar in your Outlook so you can see both.

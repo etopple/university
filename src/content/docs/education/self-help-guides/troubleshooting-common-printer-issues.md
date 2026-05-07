@@ -1,8 +1,7 @@
 ---
+title: "🖨️ Troubleshooting Common Printer Issues"
 description: Quick self-help fixes for common printer problems including connection issues, stuck print jobs, and more.
 ---
-# 🖨️ Troubleshooting Common Printer Issues
-
 Printer problems are one of the most common IT issues in any office. Before submitting a ticket, try these troubleshooting steps — many printer issues can be resolved in just a few minutes.
 
 ---

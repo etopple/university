@@ -1,5 +1,6 @@
-# 👋 Welcome to eTop University: Your Learning Hub
-
+---
+title: "👋 Welcome to eTop University: Your Learning Hub"
+---
 Hello, and welcome to eTop University!
 
 We're thrilled to have you here. As a leading Managed Service Provider, we are dedicated to providing our clients with more than just excellent IT services - we want to empower you to use technology effectively and efficiently in your business. That's why we've created eTop University, a one-stop learning hub designed with our clients' needs in mind.

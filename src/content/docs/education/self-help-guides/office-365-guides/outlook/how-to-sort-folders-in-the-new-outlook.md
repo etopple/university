@@ -1,5 +1,6 @@
-# 📧 📨 How to Sort Folders in the New Outlook
-
+---
+title: "📧 📨 How to Sort Folders in the New Outlook"
+---
 Here’s a draft for your **university.etop.tech** documentation page on sorting folders in the new Outlook:
 
 ***

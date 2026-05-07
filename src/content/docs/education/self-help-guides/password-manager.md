@@ -1,8 +1,7 @@
 ---
+title: "🧾 Password Manager"
 description: How can I keep track of passwords and still keep them secure?
 ---
-# 🧾 Password Manager
-
 ## Password Managers and Password Security
 
 ### Overview

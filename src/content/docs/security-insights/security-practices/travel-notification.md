@@ -1,7 +1,6 @@
-# 🏖️ Travel Notification
-
-
-
+---
+title: "🏖️ Travel Notification"
+---
 When you travel, especially internationally, it’s important to let the eTop Technology security team know in advance. Travel notifications help protect your account, reduce false security alerts, and ensure smooth access while you’re away.
 
 ***

@@ -1,5 +1,6 @@
-# ☁ OneDrive for Business
-
+---
+title: "☁ OneDrive for Business"
+---
 Microsoft's OneDrive for Business is included in Microsoft 365 licensing for most plans.&#x20;
 
 It allows for simple but feature-rich cloud storage.

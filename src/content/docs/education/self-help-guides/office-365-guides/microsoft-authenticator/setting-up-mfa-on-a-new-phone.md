@@ -1,8 +1,7 @@
 ---
+title: "📲 Setting Up MFA on a New Phone"
 description: How to set up Microsoft Authenticator and MFA on a new phone, and what to do when MFA isn't working.
 ---
-# 📲 Setting Up MFA on a New Phone
-
 Getting a new phone is exciting — but it also means you need to transfer your Multi-Factor Authentication (MFA) before you lose access to your accounts. This guide walks you through the process step by step.
 
 ---

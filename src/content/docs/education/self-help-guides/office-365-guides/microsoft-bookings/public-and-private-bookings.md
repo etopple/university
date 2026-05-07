@@ -1,5 +1,6 @@
-# Public and Private Bookings
-
+---
+title: "Public and Private Bookings"
+---
 ## **Public vs Private meeting types**
 
 There are two kinds of meetings: public and private.&#x20;

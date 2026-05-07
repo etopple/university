@@ -1,5 +1,6 @@
-# 📥 iOS setup
-
+---
+title: "📥 iOS setup"
+---
 To set up your email on your iOS device, follow these simple steps:
 
 1. If you haven't already done so, download the Microsoft Outlook for iOS here: [https://apps.apple.com/us/app/microsoft-outlook/id951937596](https://apps.apple.com/us/app/microsoft-outlook/id951937596)\

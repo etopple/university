@@ -1,10 +1,9 @@
 ---
+title: "📱 Android Phone Setup"
 description: >-
   Step by Step instructions for setting up your Android phone for your Microsoft
   365 accounts!
 ---
-# 📱 Android Phone Setup
-
 ### Install applications
 
 1. Open the Google Play store and search for Authenticator, Outlook, and Teams

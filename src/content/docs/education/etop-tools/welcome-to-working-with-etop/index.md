@@ -1,8 +1,7 @@
 ---
+title: "⚙ Welcome to Working with eTop"
 description: Learn how to submit a ticket like a Boss!
 ---
-# ⚙ Welcome to Working with eTop
-
 You can use one of the following methods listed in the following pages.
 
 Helpdesk@etoptechnology.com

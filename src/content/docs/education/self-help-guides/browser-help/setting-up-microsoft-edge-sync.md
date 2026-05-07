@@ -1,10 +1,9 @@
 ---
+title: "Setting up Microsoft Edge Sync"
 description: >-
   This article describes the steps needed to configure Microsoft Edge to Sync to
   your Microsoft account.
 ---
-# Setting up Microsoft Edge Sync
-
 Microsoft Edge has the built-in ability to sync favorites, history, and other customizable features to your Microsoft account. This enables your browsing to carry on - even if you change machines.
 
 \

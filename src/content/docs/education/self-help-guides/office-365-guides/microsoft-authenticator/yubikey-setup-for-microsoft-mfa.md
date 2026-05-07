@@ -1,8 +1,7 @@
 ---
+title: "Yubikey setup for Microsoft MFA"
 description: An alternative to Microsoft Authenticator
 ---
-# Yubikey setup for Microsoft MFA
-
 Sometimes it makes more sense to use a hardware USB key for multifactor authentication. Here are the instructions for configuring that:
 
 1. Sign into your Microsoft Account page [https://account.microsoft.com/account](https://account.microsoft.com/account)

@@ -1,5 +1,6 @@
-# Focus
-
+---
+title: "Focus"
+---
 ## **Our Focus 🎯**
 
 🎯 At eTop University, our focus is laser-sharp on 'Client Outcomes'. This core value anchors every decision we make, every resource we develop, and every interaction we have.

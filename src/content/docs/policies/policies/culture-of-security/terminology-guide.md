@@ -1,5 +1,6 @@
-# 🔐 Terminology Guide
-
+---
+title: "🔐 Terminology Guide"
+---
 ## Terminology Guide for a Culture of Cybersecurity
 
 Introduction: Maintaining consistent terminology is essential when discussing cybersecurity topics in various communication channels such as podcasts, LinkedIn posts, and email marketing. This guide provides standardized definitions for common cybersecurity terms to ensure clarity and coherence in all our communications.

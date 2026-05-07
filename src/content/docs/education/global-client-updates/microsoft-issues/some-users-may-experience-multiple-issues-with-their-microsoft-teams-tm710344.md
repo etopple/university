@@ -1,5 +1,6 @@
-# Some users may experience multiple issues with their Microsoft Teams TM710344
-
+---
+title: "Some users may experience multiple issues with their Microsoft Teams TM710344"
+---
 User impact: Users may experience multiple issues with their Microsoft Teams.
 
 More info: Affected scenarios include, but aren't limited to:

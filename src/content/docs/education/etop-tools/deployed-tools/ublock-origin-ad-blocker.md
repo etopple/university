@@ -1,5 +1,6 @@
-# ◽ UBlock - Origin Ad Blocker
-
+---
+title: "◽ UBlock - Origin Ad Blocker"
+---
 ![](</.gitbook/assets/image (20).png>)
 
 **How to Temporarily Disable uBlock Origin for a Specific Domain**

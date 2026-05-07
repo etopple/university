@@ -1,8 +1,7 @@
 ---
+title: "ScreenConnect on MacOS"
 description: How to allow ScreenConnect to work on MacOS
 ---
-# ScreenConnect on MacOS
-
 Later versions of MacOS secure your system by reducing the items that can access your screen and items.&#x20;
 
 This article will provide the necessary steps to allow eTop techs to use ScreenConnect to view and control your computer.

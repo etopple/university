@@ -1,8 +1,7 @@
 ---
+title: "📅 Using Teams"
 description: How to maximize your teams usage!
 ---
-# 📅 Using Teams
-
 ### Teams getting started
 
 Microsoft 365 includes Teams in almost all licenses issued to our clients. &#x20;

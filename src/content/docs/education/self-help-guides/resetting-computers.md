@@ -1,8 +1,7 @@
 ---
+title: "🔁 Resetting computers"
 description: Like new computing without a price tag
 ---
-# 🔁 Resetting computers
-
 Just like a vacation can refresh your mind, resetting your computer brings it back to a clean, reliable state. eTop uses this reset to rule out deeper software issues and help prevent future downtime or frustration.
 
 Here’s what you need to know to make the process smooth:

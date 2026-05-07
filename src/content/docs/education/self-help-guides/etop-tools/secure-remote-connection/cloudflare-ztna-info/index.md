@@ -1,8 +1,7 @@
 ---
+title: "🌨️ Cloudflare ZTNA Info"
 description: Using Cloudflare Zero Trust Network Access (ZTNA)
 ---
-# 🌨️ Cloudflare ZTNA Info
-
 "Zero Trust Network Access" is a method of allowing a remote device to access data and information located at another location. The term "Zero Trust" refers to the Cybersecurity concept of assuming all resources should be untrusted until proven otherwise. This is also the main difference between ZTNA and the Virtual Private Network, or VPN, connections you may already be using. With ZTNA, every resource is protected on its own with virtual walls blocking all other resources. Whereas with a VPN, you automatically gain full access to an entire network
 
 ## Using ZTNA

@@ -1,5 +1,6 @@
-# 🔧 Patching
-
+---
+title: "🔧 Patching"
+---
 🔧**Patching Policy - Automated Patching and Reboot**
 
 Purpose: The purpose of this policy is to establish guidelines for automated patching and reboot procedures to ensure the timely installation of updates on workstations and servers. This policy aims to enhance system security, performance, and reliability.

@@ -1,8 +1,7 @@
 ---
+title: "📭 eMail - Helpdesk@etoptechnology.com"
 description: eMail!
 ---
-# 📭 eMail - Helpdesk@etoptechnology.com
-
 When assistance is required, you have several options! One of the most effective ways is:
 
 EMAIL us at [helpdesk@etoptechnology.com](mailto:helpdesk@etoptechnology.com)

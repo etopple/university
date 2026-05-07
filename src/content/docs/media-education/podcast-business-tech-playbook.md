@@ -1,8 +1,7 @@
 ---
+title: "📻 Podcast - Business Tech Playbook"
 description: 'Title: Business Tech Playbook'
 ---
-# 📻 Podcast - Business Tech Playbook
-
 * [http://businesstechplaybook.com](http://businesstechplaybook.com)
 
 **Summary:**

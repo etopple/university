@@ -1,5 +1,6 @@
-# 🖱️ Three Quick Fixes for Common Computer Issues  If your computer isn’t behaving the way it should,
-
+---
+title: "🖱️ Three Quick Fixes for Common Computer Issues  If your computer isn’t behaving the way it should,"
+---
 ## 🖱️ Three Quick Fixes for Common Computer Issues
 
 If your computer isn’t behaving the way it should, don’t panic — most issues can be resolved in just a few quick steps. Before reaching out for help, try these simple fixes that often solve the problem right away.

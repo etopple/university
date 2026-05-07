@@ -1,8 +1,7 @@
 ---
+title: "👩‍💻 Sophos Connect VPN"
 description: Secure remote connection from anywhere
 ---
-# 👩‍💻 Sophos Connect VPN
-
 This guide will demonstrate how to use the Sophos Connect VPN client to connect to your remote workforce. You might need this article if you are unable to connect to a file server or Remote Applications.&#x20;
 
 1. Launch the Sophos Connect software from the start menu/the desktop/or the task bar (near the time, at the bottom right-hand corner by default You might need to click the arrow to show all applications.)\

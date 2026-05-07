@@ -1,8 +1,7 @@
 ---
+title: "🚨 What to Do If You Clicked a Suspicious Link"
 description: Immediate steps to take if you clicked a phishing link, opened a suspicious attachment, or responded to a scam email.
 ---
-# 🚨 What to Do If You Clicked a Suspicious Link
-
 Everyone makes mistakes — even the most security-aware people can accidentally click a bad link or respond to a convincing scam email. What matters most is **how quickly you act** afterward. Follow these steps immediately.
 
 ---

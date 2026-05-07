@@ -1,8 +1,7 @@
 ---
+title: "🗄 Online Archiving"
 description: The why!
 ---
-# 🗄 Online Archiving
-
 **Online Archiving Policy**
 
 Purpose: The purpose of this policy is to establish guidelines for the implementation and usage of the online archiving system, including the In-Place Archive feature, to effectively manage email storage, organization, and retention.

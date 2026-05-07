@@ -1,8 +1,7 @@
 ---
+title: "🔐 Managing Quarantine"
 description: Viewing and managing email messages in quarantine.
 ---
-# 🔐 Managing Quarantine
-
 [https://learn.microsoft.com/en-us/defender-office-365/quarantine-end-user](https://learn.microsoft.com/en-us/defender-office-365/quarantine-end-user)
 
 This guide explains how to access and manage quarantined emails in Microsoft 365 (M365). Quarantined emails are messages flagged as spam, phishing, or containing harmful content by M365 security features.

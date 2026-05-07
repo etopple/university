@@ -143,6 +143,62 @@ def clean_frontmatter(text: str) -> str:
     return f"---\n{cleaned}\n---\n" + text[m.end():]
 
 
+H1_RE = re.compile(r'^#\s+(?P<title>.+?)\s*$', re.MULTILINE)
+
+
+def yaml_string(s: str) -> str:
+    """Quote a YAML string safely. Uses double quotes; escapes embedded ones."""
+    return '"' + s.replace('\\', '\\\\').replace('"', '\\"') + '"'
+
+
+def get_existing_title(text: str) -> str | None:
+    m = FRONTMATTER_RE.match(text)
+    if not m:
+        return None
+    for line in m.group(1).splitlines():
+        mt = re.match(r'^title\s*:\s*(.+?)\s*$', line)
+        if mt:
+            return mt.group(1).strip().strip('"').strip("'")
+    return None
+
+
+def ensure_title_frontmatter(text: str, fallback: str) -> str:
+    """Pull the first H1 into a frontmatter `title:` field. Strip the H1 from body.
+    If no H1 exists, use the supplied fallback."""
+    if get_existing_title(text):
+        return text
+
+    body_start = 0
+    fm = ""
+    m = FRONTMATTER_RE.match(text)
+    if m:
+        fm = m.group(1).rstrip()
+        body_start = m.end()
+
+    body = text[body_start:]
+    h1 = H1_RE.search(body)
+    if h1:
+        title = h1.group("title").strip()
+        body = body[: h1.start()] + body[h1.end():]
+        body = body.lstrip("\n")
+    else:
+        title = fallback
+
+    title_line = f"title: {yaml_string(title)}"
+    fm_lines = [title_line] + ([fm] if fm else [])
+    fm_block = "\n".join(fm_lines).strip()
+    return f"---\n{fm_block}\n---\n{body}"
+
+
+def fallback_title_from_path(p: Path) -> str:
+    rel = p.relative_to(DOCS_DST).with_suffix("")
+    parts = list(rel.parts)
+    if parts and parts[-1] == "index":
+        parts = parts[:-1] or ["Home"]
+    last = parts[-1].replace("-", " ").replace("_", " ")
+    return last.title()
+
+
 def convert_file(p: Path) -> None:
     text = p.read_text(encoding="utf-8")
     original = text
@@ -151,6 +207,7 @@ def convert_file(p: Path) -> None:
     text = EMBED_RE.sub(convert_embed, text)
     text = CONTENTREF_RE.sub(convert_contentref, text)
     text = GB_ASSET_RE.sub('/.gitbook/assets/', text)
+    text = ensure_title_frontmatter(text, fallback_title_from_path(p))
     if text != original:
         p.write_text(text, encoding="utf-8", newline="\n")
 

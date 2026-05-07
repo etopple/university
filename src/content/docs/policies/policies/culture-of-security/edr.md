@@ -1,8 +1,7 @@
 ---
+title: "🕵 EDR"
 description: Embracing a Culture of Security and Early Detection and Response (EDR)
 ---
-# 🕵 EDR
-
 ### I. Purpose
 
 The purpose of this Endpoint Detection and Response (EDR) Policy is to provide a comprehensive approach to monitoring and protecting all installable devices within the organization. By implementing EDR on every installable device, we can effectively detect and respond to potential security threats, ensuring the safety of our digital assets and the integrity of our company's operations.

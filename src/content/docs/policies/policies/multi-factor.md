@@ -1,8 +1,7 @@
 ---
+title: "🔓 Multi Factor"
 description: Multi Factor is required for all access to remote and office 365 tenants
 ---
-# 🔓 Multi Factor
-
 🔒 Multi-Factor Authentication (MFA) is a critical security measure that offers an additional layer of protection for your digital accounts and sensitive information. Its importance cannot be overstated, and there are several compelling reasons why MFA has become a requirement in various contexts, including Microsoft's mandate, cyber insurance requirements, and industry regulations.
 
 1. **Enhanced Security**: MFA significantly strengthens your account security by adding an extra step beyond traditional password authentication. It typically requires users to provide multiple pieces of evidence to verify their identities, such as a password, a temporary code sent to their mobile device, or biometric authentication. This makes it exponentially more difficult for attackers to gain unauthorized access, even if they manage to obtain your password.

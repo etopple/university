@@ -1,5 +1,6 @@
-# Maintenance Bot
-
+---
+title: "Maintenance Bot"
+---
 eTop uses a system of commands to keep your systems updated and working properly. When maintenance runs, you will get an email notification. The emails come from maintenance@etop.tech and provides information on when it will run and what options are available.
 
 ![](/.gitbook/assets/image.png)

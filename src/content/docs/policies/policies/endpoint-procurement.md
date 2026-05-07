@@ -1,8 +1,7 @@
 ---
+title: "💻 Endpoint Procurement"
 description: Why Self-Purchased Equipment and Software Are Outside of Scope
 ---
-# 💻 Endpoint Procurement
-
 Our managed service agreements are built around consistency. When we provide or approve the hardware and software you use, we can fully support it — no guesswork, no surprises. That’s how we keep things running smoothly.
 
 When something is purchased outside of our process, we can’t guarantee compatibility or reliability. That’s why self-purchased devices, software, or services are considered outside the scope of your agreement.

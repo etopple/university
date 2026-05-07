@@ -1,7 +1,6 @@
-# The Art of the Microsoft Minute: A Humorous Guide for eTop Users
-
-
-
+---
+title: "The Art of the Microsoft Minute: A Humorous Guide for eTop Users"
+---
 Ever clicked something in Microsoft 365 and felt like you could brew a cup of coffee in the time it takes to respond? Welcome to the "Microsoft Minute"—it's less about timekeeping and more about teaching us patience!
 
 1. **What's the Rush?** This isn't just a delay; it's Microsoft's way of adding suspense. Will it take one minute? Three? It's a surprise every time!

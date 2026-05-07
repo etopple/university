@@ -1,8 +1,7 @@
 ---
+title: "🗄 Online Archiving"
 description: To minimize the size of inboxes we have implemented online archiving in o365
 ---
-# 🗄 Online Archiving
-
 \
 🗄️ With our online archiving feature in Office 365, your valuable data is securely stored and easily accessible whenever you need it. **Our default policy sets the retention period to one year, ensuring efficient management of your organization's email and data storage.**
 

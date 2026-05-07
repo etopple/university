@@ -1,8 +1,7 @@
 ---
+title: "Microsoft Company Portal"
 description: Install and secure your assigned apps
 ---
-# Microsoft Company Portal
-
 Download the Microsoft Company Portal from the app store\
 ![](</.gitbook/assets/image (107).png>)
 

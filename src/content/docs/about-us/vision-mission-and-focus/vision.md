@@ -1,8 +1,7 @@
 ---
+title: "Vision"
 description: Pioneering the Future of Client-Focused Technological Learning.
 ---
-# Vision
-
 ## Our Vision 🔭
 
 🔭 Our vision is to solve the technology challenges of today and tomorrow by equipping our clients with the right knowledge and understanding of effective solutions. We are on a mission to transform how businesses perceive and navigate their IT landscapes, and we envision eTop University as a key tool in that journey.

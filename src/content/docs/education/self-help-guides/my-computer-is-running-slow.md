@@ -1,8 +1,7 @@
 ---
+title: "🐢 My Computer Is Running Slow: Self-Help Steps"
 description: Self-help steps to speed up a slow computer before contacting the helpdesk.
 ---
-# 🐢 My Computer Is Running Slow: Self-Help Steps
-
 A slow computer can be incredibly frustrating. Before submitting a ticket, try these steps — they resolve the majority of performance issues and can save you time waiting for a response.
 
 ---

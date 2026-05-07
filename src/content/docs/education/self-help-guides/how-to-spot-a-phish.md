@@ -1,10 +1,9 @@
 ---
+title: "🎣 How to spot a Phish"
 description: >-
   Information on the best way to determine if the email you received is a
   phishing email
 ---
-# 🎣 How to spot a Phish
-
 **Understanding Phishing**
 
 Phishing is a deceptive practice where fraudsters send emails or messages that appear to be from reputable sources. The aim is to trick individuals into revealing personal information, such as passwords and credit card numbers.

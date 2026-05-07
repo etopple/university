@@ -1,5 +1,6 @@
-# ImmyBot Maintenance Emails
-
+---
+title: "ImmyBot Maintenance Emails"
+---
 As part of eTop's commitment to transparent communication, an automated system does maintenance on systems on a regular, agreed upon schedule. During this time, you may receive automated communications from Immybot indicating that maintenance is happening.
 
 The emails are branded with eTop Technology's logo and the logo of ImmyBot. They may or may not contain actionable buttons. Here is what they look like:

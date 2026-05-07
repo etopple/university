@@ -1,8 +1,7 @@
 ---
+title: "🔐 Understanding VPN Security Alerts"
 description: What to do when you receive a VPN security alert or unauthorized login notification.
 ---
-# 🔐 Understanding VPN Security Alerts
-
 If you've received an alert about an "unauthorized VPN login" or "unexpected VPN activity," don't panic — but do take it seriously. This guide explains what these alerts mean and exactly what to do.
 
 ---

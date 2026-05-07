@@ -1,8 +1,7 @@
 ---
+title: "↗️ Open a page in Internet Explorer"
 description: Because some sites still require it
 ---
-# ↗️ Open a page in Internet Explorer
-
 If you access a site - Such as the California Electronic Adjudication Management System - that requires Internet Explorer Mode, you will likely need to set it up to always open in Internet Explorer mode. These settings expire every 30 days, so you will need to re-add them every month you need to access the site
 
 

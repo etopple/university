@@ -1,8 +1,7 @@
 ---
+title: "🎁 Extensions in Microsoft Edge"
 description: How to add familiar extensions to Microsoft Edge
 ---
-# 🎁 Extensions in Microsoft Edge
-
 To add extensions to Microsoft Edge:
 
 ### Introduction

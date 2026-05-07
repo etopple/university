@@ -1,8 +1,7 @@
 ---
+title: "🤖 Getting Started with Microsoft Copilot"
 description: An introduction to Microsoft Copilot in Outlook, Teams, and other Microsoft 365 apps.
 ---
-# 🤖 Getting Started with Microsoft Copilot
-
 Microsoft Copilot is an AI-powered assistant built directly into Microsoft 365 apps like Outlook, Teams, Word, Excel, and PowerPoint. If your organization has Copilot licenses, this guide will help you understand what it does and how to start using it.
 
 ---

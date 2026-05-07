@@ -1,10 +1,9 @@
 ---
+title: "📱 iOS Phone Setup"
 description: >-
   Step by Step instructions for setting up your iOS phone for your Microsoft 365
   accounts!
 ---
-# 📱 iOS Phone Setup
-
 ### Install applications
 
 1. Open the App store and search for Microsoft Company Portal, Authenticator, Outlook, and Teams

@@ -1,8 +1,7 @@
 ---
+title: "🔐 Oct 3 Secure our World!"
 description: https://www.cisa.gov/secure-our-world
 ---
-# 🔐 Oct 3 Secure our World!
-
 #### Secure Your Digital Life with "Secure Our World" - A Must-Read for Every University Member!
 
 Are you concerned about your online safety but think cybersecurity is too complicated? Think again! The "Secure Our World" initiative by CISA is your go-to guide for easy-to-follow steps that will drastically improve your digital life. Learn how to protect not just yourself, but your family and even your business from the lurking dangers of the online world.

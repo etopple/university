@@ -1,5 +1,6 @@
-# Important Notice on Password Security Practices
-
+---
+title: "Important Notice on Password Security Practices"
+---
 As part of our commitment to maintaining the highest level of security for your accounts and data, we've observed some risky password management practices that we would like to bring to your attention.
 
 Risky Behaviors Observed:

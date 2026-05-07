@@ -1,2 +1,3 @@
-# 📺 Media - Education!
-
+---
+title: "📺 Media - Education!"
+---

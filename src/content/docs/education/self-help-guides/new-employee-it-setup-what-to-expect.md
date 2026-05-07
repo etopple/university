@@ -1,8 +1,7 @@
 ---
+title: "🆕 New Employee IT Setup: What to Expect"
 description: What new employees can expect during their IT setup and how to get started on day one.
 ---
-# 🆕 New Employee IT Setup: What to Expect
-
 Welcome aboard! This guide explains what happens with your technology setup as a new employee, what you'll receive, and how to get up and running quickly.
 
 ---

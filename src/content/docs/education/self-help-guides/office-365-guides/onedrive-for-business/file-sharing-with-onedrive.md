@@ -1,8 +1,7 @@
 ---
+title: "🤝 File sharing with OneDrive"
 description: Sharing is easy!
 ---
-# 🤝 File sharing with OneDrive
-
 Within OneDrive, you have the ability to share who has access to your files. By default, the items stored in your OneDrive are only accessible by you. If you wish to share an item or folder with someone or a group of someones, you just need to adjust the sharing options!
 
 You can access the sharing options in a few places, most common is the right click menu in File Explorer.&#x20;

@@ -1,8 +1,7 @@
 ---
+title: "⌚ AutoElevate"
 description: What is Privileged Access Management?
 ---
-# ⌚ AutoElevate
-
 AutoElevate allows you and your staff to perform tasks that would normally require Administrator access using a concept called Privileged Access Management.&#x20;
 
 Privileged access management is crucial for maintaining a secure and controlled environment within the company. By leveraging PAM and tools like AutoElevate, we can effectively allow the applications that are approved, required, or necessary for your productivity while preventing the actions that are malicious, dangerous, or counterproductive.\
