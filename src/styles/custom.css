@@ -1,38 +1,98 @@
-/* eTop University - Starlight theme overrides */
+/* eTop University - Starlight theme overrides
+ *
+ * Dark mode tuned for low-glare reading: backgrounds shifted to a slightly
+ * blue-tinted neutral, accent + status colors desaturated to remove the
+ * "default Starlight purple/electric blue" feel. Palette generated against
+ * eTop brand blue (#1d5dab). */
 
 :root {
   --sl-font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --sl-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, "Cascadia Code", "Liberation Mono", Menlo, Consolas, monospace;
 }
 
+/* ---------- Dark mode ---------- */
 :root[data-theme="dark"] {
-  --sl-color-accent-low: #0d2540;
-  --sl-color-accent: #2a72d4;
-  --sl-color-accent-high: #b9d3f5;
+  /* Page surfaces: slight blue tint, less harsh than near-black */
+  --sl-color-bg: #0f141c;
+  --sl-color-bg-nav: #131a25;
+  --sl-color-bg-sidebar: #131a25;
+  --sl-color-bg-inline-code: #1c2533;
+  --sl-color-hairline-light: #1f2a3a;
+  --sl-color-hairline: #1a2330;
+  --sl-color-hairline-shade: #151c27;
+
+  /* Body / text */
+  --sl-color-white: #f3f6fb;
+  --sl-color-gray-1: #d8dee8;
+  --sl-color-gray-2: #aeb6c4;
+  --sl-color-gray-3: #7a8395;
+  --sl-color-gray-4: #525c6e;
+  --sl-color-gray-5: #2c3543;
+  --sl-color-gray-6: #1d2532;
+  --sl-color-black: #0f141c;
+  --sl-color-text: #d8dee8;
+  --sl-color-text-accent: #cfe0ff;
+  --sl-color-text-invert: #0f141c;
+
+  /* Accent (eTop blue, brightened for dark bg) */
+  --sl-color-accent-low: #122036;
+  --sl-color-accent: #4f8de6;
+  --sl-color-accent-high: #cfe0ff;
+
+  /* Asides — these key off the matching status color, not accent.
+     Tone all of them down so they don't shout against the dark bg. */
+  --sl-color-blue-low: #122036;
+  --sl-color-blue: #4f8de6;
+  --sl-color-blue-high: #cfe0ff;
+
+  --sl-color-purple-low: #1c1631;
+  --sl-color-purple: #9f8ce6;
+  --sl-color-purple-high: #ddd2ff;
+
+  --sl-color-green-low: #0f2419;
+  --sl-color-green: #5ec48c;
+  --sl-color-green-high: #cfeede;
+
+  --sl-color-orange-low: #2a1c11;
+  --sl-color-orange: #e0a060;
+  --sl-color-orange-high: #fbe0c2;
+
+  --sl-color-red-low: #2a1318;
+  --sl-color-red: #e3656b;
+  --sl-color-red-high: #f9c8cc;
 }
 
+/* ---------- Light mode ---------- */
 :root[data-theme="light"] {
   --sl-color-accent-low: #d9e7fb;
   --sl-color-accent: #1d5dab;
   --sl-color-accent-high: #0c2c55;
+  --sl-color-text-accent: #1d5dab;
+
+  --sl-color-blue-low: #d9e7fb;
+  --sl-color-blue: #1d5dab;
+  --sl-color-blue-high: #0c2c55;
 }
 
-/* Slightly tighter content padding for long policy/help docs */
+/* ---------- Layout polish ---------- */
+
+/* Tighter content padding for long policy/help docs */
 .sl-markdown-content {
   --sl-content-pad-x: clamp(1rem, 4vw, 2rem);
 }
 
-/* GitBook used emoji-prefixed headings; keep them looking clean */
+/* Heading rhythm */
 .sl-markdown-content h1,
 .sl-markdown-content h2,
 .sl-markdown-content h3 {
   letter-spacing: -0.01em;
 }
 
-/* Old GitBook <figure> blocks — make sure they don't blow out width */
+/* Old GitBook <figure> blocks — keep them in-bounds */
 .sl-markdown-content figure img {
   max-width: 100%;
   height: auto;
+  border-radius: 6px;
 }
 
 .sl-markdown-content figcaption {
@@ -40,4 +100,10 @@
   color: var(--sl-color-gray-3);
   text-align: center;
   margin-top: 0.5rem;
+}
+
+/* Asides: thinner border, gentler bg saturation */
+.starlight-aside {
+  border-inline-start-width: 3px;
+  border-radius: 6px;
 }
