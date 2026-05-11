@@ -16,10 +16,10 @@ export default defineConfig({
       description:
         "Tutorials, guides, and policies from eTop Technology — your MSP learning hub.",
       logo: {
-        src: "./src/assets/logo.svg",
+        src: "./src/assets/etop-help-logo.png",
         replacesTitle: false,
       },
-      favicon: "/favicon.svg",
+      favicon: "/favicon.png",
       social: {
         linkedin: "https://www.linkedin.com/company/etop-technology",
         github: "https://github.com/etopple",

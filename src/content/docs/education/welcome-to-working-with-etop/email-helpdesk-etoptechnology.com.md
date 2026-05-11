@@ -1,6 +1,7 @@
 ---
 title: "📭 eMail - Helpdesk@etoptechnology.com"
 description: eMail!
+slug: education/welcome-to-working-with-etop/email-helpdesk-etoptechnology.com
 ---
 When assistance is required, you have several options! One of the most effective ways is:
 

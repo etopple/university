@@ -94,7 +94,7 @@
             "items": [
               {
                 "label": "Overview",
-                "link": "/education/etop-tools/office-365-guides"
+                "link": "/education/self-help-guides/office-365-guides"
               },
               {
                 "label": "\ud83d\udd11 How to Reset Your Microsoft 365 Password",
@@ -146,7 +146,7 @@
                   },
                   {
                     "label": "\ud83d\udcc5 Using Teams",
-                    "link": "/education/etop-tools/office-365-guides/using-teams"
+                    "link": "/education/self-help-guides/office-365-guides/microsoft-teams/using-teams"
                   },
                   {
                     "label": "\ud83d\udd27 Teams Troubleshooting: Sign-In and Common Issues",
@@ -294,7 +294,7 @@
               },
               {
                 "label": "\u2197\ufe0f Open a page in Internet Explorer",
-                "link": "/education/self-help-guides/open-a-page-in-internet-explorer"
+                "link": "/education/self-help-guides/browser-help/open-a-page-in-internet-explorer"
               },
               {
                 "label": "Setting up Microsoft Edge Sync",
@@ -315,7 +315,7 @@
             "items": [
               {
                 "label": "Overview",
-                "link": "/education/etop-tools"
+                "link": "/education/self-help-guides/etop-tools"
               },
               {
                 "label": "\ud83d\udcef Secure Remote Connection",
@@ -365,7 +365,7 @@
                 "items": [
                   {
                     "label": "Overview",
-                    "link": "/education/etop-tools/deployed-tools"
+                    "link": "/education/self-help-guides/etop-tools/deployed-tools"
                   },
                   {
                     "label": "\ud83d\udddd\ufe0f Keeper - Getting Started",
@@ -377,11 +377,7 @@
                   },
                   {
                     "label": "\u25fd UBlock - Origin Ad Blocker",
-                    "link": "/education/etop-tools/deployed-tools/ublock-origin-ad-blocker"
-                  },
-                  {
-                    "label": "\ud83d\udce8 Sophos Email - Self Service Portal",
-                    "link": "/education/etop-tools/deployed-tools/sophos-email-self-service-portal"
+                    "link": "/education/self-help-guides/etop-tools/deployed-tools/ublock-origin-ad-blocker"
                   },
                   {
                     "label": "Maintenance Bot",
@@ -435,26 +431,26 @@
         "items": [
           {
             "label": "Overview",
-            "link": "/education/etop-tools/welcome-to-working-with-etop"
+            "link": "/education/welcome-to-working-with-etop"
           },
           {
             "label": "\ud83d\udced eMail - Helpdesk@etoptechnology.com",
-            "link": "/education/etop-tools/welcome-to-working-with-etop/email-helpdesk-etoptechnology.com"
+            "link": "/education/welcome-to-working-with-etop/email-helpdesk-etoptechnology.com"
           },
           {
             "label": "\ud83d\udcf1 Phone Call - 951-398-0021",
-            "link": "/education/etop-tools/welcome-to-working-with-etop/phone-call-951-398-0021"
+            "link": "/education/welcome-to-working-with-etop/phone-call-951-398-0021"
           },
           {
             "label": "\ud83c\udd98 Helpdesk Buttons!",
             "items": [
               {
                 "label": "Overview",
-                "link": "/education/etop-tools/welcome-to-working-with-etop/helpdesk-buttons"
+                "link": "/education/welcome-to-working-with-etop/helpdesk-buttons"
               },
               {
                 "label": "\ud83d\udd18 How to HDB!",
-                "link": "/education/etop-tools/welcome-to-working-with-etop/helpdesk-buttons/how-to-hdb"
+                "link": "/education/welcome-to-working-with-etop/helpdesk-buttons/how-to-hdb"
               }
             ]
           },
