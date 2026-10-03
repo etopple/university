@@ -38,3 +38,4 @@ emdash-env.d.ts
 .wrangler-seed.sql
 .wrangler-fts.sql
 review_results.txt
+.wrangler-migrations.json
