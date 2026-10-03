@@ -62,7 +62,7 @@ page path (`education/self-help-guides/backups`; home is `index`), so every URL 
 | `EMDASH_ENCRYPTION_KEY` | Worker secret, prod and preview | `npx emdash secrets generate`. Only protects plugin settings of type secret, and v1 has none. Once a plugin stores one, keep a recovery copy outside Cloudflare. |
 | `CLOUDFLARE_API_TOKEN` | operator shell or CI only | Scoped: D1 Edit + Workers Scripts Edit on the eTop account |
 | `EMDASH_TOKEN` | E2E and `apply.mjs` runner only | Admin-scope EmDash API token, created in the preview admin. Store it in Hudu or as a GitHub secret. |
-| `CF_ACCESS_CLIENT_ID` / `CF_ACCESS_CLIENT_SECRET` | E2E runner only | Access service token `university-e2e`, allowed on the **preview** app only **(pending)** |
+| `E2E_CF_ACCESS_CLIENT_ID` / `E2E_CF_ACCESS_CLIENT_SECRET` | E2E runner only | Access service token `university-e2e`, allowed on the **preview** app only **(pending)** |
 
 ## Deploy
 

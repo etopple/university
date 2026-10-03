@@ -18,20 +18,20 @@ export function requireConfig() {
   const missing = [];
   if (!BASE_URL) missing.push("E2E_BASE_URL");
   if (AUTH === "token" && !process.env.EMDASH_TOKEN) missing.push("EMDASH_TOKEN (admin-scope EmDash API token)");
-  if (AUTH === "token" && !isLocal && !(process.env.CF_ACCESS_CLIENT_ID && process.env.CF_ACCESS_CLIENT_SECRET)) {
-    missing.push("CF_ACCESS_CLIENT_ID + CF_ACCESS_CLIENT_SECRET (Access service token for the preview)");
+  if (AUTH === "token" && !isLocal && !(process.env.E2E_CF_ACCESS_CLIENT_ID && process.env.E2E_CF_ACCESS_CLIENT_SECRET)) {
+    missing.push("E2E_CF_ACCESS_CLIENT_ID + E2E_CF_ACCESS_CLIENT_SECRET (Access service token university-e2e; deliberately not CF_ACCESS_CLIENT_*, which other tools set shell-wide)");
   }
   if (!["token", "dev-bypass"].includes(AUTH)) missing.push(`E2E_AUTH must be token or dev-bypass, got "${AUTH}"`);
   if (missing.length) throw new Error(`E2E config missing:\n  - ${missing.join("\n  - ")}\nSee tests/e2e/README.md.`);
 }
 
-// Headers that get a request past Cloudflare Access (service token). Sent on
-// every request, including the anonymous "visitor" check, because the whole
-// preview hostname sits behind Access.
+// Headers that get a request past Cloudflare Access (service token). Access
+// covers /_emdash only, so on public pages they are inert; sending them on the
+// visitor check keeps it working if Access is ever widened to the whole host.
 export function accessHeaders() {
   const h = {};
-  if (process.env.CF_ACCESS_CLIENT_ID) h["CF-Access-Client-Id"] = process.env.CF_ACCESS_CLIENT_ID;
-  if (process.env.CF_ACCESS_CLIENT_SECRET) h["CF-Access-Client-Secret"] = process.env.CF_ACCESS_CLIENT_SECRET;
+  if (process.env.E2E_CF_ACCESS_CLIENT_ID) h["CF-Access-Client-Id"] = process.env.E2E_CF_ACCESS_CLIENT_ID;
+  if (process.env.E2E_CF_ACCESS_CLIENT_SECRET) h["CF-Access-Client-Secret"] = process.env.E2E_CF_ACCESS_CLIENT_SECRET;
   return h;
 }
 

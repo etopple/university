@@ -10,19 +10,32 @@ const PUBLISH_API = /\/_emdash\/api\/content\/docs\/[^/]+\/publish$/;
 
 test.beforeAll(() => requireConfig());
 
+// Attach credentials only to requests for the site under test, never to a
+// third-party origin the page happens to load (fonts, analytics, CDNs).
+async function newContextWithHeaders(browser, headers) {
+  const ctx = await browser.newContext({ baseURL: BASE_URL });
+  const origin = new URL(BASE_URL).origin;
+  await ctx.route("**/*", (route) => {
+    const req = route.request();
+    if (new URL(req.url()).origin !== origin) return route.continue();
+    return route.continue({ headers: { ...req.headers(), ...headers } });
+  });
+  return ctx;
+}
+
 test("editor: edit the test page, publish, and the change is live", async ({ browser }) => {
   // ---- 1. Sign in ---------------------------------------------------------
-  const editor = await browser.newContext({ baseURL: BASE_URL, extraHTTPHeaders: editorHeaders() });
+  const editor = await newContextWithHeaders(browser, editorHeaders());
   const page = await editor.newPage();
 
   if (AUTH === "dev-bypass") {
     await page.goto("/_emdash/api/setup/dev-bypass?redirect=/_emdash/api/auth/me");
     await page.waitForURL((u) => u.pathname === "/_emdash/api/auth/me", { timeout: 30_000 });
     // Clear the first-login welcome modal before the admin shell loads.
-    const r = await page.request.post("/_emdash/api/auth/me", { headers: { "X-EmDash-Request": "1" }, data: { action: "dismissWelcome" } });
+    const r = await page.request.post("/_emdash/api/auth/me", { headers: { "X-EmDash-Request": "1", ...editorHeaders() }, data: { action: "dismissWelcome" } });
     expect(r.status(), "dismiss welcome modal").toBe(200);
   } else {
-    const me = await page.request.get("/_emdash/api/auth/me");
+    const me = await page.request.get("/_emdash/api/auth/me", { headers: editorHeaders() });
     expect(me.status(), "API token rejected: is EMDASH_TOKEN valid with the admin scope?").toBe(200);
   }
 
@@ -83,7 +96,7 @@ test("editor: edit the test page, publish, and the change is live", async ({ bro
   // ---- 5. A visitor sees it ----------------------------------------------
   // Fresh context, no EmDash credentials: only the Access service token, which
   // the whole preview hostname needs. Poll briefly in case a cache sits in front.
-  const visitor = await browser.newContext({ baseURL: BASE_URL, extraHTTPHeaders: accessHeaders() });
+  const visitor = await newContextWithHeaders(browser, accessHeaders());
   const vp = await visitor.newPage();
   await expect(async () => {
     const res = await vp.goto(`/${TEST_SLUG}?e2e=${Date.now()}`);

@@ -7,7 +7,7 @@
 //
 // Writes out/visual/<page>-<theme>-{base,candidate,diff}.png and out/visual/report.md.
 // Exit 1 if any page differs by more than --threshold percent of pixels, or fails to load.
-// Sends CF_ACCESS_CLIENT_ID / CF_ACCESS_CLIENT_SECRET to the candidate if set.
+// Sends E2E_CF_ACCESS_CLIENT_ID / E2E_CF_ACCESS_CLIENT_SECRET to the candidate if set.
 
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -45,7 +45,16 @@ function args(argv) {
 }
 
 async function shoot(browser, url, theme, headers) {
-  const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 }, colorScheme: theme, extraHTTPHeaders: headers, reducedMotion: "reduce" });
+  const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 }, colorScheme: theme, reducedMotion: "reduce" });
+  // Service-token headers go to the site under test only, never to third parties.
+  const origin = new URL(url).origin;
+  if (Object.keys(headers).length) {
+    await ctx.route("**/*", (route) => {
+      const req = route.request();
+      if (new URL(req.url()).origin !== origin) return route.continue();
+      return route.continue({ headers: { ...req.headers(), ...headers } });
+    });
+  }
   // Starlight reads its theme from localStorage before first paint.
   await ctx.addInitScript((t) => { try { localStorage.setItem("starlight-theme", t); } catch {} }, theme);
   const page = await ctx.newPage();

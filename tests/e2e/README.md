@@ -20,7 +20,7 @@ What it does:
 | `E2E_BASE_URL` | always | `http://localhost:4321` or the preview URL |
 | `E2E_AUTH` | optional | `dev-bypass` (default for localhost) or `token` (default otherwise) |
 | `EMDASH_TOKEN` | `token` | Admin-scope EmDash API token. Admin pages need the `admin` scope. |
-| `CF_ACCESS_CLIENT_ID`, `CF_ACCESS_CLIENT_SECRET` | preview | Access service token `university-e2e` (preview app, Service Auth policy) |
+| `E2E_CF_ACCESS_CLIENT_ID`, `E2E_CF_ACCESS_CLIENT_SECRET` | preview | Access service token `university-e2e` (preview app, Service Auth policy) |
 | `E2E_TEST_SLUG` | optional | default `e2e-test-page` |
 
 ```bash
@@ -29,7 +29,7 @@ E2E_BASE_URL=http://localhost:4321 npm run test:editor
 
 # Preview (behind Cloudflare Access)
 E2E_BASE_URL=https://university-emdash-preview.williampote.workers.dev \
-EMDASH_TOKEN=... CF_ACCESS_CLIENT_ID=... CF_ACCESS_CLIENT_SECRET=... npm run test:editor
+EMDASH_TOKEN=... E2E_CF_ACCESS_CLIENT_ID=... E2E_CF_ACCESS_CLIENT_SECRET=... npm run test:editor
 ```
 
 Missing credentials fail at once, and the error lists what is missing. No retries: a flaky editor test should
