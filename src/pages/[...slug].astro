@@ -1,0 +1,51 @@
+---
+// Every University page. Content comes from EmDash (collection "docs",
+// slug = the old Starlight path); layout, sidebar and TOC are Starlight's.
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+import { getEmDashEntry, getMenu } from "emdash";
+import PtNodes from "../components/pt/PtNodes.astro";
+import { renderPlan } from "../lib/pt";
+import { menuToSidebar } from "../lib/sidebar";
+import { isTestPage } from "../lib/all-docs";
+
+export const prerender = false;
+
+const raw = (Astro.params.slug ?? "").replace(/\/+$/, "");
+const slug = raw === "" ? "index" : raw;
+// The old site served its 404 page at /404 with status 200.
+const is404Page = raw === "404";
+
+type Doc = { id?: string; title: string; description?: string; body?: unknown; template?: string; updatedAt?: Date };
+const [{ entry, error }, menu] = await Promise.all([
+  is404Page || (slug === "index" && raw !== "") ? Promise.resolve({ entry: null, error: undefined }) : getEmDashEntry("docs", slug),
+  getMenu("docs-sidebar"),
+]);
+if (error) {
+  console.error("emdash entry", slug, error);
+  return new Response("Unable to load this page right now.", { status: 500 });
+}
+
+// Pages live at trailing-slash URLs, as on the old site. Relative links in the
+// migrated content ("vision.md") resolve against that URL.
+if (entry && !Astro.url.pathname.endsWith("/")) return Astro.redirect(`/${slug === "index" ? "" : slug + "/"}${Astro.url.search}`, 308);
+
+const sidebar = menuToSidebar(menu?.items ?? []);
+const data = entry?.data as Doc | undefined;
+const plan = renderPlan(data?.body);
+if (!entry) Astro.response.status = is404Page ? 200 : 404;
+
+const frontmatter = entry
+  ? {
+      title: data!.title,
+      description: data!.description || undefined,
+      template: (data!.template === "splash" ? "splash" : "doc") as "doc" | "splash",
+      editUrl: `${Astro.url.origin}/_emdash/admin/content/docs/${encodeURIComponent(String(data!.id ?? entry.id))}`,
+      lastUpdated: data!.updatedAt ? new Date(data!.updatedAt) : undefined,
+      head: isTestPage(slug) ? [{ tag: "meta" as const, attrs: { name: "robots", content: "noindex" } }] : [],
+    }
+  : { title: "404", template: "doc" as const, editUrl: false as const, pagefind: false };
+---
+
+<StarlightPage frontmatter={frontmatter} sidebar={sidebar} headings={plan.headings}>
+  {entry ? <PtNodes nodes={plan.nodes} /> : <p>Page not found. Check the URL or try using the search bar.</p>}
+</StarlightPage>

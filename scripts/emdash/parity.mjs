@@ -33,6 +33,18 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const OUT = join(HERE, "out");
 const SEED = resolve(HERE, "..", "..", ".emdash", "seed.json");
 
+// Differences reviewed and accepted by the lead (2026-10-02). Keep this list short.
+const ACCEPTED = {
+  "/e2e-test-page": {
+    problem: "status 404 -> 200",
+    why: "unlisted, noindex page the editor E2E edits on the preview (not in the sitemap or sidebar)",
+  },
+  "/404": {
+    problem: "status 200 -> 404",
+    why: "Cloudflare Pages served its 404 page at /404 with status 200 (a soft 404); the Worker returns a real 404",
+  },
+};
+
 const DEFAULT_IGNORE = [
   "script", "style", "noscript", "template", "svg",
   "footer", "nav", ".pagination-links", "starlight-toc", "mobile-starlight-toc",
@@ -46,7 +58,9 @@ function posInt(k, v) {
 }
 
 // Same-origin references compare by path, so base and preview hosts can differ.
-function normRef(href, origin, from) {
+// alsoSelf: the live origin, so an absolute link to university.etop.tech counts as
+// same-site on the candidate too (it is the same page after cutover).
+function normRef(href, origin, from, alsoSelf) {
   // Cloudflare email obfuscation: /cdn-cgi/l/email-protection#<hex>, re-keyed on
   // every request. Decode it (first byte XORs the rest) and compare the address.
   const cf = String(href).match(/\/cdn-cgi\/l\/email-protection#([0-9a-f]+)/i);
@@ -56,7 +70,7 @@ function normRef(href, origin, from) {
   }
   try {
     const u = new URL(href, origin + from);
-    return u.origin === origin ? normPath(u.pathname) + u.search + u.hash : u.href;
+    return u.origin === origin || u.origin === alsoSelf ? normPath(u.pathname) + u.search + u.hash : u.href;
   } catch {
     return href;
   }
@@ -105,8 +119,23 @@ const BLOCK_BOUNDARY = /<\/?(p|div|li|ul|ol|h[1-6]|tr|td|th|table|thead|tbody|fi
 // Default node-html-parser keeps <pre> as raw text; we need its text content.
 const PARSE_OPTS = { comment: false, blockTextElements: { script: true, style: true, noscript: true } };
 
+// Cloudflare's Email Address Obfuscation rewrites addresses on proxied zones
+// (university.etop.tech) but not on workers.dev. Decode it so both sides compare
+// the address the reader actually sees.
+export function decodeCfEmail(hex) {
+  const key = parseInt(hex.slice(0, 2), 16);
+  let out = "";
+  for (let i = 2; i < hex.length; i += 2) out += String.fromCharCode(parseInt(hex.slice(i, i + 2), 16) ^ key);
+  return out;
+}
+export function deobfuscateEmails(html) {
+  return html
+    .replace(/<(a|span)\b[^>]*class="__cf_email__"[^>]*data-cfemail="([0-9a-f]+)"[^>]*>[\s\S]*?<\/\1>/gi, (_, _t, hex) => decodeCfEmail(hex))
+    .replace(/href="\/cdn-cgi\/l\/email-protection#([0-9a-f]+)"/gi, (_, hex) => `href="mailto:${decodeCfEmail(hex)}"`);
+}
+
 export function extract(html, selector, ignore) {
-  const root = parseHtml(html, PARSE_OPTS);
+  const root = parseHtml(deobfuscateEmails(html), PARSE_OPTS);
   const title = normText(root.querySelector("title")?.textContent || "");
   const found = root.querySelector(selector);
   const main = found || root.querySelector("body") || root;
@@ -216,7 +245,13 @@ async function crawl(origin, seeds, headers, a) {
   while (queue.length) {
     const batch = queue.splice(0, a.concurrency * 4);
     await pool(batch, a.concurrency, async (path) => {
-      const res = await fetchOne(origin + path, headers);
+      let res = await fetchOne(origin + path, headers);
+      // A pure trailing-slash redirect (/a -> /a/) is the same page: record the
+      // page, so which spelling the crawl met first does not decide the result.
+      if (res.status >= 300 && res.status < 400 && res.location) {
+        const to = sameOriginPath(res.location, origin, path);
+        if (to && to !== path && normPath(to) === normPath(path)) (path = to), (res = await fetchOne(origin + to, headers));
+      }
       let ex = null;
       if (res.status === 200 && res.type.includes("text/html")) {
         ex = extract(res.body, a.selector, a.ignore);
@@ -296,10 +331,10 @@ export async function run(a) {
         r.firstDiff = { base: cmp.base, candidate: cmp.candidate };
       }
       const bLinks = b.ex.contentLinks.map((h) => normRef(h, a.base, b.path)).join("\n");
-      const cLinks = c.ex.contentLinks.map((h) => normRef(h, a.candidate, c.path)).join("\n");
+      const cLinks = c.ex.contentLinks.map((h) => normRef(h, a.candidate, c.path, new URL(a.base).origin)).join("\n");
       if (bLinks !== cLinks) r.problems.push("content link targets differ");
       const bImgs = b.ex.contentImages.map((h) => normRef(h, a.base, b.path)).join("\n");
-      const cImgs = c.ex.contentImages.map((h) => normRef(h, a.candidate, c.path)).join("\n");
+      const cImgs = c.ex.contentImages.map((h) => normRef(h, a.candidate, c.path, new URL(a.base).origin)).join("\n");
       if (bImgs !== cImgs) r.problems.push("content images differ");
     } else if (b.ex) r.base.title = b.ex.title;
     results.push(r);
@@ -332,6 +367,13 @@ export async function run(a) {
     }
   }
 
+  // Reviewed, intentional differences. Each must match exactly one problem string.
+  for (const r of results) {
+    const ok = ACCEPTED[r.url];
+    if (!ok) continue;
+    r.accepted = r.problems.filter((p) => p === ok.problem).map((p) => `${p} (accepted: ${ok.why})`);
+    r.problems = r.problems.filter((p) => p !== ok.problem);
+  }
   const failed = results.filter((r) => r.problems.length);
   // Links that are already broken on the live site: not a parity failure (both
   // sides agree), but worth fixing before or after cutover.
@@ -346,6 +388,7 @@ export async function run(a) {
     pages: results.filter((r) => r.kind === "page").length,
     assets: results.filter((r) => r.kind === "asset").length,
     failed: failed.length,
+    accepted: results.filter((r) => r.accepted?.length).map((r) => `${r.url}: ${r.accepted.join("; ")}`),
     movedUrls: redirects.length,
     brokenOnBase: brokenOnBase.length,
     // A gate that checked nothing must not pass: --limit runs are partial, and
@@ -381,6 +424,7 @@ function markdownReport(s, failed, broken) {
     `- Ran: ${s.ranAt} (${s.seconds}s)`,
     `- Checked: ${s.pages} pages, ${s.assets} assets`,
     `- Differences: ${s.failed} · moved URLs (redirect suggested): ${s.movedUrls}`,
+    ...s.accepted.map((x) => `- Accepted difference: ${x}`),
     "",
   ];
   if (failed.length) {
