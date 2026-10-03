@@ -33,6 +33,12 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const OUT = join(HERE, "out");
 const SEED = resolve(HERE, "..", "..", ".emdash", "seed.json");
 
+// New URLs added with the migration: only a 404 on the live site may differ here.
+const ACCEPTED_NEW_PREFIXES = [
+  { prefix: "/images/editing-university/", why: "screenshots for the new how-to page" },
+  { prefix: "/education%2Fetop-process%2Fhow-to-edit-university-pages", why: "encoded-slash spelling of the new how-to page redirects like every other page" },
+];
+
 // Differences reviewed and accepted by the lead (2026-10-02). Keep this list short.
 const ACCEPTED = {
   "/education/etop-process/how-to-edit-university-pages": {
@@ -373,7 +379,8 @@ export async function run(a) {
 
   // Reviewed, intentional differences. Each must match exactly one problem string.
   for (const r of results) {
-    const ok = ACCEPTED[r.url];
+    const prefix = ACCEPTED_NEW_PREFIXES.find((x) => r.url.startsWith(x.prefix));
+    const ok = ACCEPTED[r.url] || (prefix && r.base.status === 404 && { problem: r.problems[0], why: prefix.why });
     if (!ok) continue;
     r.accepted = r.problems.filter((p) => p === ok.problem).map((p) => `${p} (accepted: ${ok.why})`);
     r.problems = r.problems.filter((p) => p !== ok.problem);
