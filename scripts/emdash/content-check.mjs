@@ -44,7 +44,10 @@ await Promise.all(Array.from({ length: 6 }, async () => {
     const live = extract(html, ".sl-markdown-content", "script,style,svg,.sl-anchor-link,.sr-only,.sl-sr-only");
     const want = expectedText(e.data.body);
     const cmp = compareText(live.text, want);
-    results.push({ slug: e.slug, status: r.status, similarity: Number(cmp.ratio.toFixed(4)), ...(cmp.ratio < 1 ? { live: cmp.base, seed: cmp.candidate } : {}) });
+    // Exact text required; the ratio is diagnostic only (it is 1 for reordered words).
+    const same = live.text === want && live.selectorFound;
+    const similarity = same ? 1 : Math.min(Number(cmp.ratio.toFixed(4)), 0.9999);
+    results.push({ slug: e.slug, status: r.status, similarity, ...(same ? {} : { live: cmp.base, seed: cmp.candidate }) });
   }
 }));
 results.sort((a, b) => a.similarity - b.similarity || a.slug.localeCompare(b.slug));

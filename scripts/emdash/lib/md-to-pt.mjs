@@ -13,6 +13,10 @@
 //   details { summary, content: PT[] }
 //   html    { html }                      raw passthrough, rendered as-is
 //   break   { style: "lineBreak" }        thematic break (---)
+//   image may carry link (href it points to).
+// List blocks may carry: checked (task lists), listStart (first item of an
+// ordered list not starting at 1), listContinuation (more content of the
+// previous item, not a new item; also set on non-text blocks inside an item).
 // Marks: strong, em, code, strike-through, underline; markDefs link { href, blank? }, highlight { color }.
 
 import { unified } from "unified";
@@ -159,31 +163,37 @@ function rawText(node, ctx, list) {
   return [textBlock([{ _type: "span", _key: key(ctx), text: slice(ctx, node), marks: [] }], [], "normal", list, ctx)];
 }
 
+// Portable Text has no nesting, so a list is flat blocks with listItem/level.
+// Content that sits INSIDE an <li> but is not its first paragraph keeps the
+// li's listItem/level and gets `listContinuation: true`: the theme renders it
+// inside the same item instead of starting a new bullet/number. That covers
+// code blocks, images and extra paragraphs within one step.
 function listBlocks(node, ctx, level) {
   const out = [];
   const listItem = node.ordered ? "number" : "bullet";
-  for (const li of node.children) {
-    let first = true;
+  node.children.forEach((li, idx) => {
+    const itemBlocks = [];
     for (const child of li.children) {
-      if (child.type === "paragraph") {
-        const blocks = paragraph(child, ctx, { listItem, level }, "normal");
-        if (!first && blocks.length && blocks[0]._type === "block" && out.length && out[out.length - 1]._type === "block" && out[out.length - 1].listItem) {
-          // Continuation paragraph of the same <li>: append to the item.
-          const prev = out[out.length - 1];
-          const b = blocks.shift();
-          prev.children.push({ _type: "span", _key: key(ctx), text: "\n\n", marks: [] }, ...b.children);
-          prev.markDefs.push(...b.markDefs);
-        }
-        out.push(...blocks);
-      } else if (child.type === "list") {
-        out.push(...listBlocks(child, ctx, level + 1));
-      } else {
-        out.push(...convertBlock(child, ctx, { listItem, level }));
+      if (child.type === "list") {
+        itemBlocks.push(...listBlocks(child, ctx, level + 1));
+        continue;
       }
-      first = false;
+      const blocks =
+        child.type === "paragraph" ? paragraph(child, ctx, { listItem, level }, "normal") : convertBlock(child, ctx, { listItem, level });
+      for (const b of blocks) {
+        if (b._type !== "block" || !b.listItem) Object.assign(b, { listItem, level });
+        if (itemBlocks.some((x) => x.level === level)) b.listContinuation = true;
+        itemBlocks.push(b);
+      }
     }
-    if (li.children.length === 0) out.push(textBlock([], [], "normal", { listItem, level }, ctx));
-  }
+    if (itemBlocks.length === 0) itemBlocks.push(textBlock([], [], "normal", { listItem, level }, ctx));
+    const first = itemBlocks.find((b) => b.level === level);
+    if (first) {
+      if (li.checked === true || li.checked === false) first.checked = li.checked;
+      if (idx === 0 && node.ordered && node.start != null && node.start !== 1) first.listStart = node.start;
+    }
+    out.push(...itemBlocks);
+  });
   return out;
 }
 
@@ -273,6 +283,12 @@ function walkInline(nodes, ctx, state, list, style) {
       case "link":
       case "linkReference": {
         const href = n.type === "link" ? n.url : ctx.definitions.get(n.identifier)?.url;
+        if (href && n.children.length === 1 && /^image/.test(n.children[0].type)) {
+          // [![alt](img)](href): an image that links somewhere.
+          flush(state, ctx, list, style);
+          state.out.push({ ...imageFromNode(n.children[0], ctx), link: href });
+          break;
+        }
         if (!href) {
           pushText(slice(ctx, n), ctx, state);
           break;

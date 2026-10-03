@@ -39,6 +39,29 @@ const DEFAULT_IGNORE = [
   ".sl-sr-only", ".sr-only", "[data-parity-ignore]",
 ].join(",");
 
+function posInt(k, v) {
+  const n = Number(v);
+  if (!Number.isInteger(n) || n < 1) throw new Error(`${k} needs a positive integer, got "${v}"`);
+  return n;
+}
+
+// Same-origin references compare by path, so base and preview hosts can differ.
+function normRef(href, origin, from) {
+  // Cloudflare email obfuscation: /cdn-cgi/l/email-protection#<hex>, re-keyed on
+  // every request. Decode it (first byte XORs the rest) and compare the address.
+  const cf = String(href).match(/\/cdn-cgi\/l\/email-protection#([0-9a-f]+)/i);
+  if (cf) {
+    const bytes = cf[1].match(/../g).map((h) => parseInt(h, 16));
+    return "mailto:" + String.fromCharCode(...bytes.slice(1).map((b) => b ^ bytes[0]));
+  }
+  try {
+    const u = new URL(href, origin + from);
+    return u.origin === origin ? normPath(u.pathname) + u.search + u.hash : u.href;
+  } catch {
+    return href;
+  }
+}
+
 export function parseArgs(argv) {
   const a = { base: "https://university.etop.tech", candidate: "", selector: "main", ignore: DEFAULT_IGNORE, concurrency: 6, limit: 0, headers: {}, assets: true, out: OUT, seedPaths: true };
   for (let i = 0; i < argv.length; i++) {
@@ -48,8 +71,8 @@ export function parseArgs(argv) {
     else if (k === "--candidate") a.candidate = v();
     else if (k === "--selector") a.selector = v();
     else if (k === "--ignore") a.ignore = v();
-    else if (k === "--concurrency") a.concurrency = Number(v());
-    else if (k === "--limit") a.limit = Number(v());
+    else if (k === "--concurrency") a.concurrency = posInt(k, v());
+    else if (k === "--limit") a.limit = posInt(k, v());
     else if (k === "--no-assets") a.assets = false;
     else if (k === "--out") a.out = resolve(v());
     else if (k === "--header") {
@@ -85,7 +108,8 @@ const PARSE_OPTS = { comment: false, blockTextElements: { script: true, style: t
 export function extract(html, selector, ignore) {
   const root = parseHtml(html, PARSE_OPTS);
   const title = normText(root.querySelector("title")?.textContent || "");
-  const main = root.querySelector(selector) || root.querySelector("body") || root;
+  const found = root.querySelector(selector);
+  const main = found || root.querySelector("body") || root;
   if (ignore) main.querySelectorAll(ignore).forEach((e) => e.remove());
   // Block-level boundaries become spaces so "a</p><p>b" is not "ab"; inline tags
   // (strong, a, code...) must not add space, or "<b>x</b>." would read "x .".
@@ -93,7 +117,10 @@ export function extract(html, selector, ignore) {
   const text = normText(parseHtml(spaced, PARSE_OPTS).textContent);
   const links = root.querySelectorAll("a[href]").map((e) => e.getAttribute("href"));
   const assets = root.querySelectorAll("img[src], link[rel~=icon][href], source[srcset]").map((e) => e.getAttribute("src") || e.getAttribute("href") || (e.getAttribute("srcset") || "").split(/\s/)[0]);
-  return { title, text, links, assets };
+  // What the reader can click and see inside the content: compared, not just crawled.
+  const contentLinks = main.querySelectorAll("a[href]").map((e) => e.getAttribute("href"));
+  const contentImages = main.querySelectorAll("img[src]").map((e) => e.getAttribute("src"));
+  return { title, text, links, assets, selectorFound: !!found, contentLinks, contentImages };
 }
 
 // Word-level similarity (0..1) and the first point of divergence.
@@ -143,6 +170,7 @@ async function pool(items, n, fn) {
 
 function sameOriginPath(href, origin, from) {
   if (!href || /^(mailto|tel|javascript|data):/i.test(href) || href.startsWith("#")) return null;
+  if (href.includes("/cdn-cgi/")) return null; // Cloudflare-injected (email obfuscation etc.)
   try {
     const u = new URL(href, origin + from);
     if (u.origin !== origin) return null;
@@ -221,7 +249,9 @@ function seedPaths() {
 
 export async function run(a) {
   const t0 = Date.now();
-  const seeds = new Set(["/", "/404", ...(a.seedPaths === false ? [] : seedPaths())]);
+  const known = a.seedPaths === false ? [] : seedPaths();
+  if (a.minPages == null) a.minPages = Math.max(1, known.length);
+  const seeds = new Set(["/", "/404", ...known]);
   for (const p of await sitemapPaths(a.base, {})) seeds.add(p);
   console.log(`crawling base ${a.base} from ${seeds.size} seed paths...`);
   const base = await crawl(a.base, [...seeds], {}, a);
@@ -239,17 +269,38 @@ export async function run(a) {
     const c = cand.pages.get(k) || { path: k, res: await fetchOne(a.candidate + k, a.headers) };
     for (const side of [b, c]) if (!side.ex && side.res.status === 200 && side.res.type.includes("text/html")) side.ex = extract(side.res.body, a.selector, a.ignore);
     const r = { url: k, kind: "page", base: { status: b.res.status, location: b.res.location || undefined }, candidate: { status: c.res.status, location: c.res.location || undefined }, problems: [] };
-    if (b.res.status !== c.res.status) r.problems.push(`status ${b.res.status} -> ${c.res.status}`);
+    const bs = b.res.status;
+    const cs = c.res.status;
+    if (bs !== cs) r.problems.push(`status ${bs} -> ${cs}`);
+    // Equal-but-broken is not parity: fetch errors and server errors always fail.
+    if (bs === 0 || cs === 0) r.problems.push(`fetch failed (${b.res.error || c.res.error || "no response"})`);
+    else if (bs >= 500 || cs >= 500) r.problems.push(`server error ${bs}/${cs}`);
+    if (bs === cs && bs >= 300 && bs < 400) {
+      const bl = normRef(b.res.location, a.base, b.path);
+      const cl = normRef(c.res.location, a.candidate, c.path);
+      if (bl !== cl) r.problems.push(`redirect target ${bl} -> ${cl}`);
+    }
+    if (bs === 200 && cs === 200) {
+      if (!b.ex || !c.ex) r.problems.push(`not HTML on ${!b.ex ? "base" : "candidate"} (${(!b.ex ? b : c).res.type || "no content-type"})`);
+    }
     if (b.ex && c.ex) {
       r.base.title = b.ex.title;
       r.candidate.title = c.ex.title;
+      if (!b.ex.selectorFound || !c.ex.selectorFound) r.problems.push(`selector "${a.selector}" missing on ${!b.ex.selectorFound ? "base" : "candidate"}`);
       if (b.ex.title !== c.ex.title) r.problems.push("title differs");
       const cmp = compareText(b.ex.text, c.ex.text);
       r.textSimilarity = Number(cmp.ratio.toFixed(4));
-      if (cmp.ratio < 1) {
+      // Exact match required: the ratio is a word-bag diagnostic and is 1 for reordered text.
+      if (b.ex.text !== c.ex.text) {
         r.problems.push(`body text differs (similarity ${cmp.ratio.toFixed(3)})`);
         r.firstDiff = { base: cmp.base, candidate: cmp.candidate };
       }
+      const bLinks = b.ex.contentLinks.map((h) => normRef(h, a.base, b.path)).join("\n");
+      const cLinks = c.ex.contentLinks.map((h) => normRef(h, a.candidate, c.path)).join("\n");
+      if (bLinks !== cLinks) r.problems.push("content link targets differ");
+      const bImgs = b.ex.contentImages.map((h) => normRef(h, a.base, b.path)).join("\n");
+      const cImgs = c.ex.contentImages.map((h) => normRef(h, a.candidate, c.path)).join("\n");
+      if (bImgs !== cImgs) r.problems.push("content images differ");
     } else if (b.ex) r.base.title = b.ex.title;
     results.push(r);
   });
@@ -260,7 +311,10 @@ export async function run(a) {
     await pool(assetKeys, a.concurrency, async (p) => {
       const [b, c] = await Promise.all([fetchOne(a.base + p, {}), fetchOne(a.candidate + p, a.headers)]);
       const r = { url: p, kind: "asset", base: { status: b.status, bytes: b.body?.length }, candidate: { status: c.status, bytes: c.body?.length }, problems: [] };
+      const mime = (t) => (t || "").split(";")[0].trim();
       if (b.status !== c.status) r.problems.push(`status ${b.status} -> ${c.status}`);
+      else if (b.status === 0) r.problems.push(`fetch failed (${b.error || c.error})`);
+      else if (b.status === 200 && mime(b.type) !== mime(c.type)) r.problems.push(`content-type ${mime(b.type)} -> ${mime(c.type)}`);
       else if (b.status === 200 && b.body.length !== c.body.length && !/\.(css|js)$/.test(p)) r.problems.push(`size ${b.body.length} -> ${c.body.length}`);
       results.push(r);
     });
@@ -294,8 +348,13 @@ export async function run(a) {
     failed: failed.length,
     movedUrls: redirects.length,
     brokenOnBase: brokenOnBase.length,
-    pass: failed.length === 0,
+    // A gate that checked nothing must not pass: --limit runs are partial, and
+    // the live crawl must have reached at least every page the seed knows about.
+    partial: !!a.limit,
+    livePages: results.filter((r) => r.kind === "page" && r.base.status === 200).length,
+    minLivePages: a.minPages ?? 1,
   };
+  summary.pass = failed.length === 0 && !summary.partial && summary.livePages >= summary.minLivePages;
   const out = a.out || OUT;
   mkdirSync(out, { recursive: true });
   writeFileSync(join(out, "parity-report.json"), JSON.stringify({ summary, brokenOnBase, results }, null, 2) + "\n");
@@ -304,9 +363,18 @@ export async function run(a) {
   return { summary, failed };
 }
 
+function verdict(s) {
+  if (s.pass) return "PASS";
+  const why = [];
+  if (s.failed) why.push(`${s.failed} differences`);
+  if (s.partial) why.push("partial run (--limit), not a gate result");
+  if (s.livePages < s.minLivePages) why.push(`only ${s.livePages} live pages reached, expected >= ${s.minLivePages}`);
+  return `FAIL (${why.join("; ")})`;
+}
+
 function markdownReport(s, failed, broken) {
   const lines = [
-    `# URL parity: ${s.pass ? "PASS" : "FAIL"}`,
+    `# URL parity: ${verdict(s)}`,
     "",
     `- Base: ${s.base}`,
     `- Candidate: ${s.candidate}`,
@@ -336,7 +404,7 @@ if (isMain) {
     process.exit(2);
   }
   const { summary, failed } = await run(a);
-  console.log(`\n${summary.pass ? "PASS" : "FAIL"}: ${summary.pages} pages, ${summary.assets} assets, ${summary.failed} differences, ${summary.movedUrls} moved`);
+  console.log(`\n${verdict(summary)}: ${summary.pages} pages, ${summary.assets} assets, ${summary.failed} differences, ${summary.movedUrls} moved`);
   for (const r of failed.slice(0, 25)) console.log(`  ${r.url}: ${r.problems.join("; ")}`);
   if (failed.length > 25) console.log(`  ... ${failed.length - 25} more in out/parity-report.md`);
   process.exit(summary.pass ? 0 : 1);

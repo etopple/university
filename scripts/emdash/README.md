@@ -12,6 +12,7 @@ proves nothing changed for readers before cutover.
 | Load a preview | `EMDASH_TOKEN=… node apply.mjs --url https://<preview> [--dry-run]` | REST upsert by slug. Creates missing pages, skips unchanged ones, reports pages edited since migration and leaves them alone (`--overwrite` rewrites them; pre-cutover only). Rebuilds the sidebar menu when it is empty. |
 | Fidelity check | `node content-check.mjs` | Compares each page's Portable Text with the live rendered text. Currently 118/118 exact. |
 | **Cutover gate** | `node parity.mjs --candidate https://<preview>` | Crawls every URL on the live site and the preview; compares status, `<title>`, and main-content text; checks every asset. Exit 0 = parity. Report in `out/parity-report.md`; moved pages get a line in `out/redirects.suggested`. |
+| Gate rules | | Exact text match (order matters); same status; same redirect target; same in-content link targets and image srcs; same asset status and type. Fetch errors, 5xx, a missing selector or non-HTML 200 fail. `--limit` runs are always FAIL (partial). The live crawl must reach every seed page. |
 | Tests | `npm test` | Converter, seed determinism, and the parity gate against fake sites (pass and fail cases). |
 
 ## Content model
@@ -28,6 +29,9 @@ proves nothing changed for readers before cutover.
   and `highlight {color}`, plus custom blocks `image {alt, asset.url, caption?, align?}`,
   `code {language, code}`, `aside {variant, title?, content}`, `table {align, rows[{header, cells[{content}]}]}`,
   `details {summary, content}`, `html {html}` (raw passthrough, used twice), `break`.
+- List blocks may also carry `listContinuation` (more content of the previous item, also set on code/image
+  blocks inside an item, so render it inside that `<li>`), `checked` (task lists) and `listStart`.
+  An `image` may carry `link`.
 - Images keep their `/.gitbook/assets/…` URLs from `public/`; nothing is re-uploaded in v1.
 - Text is stored after SmartyPants, exactly as Astro rendered it (curly quotes, dashes, ellipses).
 

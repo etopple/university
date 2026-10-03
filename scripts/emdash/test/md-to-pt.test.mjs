@@ -107,3 +107,18 @@ test("real corpus: every page converts, no warnings, sidebar fully mapped, seed 
   assert.ok(a.seed.content.docs.length >= 118);
   for (const e of a.seed.content.docs) assert.ok(e.data.title, `${e.slug} has no title`);
 });
+
+test("content inside a list item stays in that item (code, continuation)", () => {
+  const { blocks } = md(["3. one", "   ```", "   x", "   ```", "   then more", "4. two", ""].join("\n"));
+  assert.deepEqual(blocks.map((b) => [b._type, b.listItem, b.level, !!b.listContinuation]), [
+    ["block", "number", 1, false], ["code", "number", 1, true], ["block", "number", 1, true], ["block", "number", 1, false],
+  ]);
+  assert.equal(blocks[0].listStart, 3);
+});
+
+test("task lists and linked images keep their state", () => {
+  const { blocks } = md("- [x] done\n- [ ] todo\n\n[![a](a.png)](https://x.com)\n");
+  assert.deepEqual(blocks.slice(0, 2).map((b) => b.checked), [true, false]);
+  assert.equal(blocks[2]._type, "image");
+  assert.equal(blocks[2].link, "https://x.com");
+});

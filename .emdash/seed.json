@@ -5857,7 +5857,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "bullet",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -5881,7 +5884,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "bullet",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -5905,7 +5911,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (14).png"
-              }
+              },
+              "listItem": "bullet",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -5929,7 +5938,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (18).png"
-              }
+              },
+              "listItem": "bullet",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -5953,7 +5965,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "bullet",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "image",
@@ -5961,7 +5976,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "bullet",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -5982,7 +6000,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/backups/server-previous-versions.md",
-          "migration_hash": "sha256:e7931c30b1d724f04708d89d2251a313"
+          "migration_hash": "sha256:2bff8958958de9114360eddc33afb6f9"
         }
       },
       {
@@ -6087,7 +6105,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (5) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -6125,7 +6146,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (1) (1) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -6179,7 +6203,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (2) (1) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -6233,12 +6260,15 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (3) (1) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             }
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/browser-help/extensions-in-microsoft-edge.md",
-          "migration_hash": "sha256:2a22a16a4a0d7aa32d7955c59ea491d1"
+          "migration_hash": "sha256:5f8744d175d6044b53152761e3bf9f48"
         }
       },
       {
@@ -7083,7 +7113,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (4) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -7107,7 +7140,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -7163,7 +7199,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (2) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -7234,7 +7273,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/browser-help/setting-up-microsoft-edge-sync.md",
-          "migration_hash": "sha256:1270dcf452336b5f3f3a2031946fba09"
+          "migration_hash": "sha256:e78785fc28a5194eac4c91132fd7abe4"
         }
       },
       {
@@ -7280,7 +7319,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (5) (1) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -7304,7 +7346,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -7328,7 +7373,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -7352,7 +7400,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -7376,7 +7427,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (4) (1) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -7392,12 +7446,13 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listContinuation": true
             }
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/change-the-default-application.md",
-          "migration_hash": "sha256:d02817db9827f355925eb9a6989292a0"
+          "migration_hash": "sha256:9717394521426cbbfe9ca79a87f25c72"
         }
       },
       {
@@ -7518,7 +7573,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (8).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -7542,7 +7600,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (6) (1) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -7566,7 +7627,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (21).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -7582,7 +7646,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -7606,7 +7671,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (13).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -7636,12 +7704,13 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listContinuation": true
             }
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/etop-tools/deployed-tools/autoelevate.md",
-          "migration_hash": "sha256:a2d4e90c9f1431b04acb2a3902585446"
+          "migration_hash": "sha256:1084959dceb384b3ca447ffffc2873df"
         }
       },
       {
@@ -8098,7 +8167,9 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "bullet",
+              "level": 2
             },
             {
               "_type": "block",
@@ -8122,7 +8193,9 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (12).png"
-              }
+              },
+              "listItem": "bullet",
+              "level": 2
             },
             {
               "_type": "block",
@@ -8148,7 +8221,9 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (19).png"
-              }
+              },
+              "listItem": "bullet",
+              "level": 2
             },
             {
               "_type": "block",
@@ -8231,7 +8306,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/etop-tools/deployed-tools/ublock-origin-ad-blocker.md",
-          "migration_hash": "sha256:05e7d864cf883cfd28947200ab5e84c4"
+          "migration_hash": "sha256:340455d8aa66619b93adc194b0633a57"
         }
       },
       {
@@ -8382,7 +8457,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (117).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -8398,7 +8476,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "image",
@@ -8406,7 +8485,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (118).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -8446,7 +8528,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (120).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -8470,7 +8555,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (121).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -8494,7 +8582,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (122).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -8518,7 +8609,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (123).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -8542,7 +8636,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (124).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -8566,7 +8663,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (131).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -8590,7 +8690,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (132).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -8614,7 +8717,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (133).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -8638,7 +8744,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (134).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -8662,7 +8771,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (135).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -8678,7 +8790,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -8702,7 +8815,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (125).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -8726,7 +8842,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (126).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -8750,7 +8869,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (127).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -8774,12 +8896,15 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (136).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             }
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/etop-tools/secure-remote-connection/cloudflare-ztna-info/cloudflare-zero-trust-for-ios.md",
-          "migration_hash": "sha256:f085d57a56233b554b7ba86f8694d08c"
+          "migration_hash": "sha256:b8521662fe5938951241c3a03c85b5cb"
         }
       },
       {
@@ -9352,7 +9477,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/Screenshot 2025-03-19 094913.png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -9390,7 +9518,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -9414,7 +9545,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (2).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -9438,7 +9572,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (3).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -9482,7 +9619,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (4).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -9506,7 +9646,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/Screenshot 2025-03-19 095351.png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -9530,7 +9673,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (5).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -9549,7 +9695,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/etop-tools/secure-remote-connection/screen-connect/reset-your-screenconnect-password.md",
-          "migration_hash": "sha256:5f55ff59e70d18150467aa7920a14345"
+          "migration_hash": "sha256:5ac9e4e6cccaeead5199aefe252acee3"
         }
       },
       {
@@ -9654,7 +9800,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (105).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -9692,7 +9841,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (103).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -9716,7 +9868,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (106).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -9732,7 +9887,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -9751,7 +9907,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/etop-tools/secure-remote-connection/screen-connect/screenconnect-on-macos.md",
-          "migration_hash": "sha256:f58e1f4ad114c822a1c8592c2a73c9af"
+          "migration_hash": "sha256:0a57939679418a56d8c0a0d47bbdf239"
         }
       },
       {
@@ -9798,7 +9954,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "image",
@@ -9806,7 +9965,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -9830,7 +9992,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -9874,7 +10039,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -9926,7 +10094,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (1) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -9942,7 +10113,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "image",
@@ -9950,7 +10122,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (2) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -9974,7 +10149,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (3) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -9990,7 +10168,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "image",
@@ -9998,7 +10177,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (4) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -10014,12 +10196,13 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listContinuation": true
             }
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/etop-tools/secure-remote-connection/sophos-connect-vpn.md",
-          "migration_hash": "sha256:ad2f9e04689544c15fe6dd3eafe20965"
+          "migration_hash": "sha256:f2901142a486c1a1b546b81c296a2ed9"
         }
       },
       {
@@ -10323,7 +10506,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (113).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -10339,7 +10525,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -10379,7 +10566,10 @@
               "alt": "A signature block with the default icons highlighted",
               "asset": {
                 "url": "/.gitbook/assets/image (114).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -10403,7 +10593,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (115).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -10430,7 +10623,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/exclaimer-cloud-synchronized-signatures/using-exclaimer.md",
-          "migration_hash": "sha256:0f003094856765c4517ba08991d86706"
+          "migration_hash": "sha256:8675b856e211a2127120fa81853a576b"
         }
       },
       {
@@ -17829,7 +18022,10 @@
             {
               "_type": "html",
               "_key": "k000k",
-              "html": "<div align=\"left\">"
+              "html": "<div align=\"left\">",
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "image",
@@ -17837,17 +18033,23 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (99).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "html",
               "_key": "k000m",
-              "html": "</div>"
+              "html": "</div>",
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             }
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/office-365-guides/microsoft-authenticator/verify-your-authentication-methods.md",
-          "migration_hash": "sha256:a5bc2ec0bb43e7ca00925b116d0e3e44"
+          "migration_hash": "sha256:ed31d5c16d267556202a6444d6a544d0"
         }
       },
       {
@@ -17940,7 +18142,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (138).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -17964,7 +18169,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (139).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -17988,7 +18196,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (140).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -18012,7 +18223,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (141).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -18068,7 +18282,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (142).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -18140,7 +18357,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/office-365-guides/microsoft-authenticator/yubikey-setup-for-microsoft-mfa.md",
-          "migration_hash": "sha256:a5ddf20ee625eddd4bc0b381a1781fd4"
+          "migration_hash": "sha256:c758b21f229d0642da3fd21a4458672b"
         }
       },
       {
@@ -18223,7 +18440,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (28).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -18289,7 +18509,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (29).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -18324,7 +18547,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/office-365-guides/microsoft-bookings/create-a-booking-page.md",
-          "migration_hash": "sha256:e964dbcc12fea4014a21615fa06cd7ed"
+          "migration_hash": "sha256:f337c1470300e276903fbfa81f74b1e6"
         }
       },
       {
@@ -19258,7 +19481,10 @@
             {
               "_type": "code",
               "_key": "k000x",
-              "code": "%appdata%\\Microsoft\\Teams"
+              "code": "%appdata%\\Microsoft\\Teams",
+              "listItem": "bullet",
+              "level": 2,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -20387,7 +20613,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/office-365-guides/microsoft-teams/teams-troubleshooting-sign-in-and-common-issues.md",
-          "migration_hash": "sha256:9f0e45d63f29e732d54540283c9d48b2"
+          "migration_hash": "sha256:182ab7ed921acd438284108c07d11093"
         }
       },
       {
@@ -20650,7 +20876,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "image",
@@ -20658,7 +20887,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "image",
@@ -20666,7 +20898,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (2) (1) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -20718,7 +20953,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (3) (1) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -20742,7 +20980,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (4) (1) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -20766,7 +21007,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (5) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -20838,7 +21082,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (50).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -20862,7 +21109,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (51).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "image",
@@ -20870,7 +21120,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (52).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -20902,7 +21155,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (53).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -20926,7 +21182,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (54).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -20950,7 +21209,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (55).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -20974,7 +21236,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (56).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -20998,7 +21263,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (57).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21022,7 +21290,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (58).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21046,7 +21317,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (59).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21070,7 +21344,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (60).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21094,7 +21371,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (61).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21118,7 +21398,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (62).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21142,7 +21425,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (63).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21166,7 +21452,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (64).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21190,7 +21479,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (65).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21214,7 +21506,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (66).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "image",
@@ -21222,7 +21517,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (67).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21246,7 +21544,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (68).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21270,7 +21571,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (69).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "image",
@@ -21278,7 +21582,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (70).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21302,7 +21609,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (71).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21318,7 +21628,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21337,7 +21648,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/office-365-guides/mobile-phone-setup/android-phone-setup.md",
-          "migration_hash": "sha256:d5f8b85a70bdb72cd98f0bd0e7078ed8"
+          "migration_hash": "sha256:c551cf337c481fea39028fdda012ed86"
         }
       },
       {
@@ -21427,7 +21738,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (72).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "image",
@@ -21435,7 +21749,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (73).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "image",
@@ -21443,7 +21760,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (74).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21511,7 +21831,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (75).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "image",
@@ -21519,7 +21842,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (76).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21543,7 +21869,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (77).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21567,7 +21896,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (78).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "image",
@@ -21575,7 +21907,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (79).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21599,7 +21934,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (80).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21623,7 +21961,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (81).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "image",
@@ -21631,7 +21972,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (82).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21655,7 +21999,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (83).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "image",
@@ -21663,7 +22010,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (84).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21687,7 +22037,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (85).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "image",
@@ -21695,7 +22048,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (86).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21719,7 +22075,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (87).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21743,7 +22102,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (88).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21767,7 +22129,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (89).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21791,7 +22156,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (90).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21815,7 +22183,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (91).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "image",
@@ -21823,7 +22194,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (92).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21863,7 +22237,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (93).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21887,7 +22264,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (94).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21911,7 +22291,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (95).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21935,7 +22318,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (96).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21959,7 +22345,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (97).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -21999,7 +22388,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (98).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -22115,7 +22507,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/office-365-guides/mobile-phone-setup/ios-phone-setup.md",
-          "migration_hash": "sha256:3ddfb050c33b22dee2c430bb9fad6a0d"
+          "migration_hash": "sha256:5626f5ff732f30700e443385f32f4362"
         }
       },
       {
@@ -22874,7 +23266,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (22).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -22898,7 +23293,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (23).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -22941,7 +23339,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/office-365-guides/outlook/accessing-another-mailbox.md",
-          "migration_hash": "sha256:1caac2cace9369e103793d14162def41"
+          "migration_hash": "sha256:8d6d161cddccb1b1e3819c24a4bb264f"
         }
       },
       {
@@ -23165,7 +23563,10 @@
               "alt": "View Tab Highlighted",
               "asset": {
                 "url": "https://university.etop.tech/assets/outlook-view-tab.png"
-              }
+              },
+              "listItem": "bullet",
+              "level": 2,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -23772,7 +24173,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/office-365-guides/outlook/how-to-sort-folders-in-the-new-outlook.md",
-          "migration_hash": "sha256:205ca5e938ce2196f633e8cd13815c55"
+          "migration_hash": "sha256:c60cd37873228813872315d4cfd0a766"
         }
       },
       {
@@ -25182,7 +25583,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -25238,7 +25642,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "bullet",
+              "level": 2,
+              "listContinuation": true
             },
             {
               "_type": "image",
@@ -25246,7 +25653,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "bullet",
+              "level": 2,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -25262,7 +25672,8 @@
                 }
               ],
               "listItem": "bullet",
-              "level": 2
+              "level": 2,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -25286,7 +25697,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/Image (1).jpg"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "image",
@@ -25294,7 +25708,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/Image (2).jpg"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -25310,7 +25727,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -25354,7 +25772,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/Image (3).jpg"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -25375,7 +25796,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/office-365-guides/outlook/outlook-mobile-setup/android-setup.md",
-          "migration_hash": "sha256:bd2647e33d253f3717209bac8334b0b7"
+          "migration_hash": "sha256:1a8b5bf0468adee4081a7c21de4f1c28"
         }
       },
       {
@@ -25610,7 +26031,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -25650,7 +26074,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "bullet",
+              "level": 2,
+              "listContinuation": true
             },
             {
               "_type": "image",
@@ -25658,7 +26085,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "bullet",
+              "level": 2,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -25674,7 +26104,8 @@
                 }
               ],
               "listItem": "bullet",
-              "level": 2
+              "level": 2,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -25698,7 +26129,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/Image (1).jpg"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "image",
@@ -25706,7 +26140,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/Image (2).jpg"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -25722,7 +26159,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -25766,12 +26204,15 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/Image (3).jpg"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             }
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/office-365-guides/outlook/outlook-mobile-setup/ios-setup.md",
-          "migration_hash": "sha256:62211a28446a0d7de7b40763114ed2ce"
+          "migration_hash": "sha256:ac0cab87f66855cb3a279eeb23dc2f9f"
         }
       },
       {
@@ -27469,7 +27910,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (1) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -27525,12 +27969,15 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (2) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             }
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/office-365-guides/outlook/report-messages-to-microsoft.md",
-          "migration_hash": "sha256:b47ff7cfec6f6c35770bd493d6a003a6"
+          "migration_hash": "sha256:a85c2d1d2dd0cf445ba54162bf31ab90"
         }
       },
       {
@@ -27637,13 +28084,17 @@
                   "_key": "k000c",
                   "text": "In the Manage Calendars group, click Add Calendar, and then click Open Shared Calendar.",
                   "marks": []
-                },
-                {
-                  "_type": "span",
-                  "_key": "k000g",
-                  "text": "\n\n",
-                  "marks": []
-                },
+                }
+              ],
+              "listItem": "number",
+              "level": 3
+            },
+            {
+              "_type": "block",
+              "_key": "k000f",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
                 {
                   "_type": "span",
                   "_key": "k000e",
@@ -27652,54 +28103,19 @@
                 }
               ],
               "listItem": "number",
-              "level": 3
+              "level": 3,
+              "listContinuation": true
             },
             {
               "_type": "block",
-              "_key": "k000i",
+              "_key": "k000h",
               "style": "normal",
               "markDefs": [],
               "children": [
                 {
                   "_type": "span",
-                  "_key": "k000h",
+                  "_key": "k000g",
                   "text": "Type a name in the Name box, or click Name to select a name from the address book.",
-                  "marks": []
-                },
-                {
-                  "_type": "span",
-                  "_key": "k000l",
-                  "text": "\n\n",
-                  "marks": []
-                },
-                {
-                  "_type": "span",
-                  "_key": "k000j",
-                  "text": "The shared calendar appears next to any calendar that is already in the view.",
-                  "marks": []
-                },
-                {
-                  "_type": "span",
-                  "_key": "k000o",
-                  "text": "\n\n",
-                  "marks": []
-                },
-                {
-                  "_type": "span",
-                  "_key": "k000m",
-                  "text": "After you access a shared Calendar for the first time, the Calendar is added to the folder pane. The next time that you want to view the shared Calendar, you can click it in the Folder Pane.",
-                  "marks": []
-                },
-                {
-                  "_type": "span",
-                  "_key": "k000r",
-                  "text": "\n\n",
-                  "marks": []
-                },
-                {
-                  "_type": "span",
-                  "_key": "k000p",
-                  "text": "If the other person whose Calendar you want to open hasn’t granted you permission to view it, Outlook prompts you to ask the person for permission. If you click Yes, a sharing request email message opens automatically. The message requests the person to share his or her Calendar with you and also provides the option to share your default Calendar with him or her.",
                   "marks": []
                 }
               ],
@@ -27708,13 +28124,64 @@
             },
             {
               "_type": "block",
-              "_key": "k000u",
+              "_key": "k000j",
               "style": "normal",
               "markDefs": [],
               "children": [
                 {
                   "_type": "span",
-                  "_key": "k000s",
+                  "_key": "k000i",
+                  "text": "The shared calendar appears next to any calendar that is already in the view.",
+                  "marks": []
+                }
+              ],
+              "listItem": "number",
+              "level": 3,
+              "listContinuation": true
+            },
+            {
+              "_type": "block",
+              "_key": "k000l",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k000k",
+                  "text": "After you access a shared Calendar for the first time, the Calendar is added to the folder pane. The next time that you want to view the shared Calendar, you can click it in the Folder Pane.",
+                  "marks": []
+                }
+              ],
+              "listItem": "number",
+              "level": 3,
+              "listContinuation": true
+            },
+            {
+              "_type": "block",
+              "_key": "k000n",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k000m",
+                  "text": "If the other person whose Calendar you want to open hasn’t granted you permission to view it, Outlook prompts you to ask the person for permission. If you click Yes, a sharing request email message opens automatically. The message requests the person to share his or her Calendar with you and also provides the option to share your default Calendar with him or her.",
+                  "marks": []
+                }
+              ],
+              "listItem": "number",
+              "level": 3,
+              "listContinuation": true
+            },
+            {
+              "_type": "block",
+              "_key": "k000q",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k000o",
                   "text": "Outlook on the Web",
                   "marks": [
                     "strong"
@@ -27722,7 +28189,7 @@
                 },
                 {
                   "_type": "span",
-                  "_key": "k000t",
+                  "_key": "k000p",
                   "text": ": \\",
                   "marks": []
                 }
@@ -27732,19 +28199,19 @@
             },
             {
               "_type": "block",
-              "_key": "k000z",
+              "_key": "k000v",
               "style": "normal",
               "markDefs": [
                 {
                   "_type": "link",
-                  "_key": "k000x",
+                  "_key": "k000t",
                   "href": "https://support.microsoft.com/office/open-a-shared-exchange-calendar-in-outlook-for-mac-060b7bd5-de72-421c-be53-e80266468bd2"
                 }
               ],
               "children": [
                 {
                   "_type": "span",
-                  "_key": "k000v",
+                  "_key": "k000r",
                   "text": "Outlook for Mac",
                   "marks": [
                     "strong"
@@ -27752,16 +28219,16 @@
                 },
                 {
                   "_type": "span",
-                  "_key": "k000w",
+                  "_key": "k000s",
                   "text": ": ",
                   "marks": []
                 },
                 {
                   "_type": "span",
-                  "_key": "k000y",
+                  "_key": "k000u",
                   "text": "Open a shared Exchange calendar in Outlook for Mac",
                   "marks": [
-                    "k000x"
+                    "k000t"
                   ]
                 }
               ],
@@ -27770,19 +28237,19 @@
             },
             {
               "_type": "block",
-              "_key": "k0014",
+              "_key": "k0010",
               "style": "normal",
               "markDefs": [
                 {
                   "_type": "link",
-                  "_key": "k0012",
+                  "_key": "k000y",
                   "href": "https://support.microsoft.com/office/how-do-i-open-a-shared-calendar-d8011619-eaa1-4459-8417-223bfc5ca0c2"
                 }
               ],
               "children": [
                 {
                   "_type": "span",
-                  "_key": "k0010",
+                  "_key": "k000w",
                   "text": "Outlook for Mobile",
                   "marks": [
                     "strong"
@@ -27790,16 +28257,16 @@
                 },
                 {
                   "_type": "span",
-                  "_key": "k0011",
+                  "_key": "k000x",
                   "text": ": ",
                   "marks": []
                 },
                 {
                   "_type": "span",
-                  "_key": "k0013",
+                  "_key": "k000z",
                   "text": "How do I open a shared calendar?",
                   "marks": [
-                    "k0012"
+                    "k000y"
                   ]
                 }
               ],
@@ -27809,7 +28276,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/office-365-guides/outlook/shared-calendars.md",
-          "migration_hash": "sha256:0e7f7f796816739b9ab99519301f3904"
+          "migration_hash": "sha256:55f2f5f57e2d6061b553a47d5b81de07"
         }
       },
       {
@@ -28866,7 +29333,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/remoteApp.png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -28890,7 +29360,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/view details.png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -28914,7 +29387,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (6) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -28938,7 +29414,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -28962,7 +29441,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "image",
@@ -28970,7 +29452,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/application.png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -29008,7 +29493,10 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (112).png"
-              }
+              },
+              "listItem": "number",
+              "level": 1,
+              "listContinuation": true
             },
             {
               "_type": "block",
@@ -29029,7 +29517,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/remote-applications.md",
-          "migration_hash": "sha256:30089bfa99939a35c9c46a0d6071bd63"
+          "migration_hash": "sha256:64011cb647fbc258084b8c103f7cdcd3"
         }
       },
       {
@@ -37801,7 +38289,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 2
             },
             {
               "_type": "image",
@@ -37825,7 +38314,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 3
             },
             {
               "_type": "image",
@@ -37838,7 +38328,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/policies/policies/patching/immybot-maintenance-emails.md",
-          "migration_hash": "sha256:cbe39244318997895322ba0eb860d3b0"
+          "migration_hash": "sha256:cf17b02d2184d1b7f58bf29c1341fa8b"
         }
       },
       {

@@ -28,6 +28,16 @@ export const COLLECTION = "docs";
 export const MENU = "docs-sidebar";
 const KNOWN_FM = new Set(["title", "description", "template", "sidebar"]);
 
+// Fingerprint over the migration-managed fields in a fixed order, skipping
+// empty ones. apply.mjs recomputes it from the live entry: if the result no
+// longer matches the stored migration_hash, someone edited the page in the CMS.
+export const MANAGED_FIELDS = ["title", "description", "body", "sidebar_label", "template", "frontmatter_extra", "legacy_source"];
+export function fingerprint(data) {
+  const canon = {};
+  for (const k of MANAGED_FIELDS) if (data[k] != null && data[k] !== "") canon[k] = data[k];
+  return "sha256:" + createHash("sha256").update(JSON.stringify(canon)).digest("hex").slice(0, 32);
+}
+
 function walk(dir) {
   return readdirSync(dir)
     .sort()
@@ -96,7 +106,7 @@ export function buildSeed() {
     // Fingerprint of what the migration wrote. apply.mjs compares it with the
     // live entry so a re-run skips untouched pages and never silently overwrites
     // an editor's change.
-    data.migration_hash = "sha256:" + createHash("sha256").update(JSON.stringify(data)).digest("hex").slice(0, 32);
+    data.migration_hash = fingerprint(data);
     entries.push({ id: `docs:${slug}`, slug, status: "published", data });
 
     for (const [t, c] of Object.entries(stats)) report.totals[t] = (report.totals[t] || 0) + c;

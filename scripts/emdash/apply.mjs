@@ -3,15 +3,17 @@
 //
 // Local SQLite (dev):
 //   node apply.mjs --local [--database ./data.db]
-//     -> runs `npx emdash seed .emdash/seed.json --on-conflict update` from the repo root
+//     -> runs `npx emdash seed .emdash/seed.json --on-conflict update` from the repo root.
+//        DEV ONLY: --on-conflict update overwrites any edits made in that database.
 //        (needs the `emdash` package installed at the root by the integration lane).
 //
 // Remote instance (preview / D1), over the REST API:
 //   EMDASH_TOKEN=... node apply.mjs --url https://<preview> [--dry-run] [--overwrite] [--header "K: V"]
 //     - creates any page that is missing (matched by slug) and publishes it;
-//     - skips a page whose migration_hash matches (nothing changed);
-//     - a page that exists with a different hash was changed in the CMS or in the
-//       markdown: it is REPORTED, and only rewritten with --overwrite (pre-cutover only);
+//     - skips a page that is untouched and already current (republishing it if an earlier run left it a draft);
+//     - updates a page the CMS never touched when the markdown changed (live content still hashes to its stored migration_hash);
+//     - a page whose live content no longer matches its stored fingerprint was edited in the CMS:
+//       it is REPORTED and left alone; only --overwrite rewrites it (pre-cutover only);
 //     - the docs-sidebar menu is rebuilt when it is empty, or when it differs and --overwrite is set.
 //   The docs collection must already exist: EmDash creates it from .emdash/seed.json on first boot.
 //
@@ -21,6 +23,7 @@ import { readFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { fingerprint } from "./build-seed.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(HERE, "..", "..");
@@ -177,11 +180,18 @@ async function applyRemote(a) {
         continue;
       }
       const full = await api("GET", `/content/${coll}/${cur.id}`);
-      if (full.item?.data?.migration_hash === e.data.migration_hash) {
+      const liveData = full.item?.data || {};
+      // Untouched in the CMS = its content still hashes to the fingerprint the
+      // migration stored. (If EmDash normalises the stored PT, this reads as
+      // "edited", which errs on the side of leaving the page alone.)
+      const untouched = liveData.migration_hash && fingerprint(liveData) === liveData.migration_hash;
+      const draftOnly = full.item?.status === "draft";
+      if (untouched && liveData.migration_hash === e.data.migration_hash) {
+        if (draftOnly && !a.dryRun) await api("POST", `/content/${coll}/${cur.id}/publish`, {}); // finish an interrupted create
         tally.unchanged++;
         continue;
       }
-      if (!a.overwrite) {
+      if (!untouched && !a.overwrite) {
         tally.drifted++;
         drift.push(e.slug);
         continue;
@@ -194,6 +204,12 @@ async function applyRemote(a) {
       tally.failed++;
       console.error(`  ${e.slug}: ${err.message}`);
     }
+  }
+
+  if (tally.failed) {
+    // Menu items for a page that failed would point at nothing: fix the pages first.
+    console.log(`pages: ${JSON.stringify(tally)}; menu NOT touched because ${tally.failed} page(s) failed`);
+    return 1;
   }
 
   // Sidebar menu.
