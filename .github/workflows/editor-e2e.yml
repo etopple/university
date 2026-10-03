@@ -48,8 +48,9 @@ jobs:
           E2E_CF_ACCESS_CLIENT_SECRET: ${{ secrets.UNIVERSITY_E2E_ACCESS_CLIENT_SECRET }}
       - name: Visual diff (live vs candidate)
         if: ${{ always() && inputs.visual }}
-        run: node visual-diff.mjs --candidate "${{ inputs.base_url }}"
+        run: node visual-diff.mjs --candidate "$CANDIDATE"
         env:
+          CANDIDATE: ${{ inputs.base_url }}
           E2E_CF_ACCESS_CLIENT_ID: ${{ secrets.UNIVERSITY_E2E_ACCESS_CLIENT_ID }}
           E2E_CF_ACCESS_CLIENT_SECRET: ${{ secrets.UNIVERSITY_E2E_ACCESS_CLIENT_SECRET }}
       - uses: actions/upload-artifact@v4

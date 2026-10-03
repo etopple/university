@@ -11,16 +11,16 @@ You can't break the live site by saving. Visitors only see your change after you
 ## Before you start
 
 - You need your eTop Microsoft account, the same one you use for Outlook and Teams.
-- The first time you sign in, the editor creates your account. If it says you don't have permission to do something, ask BJ.
+- The first time you sign in, the editor creates your account. If it says you don't have permission to do something, ask BJ (William Pote).
 
 ## 1. Open the editor
 
-Go to **university.etop.tech/_emdash/admin** and sign in with your eTop email address. If your phone asks you to approve the sign-in, approve it.
+Go to **https://university.etop.tech/_emdash/admin** and sign in with your eTop email address. If your phone asks you to approve the sign-in, approve it.
 
 ![The Microsoft sign-in screen you see when you open the editor](/images/editing-university/01-sign-in.png)
 
 :::tip
-Already looking at the page you want to change? Scroll to the bottom of it and click **Edit page**. That takes you straight to step 3.
+Already looking at the page you want to change? Scroll to the bottom of it and click **Edit page**. You'll sign in first (step 1), then land straight on step 3.
 :::
 
 ## 2. Find the page
