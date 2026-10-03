@@ -29,3 +29,11 @@ Thumbs.db
 .emdash/migrations.json
 .wrangler/
 .dev.vars*
+# EmDash local state
+data.db
+data.db-*
+uploads/
+.dev.vars
+emdash-env.d.ts
+.wrangler-seed.sql
+.wrangler-fts.sql

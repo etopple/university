@@ -1,0 +1,114 @@
+---
+// Renders the node tree from src/lib/pt.ts with Starlight's markup.
+import { PortableText } from "emdash/ui";
+import Aside from "./Aside.astro";
+import type { Node } from "../../lib/pt";
+
+interface Props {
+  nodes: Node[];
+}
+const { nodes } = Astro.props;
+const H = ["h1", "h2", "h3", "h4", "h5", "h6"] as const;
+---
+
+{
+  nodes.map((n) => {
+    switch (n.kind) {
+      case "html":
+        return <Fragment set:html={n.html} />;
+      case "heading": {
+        const Tag = H[n.depth - 1];
+        return <Tag id={n.id} set:html={n.html} />;
+      }
+      case "quote":
+        return (
+          <blockquote>
+            <Astro.self nodes={n.children} />
+          </blockquote>
+        );
+      case "list": {
+        const items = n.items.map((it) => (
+          <li class={typeof it.checked === "boolean" ? "task-list-item" : undefined}>
+            {typeof it.checked === "boolean" && <input type="checkbox" checked={it.checked} disabled />}
+            <Astro.self nodes={it.children} />
+          </li>
+        ));
+        return n.ordered ? <ol start={n.start}>{items}</ol> : <ul>{items}</ul>;
+      }
+      case "image": {
+        const img = <img src={n.src} alt={n.alt} title={n.title} width={n.width} height={n.height} />;
+        const linked = n.link ? (
+          <a href={n.link} target={n.linkBlank ? "_blank" : undefined} rel={n.linkBlank ? "noopener noreferrer" : undefined}>
+            {img}
+          </a>
+        ) : (
+          img
+        );
+        if (n.caption)
+          return (
+            <figure align={n.align}>
+              {linked}
+              <figcaption>{n.caption}</figcaption>
+            </figure>
+          );
+        return n.align ? <div align={n.align}>{linked}</div> : <p>{linked}</p>;
+      }
+      case "code":
+        // Expressive Code's highlighter needs WebAssembly compilation, which
+        // Workers do not allow at request time. Plain markup, same text.
+        return (
+          <pre data-language={n.lang}>
+            <code>{n.code}</code>
+          </pre>
+        );
+      case "aside":
+        return (
+          <Aside type={n.variant as "note" | "tip" | "caution" | "danger"} title={n.title}>
+            <Astro.self nodes={n.children} />
+          </Aside>
+        );
+      case "table": {
+        const head = n.rows.filter((r) => r.header);
+        const body = n.rows.filter((r) => !r.header);
+        const style = (i: number) => (n.align[i] ? `text-align: ${n.align[i]}` : undefined);
+        return (
+          <table>
+            {head.length > 0 && (
+              <thead>
+                {head.map((r) => (
+                  <tr>
+                    {r.cells.map((c, i) => (
+                      <th style={style(i)}>
+                        <Astro.self nodes={c} />
+                      </th>
+                    ))}
+                  </tr>
+                ))}
+              </thead>
+            )}
+            <tbody>
+              {body.map((r) => (
+                <tr>
+                  {r.cells.map((c, i) => (
+                    <td style={style(i)}>
+                      <Astro.self nodes={c} />
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        );
+      }
+      case "native":
+        return <PortableText value={[n.block]} />;
+      case "details":
+        return (
+          <details>
+            <summary>{n.summary}</summary>
+            <Astro.self nodes={n.children} />
+          </details>
+        );
+    }
+  })
+}

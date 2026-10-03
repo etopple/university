@@ -1,0 +1,19 @@
+---
+// Starlight's <Aside> markup. Importing it from "@astrojs/starlight/components"
+// pulls Starlight's markdown processor (a native module) into the Worker bundle.
+import { ASIDE_ICONS } from "../icons";
+
+interface Props {
+  type: "note" | "tip" | "caution" | "danger";
+  title?: string;
+}
+const { type, title: given } = Astro.props;
+const title = given || Astro.locals.t(`aside.${type}`);
+---
+
+<aside aria-label={title} class={`starlight-aside starlight-aside--${type}`}>
+  <p class="starlight-aside__title" aria-hidden="true">
+    <svg aria-hidden="true" class="starlight-aside__icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" set:html={ASIDE_ICONS[type]} />{title}
+  </p>
+  <div class="starlight-aside__content"><slot /></div>
+</aside>

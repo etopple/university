@@ -1,0 +1,22 @@
+{
+  "name": "university-emdash-migration",
+  "private": true,
+  "type": "module",
+  "description": "Idempotent Starlight markdown -> EmDash migration + URL parity test for eTop University",
+  "scripts": {
+    "build-seed": "node build-seed.mjs",
+    "check-seed": "node build-seed.mjs --check",
+    "apply:local": "node apply.mjs --local",
+    "parity": "node parity.mjs",
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "node-html-parser": "^6.1.13",
+    "remark-directive": "^3.0.0",
+    "remark-gfm": "^4.0.0",
+    "remark-parse": "^11.0.0",
+    "remark-smartypants": "^3.0.3",
+    "unified": "^11.0.5",
+    "yaml": "^2.6.1"
+  }
+}
