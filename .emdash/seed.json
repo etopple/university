@@ -40878,7 +40878,8 @@
               "asset": {
                 "url": "https://i.imgur.com/Szr4umQ.jpg"
               },
-              "caption": "William Pote - So hear me out I have an idea -"
+              "caption": "William Pote - So hear me out I have an idea -",
+              "width": "375"
             },
             {
               "_type": "block",
@@ -41098,7 +41099,8 @@
               "asset": {
                 "url": "/.gitbook/assets/MicrosoftTeams-image (11) (1).png"
               },
-              "caption": "Brandon Martinez - No Process No Automation"
+              "caption": "Brandon Martinez - No Process No Automation",
+              "width": "375"
             },
             {
               "_type": "block",
@@ -41247,7 +41249,8 @@
               "asset": {
                 "url": "/.gitbook/assets/Nisa Hunt Photography - Greg Print-51.jpg"
               },
-              "caption": "Jamie Myers - Documentation Rockstar - Great Engineer as well!"
+              "caption": "Jamie Myers - Documentation Rockstar - Great Engineer as well!",
+              "width": "375"
             },
             {
               "_type": "block",
@@ -41308,7 +41311,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/team/meet-the-team.md",
-          "migration_hash": "sha256:ef19d78aad5a159036b2276266341d12"
+          "migration_hash": "sha256:04601178fe55e570332ebf2b49b873e8"
         }
       }
     ]
