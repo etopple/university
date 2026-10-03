@@ -14,7 +14,8 @@
 #   --load-content         Builds the content lane's d1-load.sql (full migrated schema + migration records +
 #                          every seed page, idempotent) and runs it with `wrangler d1 execute`. Overwrites seed
 #                          pages: an EMPTY database only (preview before cutover, production once at cutover).
-#                          Never touches users or API tokens.
+#                          Never touches users or API tokens. On production it refuses once the docs
+#                          table exists (FORCE_RELOAD=1 overrides, to rebuild from zero only).
 # Every deploy is tagged with the EmDash version (--message "emdash=<version> ..."); --code-only reads it back.
 #
 # The env is chosen at BUILD time (CLOUDFLARE_ENV): @astrojs/cloudflare writes a flattened
@@ -84,6 +85,15 @@ case "$MODE" in
       *)        echo "REFUSED: build has EmDash $EMDASH_VERSION, deployed is $deployed_ver -> use --migrate" >&2; exit 1 ;;
     esac ;;
   --load-content)
+    if [[ "$ENV" == production ]]; then
+      # After cutover, editors own the content: a reload would overwrite their edits.
+      # Refuse while the prod database already holds pages (set FORCE_RELOAD=1 only to rebuild from zero).
+      pages=$(npx wrangler d1 execute DB "${CFG[@]}" --remote --json --command "SELECT count(*) AS n FROM sqlite_master WHERE name = 'ec_docs'" 2>/dev/null | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{process.stdout.write(String(JSON.parse(s)[0].results[0].n))}catch{process.stdout.write('?')}})")
+      if [[ "$pages" != "0" && "${FORCE_RELOAD:-}" != "1" ]]; then
+        echo "production D1 already has content (or could not be checked: '$pages'); refusing --load-content. FORCE_RELOAD=1 overrides." >&2
+        exit 1
+      fi
+    fi
     echo "== load schema + content into D1 ($ENV)"
     rm -f data.db data.db-shm data.db-wal   # seed mints fresh IDs; start clean so the menu re-points by slug
     npx emdash seed --on-conflict update
