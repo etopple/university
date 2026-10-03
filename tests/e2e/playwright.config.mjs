@@ -10,7 +10,9 @@ export default defineConfig({
   outputDir: "out/results",
   use: {
     ...devices["Desktop Chrome"],
-    trace: "retain-on-failure",
+    // Traces record request headers (the Bearer token). Never keep them in CI,
+    // where out/ is uploaded as an artifact.
+    trace: process.env.CI ? "off" : "retain-on-failure",
     screenshot: "only-on-failure",
   },
 });

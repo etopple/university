@@ -62,8 +62,8 @@ page path (`education/self-help-guides/backups`; home is `index`), so every URL 
 | `CF_ACCESS_AUDIENCE` | Worker secret, prod and preview (different values) | AUD tag of that env's Access app |
 | `EMDASH_ENCRYPTION_KEY` | Worker secret, prod and preview | `npx emdash secrets generate`. Only protects plugin settings of type secret, and v1 has none. Once a plugin stores one, keep a recovery copy outside Cloudflare. |
 | `CLOUDFLARE_API_TOKEN` | operator shell or CI only | Scoped: D1 Edit + Workers Scripts Edit on the eTop account |
-| `EMDASH_TOKEN` | E2E and `apply.mjs` runner only | Admin-scope EmDash API token, created in the preview admin. Store it in Hudu or as a GitHub secret. |
-| `E2E_CF_ACCESS_CLIENT_ID` / `E2E_CF_ACCESS_CLIENT_SECRET` | E2E runner only | Access service token `university-e2e`, allowed on the **preview** app only **(pending)** |
+| `UNIVERSITY_E2E_EMDASH_TOKEN` | GitHub Actions secret (etopple/university) | Admin-scope EmDash API token, created in the preview admin. Reaches the test as `EMDASH_TOKEN`. **(pending: needs the preview deployed)** |
+| `UNIVERSITY_E2E_ACCESS_CLIENT_ID` / `UNIVERSITY_E2E_ACCESS_CLIENT_SECRET` | GitHub Actions secrets (etopple/university) | Access service token `university-e2e` (`b07a8b64-e2dc-4665-99e0-40b13f61d48e`), preview app only, expires 2027-10-03. Reaches the test as `E2E_CF_ACCESS_CLIENT_ID/SECRET`. |
 
 ## Deploy
 
@@ -92,9 +92,11 @@ env at build time with `CLOUDFLARE_ENV=preview` and drop `--env` at deploy. Any 
 5. Preview only, before cutover, all from `tests/e2e/` and `scripts/emdash/`:
    - `node parity.mjs --candidate <preview>`: every URL, title and main text matches the live site.
    - `npm run visual -- --candidate <preview>`: home plus 5 docs, light and dark, within 0.5% of the live pixels.
-   - `npm run test:editor` with `E2E_BASE_URL=<preview>`: edit, publish and render work end to end.
+   - GitHub Actions **editor-e2e** (manual, `gh workflow run editor-e2e -R etopple/university`): edit, publish and render work end to end, then the visual diff. The secrets exist only in GitHub, so this is where it runs.
 
 ## Rebuild from zero
+
+Node 22.22.2+ or 24.15+ (EmDash 1.1 requirement).
 
 ```bash
 export CLOUDFLARE_ACCOUNT_ID=44c7bfb7295ae9cd6050e09af901a4de
@@ -136,9 +138,9 @@ export is open (see Known traps).
   - Each app lists both `/_emdash` and `/_emdash/*`. Covering only `/_emdash/admin` breaks the API.
   - Created 2026-10-02 (BJ approved). Checked live: `/_emdash`, `/_emdash/admin` and `/_emdash/api/...` all 302 to Access, and `/` stays 200.
   - Each app's AUD tag goes into that env's `CF_ACCESS_AUDIENCE` Worker secret. Read it from the app in Zero Trust.
-- **Automation** (E2E, `apply.mjs`): Access service token `university-e2e` under a *Service Auth* policy on the
-  **preview app only**, plus an admin-scope EmDash API token. EmDash checks the `Authorization: Bearer` header
-  before Access, in every mode. **(pending)**
+- **Automation** (E2E, `apply.mjs`): Access service token `university-e2e` under the policy "E2E service token (preview only)"
+  (Service Auth) on the **preview app only**, created 2026-10-02, expires 2027-10-03. Plus an admin-scope EmDash API token.
+  EmDash checks the `Authorization: Bearer` header before Access, in every mode. The API token is **(pending)** until the preview is deployed.
 - **Cloudflare account**: eTop Technology account admins (BJ). Grant through Cloudflare *Manage Account > Members*.
 - **GitHub** `etopple/university`: default branch `starlight`. EmDash work merges into `emdash/integration`.
   Production cutover belongs to the lead and needs a Change issue.

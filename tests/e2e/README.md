@@ -23,6 +23,11 @@ What it does:
 | `E2E_CF_ACCESS_CLIENT_ID`, `E2E_CF_ACCESS_CLIENT_SECRET` | preview | Access service token `university-e2e` (preview app, Service Auth policy) |
 | `E2E_TEST_SLUG` | optional | default `e2e-test-page` |
 
+**On the preview, run it from GitHub Actions**: `gh workflow run editor-e2e -R etopple/university` (manual only).
+The credentials exist only as GitHub secrets: `UNIVERSITY_E2E_ACCESS_CLIENT_ID/SECRET` (Access service token
+`university-e2e`) and `UNIVERSITY_E2E_EMDASH_TOKEN`. The workflow maps them onto the variables above. Traces are off in CI
+because they record request headers.
+
 ```bash
 # Local: `npx astro dev` at the repo root first (dev-bypass exists only in dev)
 E2E_BASE_URL=http://localhost:4321 npm run test:editor
