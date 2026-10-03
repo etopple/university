@@ -1,0 +1,16 @@
+{
+  "name": "university-e2e",
+  "private": true,
+  "type": "module",
+  "description": "Editor E2E and live-vs-preview visual diff for eTop University (EmDash)",
+  "scripts": {
+    "test": "playwright test",
+    "test:editor": "playwright test editor.spec.mjs",
+    "visual": "node visual-diff.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "pixelmatch": "^7.1.0",
+    "pngjs": "^7.0.0"
+  }
+}
