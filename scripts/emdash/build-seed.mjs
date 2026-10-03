@@ -181,9 +181,8 @@ if (isMain) {
   const { seed, report } = buildSeed();
   const json = JSON.stringify(seed, null, 2) + "\n";
   if (process.argv.includes("--check")) {
-    const cur = existsSync(SEED_OUT) ? readFileSync(SEED_OUT, "utf8").replace(/
-/g, "
-") : ""; // tolerate autocrlf checkouts
+    // Tolerate autocrlf checkouts on Windows.
+    const cur = existsSync(SEED_OUT) ? readFileSync(SEED_OUT, "utf8").replace(/\r\n/g, "\n") : "";
     if (cur !== json) {
       console.error("STALE: .emdash/seed.json does not match src/content/docs. Run: node scripts/emdash/build-seed.mjs");
       process.exit(1);
