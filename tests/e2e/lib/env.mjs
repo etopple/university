@@ -49,6 +49,7 @@ export function api(request) {
       method,
       headers: { "content-type": "application/json", "x-emdash-request": "1", ...editorHeaders() },
       data: body === undefined ? undefined : JSON.stringify(body),
+      maxRedirects: 0, // never carry credentials through a redirect
     });
     const text = await res.text();
     let json;
@@ -80,4 +81,29 @@ export async function findBySlug(call, collection, slug) {
     } while (cursor);
   }
   return null;
+}
+
+// A browser context that attaches `headers` only to requests for `origin`.
+// Same-origin requests are fetched with redirects disabled and handed back to
+// the browser, so a redirect to another origin (e.g. Access bouncing to its
+// login page) is followed by the browser as a fresh request, which this route
+// sees again and sends WITHOUT credentials. Playwright's own redirect handling
+// would otherwise carry the added headers along.
+export async function newContextWithHeaders(browser, origin, headers, options = {}) {
+  const ctx = await browser.newContext(options);
+  const own = new URL(origin).origin;
+  if (Object.keys(headers).length) {
+    await ctx.route("**/*", async (route) => {
+      const req = route.request();
+      if (new URL(req.url()).origin !== own) return route.continue();
+      try {
+        const response = await route.fetch({ headers: { ...req.headers(), ...headers }, maxRedirects: 0 });
+        return route.fulfill({ response });
+      } catch (err) {
+        if (/Target page, context or browser has been closed/.test(String(err))) return;
+        return route.abort("failed");
+      }
+    });
+  }
+  return ctx;
 }

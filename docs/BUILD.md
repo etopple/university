@@ -1,5 +1,6 @@
 # eTop University (EmDash) - build guide
-Last verified: 2026-10-02 by Claude (emdash-qa-docs lane), pre-cutover     Change history: https://github.com/eTop-Technology/etop-changes/issues?q=label%3Atool%3Auniversity
+Last verified: 2026-10-02 by Claude (emdash-qa-docs lane), pre-cutover  
+Change history: https://github.com/eTop-Technology/etop-changes/issues?q=label%3Atool%3Auniversity
 
 > **Status: pre-cutover.** `university.etop.tech` is still served by the old static Pages project
 > `etop-university` (Starlight built from markdown). Everything below describes the EmDash build on the

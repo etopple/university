@@ -50,6 +50,8 @@ MSYS_NO_PATHCONV=1 node visual-diff.mjs --candidate https://<preview> [--base ht
 - Each page runs in light and dark, full-page at 1280 wide, with "Last updated" hidden.
 - Output: `out/visual/report.md` plus base, candidate and diff PNGs. Exit 1 if any page is over the threshold or does not return 200.
 - `MSYS_NO_PATHCONV=1` only matters in Git Bash, which otherwise rewrites `/` into a Windows path.
+- Pass rules: HTTP 200 on both sides; at most 0.5% of all pixels differ (`--threshold`); at most 2% differ in any 200px band (`--band`), so a tall page cannot hide a broken block; heights within 8px. Pages are captured in 8000px tiles (one shot of a very tall page can come back blank past ~16k px). A stalled image fails its row after 30s.
+- Credentials go only to the site under test, and never through a redirect: a cross-origin redirect is followed without them (checked with two mock servers).
 - Self-checks run 2026-10-02:
   - live vs live: 12/12 at 0.00%.
-  - live home vs live team page (negative control): FAIL, 12.7% light and 66.3% dark.
+  - live home vs live team page (negative control): FAIL, 12.7% light and 66.3% dark (worst band 32% and 99.6%).

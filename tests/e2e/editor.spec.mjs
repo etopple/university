@@ -4,40 +4,28 @@
 // Setup and env vars: tests/e2e/README.md.
 
 import { test, expect } from "@playwright/test";
-import { AUTH, BASE_URL, COLLECTION, TEST_SLUG, accessHeaders, api, editorHeaders, findBySlug, requireConfig } from "./lib/env.mjs";
+import { AUTH, BASE_URL, COLLECTION, TEST_SLUG, accessHeaders, api, editorHeaders, findBySlug, newContextWithHeaders, requireConfig } from "./lib/env.mjs";
 
 const PUBLISH_API = /\/_emdash\/api\/content\/docs\/[^/]+\/publish$/;
 
 test.beforeAll(() => requireConfig());
 
-// Attach credentials only to requests for the site under test, never to a
-// third-party origin the page happens to load (fonts, analytics, CDNs).
-async function newContextWithHeaders(browser, headers) {
-  const ctx = await browser.newContext({ baseURL: BASE_URL });
-  const origin = new URL(BASE_URL).origin;
-  await ctx.route("**/*", (route) => {
-    const req = route.request();
-    if (new URL(req.url()).origin !== origin) return route.continue();
-    return route.continue({ headers: { ...req.headers(), ...headers } });
-  });
-  return ctx;
-}
-
 test("editor: edit the test page, publish, and the change is live", async ({ browser }) => {
   // ---- 1. Sign in ---------------------------------------------------------
-  const editor = await newContextWithHeaders(browser, editorHeaders());
+  const editor = await newContextWithHeaders(browser, BASE_URL, editorHeaders(), { baseURL: BASE_URL });
   const page = await editor.newPage();
 
   if (AUTH === "dev-bypass") {
     await page.goto("/_emdash/api/setup/dev-bypass?redirect=/_emdash/api/auth/me");
     await page.waitForURL((u) => u.pathname === "/_emdash/api/auth/me", { timeout: 30_000 });
-    // Clear the first-login welcome modal before the admin shell loads.
-    const r = await page.request.post("/_emdash/api/auth/me", { headers: { "X-EmDash-Request": "1", ...editorHeaders() }, data: { action: "dismissWelcome" } });
-    expect(r.status(), "dismiss welcome modal").toBe(200);
   } else {
-    const me = await page.request.get("/_emdash/api/auth/me", { headers: editorHeaders() });
+    const me = await page.request.get("/_emdash/api/auth/me", { headers: editorHeaders(), maxRedirects: 0 });
     expect(me.status(), "API token rejected: is EMDASH_TOKEN valid with the admin scope?").toBe(200);
   }
+  // Clear the first-login welcome modal before the admin shell loads, so it can
+  // never cover the editor mid-test.
+  const dismissed = await page.request.post("/_emdash/api/auth/me", { headers: { "X-EmDash-Request": "1", ...editorHeaders() }, data: { action: "dismissWelcome" }, maxRedirects: 0 });
+  expect(dismissed.status(), "dismiss welcome modal").toBe(200);
 
   // ---- 2. Make sure the test page exists (unlisted: not in the sidebar menu)
   const call = api(page.request);
@@ -61,6 +49,7 @@ test("editor: edit the test page, publish, and the change is live", async ({ bro
       },
     });
     entry = created.item || created;
+    expect(entry?.id, `create returned no id: ${JSON.stringify(created).slice(0, 200)}`).toBeTruthy();
     await call("POST", `/content/${COLLECTION}/${entry.id}/publish`, {});
   }
 
@@ -94,9 +83,9 @@ test("editor: edit the test page, publish, and the change is live", async ({ bro
   await editor.close();
 
   // ---- 5. A visitor sees it ----------------------------------------------
-  // Fresh context, no EmDash credentials: only the Access service token, which
-  // the whole preview hostname needs. Poll briefly in case a cache sits in front.
-  const visitor = await newContextWithHeaders(browser, accessHeaders());
+  // Fresh context, no EmDash credentials: a plain visitor (the Access headers are
+  // inert on public pages). Poll briefly in case a cache sits in front.
+  const visitor = await newContextWithHeaders(browser, BASE_URL, accessHeaders(), { baseURL: BASE_URL });
   const vp = await visitor.newPage();
   await expect(async () => {
     const res = await vp.goto(`/${TEST_SLUG}?e2e=${Date.now()}`);
@@ -105,7 +94,8 @@ test("editor: edit the test page, publish, and the change is live", async ({ bro
   }).toPass({ timeout: 90_000, intervals: [2_000, 5_000, 10_000] });
   await vp.screenshot({ path: test.info().outputPath("visitor-view.png"), fullPage: true });
 
-  // Unlisted: the sidebar does not link to the test page.
+  // Unlisted: the sidebar renders (so the check means something) but does not link to the test page.
+  expect(await vp.locator("nav a[href]").count(), "sidebar nav did not render").toBeGreaterThan(5);
   await expect(vp.locator(`nav a[href$="/${TEST_SLUG}"], nav a[href$="/${TEST_SLUG}/"]`)).toHaveCount(0);
   await visitor.close();
 });
