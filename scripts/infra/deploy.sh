@@ -17,7 +17,9 @@ cd "$(dirname "$0")/../.."
 
 case "$ENV" in
   preview)    WENV=(--env preview); MENV=(--wrangler-env preview); URL="https://university-emdash-preview.williampote.workers.dev" ;;
-  production) WENV=();              MENV=();                       URL="https://university-emdash.williampote.workers.dev" ;;
+  production) WENV=();              MENV=();                       URL="https://university-emdash.williampote.workers.dev"
+    read -r -p "Deploy PRODUCTION (lead only, at cutover)? type 'production' to continue: " ok
+    [[ "$ok" == "production" ]] || { echo "aborted"; exit 1; } ;;
   *) echo "unknown env: $ENV" >&2; exit 2 ;;
 esac
 
@@ -27,23 +29,38 @@ echo "== build"
 npm run build
 
 echo "== migration status ($ENV)"
-npx emdash migrate --status --wrangler-config wrangler.jsonc "${MENV[@]}"
+# --status may exit non-zero when work is pending; the apply step below decides.
+npx emdash migrate --status --wrangler-config wrangler.jsonc ${MENV[@]+"${MENV[@]}"} || true
 
 echo "== apply migrations ($ENV)"
 if [[ -n "${EMDASH_TARGET_FINGERPRINT:-}" ]]; then
-  npx emdash migrate --wrangler-config wrangler.jsonc "${MENV[@]}" \
+  npx emdash migrate --wrangler-config wrangler.jsonc ${MENV[@]+"${MENV[@]}"} \
     --expected-target-fingerprint "$EMDASH_TARGET_FINGERPRINT"
 else
-  npx emdash migrate --wrangler-config wrangler.jsonc "${MENV[@]}"
+  npx emdash migrate --wrangler-config wrangler.jsonc ${MENV[@]+"${MENV[@]}"}
 fi
 
 echo "== deploy ($ENV)"
-npx wrangler deploy "${WENV[@]}"
+npx wrangler deploy ${WENV[@]+"${WENV[@]}"}
 
 echo "== verify"
-npx emdash migrate --check --wrangler-config wrangler.jsonc "${MENV[@]}"
-code=$(curl -s -o /dev/null -w '%{http_code}' "$URL/")
-echo "public / -> $code (want 200)"
-admin=$(curl -s -o /dev/null -w '%{http_code}' "$URL/_emdash/admin")
-echo "/_emdash/admin unauthenticated -> $admin (want 302 to etoptech.cloudflareaccess.com, never 200)"
-[[ "$code" == "200" && "$admin" != "200" ]]
+npx emdash migrate --check --wrangler-config wrangler.jsonc ${MENV[@]+"${MENV[@]}"}
+# Fresh workers.dev routes can 404 for a few seconds after deploy: retry.
+probe() { # url -> "status location"
+  curl -s -o /dev/null -w '%{http_code} %{redirect_url}' "$1"
+}
+fail=0
+for i in 1 2 3 4 5 6; do
+  read -r code _ <<<"$(probe "$URL/")"
+  [[ "$code" == "200" ]] && break; sleep 5
+done
+echo "public /                -> $code (want 200)"; [[ "$code" == "200" ]] || fail=1
+# Admin UI must bounce to Access; the API must too (or be refused outright), never 200.
+read -r st loc <<<"$(probe "$URL/_emdash/admin")"
+echo "unauthenticated /_emdash/admin -> $st ${loc:-} (want 302 to etoptech.cloudflareaccess.com)"
+[[ "$st" == "302" && "$loc" == *etoptech.cloudflareaccess.com* ]] || fail=1
+read -r st loc <<<"$(probe "$URL/_emdash/api/content/docs")"
+echo "unauthenticated /_emdash/api/content/docs -> $st ${loc:-} (want 302 to Access, or 401/403)"
+[[ ( "$st" == "302" && "$loc" == *etoptech.cloudflareaccess.com* ) || "$st" == "401" || "$st" == "403" ]] || fail=1
+if [[ $fail -ne 0 ]]; then echo "VERIFY FAILED: see lines above" >&2; exit 1; fi
+echo "VERIFY OK"
