@@ -102,6 +102,7 @@
   * [📋 Client User Onboarding](education/etop-process/client-user-onboarding.md)
   * [📋 User Offboarding](education/etop-process/user-offboarding.md)
   * [🏁 Prospect Onboarding](education/etop-process/prospect-onboarding.md)
+  * [✏️ How to Edit and Publish a University Page](education/etop-process/how-to-edit-university-pages.md)
 * [🌐 Global Client Updates](education/global-client-updates/README.md)
   * [🔬 Microsoft Issues](education/global-client-updates/microsoft-issues/README.md)
     * [Some users may experience multiple issues with their Microsoft Teams TM710344](education/global-client-updates/microsoft-issues/some-users-may-experience-multiple-issues-with-their-microsoft-teams-tm710344.md)

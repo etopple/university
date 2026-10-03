@@ -130,8 +130,8 @@ export is open (see Known traps).
   - Team `etoptech.cloudflareaccess.com`, Entra IdP `4d4216f7-e1e2-4a13-a848-5d94920ae2bc`.
   - Policy: allow `email_domain = etoptechnology.com`, require the Entra login method. Session 12h.
   - EmDash re-checks the Access JWT on every `/_emdash` request.
-  - First login auto-creates the EmDash user as **Author** (role 30) unless `roleMapping` in `astro.config.mjs` says otherwise.
-  - An Admin can raise a user's role under *Users* in the admin.
+  - First login auto-creates the EmDash user as **Editor** (role 40: edit and publish any page). This is `defaultRole: 40` in `astro.config.mjs`.
+  - An Admin can raise or lower a user's role under *Users* in the admin. BJ is Admin (first identity through Access on the preview).
 - **Two Access apps, one per env**, so a preview credential cannot open production:
   - *University EmDash admin (staff)* `39ca3545-7a40-4047-85c2-ab42a4b817d9`: `university.etop.tech/_emdash[/*]` + `university-emdash.williampote.workers.dev/_emdash[/*]`
   - *University EmDash admin PREVIEW (staff)* `ad705bef-5c98-49aa-80cc-e40fe3bd0d2b`: `university-emdash-preview.williampote.workers.dev/_emdash[/*]`
