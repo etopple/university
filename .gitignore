@@ -24,3 +24,13 @@ pnpm-debug.log*
 # OS
 .DS_Store
 Thumbs.db
+
+# EmDash local state
+data.db
+data.db-*
+uploads/
+.wrangler/
+.dev.vars
+emdash-env.d.ts
+.wrangler-seed.sql
+.wrangler-fts.sql
