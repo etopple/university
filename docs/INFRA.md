@@ -15,7 +15,7 @@ Pages. Config: `wrangler.jsonc` at the repo root. Account: **eTop Technology** `
 | D1 (`DB`) | `university-emdash-db` `627de272-335b-45c0-b8a8-92b7063c6fe3` | `university-emdash-db-preview` `a0c481d0-42ef-4ddb-92eb-9aaa97b3aabd` |
 | R2 (`MEDIA`) | `university-emdash-media` | `university-emdash-media-preview` |
 | KV (`SESSION`, Astro sessions) | `university-emdash-session` `1b71a62ab53a43a0b55248bca303c933` | `university-emdash-session-preview` `7f9b5ba93b574bac9c318cb2c357a5a5` |
-| `EMDASH_SITE_URL` (var) | `https://university.etop.tech` | the preview URL |
+| `EMDASH_SITE_URL` (var) | `https://university.etop.tech` (the prod Worker is first deployed at cutover, so it never runs on another origin) | the preview URL |
 | Cron | `* * * * *` (scheduled publishing) | same |
 
 All created 2026-10-02 (D1 location hint `wnam`). The old Pages project `etop-university` keeps serving
@@ -44,17 +44,21 @@ only way in, and EmDash re-validates the Access JWT on every `/_emdash` request 
 
 - Team domain: **`etoptech.cloudflareaccess.com`**
 - IdP: existing **Azure AD** (Entra) IdP `4d4216f7-e1e2-4a13-a848-5d94920ae2bc`
-- Protected path: **`/_emdash`** and everything below it (admin UI *and* REST API; protecting only `/_emdash/admin` breaks the API).
+- Protected paths: **`/_emdash` and `/_emdash/*`** on every hostname. Both entries are needed: a bare `/_emdash` entry
+  matches only that exact path (verified 2026-10-02: `/_emdash/admin` returned 404 unprotected until `/*` was added).
+  Covering the API too matters; protecting only `/_emdash/admin` breaks the API.
 - Public pages stay public: no Access app covers `/`.
 - Policy (same as eTop Portal Admin): allow `email_domain = etoptechnology.com`, require login method = the Entra IdP. Session 12h, auto-redirect to Entra.
 - Apps, one per env so a preview token cannot open prod:
-  - **University EmDash admin (staff)**: `university.etop.tech/_emdash`, `university-emdash.williampote.workers.dev/_emdash`
-  - **University EmDash admin PREVIEW (staff)**: `university-emdash-preview.williampote.workers.dev/_emdash`.
+  - **University EmDash admin (staff)** `39ca3545-7a40-4047-85c2-ab42a4b817d9`: `university.etop.tech/_emdash[/*]`, `university-emdash.williampote.workers.dev/_emdash[/*]`
+  - **University EmDash admin PREVIEW (staff)** `ad705bef-5c98-49aa-80cc-e40fe3bd0d2b`: `university-emdash-preview.williampote.workers.dev/_emdash[/*]`.
     Second policy on this app ONLY: **Service Auth**, include service token `university-e2e`, for the QA lane's
     editor E2E (sends `CF-Access-Client-Id/Secret` plus an EmDash admin API token as Bearer). The token secret goes
     in a GitHub Actions secret or Hudu, never in git. The prod app has no service-token policy.
-- **Status 2026-10-02: NOT CREATED.** The create call was blocked by a permission check; it is waiting on BJ
-  (ask `426fbe`). Until then the preview admin fails closed (EmDash rejects any request without a valid JWT).
+- **Status 2026-10-02: both apps CREATED** (BJ approved). Checked on the live hostname: `/_emdash`, `/_emdash/admin` and
+  `/_emdash/api/...` all 302 to `etoptech.cloudflareaccess.com`; `/` stays 200. The AUD tags are not secret but are set as the
+  `CF_ACCESS_AUDIENCE` Worker secret per env (read them from the app in Zero Trust). The E2E service token
+  `university-e2e` is NOT created yet (pending BJ).
 - `preview_urls: false` in both envs: version-preview hostnames would be outside the Access app.
 - New users are auto-provisioned on first Access login with EmDash's default role (Author, 30); the lead sets `roleMapping` in `astro.config.mjs`.
 
