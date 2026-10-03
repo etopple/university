@@ -122,3 +122,13 @@ test("bad --concurrency is rejected instead of hanging", async () => {
   const { parseArgs } = await import("../parity.mjs");
   assert.throws(() => parseArgs(["--concurrency", "abc"]), /positive integer/);
 });
+
+test("list structure: a list split and restarted at 1 is a difference", async () => {
+  const { extract } = await import("../parity.mjs");
+  const one = extract("<main><ol><li>a<img src=x></li><li>b</li><li>c</li></ol></main>", "main", "");
+  const split = extract("<main><ol><li>a</li></ol><img src=x><ol><li>b</li><li>c</li></ol></main>", "main", "");
+  const cont = extract("<main><ol><li>a</li></ol><img src=x><ol start=2><li>b</li><li>c</li></ol></main>", "main", "");
+  assert.equal(one.lists, "1:1 1:2 1:3");
+  assert.notEqual(split.lists, one.lists);
+  assert.equal(cont.lists, one.lists);
+});

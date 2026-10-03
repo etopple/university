@@ -144,6 +144,24 @@ export function deobfuscateEmails(html) {
     .replace(/href="\/cdn-cgi\/l\/email-protection#([0-9a-f]+)"/gi, (_, hex) => `href="mailto:${decodeCfEmail(hex)}"`);
 }
 
+// What a reader sees of every list: each item's depth and its marker (the
+// number for <ol>, "*" for <ul>). Text checks are blind to a list that splits
+// and restarts at 1, so this is compared separately.
+export function listShape(main) {
+  return main
+    .querySelectorAll("li")
+    .map((li) => {
+      const list = li.parentNode;
+      let depth = 0;
+      for (let p = li.parentNode; p; p = p.parentNode) if (/^(ol|ul)$/i.test(p.tagName || "")) depth++;
+      if (!/^ol$/i.test(list?.tagName || "")) return `${depth}*`;
+      const start = Number(list.getAttribute("start") || 1);
+      const items = list.childNodes.filter((n) => /^li$/i.test(n.tagName || ""));
+      return `${depth}:${start + items.indexOf(li)}`;
+    })
+    .join(" ");
+}
+
 export function extract(html, selector, ignore) {
   const root = parseHtml(deobfuscateEmails(html), PARSE_OPTS);
   const title = normText(root.querySelector("title")?.textContent || "");
@@ -159,7 +177,7 @@ export function extract(html, selector, ignore) {
   // What the reader can click and see inside the content: compared, not just crawled.
   const contentLinks = main.querySelectorAll("a[href]").map((e) => e.getAttribute("href"));
   const contentImages = main.querySelectorAll("img[src]").map((e) => e.getAttribute("src"));
-  return { title, text, links, assets, selectorFound: !!found, contentLinks, contentImages };
+  return { title, text, links, assets, selectorFound: !!found, contentLinks, contentImages, lists: listShape(main) };
 }
 
 // Word-level similarity (0..1) and the first point of divergence.
@@ -343,6 +361,10 @@ export async function run(a) {
       const bLinks = b.ex.contentLinks.map((h) => normRef(h, a.base, b.path)).join("\n");
       const cLinks = c.ex.contentLinks.map((h) => normRef(h, a.candidate, c.path, new URL(a.base).origin)).join("\n");
       if (bLinks !== cLinks) r.problems.push("content link targets differ");
+      if (b.ex.lists !== c.ex.lists) {
+        r.problems.push("list structure differs");
+        r.listDiff = { base: b.ex.lists.slice(0, 200), candidate: c.ex.lists.slice(0, 200) };
+      }
       const bImgs = b.ex.contentImages.map((h) => normRef(h, a.base, b.path)).join("\n");
       const cImgs = c.ex.contentImages.map((h) => normRef(h, a.candidate, c.path, new URL(a.base).origin)).join("\n");
       if (bImgs !== cImgs) r.problems.push("content images differ");

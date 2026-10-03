@@ -265,9 +265,39 @@ export function toNodes(blocks: PtBlock[], ctx: Ctx): Node[] {
   return out;
 }
 
+// Content stored between list items (a step's screenshot, code or extra
+// paragraph; see editorSafeLists in scripts/emdash/lib/md-to-pt.mjs) belongs to
+// the step before it when the list visibly continues after it: the next item is
+// nested (a list cannot start below the top level) or carries the next number
+// in listStart. Separate lists (the next one starts at 1, or a bullet list at the
+// top level) stay separate.
+const GAP_TYPES = new Set(["image", "code", "html", "htmlBlock", "gallery", "embed", "iframe"]);
+const isGap = (b: PtBlock) => !b.listItem && (GAP_TYPES.has(b._type) || (b._type === "block" && (b.style ?? "normal") === "normal"));
+
 function listEnd(blocks: PtBlock[], i: number): number {
-  while (i < blocks.length && blocks[i].listItem) i++;
-  return i;
+  const counters = new Map<number, { ordered: boolean; n: number }>();
+  const count = (b: PtBlock) => {
+    const level = Math.max(1, Number(b.level ?? 1));
+    for (const l of [...counters.keys()]) if (l > level) counters.delete(l);
+    const ordered = b.listItem === "number";
+    const c = counters.get(level);
+    if (c && c.ordered === ordered) c.n = ordered && b.listStart ? Number(b.listStart) : c.n + 1;
+    else counters.set(level, { ordered, n: ordered && b.listStart ? Number(b.listStart) : 1 });
+  };
+  for (;;) {
+    while (i < blocks.length && blocks[i].listItem) count(blocks[i++]);
+    let j = i;
+    while (j < blocks.length && isGap(blocks[j])) j++;
+    const next = blocks[j];
+    if (j === i || !next?.listItem) return i;
+    const level = Math.max(1, Number(next.level ?? 1));
+    const c = counters.get(level);
+    const continues =
+      (level > 1 && counters.size > 0) ||
+      (next.listItem === "number" && c?.ordered === true && Number(next.listStart) === c.n + 1);
+    if (!continues) return i;
+    i = j;
+  }
 }
 
 // Flat PT list blocks -> nested lists. A block at a deeper level opens a
@@ -282,6 +312,15 @@ function buildLists(blocks: PtBlock[], ctx: Ctx): Node[] {
   };
 
   for (const b of blocks) {
+    // Content between items inside a run (see listEnd): part of the current step.
+    if (!b.listItem) {
+      const n = b._type === "block" ? ({ kind: "html", html: `<p>${inlineHtml(b)}</p>` } as Node) : single(b, ctx);
+      const item = currentItem();
+      if (n && item) item.children.push(n);
+      else if (n) roots.push(n);
+      continue;
+    }
+
     const level = Math.max(1, Number(b.level ?? 1));
     const ordered = b.listItem === "number";
     while (stack.length && stack[stack.length - 1].level > level) stack.pop();
