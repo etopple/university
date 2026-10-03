@@ -23,7 +23,7 @@ What it does:
 | `E2E_CF_ACCESS_CLIENT_ID`, `E2E_CF_ACCESS_CLIENT_SECRET` | preview | Access service token `university-e2e` (preview app, Service Auth policy) |
 | `E2E_TEST_SLUG` | optional | default `e2e-test-page` |
 
-**On the preview, run it from GitHub Actions**: `gh workflow run editor-e2e -R etopple/university` (manual only).
+**On the preview, run it from GitHub Actions**: `gh workflow run editor-e2e -R etopple/university` (manual only; GitHub offers it once the workflow file is on the default branch, `starlight`). First green run: 37103172076 (2026-10-03, from a temporary branch trigger since removed).
 The credentials exist only as GitHub secrets: `UNIVERSITY_E2E_ACCESS_CLIENT_ID/SECRET` (Access service token
 `university-e2e`) and `UNIVERSITY_E2E_EMDASH_TOKEN`. The workflow maps them onto the variables above. Traces are off in CI
 because they record request headers.
