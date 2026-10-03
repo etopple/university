@@ -42,7 +42,7 @@ export type Node =
   | { kind: "native"; block: PtBlock };
 
 export type ListItem = { checked?: boolean; children: Node[] };
-export type TableCell = { header: boolean; align?: string; colspan?: number; rowspan?: number; children: Node[] };
+export type TableCell = { header: boolean; align?: string; colspan?: number; rowspan?: number; colwidth?: number[]; children: Node[] };
 
 const ESC: Record<string, string> = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" };
 export const esc = (s: string) => String(s ?? "").replace(/[&<>"]/g, (c) => ESC[c]);
@@ -203,7 +203,7 @@ const span1 = (n: unknown) => (Number.isInteger(n) && (n as number) > 1 && (n as
 // spans and isHeader) or the first migration's (row.header, cells[].content as
 // PT blocks, block-level align[]). Anything else goes to EmDash's own renderer.
 function tableNode(b: PtBlock, ctx: Ctx): Extract<Node, { kind: "table" }> | null {
-  type RawCell = { content?: unknown; markDefs?: PtMarkDef[]; isHeader?: boolean; textAlign?: string; colspan?: unknown; rowspan?: unknown };
+  type RawCell = { content?: unknown; markDefs?: PtMarkDef[]; isHeader?: boolean; textAlign?: string; colspan?: unknown; rowspan?: unknown; colwidth?: unknown };
   const rows = b.rows as { header?: boolean; cells?: RawCell[] }[] | undefined;
   if (!Array.isArray(rows) || !rows.length || !rows.every((r) => Array.isArray(r.cells))) return null;
   const legacyAlign = (b.align as (string | null)[] | undefined) ?? [];
@@ -220,6 +220,7 @@ function tableNode(b: PtBlock, ctx: Ctx): Extract<Node, { kind: "table" }> | nul
           align: align && ALIGN.has(align) ? align : undefined,
           colspan: span1(c.colspan),
           rowspan: span1(c.rowspan),
+          colwidth: Array.isArray(c.colwidth) && c.colwidth.every((w) => Number.isInteger(w) && w > 0 && w <= 4096) ? (c.colwidth as number[]) : undefined,
           children: inline
             ? [{ kind: "html", html: inlineHtml({ children: content as PtSpan[], markDefs: [...tableDefs, ...(c.markDefs ?? [])] }) } as Node]
             : cellNodes(content, ctx),
@@ -264,20 +265,9 @@ export function toNodes(blocks: PtBlock[], ctx: Ctx): Node[] {
   return out;
 }
 
-// Screenshots and code that belong to a step. The CMS editor does not keep
-// listContinuation (or listItem) on them, so after an editor save they sit
-// between two list blocks: keep them with the step and keep the numbering going.
-const MEDIA = new Set(["image", "code", "html", "htmlBlock", "gallery", "embed", "iframe", "break"]);
-const isMedia = (b: PtBlock) => MEDIA.has(b._type) && b._type !== "break";
-
 function listEnd(blocks: PtBlock[], i: number): number {
-  for (;;) {
-    while (i < blocks.length && blocks[i].listItem) i++;
-    let j = i;
-    while (j < blocks.length && !blocks[j].listItem && isMedia(blocks[j])) j++;
-    if (j > i && j < blocks.length && blocks[j].listItem) i = j;
-    else return i;
-  }
+  while (i < blocks.length && blocks[i].listItem) i++;
+  return i;
 }
 
 // Flat PT list blocks -> nested lists. A block at a deeper level opens a
@@ -292,14 +282,12 @@ function buildLists(blocks: PtBlock[], ctx: Ctx): Node[] {
   };
 
   for (const b of blocks) {
-    const level = Math.max(1, Number(b.level ?? stack[stack.length - 1]?.level ?? 1));
+    const level = Math.max(1, Number(b.level ?? 1));
     const ordered = b.listItem === "number";
     while (stack.length && stack[stack.length - 1].level > level) stack.pop();
 
-    // A screenshot or code block inside a list run is never a step of its own.
-    if (b.listContinuation || (b._type !== "block" && (isMedia(b) || !b.listItem))) {
-      const atLevel = b.listItem ? stack.find((s) => s.level === level) : stack[stack.length - 1];
-      const item = atLevel ? atLevel.list.items[atLevel.list.items.length - 1] : undefined;
+    if (b.listContinuation) {
+      const item = stack.length && stack[stack.length - 1].level === level ? currentItem() : undefined;
       const n = single(b, ctx);
       if (n && item) item.children.push(n);
       else if (n) roots.push(n);

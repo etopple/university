@@ -457,7 +457,12 @@ function tableBlock(node, ctx) {
         } else {
           flush(state, ctx, {}, "normal");
           for (const b of state.out) {
-            if (b._type !== "block") continue;
+            if (b._type !== "block") {
+              // Table cells hold text only in the editor; never drop an image silently.
+              content.push({ _type: "span", _key: key(ctx), text: b.asset?.url ? `[image: ${b.alt || b.asset.url}]` : "", marks: [] });
+              ctx.warnings.push(`table cell: ${b._type} block kept as text (cells hold text only)`);
+              continue;
+            }
             content.push(...b.children);
             markDefs.push(...b.markDefs);
           }

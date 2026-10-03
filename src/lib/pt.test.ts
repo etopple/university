@@ -90,21 +90,15 @@ test("editor-shaped tables render here, with header row and alignment", () => {
   assert.equal(t.rows[1].cells[0].children[0].html, "<strong>x</strong>");
 });
 
-test("after an editor save, screenshots between steps stay in the step and numbering continues", () => {
-  const blocks = [
+test("an image-only step stays a step; separate lists stay separate", () => {
+  const { nodes } = renderPlan([
     p([span("one")], { listItem: "number", level: 1 }),
-    { _type: "image", asset: { url: "/s1.png" } }, // listContinuation and listItem dropped by the editor
-    p([span("two")], { listItem: "number", level: 1 }),
-    { _type: "image", asset: { url: "/s2.png" }, listItem: "number", level: 1 }, // listItem kept, flag dropped
-    p([span("three")], { listItem: "number", level: 1 }),
-    p([span("after")]),
-  ];
-  const { nodes } = renderPlan(blocks);
-  assert.deepEqual(nodes.map((n) => n.kind), ["list", "html"]);
-  const ol = nodes[0] as any;
-  assert.equal(ol.items.length, 3);
-  assert.equal(ol.items[0].children[1].kind, "image");
-  assert.equal(ol.items[1].children[1].kind, "image");
+    { _type: "image", asset: { url: "/s1.png" }, listItem: "number", level: 1 },
+    { _type: "image", asset: { url: "/between.png" } },
+    p([span("again")], { listItem: "number", level: 1 }),
+  ]);
+  assert.deepEqual(nodes.map((n) => n.kind), ["list", "image", "list"]);
+  assert.equal((nodes[0] as any).items.length, 2);
 });
 
 test("textAlign is applied from an allowlist", () => {

@@ -68,9 +68,14 @@ const H = ["h1", "h2", "h3", "h4", "h5", "h6"] as const;
           </Aside>
         );
       case "table": {
-        // Leading rows where every cell is a header form the <thead>.
+        // Leading rows where every cell is a header form the <thead>, unless a
+        // header cell spans down past them (a rowspan cannot cross thead/tbody).
         let headCount = 0;
         while (headCount < n.rows.length && n.rows[headCount].cells.length && n.rows[headCount].cells.every((c) => c.header)) headCount++;
+        if (n.rows.slice(0, headCount).some((r, i) => r.cells.some((c) => i + (c.rowspan ?? 1) > headCount))) headCount = 0;
+        // Column widths the editor saved (per cell, per spanned column), from the first row.
+        const widths = (n.rows[0]?.cells ?? []).flatMap((c) => c.colwidth ?? Array(c.colspan ?? 1).fill(undefined));
+        const hasWidths = widths.some((w) => w);
         const row = (r: (typeof n.rows)[number]) => (
           <tr>
             {r.cells.map((c) => {
@@ -85,6 +90,13 @@ const H = ["h1", "h2", "h3", "h4", "h5", "h6"] as const;
         );
         return (
           <table>
+            {hasWidths && (
+              <colgroup>
+                {widths.map((w) => (
+                  <col style={w ? `width: ${w}px` : undefined} />
+                ))}
+              </colgroup>
+            )}
             {headCount > 0 && <thead>{n.rows.slice(0, headCount).map(row)}</thead>}
             <tbody>{n.rows.slice(headCount).map(row)}</tbody>
           </table>
