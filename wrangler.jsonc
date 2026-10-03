@@ -1,0 +1,66 @@
+// eTop University on EmDash: Cloudflare Worker config (infra lane).
+// Resource inventory, secrets and runbook: docs/INFRA.md.
+// Account: eTop Technology (44c7bfb7295ae9cd6050e09af901a4de).
+//
+// Bindings EmDash and Astro expect: DB (D1), MEDIA (R2), SESSION (KV, the Astro session store).
+// Bindings are NOT inherited by env.preview, so each env lists its own resources.
+// Secrets (never in this file): CF_ACCESS_AUDIENCE, EMDASH_ENCRYPTION_KEY, set per env with
+// `wrangler secret put <NAME> [--env preview]`.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "university-emdash",
+  "account_id": "44c7bfb7295ae9cd6050e09af901a4de",
+  "main": "./src/worker.ts",
+  "compatibility_date": "2026-02-24",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  // Version-preview URLs would be extra hostnames that the Access app does not cover.
+  "preview_urls": false,
+  "observability": { "enabled": true },
+  // Scheduled publishing, backups and maintenance (EmDash's createScheduledHandler()).
+  "triggers": { "crons": ["* * * * *"] },
+  "vars": {
+    "EMDASH_SITE_URL": "https://university.etop.tech"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "university-emdash-db",
+      "database_id": "627de272-335b-45c0-b8a8-92b7063c6fe3"
+    }
+  ],
+  "r2_buckets": [
+    { "binding": "MEDIA", "bucket_name": "university-emdash-media" }
+  ],
+  "kv_namespaces": [
+    { "binding": "SESSION", "id": "1b71a62ab53a43a0b55248bca303c933" }
+  ],
+  // The university.etop.tech custom domain is added at cutover by the lead, not here.
+
+  "env": {
+    "preview": {
+      // Deploys as university-emdash-preview.williampote.workers.dev
+      "name": "university-emdash-preview",
+      "workers_dev": true,
+      "preview_urls": false,
+      "observability": { "enabled": true },
+      "triggers": { "crons": ["* * * * *"] },
+      "vars": {
+        "EMDASH_SITE_URL": "https://university-emdash-preview.williampote.workers.dev"
+      },
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "university-emdash-db-preview",
+          "database_id": "a0c481d0-42ef-4ddb-92eb-9aaa97b3aabd"
+        }
+      ],
+      "r2_buckets": [
+        { "binding": "MEDIA", "bucket_name": "university-emdash-media-preview" }
+      ],
+      "kv_namespaces": [
+        { "binding": "SESSION", "id": "7f9b5ba93b574bac9c318cb2c357a5a5" }
+      ]
+    }
+  }
+}
