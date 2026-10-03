@@ -158,16 +158,26 @@ export function listShape(main) {
       const list = li.parentNode;
       let depth = 0;
       for (let p = li.parentNode; p; p = p.parentNode) if (/^(ol|ul)$/i.test(p.tagName || "")) depth++;
-      // Screenshots/code that sit in this item itself (not in a nested list).
-      const own = li.querySelectorAll("img, pre").filter((e) => {
-        for (let p = e.parentNode; p && p !== li; p = p.parentNode) if (/^(ol|ul)$/i.test(p.tagName || "")) return false;
-        return true;
-      }).length;
-      const media = own ? `+${own}` : "";
+      // Screenshots and code that sit in this item itself (not in a nested list), counted apart.
+      const own = (sel) =>
+        li.querySelectorAll(sel).filter((e) => {
+          for (let p = e.parentNode; p && p !== li; p = p.parentNode) if (/^(ol|ul)$/i.test(p.tagName || "")) return false;
+          return true;
+        }).length;
+      const imgs = own("img"), pres = own("pre");
+      const media = (imgs ? `+${imgs}i` : "") + (pres ? `+${pres}c` : "");
       if (!/^ol$/i.test(list?.tagName || "")) return `${depth}*${media}`;
-      const start = Number(list.getAttribute("start") || 1);
+      // The number a browser shows: li[value] wins, else counting from ol[start] (down when reversed).
       const items = list.childNodes.filter((n) => /^li$/i.test(n.tagName || ""));
-      return `${depth}:${start + items.indexOf(li)}${media}`;
+      const reversed = list.hasAttribute("reversed");
+      const step = reversed ? -1 : 1;
+      let n = list.getAttribute("start") != null ? Number(list.getAttribute("start")) : reversed ? items.length : 1;
+      for (const it of items) {
+        if (it.getAttribute("value") != null) n = Number(it.getAttribute("value"));
+        if (it === li) break;
+        n += step;
+      }
+      return `${depth}:${n}${media}`;
     })
     .join(" ");
 }

@@ -1,0 +1,492 @@
+diff --git a/scripts/emdash/lib/md-to-pt.mjs b/scripts/emdash/lib/md-to-pt.mjs
+index 7c0c0db..a6b5fc5 100644
+--- a/scripts/emdash/lib/md-to-pt.mjs
++++ b/scripts/emdash/lib/md-to-pt.mjs
+@@ -42,7 +42,7 @@ export function markdownToPortableText(markdown) {
+   };
+   const tree = processor.runSync(processor.parse(markdown));
+   collectDefinitions(tree, ctx);
+-  const blocks = convertChildren(tree.children, ctx, {});
++  const blocks = editorSafeLists(convertChildren(tree.children, ctx, {}));
+   return { blocks, warnings: ctx.warnings, stats: ctx.stats };
+ }
+ 
+@@ -198,6 +198,7 @@ function listBlocks(node, ctx, level) {
+     }
+     if (itemBlocks.length === 0) itemBlocks.push(textBlock([], [], "normal", { listItem, level }, ctx));
+     const first = itemBlocks.find((b) => b.level === level);
++    if (first && node.ordered) first._ordinal = (node.start ?? 1) + idx;
+     if (first) {
+       if (li.checked === true || li.checked === false) first.checked = li.checked;
+       if (idx === 0 && node.ordered && node.start != null && node.start !== 1) first.listStart = node.start;
+@@ -207,6 +208,50 @@ function listBlocks(node, ctx, level) {
+   return out;
+ }
+ 
++// The CMS editor keeps list membership only on text list items: it strips
++// listItem/level/listContinuation from images and code, and listContinuation
++// from text, so a step's screenshot would split the list and renumber it on the
++// first save. Store what the editor keeps instead: content inside a step becomes
++// a block between list items with no listItem (level/listContinuation stay only
++// as hints), and the next numbered item carries its real number in listStart. The theme puts the screenshot back inside the step
++// (src/lib/pt.ts, listEnd) when the list continues after it.
++export function editorSafeLists(blocks) {
++  // An item that is only an image gets an empty text item to hang it on.
++  for (let i = 0; i < blocks.length; i++) {
++    const b = blocks[i];
++    if (b.listItem && b._type !== "block" && !b.listContinuation) {
++      const { listItem, level, listStart, checked, _ordinal } = b;
++      blocks.splice(i, 0, {
++        _type: "block", _key: b._key + "i", style: "normal", markDefs: [],
++        children: [{ _type: "span", _key: b._key + "s", text: "", marks: [] }],
++        listItem, level,
++        ...(listStart ? { listStart } : {}), ...(checked !== undefined ? { checked } : {}), ...(_ordinal ? { _ordinal } : {}),
++      });
++      for (const k of ["listStart", "checked", "_ordinal"]) delete b[k];
++      b.listContinuation = true;
++      i++;
++    }
++  }
++  let gap = false;
++  for (const b of blocks) {
++    if (Array.isArray(b.content) && b._type !== "table") editorSafeLists(b.content);
++    if (b.listContinuation) {
++      // Keep level + listContinuation as rendering hints: the theme uses them to put
++      // this block back exactly where it was. The editor drops both on save; the
++      // theme then falls back to listStart and its own rules.
++      delete b.listItem;
++      gap = true;
++    } else if (b.listItem) {
++      if (gap && b.listItem === "number" && b._ordinal > 1) b.listStart = b._ordinal;
++      gap = false;
++    } else {
++      gap = false;
++    }
++  }
++  for (const b of blocks) delete b._ordinal;
++  return blocks;
++}
++
+ function textBlock(children, markDefs, style, list, ctx) {
+   count(ctx, "block");
+   const b = { _type: "block", _key: key(ctx), style, markDefs, children };
+diff --git a/scripts/emdash/parity.mjs b/scripts/emdash/parity.mjs
+index 2e9ef96..2c8dc35 100644
+--- a/scripts/emdash/parity.mjs
++++ b/scripts/emdash/parity.mjs
+@@ -41,6 +41,10 @@ const ACCEPTED_NEW_PREFIXES = [
+ 
+ // Differences reviewed and accepted by the lead (2026-10-02). Keep this list short.
+ const ACCEPTED = {
++  "/policies/policies/patching/immybot-maintenance-emails": {
++    problem: "list structure differs",
++    why: "source writes steps 1/2/3 as three one-item lists with the screenshot between them; the theme shows each screenshot inside its step (same numbers, same order)",
++  },
+   "/education/etop-process/how-to-edit-university-pages": {
+     problem: "status 404 -> 200",
+     why: "new page added with the migration: how eTop staff edit University pages in the CMS",
+@@ -144,6 +148,30 @@ export function deobfuscateEmails(html) {
+     .replace(/href="\/cdn-cgi\/l\/email-protection#([0-9a-f]+)"/gi, (_, hex) => `href="mailto:${decodeCfEmail(hex)}"`);
+ }
+ 
++// What a reader sees of every list: each item's depth, its marker (the number
++// for <ol>, "*" for <ul>) and how many screenshots/code blocks sit inside it. Text checks are blind to a list that splits
++// and restarts at 1, so this is compared separately.
++export function listShape(main) {
++  return main
++    .querySelectorAll("li")
++    .map((li) => {
++      const list = li.parentNode;
++      let depth = 0;
++      for (let p = li.parentNode; p; p = p.parentNode) if (/^(ol|ul)$/i.test(p.tagName || "")) depth++;
++      // Screenshots/code that sit in this item itself (not in a nested list).
++      const own = li.querySelectorAll("img, pre").filter((e) => {
++        for (let p = e.parentNode; p && p !== li; p = p.parentNode) if (/^(ol|ul)$/i.test(p.tagName || "")) return false;
++        return true;
++      }).length;
++      const media = own ? `+${own}` : "";
++      if (!/^ol$/i.test(list?.tagName || "")) return `${depth}*${media}`;
++      const start = Number(list.getAttribute("start") || 1);
++      const items = list.childNodes.filter((n) => /^li$/i.test(n.tagName || ""));
++      return `${depth}:${start + items.indexOf(li)}${media}`;
++    })
++    .join(" ");
++}
++
+ export function extract(html, selector, ignore) {
+   const root = parseHtml(deobfuscateEmails(html), PARSE_OPTS);
+   const title = normText(root.querySelector("title")?.textContent || "");
+@@ -159,7 +187,7 @@ export function extract(html, selector, ignore) {
+   // What the reader can click and see inside the content: compared, not just crawled.
+   const contentLinks = main.querySelectorAll("a[href]").map((e) => e.getAttribute("href"));
+   const contentImages = main.querySelectorAll("img[src]").map((e) => e.getAttribute("src"));
+-  return { title, text, links, assets, selectorFound: !!found, contentLinks, contentImages };
++  return { title, text, links, assets, selectorFound: !!found, contentLinks, contentImages, lists: listShape(main) };
+ }
+ 
+ // Word-level similarity (0..1) and the first point of divergence.
+@@ -343,6 +371,10 @@ export async function run(a) {
+       const bLinks = b.ex.contentLinks.map((h) => normRef(h, a.base, b.path)).join("\n");
+       const cLinks = c.ex.contentLinks.map((h) => normRef(h, a.candidate, c.path, new URL(a.base).origin)).join("\n");
+       if (bLinks !== cLinks) r.problems.push("content link targets differ");
++      if (b.ex.lists !== c.ex.lists) {
++        r.problems.push("list structure differs");
++        r.listDiff = { base: b.ex.lists.slice(0, 200), candidate: c.ex.lists.slice(0, 200) };
++      }
+       const bImgs = b.ex.contentImages.map((h) => normRef(h, a.base, b.path)).join("\n");
+       const cImgs = c.ex.contentImages.map((h) => normRef(h, a.candidate, c.path, new URL(a.base).origin)).join("\n");
+       if (bImgs !== cImgs) r.problems.push("content images differ");
+diff --git a/scripts/emdash/test/md-to-pt.test.mjs b/scripts/emdash/test/md-to-pt.test.mjs
+index 8197c21..8c66730 100644
+--- a/scripts/emdash/test/md-to-pt.test.mjs
++++ b/scripts/emdash/test/md-to-pt.test.mjs
+@@ -119,12 +119,19 @@ test("real corpus: every page converts, no warnings, sidebar fully mapped, seed
+   for (const e of a.seed.content.docs) assert.ok(e.data.title, `${e.slug} has no title`);
+ });
+ 
+-test("content inside a list item stays in that item (code, continuation)", () => {
++test("content inside a step is stored the way the CMS editor keeps it", () => {
++  // Code/extra text inside step 3 sit between the items as plain blocks; step 4
++  // carries its real number so the list continues after an editor save.
+   const { blocks } = md(["3. one", "   ```", "   x", "   ```", "   then more", "4. two", ""].join("\n"));
+-  assert.deepEqual(blocks.map((b) => [b._type, b.listItem, b.level, !!b.listContinuation]), [
+-    ["block", "number", 1, false], ["code", "number", 1, true], ["block", "number", 1, true], ["block", "number", 1, false],
++  // listContinuation + level stay as rendering hints (the editor drops them on save).
++  assert.deepEqual(blocks.map((b) => [b._type, b.listItem ?? null, b.listStart ?? null, !!b.listContinuation, b.level ?? null]), [
++    ["block", "number", 3, false, 1], ["code", null, null, true, 1], ["block", null, null, true, 1], ["block", "number", 4, false, 1],
+   ]);
+-  assert.equal(blocks[0].listStart, 3);
++});
++
++test("an image-only list item hangs on an empty text item", () => {
++  const { blocks } = md("- ![a](a.png)\n- text\n");
++  assert.deepEqual(blocks.map((b) => [b._type, b.listItem ?? null]), [["block", "bullet"], ["image", null], ["block", "bullet"]]);
+ });
+ 
+ test("task lists and linked images keep their state", () => {
+diff --git a/scripts/emdash/test/parity.test.mjs b/scripts/emdash/test/parity.test.mjs
+index d50a372..62faf1d 100644
+--- a/scripts/emdash/test/parity.test.mjs
++++ b/scripts/emdash/test/parity.test.mjs
+@@ -122,3 +122,16 @@ test("bad --concurrency is rejected instead of hanging", async () => {
+   const { parseArgs } = await import("../parity.mjs");
+   assert.throws(() => parseArgs(["--concurrency", "abc"]), /positive integer/);
+ });
++
++test("list structure: a list split and restarted at 1 is a difference", async () => {
++  const { extract } = await import("../parity.mjs");
++  const one = extract("<main><ol><li>a<img src=x></li><li>b</li><li>c</li></ol></main>", "main", "");
++  const split = extract("<main><ol><li>a</li></ol><img src=x><ol><li>b</li><li>c</li></ol></main>", "main", "");
++  const cont = extract("<main><ol><li>a</li></ol><img src=x><ol start=2><li>b</li><li>c</li></ol></main>", "main", "");
++  assert.equal(one.lists, "1:1+1 1:2 1:3");
++  assert.notEqual(split.lists, one.lists); // restarts at 1, screenshot outside the step
++  assert.notEqual(cont.lists, one.lists); // numbers right, but the screenshot left its step
++  const bullets = extract("<main><ul><li>a<img src=x></li><li>b</li></ul></main>", "main", "");
++  const bulletsSplit = extract("<main><ul><li>a</li></ul><img src=x><ul><li>b</li></ul></main>", "main", "");
++  assert.notEqual(bulletsSplit.lists, bullets.lists);
++});
+diff --git a/scripts/infra/deploy.sh b/scripts/infra/deploy.sh
+index 13f065a..c99e692 100755
+--- a/scripts/infra/deploy.sh
++++ b/scripts/infra/deploy.sh
+@@ -1,25 +1,30 @@
+ #!/usr/bin/env bash
+-# Build -> put the D1 schema in place explicitly -> deploy -> verify, for one environment.
+-#   bash scripts/infra/deploy.sh preview [--load-content]
+-#   bash scripts/infra/deploy.sh production [--load-content]   # lead only, at cutover
++# Build -> (schema step) -> deploy -> verify, for one environment.
++#   bash scripts/infra/deploy.sh preview|production                 # = --code-only, the everyday deploy
++#   bash scripts/infra/deploy.sh preview|production --migrate       # EmDash upgrade with new core migrations
++#   bash scripts/infra/deploy.sh preview|production --load-content  # EMPTY database only (first load / cutover)
+ #
+-# Wrangler deploys never run D1 migrations, so this script applies EmDash's core schema
+-# itself before the new code takes traffic. Two ways, pick per run:
+-#   --load-content   First load (or re-load) of an empty or pre-cutover database: builds the
+-#                    content lane's d1-load.sql (full migrated schema + migration records +
+-#                    every page, idempotent) and runs it with `wrangler d1 execute`.
+-#                    Uses your wrangler login. Overwrites pages with the seed: PRE-CUTOVER ONLY.
+-#   (default)        `emdash migrate` (status -> apply -> check). Needs CLOUDFLARE_API_TOKEN
+-#                    (D1 Edit) because EmDash's migrator does not use the wrangler login.
+-#                    Optional EMDASH_TARGET_FINGERPRINT for a non-interactive apply (CI).
++# Wrangler deploys never run D1 migrations, so every mode decides the schema question explicitly:
++#   --code-only (default)  Ships code only. REFUSES unless the build's EmDash migration set equals the
++#                          `_emdash_migrations` rows already in that D1, and the EmDash version equals the
++#                          one recorded on the currently deployed Worker version. Touches no data.
++#   --migrate              `emdash migrate` (status -> apply -> check) before deploy. Needs CLOUDFLARE_API_TOKEN
++#                          (D1 Edit): EmDash's migrator does not use the wrangler login. Optional
++#                          EMDASH_TARGET_FINGERPRINT for a non-interactive apply (CI).
++#   --load-content         Builds the content lane's d1-load.sql (full migrated schema + migration records +
++#                          every seed page, idempotent) and runs it with `wrangler d1 execute`. Overwrites seed
++#                          pages: an EMPTY database only (preview before cutover, production once at cutover).
++#                          Never touches users or API tokens. On production it refuses once the docs
++#                          table exists (FORCE_RELOAD=1 overrides, to rebuild from zero only).
++# Every deploy is tagged with the EmDash version (--message "emdash=<version> ..."); --code-only reads it back.
+ #
+ # The env is chosen at BUILD time (CLOUDFLARE_ENV): @astrojs/cloudflare writes a flattened
+ # dist/server/wrangler.json for that env and `wrangler deploy` follows it, so deploy takes
+ # no --env. Commands that read wrangler.jsonc directly get --config + --env.
+ set -euo pipefail
+ 
+-ENV="${1:?usage: deploy.sh preview|production [--load-content]}"
+-MODE="${2:-migrate}"
++ENV="${1:?usage: deploy.sh preview|production [--code-only|--migrate|--load-content]}"
++MODE="${2:---code-only}"
+ export CLOUDFLARE_ACCOUNT_ID="44c7bfb7295ae9cd6050e09af901a4de"
+ cd "$(dirname "$0")/../.."
+ 
+@@ -32,7 +37,7 @@ case "$ENV" in
+     unset CLOUDFLARE_ENV
+     CFG=(--config wrangler.jsonc); MENV=()
+     URL="https://university-emdash.williampote.workers.dev"
+-    read -r -p "Deploy PRODUCTION (lead only, at cutover)? type 'production' to continue: " ok
++    read -r -p "Deploy PRODUCTION ($MODE)? type 'production' to continue: " ok
+     [[ "$ok" == "production" ]] || { echo "aborted"; exit 1; } ;;
+   *) echo "unknown env: $ENV" >&2; exit 2 ;;
+ esac
+@@ -43,12 +48,47 @@ built=$(node -e "console.log(require('./dist/server/wrangler.json').name)")
+ want=$([[ "$ENV" == preview ]] && echo university-emdash-preview || echo university-emdash)
+ [[ "$built" == "$want" ]] || { echo "build targeted $built, expected $want" >&2; exit 1; }
+ 
++EMDASH_VERSION=$(node -p "require('./.emdash/migrations.json').emdashVersion")
++d1json() { npx wrangler d1 execute DB "${CFG[@]}" --remote --json --command "$1" 2>/dev/null; }
++
+ case "$MODE" in
++  --code-only)
++    echo "== code-only guard ($ENV): EmDash $EMDASH_VERSION"
++    # 1. Migration set in the build vs rows in the target D1.
++    d1json "SELECT name FROM _emdash_migrations" > .wrangler-migrations.json       || { echo "REFUSED: could not read _emdash_migrations (empty database? use --load-content)" >&2; exit 1; }
++    node -e "
++      const built = require('./.emdash/migrations.json').migrationSet.names;
++      const inDb = JSON.parse(require('fs').readFileSync('.wrangler-migrations.json','utf8'))[0].results.map(r => r.name);
++      const pending = built.filter(n => !inDb.includes(n)), unknown = inDb.filter(n => !built.includes(n));
++      const list = a => a.slice(0, 5).join(', ') + (a.length > 5 ? ' (+' + (a.length - 5) + ' more)' : '');
++      console.log('migrations: build ' + built.length + ', database ' + inDb.length);
++      if (pending.length) console.error('REFUSED: ' + pending.length + ' pending migration(s): ' + list(pending) + ' -> use --migrate');
++      if (unknown.length) console.error('REFUSED: database has ' + unknown.length + ' migration(s) this build does not know (' + list(unknown) + ') -> older EmDash than what migrated it?');
++      process.exit(pending.length || unknown.length ? 1 : 0);"
++    rm -f .wrangler-migrations.json
++    # 2. EmDash version on the currently deployed Worker version (from its deploy message).
++    deployed_ver=$(CFGS="${CFG[*]}" node -e "
++      const {execSync} = require('child_process');
++      const sh = c => execSync(c, {stdio: ['ignore', 'pipe', 'ignore']}).toString();
++      try {
++        const deps = JSON.parse(sh('npx wrangler deployments list --json ' + process.env.CFGS));
++        const vid = deps[deps.length - 1].versions[0].version_id;
++        const v = JSON.parse(sh('npx wrangler versions view ' + vid + ' --json ' + process.env.CFGS));
++        const m = (v.annotations || {})['workers/message'] || '';
++        const hit = /emdash=(\S+)/.exec(m); console.log(hit ? hit[1] : 'untagged');
++      } catch { console.log('none'); }")
++    echo "deployed EmDash version: $deployed_ver"
++    case "$deployed_ver" in
++      none)     echo "REFUSED: no deployed version found; first deploy goes through --load-content or --migrate" >&2; exit 1 ;;
++      untagged) echo "note: the deployed version predates version tagging; relying on the migration-set check" ;;
++      "$EMDASH_VERSION") ;;
++      *)        echo "REFUSED: build has EmDash $EMDASH_VERSION, deployed is $deployed_ver -> use --migrate" >&2; exit 1 ;;
++    esac ;;
+   --load-content)
+     if [[ "$ENV" == production ]]; then
+       # After cutover, editors own the content: a reload would overwrite their edits.
+       # Refuse while the prod database already holds pages (set FORCE_RELOAD=1 only to rebuild from zero).
+-      pages=$(npx wrangler d1 execute DB "${CFG[@]}" --remote --json --command "SELECT count(*) AS n FROM sqlite_master WHERE name = 'ec_docs'" 2>/dev/null | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{console.log(JSON.parse(s)[0].results[0].n)}catch{console.log('?')}})")
++      pages=$(npx wrangler d1 execute DB "${CFG[@]}" --remote --json --command "SELECT count(*) AS n FROM sqlite_master WHERE name = 'ec_docs'" 2>/dev/null | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{process.stdout.write(String(JSON.parse(s)[0].results[0].n))}catch{process.stdout.write('?')}})")
+       if [[ "$pages" != "0" && "${FORCE_RELOAD:-}" != "1" ]]; then
+         echo "production D1 already has content (or could not be checked: '$pages'); refusing --load-content. FORCE_RELOAD=1 overrides." >&2
+         exit 1
+@@ -58,28 +98,26 @@ case "$MODE" in
+     rm -f data.db data.db-shm data.db-wal   # seed mints fresh IDs; start clean so the menu re-points by slug
+     npx emdash seed --on-conflict update
+     node scripts/emdash/d1-sql.mjs
+-    npx wrangler d1 execute DB "${CFG[@]}" --remote --yes --file scripts/emdash/out/d1-load.sql
+-    LOADED=1 ;;
+-  migrate)
+-    : "${CLOUDFLARE_API_TOKEN:?set CLOUDFLARE_API_TOKEN (D1 Edit), or use --load-content pre-cutover}"
++    npx wrangler d1 execute DB "${CFG[@]}" --remote --yes --file scripts/emdash/out/d1-load.sql ;;
++  --migrate)
++    : "${CLOUDFLARE_API_TOKEN:?set CLOUDFLARE_API_TOKEN (D1 Edit) for --migrate}"
+     echo "== migration status ($ENV)"
+     # --status may exit non-zero when work is pending; the apply step decides.
+     npx emdash migrate --status --wrangler-config wrangler.jsonc ${MENV[@]+"${MENV[@]}"} || true
+     echo "== apply migrations ($ENV)"
+     if [[ -n "${EMDASH_TARGET_FINGERPRINT:-}" ]]; then
+-      npx emdash migrate --wrangler-config wrangler.jsonc ${MENV[@]+"${MENV[@]}"} \
+-        --expected-target-fingerprint "$EMDASH_TARGET_FINGERPRINT"
++      npx emdash migrate --wrangler-config wrangler.jsonc ${MENV[@]+"${MENV[@]}"}         --expected-target-fingerprint "$EMDASH_TARGET_FINGERPRINT"
+     else
+       npx emdash migrate --wrangler-config wrangler.jsonc ${MENV[@]+"${MENV[@]}"}
+     fi ;;
+-  *) echo "unknown option: $MODE" >&2; exit 2 ;;
++  *) echo "unknown option: $MODE (use --code-only, --migrate or --load-content)" >&2; exit 2 ;;
+ esac
+ 
+ echo "== deploy ($ENV)"
+-npx wrangler deploy
++npx wrangler deploy --message "emdash=$EMDASH_VERSION mode=${MODE#--} commit=$(git rev-parse --short HEAD)"
+ 
+ echo "== verify"
+-if [[ "$MODE" == migrate ]]; then
++if [[ "$MODE" == --migrate ]]; then
+   npx emdash migrate --check --wrangler-config wrangler.jsonc ${MENV[@]+"${MENV[@]}"}
+ fi
+ # Every sidebar page link must point at a real page (a re-seed mints new IDs; d1-sql.mjs re-points by slug).
+diff --git a/src/lib/pt.test.ts b/src/lib/pt.test.ts
+index 1fb30c6..4580f66 100644
+--- a/src/lib/pt.test.ts
++++ b/src/lib/pt.test.ts
+@@ -90,15 +90,25 @@ test("editor-shaped tables render here, with header row and alignment", () => {
+   assert.equal(t.rows[1].cells[0].children[0].html, "<strong>x</strong>");
+ });
+ 
+-test("an image-only step stays a step; separate lists stay separate", () => {
++test("editor-safe steps: content between items goes back into the step only when the list continues", () => {
+   const { nodes } = renderPlan([
+     p([span("one")], { listItem: "number", level: 1 }),
+-    { _type: "image", asset: { url: "/s1.png" }, listItem: "number", level: 1 },
++    { _type: "image", asset: { url: "/s1.png" } },
++    p([span("more about one")]),
++    p([span("two")], { listItem: "number", level: 1, listStart: 2 }), // continues: back into step 1
++    p([span("sub")], { listItem: "bullet", level: 2 }),
++    { _type: "image", asset: { url: "/s2.png" } },
++    p([span("sub2")], { listItem: "bullet", level: 2 }), // nested: continues
+     { _type: "image", asset: { url: "/between.png" } },
+-    p([span("again")], { listItem: "number", level: 1 }),
++    p([span("new list")], { listItem: "number", level: 1 }), // starts at 1: separate list
+   ]);
+   assert.deepEqual(nodes.map((n) => n.kind), ["list", "image", "list"]);
+-  assert.equal((nodes[0] as any).items.length, 2);
++  const ol = nodes[0] as any;
++  assert.equal(ol.items.length, 2);
++  assert.deepEqual(ol.items[0].children.map((c: any) => c.kind), ["html", "image", "html"]);
++  const ul = ol.items[1].children[1];
++  assert.equal(ul.items.length, 2);
++  assert.equal(ul.items[0].children[1].kind, "image");
+ });
+ 
+ test("textAlign is applied from an allowlist", () => {
+@@ -106,3 +116,38 @@ test("textAlign is applied from an allowlist", () => {
+   assert.equal((nodes[0] as any).html, '<p style="text-align: center">c</p>');
+   assert.equal((nodes[1] as any).html, "<p>x</p>");
+ });
++
++test("hinted content goes back exactly: parent level after a nested list, any block type", () => {
++  const { nodes } = renderPlan([
++    p([span("step 1")], { listItem: "number", level: 1 }),
++    p([span("sub a")], { listItem: "bullet", level: 2 }),
++    p([span("sub b")], { listItem: "bullet", level: 2 }),
++    { _type: "image", asset: { url: "/parent.png" }, level: 1, listContinuation: true }, // belongs to step 1, not "sub b"
++    p([span("quote")], { style: "blockquote", level: 2, listContinuation: true }),
++    p([span("step 2")], { listItem: "number", level: 1, listStart: 2 }),
++  ]);
++  assert.equal(nodes.length, 1);
++  const ol = nodes[0] as any;
++  assert.equal(ol.items.length, 2);
++  assert.deepEqual(ol.items[0].children.map((c: any) => c.kind), ["html", "list", "image", "quote"]);
++});
++
++test("bullets: hinted screenshots stay in the item; after an editor save, screenshot-only gaps still do", () => {
++  const hinted = renderPlan([
++    p([span("a")], { listItem: "bullet", level: 1 }),
++    { _type: "image", asset: { url: "/1.png" }, level: 1, listContinuation: true },
++    p([span("b")], { listItem: "bullet", level: 1 }),
++  ]).nodes;
++  const saved = renderPlan([
++    p([span("a")], { listItem: "bullet", level: 1 }),
++    { _type: "image", asset: { url: "/1.png" } },
++    p([span("b")], { listItem: "bullet", level: 1 }),
++  ]).nodes;
++  for (const nodes of [hinted, saved]) {
++    assert.equal(nodes.length, 1);
++    assert.equal((nodes[0] as any).items[0].children[1].kind, "image");
++  }
++  // A paragraph then a new bullet list (no hint) stays two lists.
++  const separate = renderPlan([p([span("a")], { listItem: "bullet", level: 1 }), p([span("Next:")]), p([span("b")], { listItem: "bullet", level: 1 })]).nodes;
++  assert.deepEqual(separate.map((n) => n.kind), ["list", "html", "list"]);
++});
+diff --git a/src/lib/pt.ts b/src/lib/pt.ts
+index 09185b6..406eca1 100644
+--- a/src/lib/pt.ts
++++ b/src/lib/pt.ts
+@@ -265,9 +265,60 @@ export function toNodes(blocks: PtBlock[], ctx: Ctx): Node[] {
+   return out;
+ }
+ 
++// Content stored between list items (a step's screenshot, code or extra
++// paragraph; see editorSafeLists in scripts/emdash/lib/md-to-pt.mjs). As
++// migrated it carries listContinuation + level, so it goes back exactly where it
++// was. An editor save drops those hints; then it belongs to the step before it
++// only when the list visibly continues: the next item is nested (a list cannot
++// start below the top level), carries the next number in listStart, or is a
++// bullet after nothing but screenshots/code. A list that starts again at 1, or a
++// paragraph followed by a new top-level bullet list, stays separate.
++const MEDIA_TYPES = new Set(["image", "code", "html", "htmlBlock", "gallery", "embed", "iframe"]);
++const isHinted = (b: PtBlock) => !b.listItem && b.listContinuation === true;
++const isGap = (b: PtBlock) => !b.listItem && (isHinted(b) || MEDIA_TYPES.has(b._type) || (b._type === "block" && (b.style ?? "normal") === "normal"));
++
+ function listEnd(blocks: PtBlock[], i: number): number {
+-  while (i < blocks.length && blocks[i].listItem) i++;
+-  return i;
++  const counters = new Map<number, { ordered: boolean; n: number }>();
++  const count = (b: PtBlock) => {
++    const level = Math.max(1, Number(b.level ?? 1));
++    for (const l of [...counters.keys()]) if (l > level) counters.delete(l);
++    const ordered = b.listItem === "number";
++    const c = counters.get(level);
++    if (c && c.ordered === ordered) c.n = ordered && b.listStart ? Number(b.listStart) : c.n + 1;
++    else counters.set(level, { ordered, n: ordered && b.listStart ? Number(b.listStart) : 1 });
++  };
++  for (;;) {
++    while (i < blocks.length && blocks[i].listItem) count(blocks[i++]);
++    let j = i;
++    while (j < blocks.length && isGap(blocks[j])) j++;
++    const gap = blocks.slice(i, j);
++    const next = blocks[j];
++    if (!gap.length) return i;
++    // Hinted content always belongs to the run (it was inside an item).
++    if (gap.every(isHinted)) {
++      i = j;
++      if (!next?.listItem) return i;
++      continue;
++    }
++    if (!next?.listItem) {
++      // Trailing hinted blocks still belong to the last item.
++      let k = i;
++      while (k < j && isHinted(blocks[k])) k++;
++      return k;
++    }
++    const level = Math.max(1, Number(next.level ?? 1));
++    const c = counters.get(level);
++    const continues =
++      (level > 1 && counters.size > 0) ||
++      (next.listItem === "number" && c?.ordered === true && Number(next.listStart) === c.n + 1) ||
++      (next.listItem === "bullet" && c?.ordered === false && gap.every((g) => MEDIA_TYPES.has(g._type)));
++    if (!continues) {
++      let k = i;
++      while (k < j && isHinted(blocks[k])) k++;
++      return k;
++    }
++    i = j;
++  }
+ }
+ 
+ // Flat PT list blocks -> nested lists. A block at a deeper level opens a
+@@ -282,6 +333,21 @@ function buildLists(blocks: PtBlock[], ctx: Ctx): Node[] {
+   };
+ 
+   for (const b of blocks) {
++    // Content between items inside a run (see listEnd): part of a step — the one
++    // at its hinted level when the migration left one, else the current one.
++    if (!b.listItem) {
++      const n: Node | null =
++        b._type === "block" && b.style === "blockquote"
++          ? { kind: "quote", children: [{ kind: "html", html: `<p>${inlineHtml(b)}</p>` }] }
++          : single(b, ctx);
++      const at = b.level ? stack.find((s) => s.level === Number(b.level)) : undefined;
++      if (at) while (stack[stack.length - 1] !== at) stack.pop();
++      const item = currentItem();
++      if (n && item) item.children.push(n);
++      else if (n) roots.push(n);
++      continue;
++    }
++
+     const level = Math.max(1, Number(b.level ?? 1));
+     const ordered = b.listItem === "number";
+     while (stack.length && stack[stack.length - 1].level > level) stack.pop();

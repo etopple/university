@@ -128,10 +128,18 @@ test("list structure: a list split and restarted at 1 is a difference", async ()
   const one = extract("<main><ol><li>a<img src=x></li><li>b</li><li>c</li></ol></main>", "main", "");
   const split = extract("<main><ol><li>a</li></ol><img src=x><ol><li>b</li><li>c</li></ol></main>", "main", "");
   const cont = extract("<main><ol><li>a</li></ol><img src=x><ol start=2><li>b</li><li>c</li></ol></main>", "main", "");
-  assert.equal(one.lists, "1:1+1 1:2 1:3");
+  assert.equal(one.lists, "1:1+1i 1:2 1:3");
   assert.notEqual(split.lists, one.lists); // restarts at 1, screenshot outside the step
   assert.notEqual(cont.lists, one.lists); // numbers right, but the screenshot left its step
   const bullets = extract("<main><ul><li>a<img src=x></li><li>b</li></ul></main>", "main", "");
   const bulletsSplit = extract("<main><ul><li>a</li></ul><img src=x><ul><li>b</li></ul></main>", "main", "");
   assert.notEqual(bulletsSplit.lists, bullets.lists);
+});
+
+test("list structure: explicit numbering and image/code ownership", async () => {
+  const { extract } = await import("../parity.mjs");
+  const ex = (h) => extract(`<main>${h}</main>`, "main", "").lists;
+  assert.equal(ex('<ol><li>a</li><li value="5">b</li><li>c</li></ol>'), "1:1 1:5 1:6");
+  assert.equal(ex("<ol reversed><li>a</li><li>b</li></ol>"), "1:2 1:1");
+  assert.notEqual(ex("<ol><li>a<img src=x></li><li>b<pre>c</pre></li></ol>"), ex("<ol><li>a<pre>c</pre></li><li>b<img src=x></li></ol>"));
 });
