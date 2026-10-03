@@ -1,9 +1,13 @@
-# Editor E2E + visual diff against the EmDash preview. Manual only: it uses no
-# CI minutes unless someone runs it. Secrets live only in GitHub, so this is the
-# one place the test can read them.
+# Editor E2E + visual diff against the EmDash preview. Manual, plus a push to the
+# QA lane branch that touches the tests (workflow_dispatch only works once the file
+# is on the default branch; the push trigger is inert after merge). Secrets live
+# only in GitHub, so this is the one place the test can read them.
 name: editor-e2e
 
 on:
+  push:
+    branches: [emdash/qa-docs]
+    paths: [tests/e2e/**, .github/workflows/editor-e2e.yml]
   workflow_dispatch:
     inputs:
       base_url:
@@ -36,14 +40,14 @@ jobs:
       - name: Editor E2E
         run: npm run test:editor
         env:
-          E2E_BASE_URL: ${{ inputs.base_url }}
+          E2E_BASE_URL: ${{ inputs.base_url || 'https://university-emdash-preview.williampote.workers.dev' }}
           E2E_AUTH: token
           EMDASH_TOKEN: ${{ secrets.UNIVERSITY_E2E_EMDASH_TOKEN }}
           E2E_CF_ACCESS_CLIENT_ID: ${{ secrets.UNIVERSITY_E2E_ACCESS_CLIENT_ID }}
           E2E_CF_ACCESS_CLIENT_SECRET: ${{ secrets.UNIVERSITY_E2E_ACCESS_CLIENT_SECRET }}
       - name: Visual diff (live vs candidate)
-        if: ${{ always() && inputs.visual }}
-        run: node visual-diff.mjs --candidate "${{ inputs.base_url }}"
+        if: ${{ always() && (github.event_name == 'push' || inputs.visual) }}
+        run: node visual-diff.mjs --candidate "${{ inputs.base_url || 'https://university-emdash-preview.williampote.workers.dev' }}"
         env:
           E2E_CF_ACCESS_CLIENT_ID: ${{ secrets.UNIVERSITY_E2E_ACCESS_CLIENT_ID }}
           E2E_CF_ACCESS_CLIENT_SECRET: ${{ secrets.UNIVERSITY_E2E_ACCESS_CLIENT_SECRET }}
