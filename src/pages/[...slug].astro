@@ -26,7 +26,7 @@ if (error) {
 
 // Pages live at trailing-slash URLs, as on the old site. Relative links in the
 // migrated content ("vision.md") resolve against that URL.
-if (entry && !Astro.url.pathname.endsWith("/")) return Astro.redirect(Astro.url.pathname + "/" + Astro.url.search, 308);
+if (entry && !Astro.url.pathname.endsWith("/")) return Astro.redirect(`/${slug === "index" ? "" : slug + "/"}${Astro.url.search}`, 308);
 
 const sidebar = menuToSidebar(menu?.items ?? []);
 const data = entry?.data as Doc | undefined;

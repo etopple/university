@@ -12,7 +12,8 @@ export const onRequest = defineMiddleware((ctx, next) => {
   if ((method !== "GET" && method !== "HEAD") || pathname.startsWith("/_emdash") || pathname.startsWith("/_astro") || pathname.startsWith("/_image"))
     return next();
 
-  let target = pathname;
+  // Collapse leading slashes first: a redirect to "//host/" would leave the site.
+  let target = pathname.replace(/^\/{2,}/, "/");
   if (/%2f/i.test(target)) {
     target = target.replace(/%2f/gi, "/");
     if (!target.endsWith("/") && !target.slice(target.lastIndexOf("/") + 1).includes(".")) target += "/";
