@@ -98,6 +98,54 @@ The adapter adds `IMAGES` and `ASSETS` itself.
 
 Node: EmDash 1.1's registry-verification package wants Node `^22.22.2 || ^24.15 || >=26`; 22.22.0 warns but works.
 
+## Cutover runbook (infra side; the lead runs the cutover)
+
+Everything runs from the repo root on the branch being shipped, after `npm ci`, logged in with `npx wrangler login`.
+`ACC=44c7bfb7295ae9cd6050e09af901a4de`. Expect 1 to 2 minutes when `university.etop.tech` is not served (step 5 to step 6).
+
+**Required before editors upload images:** an Access **Bypass (Everyone)** app for `/_emdash/api/media/file/*` on
+`university.etop.tech`, `university-emdash.williampote.workers.dev` and the preview host. EmDash serves uploaded media
+from that path and treats it as public. Without the bypass, new images are broken for readers. **Status: waiting on BJ.**
+Verify: anonymous `GET /_emdash/api/media/file/does-not-exist` gives EmDash's 404 (not 302), and `/_emdash/admin` still gives 302.
+
+1. **Load prod D1, then deploy the prod Worker (still on workers.dev only).** No request has hit prod yet, so the
+   content goes in first:
+   ```bash
+   bash scripts/infra/deploy.sh production --load-content   # type 'production'; ends in VERIFY OK
+   ```
+2. **Prod secrets** (the prod Access AUD is `6bf410d5…027d`, from the app `University EmDash admin (staff)`):
+   ```bash
+   npx wrangler secret put CF_ACCESS_AUDIENCE --config wrangler.jsonc       # paste the prod AUD
+   npx emdash secrets generate                                              # copy the emdash_enc_v1_… line
+   npx wrangler secret put EMDASH_ENCRYPTION_KEY --config wrangler.jsonc    # paste it; NOT the preview key
+   ```
+3. **First admin:** a named eTop person (BJ) opens `https://university-emdash.williampote.workers.dev/_emdash/admin`
+   through Entra and picks "Empty site" in the wizard, so the loaded content stays. They become Admin; others are Editors (40).
+4. **Parity gate against the prod Worker:** `node scripts/emdash/parity.mjs --candidate https://university-emdash.williampote.workers.dev` exits 0.
+5. **Take the hostnames off the Pages project** (the old site stops serving here):
+   ```bash
+   # Cloudflare dashboard: Workers & Pages > etop-university > Custom domains > remove university.etop.tech and www.university.etop.tech
+   # DNS > etop.tech: delete the CNAMEs university and www.university (both point at etop-university.pages.dev)
+   ```
+6. **Attach them to the Worker.** Add to the TOP level of `wrangler.jsonc` (not `env.preview`), commit, and deploy:
+   ```jsonc
+   "routes": [
+     { "pattern": "university.etop.tech", "custom_domain": true },
+     { "pattern": "www.university.etop.tech", "custom_domain": true }
+   ],
+   ```
+   ```bash
+   npm run build && npx wrangler deploy     # wrangler creates the DNS records + certs; it refuses if a CNAME still exists
+   ```
+   `www` is served by the same Worker. Optionally add a Single Redirect `www.university.etop.tech/*` to `https://university.etop.tech/${1}`.
+7. **Verify on the real domain:** `/` 200, `/about-us/values` 308 then 200, `/api/search?q=vpn` 200, `/_emdash/admin` 302 to
+   `etoptech.cloudflareaccess.com`, then the parity gate with `--candidate https://university.etop.tech`.
+8. **Leave the Pages project `etop-university` in place for a week** as the rollback, then delete it.
+
+**Rollback** (any step after 5): remove `routes` from `wrangler.jsonc` and deploy (or delete the Worker's custom domains
+in the dashboard), then re-add `university.etop.tech` and `www.university.etop.tech` under the Pages project's Custom
+domains, which recreates the CNAMEs. The prod D1 and Worker can stay; nothing on the Pages side was changed.
+
 ## Health check
 
 - `GET <url>/` returns 200 (public site, no login).
