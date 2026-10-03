@@ -6,7 +6,8 @@ export default defineConfig({
   timeout: 180_000,
   retries: 0, // a flaky editor test should be seen, not hidden
   workers: 1, // the editor test edits one shared page
-  reporter: [["list"], ["html", { outputFolder: "out/report", open: "never" }]],
+  // No HTML report in CI: it can log request headers (tokens) on a failed API call.
+  reporter: process.env.CI ? [["list"]] : [["list"], ["html", { outputFolder: "out/report", open: "never" }]],
   outputDir: "out/results",
   use: {
     ...devices["Desktop Chrome"],

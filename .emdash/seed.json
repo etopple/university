@@ -2156,25 +2156,67 @@
               }
             },
             {
+              "_type": "block",
+              "_key": "k000q",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k000l",
+                  "text": "The very first time, a ",
+                  "marks": []
+                },
+                {
+                  "_type": "span",
+                  "_key": "k000m",
+                  "text": "Welcome",
+                  "marks": [
+                    "strong"
+                  ]
+                },
+                {
+                  "_type": "span",
+                  "_key": "k000n",
+                  "text": " box appears. Click ",
+                  "marks": []
+                },
+                {
+                  "_type": "span",
+                  "_key": "k000o",
+                  "text": "Get Started",
+                  "marks": [
+                    "strong"
+                  ]
+                },
+                {
+                  "_type": "span",
+                  "_key": "k000p",
+                  "text": " to close it.",
+                  "marks": []
+                }
+              ]
+            },
+            {
               "_type": "aside",
-              "_key": "k000l",
+              "_key": "k000r",
               "variant": "tip",
               "content": [
                 {
                   "_type": "block",
-                  "_key": "k000p",
+                  "_key": "k000v",
                   "style": "normal",
                   "markDefs": [],
                   "children": [
                     {
                       "_type": "span",
-                      "_key": "k000m",
+                      "_key": "k000s",
                       "text": "Already looking at the page you want to change? Scroll to the bottom of it and click ",
                       "marks": []
                     },
                     {
                       "_type": "span",
-                      "_key": "k000n",
+                      "_key": "k000t",
                       "text": "Edit page",
                       "marks": [
                         "strong"
@@ -2182,7 +2224,7 @@
                     },
                     {
                       "_type": "span",
-                      "_key": "k000o",
+                      "_key": "k000u",
                       "text": ". You’ll sign in first (step 1), then land straight on step 3.",
                       "marks": []
                     }
@@ -2192,13 +2234,13 @@
             },
             {
               "_type": "block",
-              "_key": "k000r",
+              "_key": "k000x",
               "style": "h2",
               "markDefs": [],
               "children": [
                 {
                   "_type": "span",
-                  "_key": "k000q",
+                  "_key": "k000w",
                   "text": "2. Find the page",
                   "marks": []
                 }
@@ -2206,19 +2248,19 @@
             },
             {
               "_type": "block",
-              "_key": "k000v",
+              "_key": "k0011",
               "style": "normal",
               "markDefs": [],
               "children": [
                 {
                   "_type": "span",
-                  "_key": "k000s",
+                  "_key": "k000y",
                   "text": "Click ",
                   "marks": []
                 },
                 {
                   "_type": "span",
-                  "_key": "k000t",
+                  "_key": "k000z",
                   "text": "Docs",
                   "marks": [
                     "strong"
@@ -2226,7 +2268,7 @@
                 },
                 {
                   "_type": "span",
-                  "_key": "k000u",
+                  "_key": "k0010",
                   "text": " in the menu on the left.",
                   "marks": []
                 }
@@ -2236,19 +2278,19 @@
             },
             {
               "_type": "block",
-              "_key": "k000y",
+              "_key": "k0014",
               "style": "normal",
               "markDefs": [],
               "children": [
                 {
                   "_type": "span",
-                  "_key": "k000w",
+                  "_key": "k0012",
                   "text": "Type a word from the page’s title into ",
                   "marks": []
                 },
                 {
                   "_type": "span",
-                  "_key": "k000x",
+                  "_key": "k0013",
                   "text": "Search docs…",
                   "marks": [
                     "strong"
@@ -2260,13 +2302,13 @@
             },
             {
               "_type": "block",
-              "_key": "k0010",
+              "_key": "k0016",
               "style": "normal",
               "markDefs": [],
               "children": [
                 {
                   "_type": "span",
-                  "_key": "k000z",
+                  "_key": "k0015",
                   "text": "Click the page’s title.",
                   "marks": []
                 }
@@ -2276,7 +2318,7 @@
             },
             {
               "_type": "image",
-              "_key": "k0011",
+              "_key": "k0017",
               "alt": "The Docs list, with the search box and the page title highlighted",
               "asset": {
                 "url": "/images/editing-university/02-find-the-page.png"
@@ -2284,55 +2326,17 @@
             },
             {
               "_type": "block",
-              "_key": "k0013",
+              "_key": "k0019",
               "style": "h2",
               "markDefs": [],
               "children": [
                 {
                   "_type": "span",
-                  "_key": "k0012",
+                  "_key": "k0018",
                   "text": "3. Make your change",
                   "marks": []
                 }
               ]
-            },
-            {
-              "_type": "block",
-              "_key": "k0015",
-              "style": "normal",
-              "markDefs": [],
-              "children": [
-                {
-                  "_type": "span",
-                  "_key": "k0014",
-                  "text": "The editor shows the page in two main boxes:",
-                  "marks": []
-                }
-              ]
-            },
-            {
-              "_type": "block",
-              "_key": "k0018",
-              "style": "normal",
-              "markDefs": [],
-              "children": [
-                {
-                  "_type": "span",
-                  "_key": "k0016",
-                  "text": "Title",
-                  "marks": [
-                    "strong"
-                  ]
-                },
-                {
-                  "_type": "span",
-                  "_key": "k0017",
-                  "text": " is the big heading at the top of the page.",
-                  "marks": []
-                }
-              ],
-              "listItem": "bullet",
-              "level": 1
             },
             {
               "_type": "block",
@@ -2342,29 +2346,11 @@
               "children": [
                 {
                   "_type": "span",
-                  "_key": "k0019",
-                  "text": "Body",
-                  "marks": [
-                    "strong"
-                  ]
-                },
-                {
-                  "_type": "span",
                   "_key": "k001a",
-                  "text": " is everything else on the page. Click where you want to type, just like in Word. The buttons above it make text bold, add lists and headings, and add links.",
+                  "text": "The editor shows the page in two main boxes:",
                   "marks": []
                 }
-              ],
-              "listItem": "bullet",
-              "level": 1
-            },
-            {
-              "_type": "image",
-              "_key": "k001c",
-              "alt": "The editor, with the Title and Body boxes highlighted",
-              "asset": {
-                "url": "/images/editing-university/03-the-editor.png"
-              }
+              ]
             },
             {
               "_type": "block",
@@ -2374,7 +2360,87 @@
               "children": [
                 {
                   "_type": "span",
+                  "_key": "k001c",
+                  "text": "Title",
+                  "marks": [
+                    "strong"
+                  ]
+                },
+                {
+                  "_type": "span",
                   "_key": "k001d",
+                  "text": " is the big heading at the top of the page.",
+                  "marks": []
+                }
+              ],
+              "listItem": "bullet",
+              "level": 1
+            },
+            {
+              "_type": "block",
+              "_key": "k001h",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k001f",
+                  "text": "Description",
+                  "marks": [
+                    "strong"
+                  ]
+                },
+                {
+                  "_type": "span",
+                  "_key": "k001g",
+                  "text": " is the short summary that shows up in search results. You can usually leave it alone.",
+                  "marks": []
+                }
+              ],
+              "listItem": "bullet",
+              "level": 1
+            },
+            {
+              "_type": "block",
+              "_key": "k001k",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k001i",
+                  "text": "Body",
+                  "marks": [
+                    "strong"
+                  ]
+                },
+                {
+                  "_type": "span",
+                  "_key": "k001j",
+                  "text": " is everything else on the page. Click where you want to type, just like in Word. The buttons above it make text bold, add lists and headings, and add links.",
+                  "marks": []
+                }
+              ],
+              "listItem": "bullet",
+              "level": 1
+            },
+            {
+              "_type": "image",
+              "_key": "k001l",
+              "alt": "The editor, with the Title and Body boxes highlighted",
+              "asset": {
+                "url": "/images/editing-university/03-the-editor.png"
+              }
+            },
+            {
+              "_type": "block",
+              "_key": "k001n",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k001m",
                   "text": "Here, one sentence was added to the end of the first paragraph:",
                   "marks": []
                 }
@@ -2382,7 +2448,7 @@
             },
             {
               "_type": "image",
-              "_key": "k001f",
+              "_key": "k001o",
               "alt": "The first paragraph in the Body box, with a new sentence at the end",
               "asset": {
                 "url": "/images/editing-university/04-make-your-change.png"
@@ -2390,13 +2456,13 @@
             },
             {
               "_type": "block",
-              "_key": "k001h",
+              "_key": "k001q",
               "style": "h2",
               "markDefs": [],
               "children": [
                 {
                   "_type": "span",
-                  "_key": "k001g",
+                  "_key": "k001p",
                   "text": "4. Save",
                   "marks": []
                 }
@@ -2404,19 +2470,19 @@
             },
             {
               "_type": "block",
-              "_key": "k001l",
+              "_key": "k001u",
               "style": "normal",
               "markDefs": [],
               "children": [
                 {
                   "_type": "span",
-                  "_key": "k001i",
+                  "_key": "k001r",
                   "text": "Click ",
                   "marks": []
                 },
                 {
                   "_type": "span",
-                  "_key": "k001j",
+                  "_key": "k001s",
                   "text": "Save",
                   "marks": [
                     "strong"
@@ -2424,7 +2490,7 @@
                 },
                 {
                   "_type": "span",
-                  "_key": "k001k",
+                  "_key": "k001t",
                   "text": " at the top right.",
                   "marks": []
                 }
@@ -2432,91 +2498,11 @@
             },
             {
               "_type": "image",
-              "_key": "k001m",
+              "_key": "k001v",
               "alt": "The Save button at the top right of the editor",
               "asset": {
                 "url": "/images/editing-university/05-save.png"
               }
-            },
-            {
-              "_type": "block",
-              "_key": "k001s",
-              "style": "normal",
-              "markDefs": [],
-              "children": [
-                {
-                  "_type": "span",
-                  "_key": "k001n",
-                  "text": "Saving keeps your change as a ",
-                  "marks": []
-                },
-                {
-                  "_type": "span",
-                  "_key": "k001o",
-                  "text": "draft",
-                  "marks": [
-                    "strong"
-                  ]
-                },
-                {
-                  "_type": "span",
-                  "_key": "k001p",
-                  "text": ". The panel on the right now says ",
-                  "marks": []
-                },
-                {
-                  "_type": "span",
-                  "_key": "k001q",
-                  "text": "Draft changes",
-                  "marks": [
-                    "strong"
-                  ]
-                },
-                {
-                  "_type": "span",
-                  "_key": "k001r",
-                  "text": ", and visitors still see the old version.",
-                  "marks": []
-                }
-              ]
-            },
-            {
-              "_type": "image",
-              "_key": "k001t",
-              "alt": "After saving: the panel shows \"Draft changes\" and a \"Publish changes\" button",
-              "asset": {
-                "url": "/images/editing-university/06-after-save.png"
-              }
-            },
-            {
-              "_type": "block",
-              "_key": "k001x",
-              "style": "normal",
-              "markDefs": [],
-              "children": [
-                {
-                  "_type": "span",
-                  "_key": "k001u",
-                  "text": "To see how the page will look, click ",
-                  "marks": []
-                },
-                {
-                  "_type": "span",
-                  "_key": "k001v",
-                  "text": "Preview draft",
-                  "marks": [
-                    "strong"
-                  ]
-                },
-                {
-                  "_type": "span",
-                  "_key": "k001w",
-                  "text": ".",
-                  "marks": []
-                }
-              ],
-              "listItem": "bullet",
-              "level": 1
             },
             {
               "_type": "block",
@@ -2526,14 +2512,28 @@
               "children": [
                 {
                   "_type": "span",
+                  "_key": "k001w",
+                  "text": "Saving keeps your change as a ",
+                  "marks": []
+                },
+                {
+                  "_type": "span",
+                  "_key": "k001x",
+                  "text": "draft",
+                  "marks": [
+                    "strong"
+                  ]
+                },
+                {
+                  "_type": "span",
                   "_key": "k001y",
-                  "text": "To throw your change away, click ",
+                  "text": ". The panel on the right now says ",
                   "marks": []
                 },
                 {
                   "_type": "span",
                   "_key": "k001z",
-                  "text": "Discard changes",
+                  "text": "Draft changes",
                   "marks": [
                     "strong"
                   ]
@@ -2541,6 +2541,42 @@
                 {
                   "_type": "span",
                   "_key": "k0020",
+                  "text": ", and visitors still see the old version.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "image",
+              "_key": "k0022",
+              "alt": "After saving: the panel shows \"Draft changes\" and a \"Publish changes\" button",
+              "asset": {
+                "url": "/images/editing-university/06-after-save.png"
+              }
+            },
+            {
+              "_type": "block",
+              "_key": "k0026",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k0023",
+                  "text": "To see how the page will look, click ",
+                  "marks": []
+                },
+                {
+                  "_type": "span",
+                  "_key": "k0024",
+                  "text": "Preview draft",
+                  "marks": [
+                    "strong"
+                  ]
+                },
+                {
+                  "_type": "span",
+                  "_key": "k0025",
                   "text": ".",
                   "marks": []
                 }
@@ -2550,13 +2586,43 @@
             },
             {
               "_type": "block",
-              "_key": "k0023",
+              "_key": "k002a",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k0027",
+                  "text": "To throw your change away, click ",
+                  "marks": []
+                },
+                {
+                  "_type": "span",
+                  "_key": "k0028",
+                  "text": "Discard changes",
+                  "marks": [
+                    "strong"
+                  ]
+                },
+                {
+                  "_type": "span",
+                  "_key": "k0029",
+                  "text": ".",
+                  "marks": []
+                }
+              ],
+              "listItem": "bullet",
+              "level": 1
+            },
+            {
+              "_type": "block",
+              "_key": "k002c",
               "style": "h2",
               "markDefs": [],
               "children": [
                 {
                   "_type": "span",
-                  "_key": "k0022",
+                  "_key": "k002b",
                   "text": "5. Publish",
                   "marks": []
                 }
@@ -2564,19 +2630,19 @@
             },
             {
               "_type": "block",
-              "_key": "k0027",
+              "_key": "k002g",
               "style": "normal",
               "markDefs": [],
               "children": [
                 {
                   "_type": "span",
-                  "_key": "k0024",
+                  "_key": "k002d",
                   "text": "Click ",
                   "marks": []
                 },
                 {
                   "_type": "span",
-                  "_key": "k0025",
+                  "_key": "k002e",
                   "text": "Publish changes",
                   "marks": [
                     "strong"
@@ -2584,7 +2650,7 @@
                 },
                 {
                   "_type": "span",
-                  "_key": "k0026",
+                  "_key": "k002f",
                   "text": ".",
                   "marks": []
                 }
@@ -2594,7 +2660,7 @@
             },
             {
               "_type": "image",
-              "_key": "k0028",
+              "_key": "k002h",
               "alt": "The Publish changes button",
               "asset": {
                 "url": "/images/editing-university/07-publish.png"
@@ -2605,19 +2671,19 @@
             },
             {
               "_type": "block",
-              "_key": "k002c",
+              "_key": "k002l",
               "style": "normal",
               "markDefs": [],
               "children": [
                 {
                   "_type": "span",
-                  "_key": "k0029",
+                  "_key": "k002i",
                   "text": "A box asks you to confirm. Click ",
                   "marks": []
                 },
                 {
                   "_type": "span",
-                  "_key": "k002a",
+                  "_key": "k002j",
                   "text": "Publish changes",
                   "marks": [
                     "strong"
@@ -2625,7 +2691,7 @@
                 },
                 {
                   "_type": "span",
-                  "_key": "k002b",
+                  "_key": "k002k",
                   "text": " again.",
                   "marks": []
                 }
@@ -2635,7 +2701,7 @@
             },
             {
               "_type": "image",
-              "_key": "k002d",
+              "_key": "k002m",
               "alt": "The confirmation box, with the Publish changes button highlighted",
               "asset": {
                 "url": "/images/editing-university/08-confirm.png"
@@ -2646,19 +2712,19 @@
             },
             {
               "_type": "block",
-              "_key": "k002h",
+              "_key": "k002q",
               "style": "normal",
               "markDefs": [],
               "children": [
                 {
                   "_type": "span",
-                  "_key": "k002e",
+                  "_key": "k002n",
                   "text": "The panel now says ",
                   "marks": []
                 },
                 {
                   "_type": "span",
-                  "_key": "k002f",
+                  "_key": "k002o",
                   "text": "Live version",
                   "marks": [
                     "strong"
@@ -2666,7 +2732,7 @@
                 },
                 {
                   "_type": "span",
-                  "_key": "k002g",
+                  "_key": "k002p",
                   "text": ", and visitors see your change.",
                   "marks": []
                 }
@@ -2674,78 +2740,14 @@
             },
             {
               "_type": "block",
-              "_key": "k002j",
-              "style": "h2",
-              "markDefs": [],
-              "children": [
-                {
-                  "_type": "span",
-                  "_key": "k002i",
-                  "text": "6. Check the live page",
-                  "marks": []
-                }
-              ]
-            },
-            {
-              "_type": "block",
-              "_key": "k002n",
-              "style": "normal",
-              "markDefs": [],
-              "children": [
-                {
-                  "_type": "span",
-                  "_key": "k002k",
-                  "text": "Click ",
-                  "marks": []
-                },
-                {
-                  "_type": "span",
-                  "_key": "k002l",
-                  "text": "Live View",
-                  "marks": [
-                    "strong"
-                  ]
-                },
-                {
-                  "_type": "span",
-                  "_key": "k002m",
-                  "text": " at the top right to open the page on the site and check your change.",
-                  "marks": []
-                }
-              ]
-            },
-            {
-              "_type": "image",
-              "_key": "k002o",
-              "alt": "The page on the University site, with the new sentence at the end of the first paragraph",
-              "asset": {
-                "url": "/images/editing-university/11-live.png"
-              }
-            },
-            {
-              "_type": "block",
-              "_key": "k002q",
-              "style": "h2",
-              "markDefs": [],
-              "children": [
-                {
-                  "_type": "span",
-                  "_key": "k002p",
-                  "text": "Undo a mistake",
-                  "marks": []
-                }
-              ]
-            },
-            {
-              "_type": "block",
               "_key": "k002s",
-              "style": "normal",
+              "style": "h2",
               "markDefs": [],
               "children": [
                 {
                   "_type": "span",
                   "_key": "k002r",
-                  "text": "Every time you save, the editor keeps a copy. To go back to an earlier version:",
+                  "text": "6. Check the live page",
                   "marks": []
                 }
               ]
@@ -2759,13 +2761,13 @@
                 {
                   "_type": "span",
                   "_key": "k002t",
-                  "text": "In the editor, scroll down the right-hand column and click ",
+                  "text": "Click ",
                   "marks": []
                 },
                 {
                   "_type": "span",
                   "_key": "k002u",
-                  "text": "Revisions",
+                  "text": "Live View",
                   "marks": [
                     "strong"
                   ]
@@ -2773,6 +2775,70 @@
                 {
                   "_type": "span",
                   "_key": "k002v",
+                  "text": " at the top right to open the page on the site and check your change.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "image",
+              "_key": "k002x",
+              "alt": "The page on the University site, with the new sentence at the end of the first paragraph",
+              "asset": {
+                "url": "/images/editing-university/11-live.png"
+              }
+            },
+            {
+              "_type": "block",
+              "_key": "k002z",
+              "style": "h2",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k002y",
+                  "text": "Undo a mistake",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "k0031",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k0030",
+                  "text": "Every time you save, the editor keeps a copy. To go back to an earlier version:",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "k0035",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k0032",
+                  "text": "In the editor, scroll down the right-hand column and click ",
+                  "marks": []
+                },
+                {
+                  "_type": "span",
+                  "_key": "k0033",
+                  "text": "Revisions",
+                  "marks": [
+                    "strong"
+                  ]
+                },
+                {
+                  "_type": "span",
+                  "_key": "k0034",
                   "text": ".",
                   "marks": []
                 }
@@ -2782,14 +2848,14 @@
             },
             {
               "_type": "block",
-              "_key": "k002y",
+              "_key": "k0037",
               "style": "normal",
               "markDefs": [],
               "children": [
                 {
                   "_type": "span",
-                  "_key": "k002x",
-                  "text": "Each version shows the date and time it was saved. Find the one from before your change and click the round arrow next to it.",
+                  "_key": "k0036",
+                  "text": "Each version shows the date and time it was saved. Find the one from just before your change and click the round arrow next to it. Not sure which one? Ask BJ before you restore.",
                   "marks": []
                 }
               ],
@@ -2798,7 +2864,7 @@
             },
             {
               "_type": "image",
-              "_key": "k002z",
+              "_key": "k0038",
               "alt": "The Revisions list, with the round \"restore\" arrow highlighted",
               "asset": {
                 "url": "/images/editing-university/10-revisions.png"
@@ -2809,19 +2875,19 @@
             },
             {
               "_type": "block",
-              "_key": "k0033",
+              "_key": "k003c",
               "style": "normal",
               "markDefs": [],
               "children": [
                 {
                   "_type": "span",
-                  "_key": "k0030",
+                  "_key": "k0039",
                   "text": "Click ",
                   "marks": []
                 },
                 {
                   "_type": "span",
-                  "_key": "k0031",
+                  "_key": "k003a",
                   "text": "Restore",
                   "marks": [
                     "strong"
@@ -2829,7 +2895,7 @@
                 },
                 {
                   "_type": "span",
-                  "_key": "k0032",
+                  "_key": "k003b",
                   "text": ".",
                   "marks": []
                 }
@@ -2839,7 +2905,7 @@
             },
             {
               "_type": "image",
-              "_key": "k0034",
+              "_key": "k003d",
               "alt": "The box that asks you to confirm the restore",
               "asset": {
                 "url": "/images/editing-university/12-restore-confirm.png"
@@ -2850,19 +2916,33 @@
             },
             {
               "_type": "block",
-              "_key": "k0038",
+              "_key": "k003j",
               "style": "normal",
               "markDefs": [],
               "children": [
                 {
                   "_type": "span",
-                  "_key": "k0035",
+                  "_key": "k003e",
                   "text": "The old version comes back as a draft. Click ",
                   "marks": []
                 },
                 {
                   "_type": "span",
-                  "_key": "k0036",
+                  "_key": "k003f",
+                  "text": "Preview draft",
+                  "marks": [
+                    "strong"
+                  ]
+                },
+                {
+                  "_type": "span",
+                  "_key": "k003g",
+                  "text": " to check it, then ",
+                  "marks": []
+                },
+                {
+                  "_type": "span",
+                  "_key": "k003h",
                   "text": "Publish changes",
                   "marks": [
                     "strong"
@@ -2870,7 +2950,7 @@
                 },
                 {
                   "_type": "span",
-                  "_key": "k0037",
+                  "_key": "k003i",
                   "text": " to put it on the live site.",
                   "marks": []
                 }
@@ -2880,13 +2960,151 @@
             },
             {
               "_type": "block",
-              "_key": "k003a",
+              "_key": "k003l",
               "style": "h2",
               "markDefs": [],
               "children": [
                 {
                   "_type": "span",
-                  "_key": "k0039",
+                  "_key": "k003k",
+                  "text": "Leave these alone",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "k003n",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k003m",
+                  "text": "These change more than the page’s words. Ask BJ before using them:",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "k003q",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k003o",
+                  "text": "Unpublish Doc",
+                  "marks": [
+                    "strong"
+                  ]
+                },
+                {
+                  "_type": "span",
+                  "_key": "k003p",
+                  "text": " (just under Save) takes the whole page off the website.",
+                  "marks": []
+                }
+              ],
+              "listItem": "bullet",
+              "level": 1
+            },
+            {
+              "_type": "block",
+              "_key": "k003v",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k003r",
+                  "text": "Slug",
+                  "marks": [
+                    "strong"
+                  ]
+                },
+                {
+                  "_type": "span",
+                  "_key": "k003s",
+                  "text": " (under ",
+                  "marks": []
+                },
+                {
+                  "_type": "span",
+                  "_key": "k003t",
+                  "text": "URL & language",
+                  "marks": [
+                    "em"
+                  ]
+                },
+                {
+                  "_type": "span",
+                  "_key": "k003u",
+                  "text": ") is the page’s web address. Changing it breaks every link to the page.",
+                  "marks": []
+                }
+              ],
+              "listItem": "bullet",
+              "level": 1
+            },
+            {
+              "_type": "block",
+              "_key": "k003y",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k003w",
+                  "text": "Move to Trash",
+                  "marks": [
+                    "strong"
+                  ]
+                },
+                {
+                  "_type": "span",
+                  "_key": "k003x",
+                  "text": " and the red bin icons in the Docs list delete the page.",
+                  "marks": []
+                }
+              ],
+              "listItem": "bullet",
+              "level": 1
+            },
+            {
+              "_type": "block",
+              "_key": "k0041",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k003z",
+                  "text": "Pictures:",
+                  "marks": [
+                    "strong"
+                  ]
+                },
+                {
+                  "_type": "span",
+                  "_key": "k0040",
+                  "text": " adding a new picture isn’t switched on yet. If a page needs one, ask BJ.",
+                  "marks": []
+                }
+              ],
+              "listItem": "bullet",
+              "level": 1
+            },
+            {
+              "_type": "block",
+              "_key": "k0043",
+              "style": "h2",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k0042",
                   "text": "Good to know",
                   "marks": []
                 }
@@ -2894,13 +3112,13 @@
             },
             {
               "_type": "block",
-              "_key": "k003d",
+              "_key": "k0046",
               "style": "normal",
               "markDefs": [],
               "children": [
                 {
                   "_type": "span",
-                  "_key": "k003b",
+                  "_key": "k0044",
                   "text": "A brand-new page",
                   "marks": [
                     "strong"
@@ -2908,7 +3126,7 @@
                 },
                 {
                   "_type": "span",
-                  "_key": "k003c",
+                  "_key": "k0045",
                   "text": " also needs a spot in the menu on the left. Ask BJ to add one for you.",
                   "marks": []
                 }
@@ -2918,13 +3136,13 @@
             },
             {
               "_type": "block",
-              "_key": "k003g",
+              "_key": "k0049",
               "style": "normal",
               "markDefs": [],
               "children": [
                 {
                   "_type": "span",
-                  "_key": "k003e",
+                  "_key": "k0047",
                   "text": "Stuck, or not sure?",
                   "marks": [
                     "strong"
@@ -2932,7 +3150,7 @@
                 },
                 {
                   "_type": "span",
-                  "_key": "k003f",
+                  "_key": "k0048",
                   "text": " Save your change without publishing and ask BJ to look. Nobody sees a draft until it’s published.",
                   "marks": []
                 }
@@ -2943,7 +3161,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/etop-process/how-to-edit-university-pages.md",
-          "migration_hash": "sha256:d123cacede0c869905931ec1c19b0bbb"
+          "migration_hash": "sha256:a750cb07d4225a551d71e49c8e4a1e65"
         }
       },
       {

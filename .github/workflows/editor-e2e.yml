@@ -56,6 +56,8 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: e2e-out
-          path: tests/e2e/out/
+          name: visual-diff
+          # Public repo: upload only the visual diff (public pages). Playwright's own
+          # report can log request headers (the tokens) on a failed API call.
+          path: tests/e2e/out/visual/
           retention-days: 7

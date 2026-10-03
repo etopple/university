@@ -19,6 +19,8 @@ Go to **https://university.etop.tech/_emdash/admin** and sign in with your eTop 
 
 ![The Microsoft sign-in screen you see when you open the editor](/images/editing-university/01-sign-in.png)
 
+The very first time, a **Welcome** box appears. Click **Get Started** to close it.
+
 :::tip
 Already looking at the page you want to change? Scroll to the bottom of it and click **Edit page**. You'll sign in first (step 1), then land straight on step 3.
 :::
@@ -36,6 +38,7 @@ Already looking at the page you want to change? Scroll to the bottom of it and c
 The editor shows the page in two main boxes:
 
 - **Title** is the big heading at the top of the page.
+- **Description** is the short summary that shows up in search results. You can usually leave it alone.
 - **Body** is everything else on the page. Click where you want to type, just like in Word. The buttons above it make text bold, add lists and headings, and add links.
 
 ![The editor, with the Title and Body boxes highlighted](/images/editing-university/03-the-editor.png)
@@ -80,7 +83,7 @@ Click **Live View** at the top right to open the page on the site and check your
 Every time you save, the editor keeps a copy. To go back to an earlier version:
 
 1. In the editor, scroll down the right-hand column and click **Revisions**.
-2. Each version shows the date and time it was saved. Find the one from before your change and click the round arrow next to it.
+2. Each version shows the date and time it was saved. Find the one from just before your change and click the round arrow next to it. Not sure which one? Ask BJ before you restore.
 
    ![The Revisions list, with the round "restore" arrow highlighted](/images/editing-university/10-revisions.png)
 
@@ -88,7 +91,16 @@ Every time you save, the editor keeps a copy. To go back to an earlier version:
 
    ![The box that asks you to confirm the restore](/images/editing-university/12-restore-confirm.png)
 
-4. The old version comes back as a draft. Click **Publish changes** to put it on the live site.
+4. The old version comes back as a draft. Click **Preview draft** to check it, then **Publish changes** to put it on the live site.
+
+## Leave these alone
+
+These change more than the page's words. Ask BJ before using them:
+
+- **Unpublish Doc** (just under Save) takes the whole page off the website.
+- **Slug** (under *URL & language*) is the page's web address. Changing it breaks every link to the page.
+- **Move to Trash** and the red bin icons in the Docs list delete the page.
+- **Pictures:** adding a new picture isn't switched on yet. If a page needs one, ask BJ.
 
 ## Good to know
 
