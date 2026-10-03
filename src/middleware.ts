@@ -12,12 +12,14 @@ export const onRequest = defineMiddleware((ctx, next) => {
   if ((method !== "GET" && method !== "HEAD") || pathname.startsWith("/_emdash") || pathname.startsWith("/_astro") || pathname.startsWith("/_image"))
     return next();
 
-  // Collapse leading slashes first: a redirect to "//host/" would leave the site.
-  let target = pathname.replace(/^\/{2,}/, "/");
+  let target = pathname;
   if (/%2f/i.test(target)) {
     target = target.replace(/%2f/gi, "/");
     if (!target.endsWith("/") && !target.slice(target.lastIndexOf("/") + 1).includes(".")) target += "/";
   }
+  // Collapse leading slashes AFTER decoding: "/%2Fevil.example/" decodes to
+  // "//evil.example/", and a Location starting "//" would leave the site.
+  target = target.replace(/^\/{2,}/, "/");
   if (target === "/index" || target === "/index/") target = "/";
   if (target !== pathname) return ctx.redirect(target + search, 308);
   return next();

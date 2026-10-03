@@ -6,6 +6,7 @@ import { getEmDashEntry, getMenu } from "emdash";
 import PtNodes from "../components/pt/PtNodes.astro";
 import { renderPlan } from "../lib/pt";
 import { menuToSidebar } from "../lib/sidebar";
+import { isTestPage } from "../lib/all-docs";
 
 export const prerender = false;
 
@@ -40,6 +41,7 @@ const frontmatter = entry
       template: (data!.template === "splash" ? "splash" : "doc") as "doc" | "splash",
       editUrl: `${Astro.url.origin}/_emdash/admin/content/docs/${encodeURIComponent(String(data!.id ?? entry.id))}`,
       lastUpdated: data!.updatedAt ? new Date(data!.updatedAt) : undefined,
+      head: isTestPage(slug) ? [{ tag: "meta" as const, attrs: { name: "robots", content: "noindex" } }] : [],
     }
   : { title: "404", template: "doc" as const, editUrl: false as const, pagefind: false };
 ---

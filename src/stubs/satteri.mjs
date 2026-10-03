@@ -1,6 +1,6 @@
 // Worker build stub for satteri (Starlight/Astro markdown engine, a native module).
 // Pages render from EmDash at request time; no markdown is compiled in the Worker.
-// Any call means a code path we did not expect, so fail loudly.
+// Any other call means a code path we did not expect, so fail loudly.
 const no = (n) => () => { throw new Error("satteri." + n + " is not available in the Worker"); };
 export class HastReader { constructor() { no("HastReader")(); } }
 export class MdastReader { constructor() { no("MdastReader")(); } }
@@ -17,7 +17,10 @@ export const defineMdastPlugin = no("defineMdastPlugin");
 export const dropHandle = no("dropHandle");
 export const evaluate = no("evaluate");
 export const getHandleSource = no("getHandleSource");
-export const htmlToHast = no("htmlToHast");
+// Starlight's markdown-icon helper calls this once at module load (to pre-parse
+// icon SVGs for markdown asides) — in `astro dev` that module is not tree-shaken.
+// A raw node is enough: no markdown is rendered in the Worker.
+export const htmlToHast = (html) => ({ type: "root", children: [{ type: "raw", value: String(html) }] });
 export const markdownToHast = no("markdownToHast");
 export const markdownToHtml = no("markdownToHtml");
 export const markdownToJs = no("markdownToJs");

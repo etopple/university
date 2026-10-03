@@ -13,4 +13,7 @@ export async function allDocSlugs(): Promise<string[]> {
   return slugs;
 }
 
+/** Pages for automated tests (the editor E2E edits "e2e-test-page"): never in the sitemap, noindex. */
+export const isTestPage = (slug: string) => slug.startsWith("e2e-");
+
 export const docPath = (slug: string) => (slug === "index" ? "/" : `/${slug}/`);

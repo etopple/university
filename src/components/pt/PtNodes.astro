@@ -1,5 +1,6 @@
 ---
 // Renders the node tree from src/lib/pt.ts with Starlight's markup.
+import { PortableText } from "emdash/ui";
 import Aside from "./Aside.astro";
 import type { Node } from "../../lib/pt";
 
@@ -35,8 +36,14 @@ const H = ["h1", "h2", "h3", "h4", "h5", "h6"] as const;
         return n.ordered ? <ol start={n.start}>{items}</ol> : <ul>{items}</ul>;
       }
       case "image": {
-        const img = <img src={n.src} alt={n.alt} title={n.title} />;
-        const linked = n.link ? <a href={n.link}>{img}</a> : img;
+        const img = <img src={n.src} alt={n.alt} title={n.title} width={n.width} height={n.height} />;
+        const linked = n.link ? (
+          <a href={n.link} target={n.linkBlank ? "_blank" : undefined} rel={n.linkBlank ? "noopener noreferrer" : undefined}>
+            {img}
+          </a>
+        ) : (
+          img
+        );
         if (n.caption)
           return (
             <figure align={n.align}>
@@ -93,6 +100,8 @@ const H = ["h1", "h2", "h3", "h4", "h5", "h6"] as const;
           </table>
         );
       }
+      case "native":
+        return <PortableText value={[n.block]} />;
       case "details":
         return (
           <details>

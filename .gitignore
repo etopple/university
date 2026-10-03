@@ -34,3 +34,4 @@ uploads/
 emdash-env.d.ts
 .wrangler-seed.sql
 .wrangler-fts.sql
+.emdash/migrations.json

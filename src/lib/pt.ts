@@ -31,11 +31,15 @@ export type Node =
   | { kind: "heading"; depth: number; id: string; html: string }
   | { kind: "quote"; children: Node[] }
   | { kind: "list"; ordered: boolean; start?: number; items: ListItem[] }
-  | { kind: "image"; src: string; alt: string; title?: string; caption?: string; align?: string; link?: string }
+  | { kind: "image"; src: string; alt: string; title?: string; caption?: string; align?: string; link?: string; linkBlank?: boolean; width?: string; height?: string }
   | { kind: "code"; code: string; lang: string }
   | { kind: "aside"; variant: string; title?: string; children: Node[] }
   | { kind: "table"; align: (string | null)[]; rows: { header: boolean; cells: Node[][] }[] }
-  | { kind: "details"; summary: string; children: Node[] };
+  | { kind: "details"; summary: string; children: Node[] }
+  // A block the EmDash editor makes that this renderer does not own (htmlBlock,
+  // gallery, iframe, embed, editor-shaped table or media image, ...): rendered
+  // by EmDash's own Portable Text components.
+  | { kind: "native"; block: PtBlock };
 
 export type ListItem = { checked?: boolean; children: Node[] };
 
@@ -60,6 +64,8 @@ const DECORATORS: Record<string, [string, string]> = {
   code: ['<code dir="auto">', "</code>"],
   "strike-through": ["<del>", "</del>"],
   underline: ["<u>", "</u>"],
+  superscript: ["<sup>", "</sup>"],
+  subscript: ["<sub>", "</sub>"],
 };
 
 /** Inline children of one PT block as an HTML string. */
@@ -134,9 +140,12 @@ function single(b: PtBlock, ctx: Ctx): Node | null {
       return { kind: "html", html: `<p>${inlineHtml(b)}</p>` };
     }
     case "image": {
-      const asset = (b.asset ?? {}) as { url?: string };
+      const asset = (b.asset ?? {}) as { url?: string; _ref?: string };
+      // Uploaded in the CMS: EmDash resolves media refs, sizes and providers.
+      if (asset._ref) return { kind: "native", block: b };
       const src = String(asset.url ?? b.src ?? "");
       if (!src) return null;
+      const link = imageLink(b.link);
       return {
         kind: "image",
         src: encodeSrc(src),
@@ -144,7 +153,10 @@ function single(b: PtBlock, ctx: Ctx): Node | null {
         title: b.title ? String(b.title) : undefined,
         caption: b.caption ? String(b.caption) : undefined,
         align: b.align ? String(b.align) : undefined,
-        link: b.link ? safeHref(String(b.link)) ?? undefined : undefined,
+        width: /^\d+(%|px)?$/.test(String(b.width ?? "")) ? String(b.width) : undefined,
+        height: /^\d+(%|px)?$/.test(String(b.height ?? "")) ? String(b.height) : undefined,
+        link: link?.href,
+        linkBlank: link?.blank,
       };
     }
     case "code":
@@ -157,6 +169,10 @@ function single(b: PtBlock, ctx: Ctx): Node | null {
         children: toNodes((b.content as PtBlock[]) ?? [], ctx),
       };
     case "table": {
+      // Migrated tables: rows[].header + cells[].content as PT blocks. Tables
+      // made in the editor use another shape (cell.isHeader, inline spans):
+      // EmDash's own Table component handles those.
+      if (!isLegacyTable(b)) return { kind: "native", block: b };
       const rows = ((b.rows as { header?: boolean; cells?: { content?: PtBlock[] }[] }[]) ?? []).map((r) => ({
         header: !!r.header,
         cells: (r.cells ?? []).map((c) => cellNodes(c.content ?? [], ctx)),
@@ -170,8 +186,27 @@ function single(b: PtBlock, ctx: Ctx): Node | null {
     case "break":
       return { kind: "html", html: "<hr>" };
     default:
-      return null;
+      return b._type && b._type !== "block" ? { kind: "native", block: b } : null;
   }
+}
+
+function imageLink(link: unknown): { href: string; blank: boolean } | undefined {
+  // Legacy seed: a string. EmDash editor: { href, blank? }.
+  const raw = typeof link === "string" ? { href: link, blank: false } : link && typeof link === "object" ? (link as { href?: unknown; blank?: unknown }) : undefined;
+  if (!raw || typeof raw.href !== "string") return undefined;
+  const href = safeHref(raw.href);
+  return href === null ? undefined : { href, blank: raw.blank === true && !href.startsWith("#") };
+}
+
+function isLegacyTable(b: PtBlock): boolean {
+  const rows = b.rows as { header?: unknown; cells?: { content?: unknown; isHeader?: unknown }[] }[] | undefined;
+  if (!Array.isArray(rows) || rows.length === 0) return false;
+  return rows.every(
+    (r) =>
+      typeof r.header === "boolean" &&
+      Array.isArray(r.cells) &&
+      r.cells.every((c) => c.isHeader === undefined && Array.isArray(c.content) && (c.content as { _type?: string }[]).every((x) => x && x._type !== "span")),
+  );
 }
 
 // Table cells hold one paragraph: render it inline, without the <p>.

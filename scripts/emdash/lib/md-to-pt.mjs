@@ -6,7 +6,7 @@
 // `html` block rather than dropped, and reported back to the caller.
 //
 // Custom block types emitted (the theme must render these):
-//   image   { alt, asset: { url }, caption?, title?, align? }
+//   image   { alt, asset: { url }, caption?, title?, align?, width?, height? }
 //   code    { language?, code }
 //   aside   { variant: note|tip|caution|danger, title?, content: PT[] }
 //   table   { align: (left|center|right|null)[], rows: [{ header, cells: [{ content: PT[] }] }] }
@@ -330,7 +330,7 @@ function inlineHtml(n, ctx, state, list, style) {
   if (/^<img\s/i.test(v)) {
     flush(state, ctx, list, style);
     const img = parseHtml(v).querySelector("img");
-    state.out.push(imageBlock(ctx, img.getAttribute("src") || "", img.getAttribute("alt") || "", {}));
+    state.out.push(imageBlock(ctx, img.getAttribute("src") || "", img.getAttribute("alt") || "", size(img)));
     return;
   }
   if ((m = v.match(INLINE_OPEN))) {
@@ -378,7 +378,7 @@ function htmlBlock(html, ctx) {
       const img = imgs[0];
       const caption = root.querySelector("figcaption")?.textContent.trim();
       const align = root.querySelector("[align]")?.getAttribute("align");
-      return [imageBlock(ctx, img.getAttribute("src") || "", img.getAttribute("alt") || "", { caption, align })];
+      return [imageBlock(ctx, img.getAttribute("src") || "", img.getAttribute("alt") || "", { caption, align, ...size(img) })];
     }
   }
   if (!html.trim()) return [];
@@ -386,12 +386,24 @@ function htmlBlock(html, ctx) {
   return [{ _type: "html", _key: key(ctx), html: html.trim() }];
 }
 
-function imageBlock(ctx, url, alt, { caption, title, align } = {}) {
+// GitBook HTML images carry width/height attributes that size them on the page.
+function size(img) {
+  const out = {};
+  for (const k of ["width", "height"]) {
+    const v = img.getAttribute(k);
+    if (v && /^\d+(%|px)?$/.test(v.trim())) out[k] = v.trim();
+  }
+  return out;
+}
+
+function imageBlock(ctx, url, alt, { caption, title, align, width, height } = {}) {
   count(ctx, "image");
   const b = { _type: "image", _key: key(ctx), alt: alt || "", asset: { url } };
   if (caption) b.caption = caption;
   if (title) b.title = title;
   if (align) b.align = align;
+  if (width) b.width = width;
+  if (height) b.height = height;
   return b;
 }
 

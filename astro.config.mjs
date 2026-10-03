@@ -25,7 +25,8 @@ export default defineConfig({
   vite: {
     // Starlight/Astro's markdown engine is a native module that cannot load in
     // a Worker. Nothing compiles markdown at request time, so the Worker
-    // bundle gets a stub (src/stubs/satteri.mjs). Build-time code is untouched.
+    // bundle gets a stub (src/stubs/satteri.mjs), in `astro dev` too (it also
+    // runs pages in workerd).
     resolve: {
       alias: { satteri: fileURLToPath(new URL("./src/stubs/satteri.mjs", import.meta.url)) },
     },

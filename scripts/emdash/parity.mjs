@@ -35,6 +35,10 @@ const SEED = resolve(HERE, "..", "..", ".emdash", "seed.json");
 
 // Differences reviewed and accepted by the lead (2026-10-02). Keep this list short.
 const ACCEPTED = {
+  "/e2e-test-page": {
+    problem: "status 404 -> 200",
+    why: "unlisted, noindex page the editor E2E edits on the preview (not in the sitemap or sidebar)",
+  },
   "/404": {
     problem: "status 200 -> 404",
     why: "Cloudflare Pages served its 404 page at /404 with status 200 (a soft 404); the Worker returns a real 404",

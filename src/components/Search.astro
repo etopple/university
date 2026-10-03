@@ -86,8 +86,13 @@ const t = Astro.locals.t;
               title.textContent = res.title;
               const snip = document.createElement("span");
               snip.className = "search-snippet";
-              // EmDash escapes the source text and only adds <mark> around matches.
-              snip.innerHTML = res.snippet;
+              // EmDash already escapes the indexed text; escape again anyway and
+              // allow back only the <mark> tags around matches.
+              snip.innerHTML = String(res.snippet ?? "")
+                .replace(/&(?!(amp|lt|gt|quot|#39);)/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/&lt;(\/?)mark&gt;/g, "<$1mark>");
               a.append(title, snip);
               li.append(a);
               list.append(li);
