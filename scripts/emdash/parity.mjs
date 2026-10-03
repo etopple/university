@@ -35,6 +35,10 @@ const SEED = resolve(HERE, "..", "..", ".emdash", "seed.json");
 
 // Differences reviewed and accepted by the lead (2026-10-02). Keep this list short.
 const ACCEPTED = {
+  "/education/etop-process/how-to-edit-university-pages": {
+    problem: "status 404 -> 200",
+    why: "new page added with the migration: how eTop staff edit University pages in the CMS",
+  },
   "/e2e-test-page": {
     problem: "status 404 -> 200",
     why: "unlisted, noindex page the editor E2E edits on the preview (not in the sitemap or sidebar)",
