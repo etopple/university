@@ -17,6 +17,11 @@ on:
 permissions:
   contents: read
 
+# The test edits one shared page: never run two at once.
+concurrency:
+  group: editor-e2e
+  cancel-in-progress: false
+
 jobs:
   e2e:
     runs-on: ubuntu-latest

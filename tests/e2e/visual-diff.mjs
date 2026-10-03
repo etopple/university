@@ -55,6 +55,9 @@ async function shoot(browser, url, theme, headers) {
   // Settle lazy images and fonts, hide things that legitimately differ between builds.
   // Bounded: a stalled image must fail the row, not hang the whole gate.
   const settled = await page.evaluate(async (ms) => {
+    // Open every collapsible section so its content is compared too (collapsed, two
+    // very different pages can look identical).
+    for (const d of document.querySelectorAll("details")) d.open = true;
     for (const img of document.images) img.loading = "eager";
     const all = Promise.all([...document.images].map((i) => (i.complete ? null : new Promise((r) => { i.onload = i.onerror = r; }))))
       .then(() => document.fonts?.ready).then(() => true);
