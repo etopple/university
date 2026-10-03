@@ -68,24 +68,35 @@ only way in, and EmDash re-validates the Access JWT on every `/_emdash` request 
 ## Deploy
 
 ```bash
-export CLOUDFLARE_API_TOKEN=...          # D1 Edit + Workers Scripts Edit
-bash scripts/infra/deploy.sh preview      # build -> emdash migrate -> wrangler deploy --env preview -> verify
-bash scripts/infra/deploy.sh production   # lead only, at cutover; asks you to type 'production'
+bash scripts/infra/deploy.sh preview --load-content   # pre-cutover: schema + migrations + all pages via wrangler d1 execute
+bash scripts/infra/deploy.sh preview                  # later deploys: emdash migrate (needs CLOUDFLARE_API_TOKEN, D1 Edit)
+bash scripts/infra/deploy.sh production               # lead only, at cutover; asks you to type 'production'
 ```
 
-**The D1 trap:** `wrangler deploy` never runs migrations. The script applies EmDash's core migrations explicitly
-(`emdash migrate --wrangler-env …`) before deploying, then `emdash migrate --check` after. EmDash would also
-auto-migrate on the first request, but the pipeline does not rely on that. For CI, run
-`emdash migrate --status` once, review the target, and pass the printed fingerprint as `EMDASH_TARGET_FINGERPRINT`.
+**The env is picked at build time.** `@astrojs/cloudflare` writes a flattened `dist/server/wrangler.json` for
+`CLOUDFLARE_ENV` and `wrangler deploy` follows it, so deploy takes no `--env` (the script sets `CLOUDFLARE_ENV` and
+checks the built Worker name). Commands that read `wrangler.jsonc` directly (`d1 execute`, `secret put`) need
+`--config wrangler.jsonc --env preview`.
+
+**The D1 trap:** `wrangler deploy` never runs migrations. The script puts the schema in place before deploying:
+- `--load-content` runs the content lane's `scripts/emdash/out/d1-load.sql` (full migrated schema, all 90
+  `_emdash_migrations` records, 118 pages, menu, FTS; idempotent). It overwrites pages with the seed, so use it pre-cutover only.
+- The default runs `emdash migrate` (status, apply, check). EmDash's migrator ignores the wrangler login and needs
+  `CLOUDFLARE_API_TOKEN` (D1 Edit). For CI, pass the reviewed fingerprint as `EMDASH_TARGET_FINGERPRINT`.
 Content-model changes (collections and fields) are a separate step: see EmDash "Evolving a Deployed Site".
 
-Build vs env: if the lead's build uses the `@cloudflare/vite-plugin` path (Astro writes a flattened
-`dist/server/wrangler.json`), select the env at BUILD time with `CLOUDFLARE_ENV=preview` and drop `--env` at deploy.
-Confirm on the first preview deploy and adjust `deploy.sh`.
+**First admin:** the first person through Access to open `/_emdash` becomes EmDash Admin. Make that a named eTop
+person, not the E2E service token. Unauthenticated probes stop at Access and create no user.
 
-Any binding added later (`CACHE`, `LOADER`, `IMAGES`) must be repeated under `env.preview`; bindings are not inherited.
+**Preview deployed 2026-10-02** by this script (version `9caf3338`), from `emdash/infra` merged with `emdash/core`:
+D1 holds 118 docs, 90 migrations, 0 users; `/` 200, `/about-us/values` 308 then 200, `/api/search?q=vpn` 200 with
+results, `/_emdash/admin` and `/_emdash/api/...` 302 to Access. `VERIFY OK`. Secrets `CF_ACCESS_AUDIENCE` and
+`EMDASH_ENCRYPTION_KEY` are set on the preview Worker; prod secrets get set at cutover.
 
-Node: EmDash 1.1's registry-verification package wants Node `^22.22.2 || ^24.15 || >=26`; 22.22.0 warns.
+Any binding added later (`CACHE`, `LOADER`) must be repeated under `env.preview`; bindings are not inherited.
+The adapter adds `IMAGES` and `ASSETS` itself.
+
+Node: EmDash 1.1's registry-verification package wants Node `^22.22.2 || ^24.15 || >=26`; 22.22.0 warns but works.
 
 ## Health check
 
