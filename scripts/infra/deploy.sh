@@ -46,9 +46,11 @@ want=$([[ "$ENV" == preview ]] && echo university-emdash-preview || echo univers
 case "$MODE" in
   --load-content)
     echo "== load schema + content into D1 ($ENV)"
+    rm -f data.db data.db-shm data.db-wal   # seed mints fresh IDs; start clean so the menu re-points by slug
     npx emdash seed --on-conflict update
     node scripts/emdash/d1-sql.mjs
-    npx wrangler d1 execute DB "${CFG[@]}" --remote --yes --file scripts/emdash/out/d1-load.sql ;;
+    npx wrangler d1 execute DB "${CFG[@]}" --remote --yes --file scripts/emdash/out/d1-load.sql
+    LOADED=1 ;;
   migrate)
     : "${CLOUDFLARE_API_TOKEN:?set CLOUDFLARE_API_TOKEN (D1 Edit), or use --load-content pre-cutover}"
     echo "== migration status ($ENV)"
@@ -71,8 +73,11 @@ echo "== verify"
 if [[ "$MODE" == migrate ]]; then
   npx emdash migrate --check --wrangler-config wrangler.jsonc ${MENV[@]+"${MENV[@]}"}
 fi
-npx wrangler d1 execute DB "${CFG[@]}" --remote --command \
-  "SELECT (SELECT count(*) FROM ec_docs) AS docs, (SELECT count(*) FROM _emdash_migrations) AS migrations"
+# Every sidebar page link must point at a real page (a re-seed mints new IDs; d1-sql.mjs re-points by slug).
+counts=$(npx wrangler d1 execute DB "${CFG[@]}" --remote --json --command \
+  "SELECT (SELECT count(*) FROM ec_docs) AS docs, (SELECT count(*) FROM _emdash_migrations) AS migrations, (SELECT count(*) FROM _emdash_menu_items WHERE type='page') AS page_links, (SELECT count(*) FROM _emdash_menu_items WHERE type='page' AND reference_id IN (SELECT id FROM ec_docs)) AS page_links_ok")
+echo "$counts" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{const r=JSON.parse(s)[0].results[0];console.log('D1:',JSON.stringify(r));process.exit(r.page_links===r.page_links_ok&&r.page_links>0?0:3)})" \
+  || { echo "VERIFY FAILED: sidebar page links do not all resolve" >&2; exit 1; }
 
 probe() { curl -s -o /dev/null -w '%{http_code} %{redirect_url}' "$1"; }
 fail=0
