@@ -62,7 +62,7 @@ page path (`education/self-help-guides/backups`; home is `index`), so every URL 
 | `CF_ACCESS_AUDIENCE` | Worker secret, prod and preview (different values) | AUD tag of that env's Access app |
 | `EMDASH_ENCRYPTION_KEY` | Worker secret, prod and preview | `npx emdash secrets generate`. Only protects plugin settings of type secret, and v1 has none. Once a plugin stores one, keep a recovery copy outside Cloudflare. |
 | `CLOUDFLARE_API_TOKEN` | operator shell or CI only | Scoped: D1 Edit + Workers Scripts Edit on the eTop account |
-| `UNIVERSITY_E2E_EMDASH_TOKEN` | GitHub Actions secret (etopple/university) | Admin-scope EmDash API token, created in the preview admin. Reaches the test as `EMDASH_TOKEN`. **(pending: needs the preview deployed)** |
+| `UNIVERSITY_E2E_EMDASH_TOKEN` | GitHub Actions secret (etopple/university) | EmDash API token "university-e2e (editor E2E, GitHub Actions)" (scopes: Content Read, Content Write, Admin; expires 2027-10-03), created 2026-10-02 in the preview admin under BJ's account. Reaches the test as `EMDASH_TOKEN`. Revoke under *Settings > API Tokens*. |
 | `UNIVERSITY_E2E_ACCESS_CLIENT_ID` / `UNIVERSITY_E2E_ACCESS_CLIENT_SECRET` | GitHub Actions secrets (etopple/university) | Access service token `university-e2e` (`b07a8b64-e2dc-4665-99e0-40b13f61d48e`), preview app only, expires 2027-10-03. Reaches the test as `E2E_CF_ACCESS_CLIENT_ID/SECRET`. |
 
 ## Deploy
@@ -140,7 +140,7 @@ export is open (see Known traps).
   - Each app's AUD tag goes into that env's `CF_ACCESS_AUDIENCE` Worker secret. Read it from the app in Zero Trust.
 - **Automation** (E2E, `apply.mjs`): Access service token `university-e2e` under the policy "E2E service token (preview only)"
   (Service Auth) on the **preview app only**, created 2026-10-02, expires 2027-10-03. Plus an admin-scope EmDash API token.
-  EmDash checks the `Authorization: Bearer` header before Access, in every mode. The API token is **(pending)** until the preview is deployed.
+  EmDash checks the `Authorization: Bearer` header before Access, in every mode. First green run on the preview: GitHub Actions run 37103172076 (2026-10-03).
 - **Cloudflare account**: eTop Technology account admins (BJ). Grant through Cloudflare *Manage Account > Members*.
 - **GitHub** `etopple/university`: default branch `starlight`. EmDash work merges into `emdash/integration`.
   Production cutover belongs to the lead and needs a Change issue.
@@ -153,6 +153,10 @@ export is open (see Known traps).
   without its migration returns 500s.
 - **2026-10-02** An Access path of `/_emdash` matches only that exact path. `/_emdash/admin` was reachable without a
   login until `/_emdash/*` was added. List both.
+- **2026-10-02** The first identity through Access becomes EmDash **Admin**, and the setup wizard opens for it. On the preview that
+  was BJ (via Entra SSO), and the wizard got **"Empty site"**: the content was already loaded by `deploy.sh --load-content`, and
+  both wizard options seed with `onConflict: skip`, but "Empty site" writes no content at all. Do the same at production cutover.
+  Never let the E2E service token be the first identity.
 - **2026-10-02** `preview_urls: false` in both envs. Cloudflare's per-version preview hostnames would sit outside
   the Access app and expose the admin.
 - **2026-10-02** The Access policy that requires the Entra login method rejects service tokens. Automation needs
