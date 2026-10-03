@@ -266,13 +266,16 @@ export function toNodes(blocks: PtBlock[], ctx: Ctx): Node[] {
 }
 
 // Content stored between list items (a step's screenshot, code or extra
-// paragraph; see editorSafeLists in scripts/emdash/lib/md-to-pt.mjs) belongs to
-// the step before it when the list visibly continues after it: the next item is
-// nested (a list cannot start below the top level) or carries the next number
-// in listStart. Separate lists (the next one starts at 1, or a bullet list at the
-// top level) stay separate.
-const GAP_TYPES = new Set(["image", "code", "html", "htmlBlock", "gallery", "embed", "iframe"]);
-const isGap = (b: PtBlock) => !b.listItem && (GAP_TYPES.has(b._type) || (b._type === "block" && (b.style ?? "normal") === "normal"));
+// paragraph; see editorSafeLists in scripts/emdash/lib/md-to-pt.mjs). As
+// migrated it carries listContinuation + level, so it goes back exactly where it
+// was. An editor save drops those hints; then it belongs to the step before it
+// only when the list visibly continues: the next item is nested (a list cannot
+// start below the top level), carries the next number in listStart, or is a
+// bullet after nothing but screenshots/code. A list that starts again at 1, or a
+// paragraph followed by a new top-level bullet list, stays separate.
+const MEDIA_TYPES = new Set(["image", "code", "html", "htmlBlock", "gallery", "embed", "iframe"]);
+const isHinted = (b: PtBlock) => !b.listItem && b.listContinuation === true;
+const isGap = (b: PtBlock) => !b.listItem && (isHinted(b) || MEDIA_TYPES.has(b._type) || (b._type === "block" && (b.style ?? "normal") === "normal"));
 
 function listEnd(blocks: PtBlock[], i: number): number {
   const counters = new Map<number, { ordered: boolean; n: number }>();
@@ -288,14 +291,32 @@ function listEnd(blocks: PtBlock[], i: number): number {
     while (i < blocks.length && blocks[i].listItem) count(blocks[i++]);
     let j = i;
     while (j < blocks.length && isGap(blocks[j])) j++;
+    const gap = blocks.slice(i, j);
     const next = blocks[j];
-    if (j === i || !next?.listItem) return i;
+    if (!gap.length) return i;
+    // Hinted content always belongs to the run (it was inside an item).
+    if (gap.every(isHinted)) {
+      i = j;
+      if (!next?.listItem) return i;
+      continue;
+    }
+    if (!next?.listItem) {
+      // Trailing hinted blocks still belong to the last item.
+      let k = i;
+      while (k < j && isHinted(blocks[k])) k++;
+      return k;
+    }
     const level = Math.max(1, Number(next.level ?? 1));
     const c = counters.get(level);
     const continues =
       (level > 1 && counters.size > 0) ||
-      (next.listItem === "number" && c?.ordered === true && Number(next.listStart) === c.n + 1);
-    if (!continues) return i;
+      (next.listItem === "number" && c?.ordered === true && Number(next.listStart) === c.n + 1) ||
+      (next.listItem === "bullet" && c?.ordered === false && gap.every((g) => MEDIA_TYPES.has(g._type)));
+    if (!continues) {
+      let k = i;
+      while (k < j && isHinted(blocks[k])) k++;
+      return k;
+    }
     i = j;
   }
 }
@@ -312,9 +333,15 @@ function buildLists(blocks: PtBlock[], ctx: Ctx): Node[] {
   };
 
   for (const b of blocks) {
-    // Content between items inside a run (see listEnd): part of the current step.
+    // Content between items inside a run (see listEnd): part of a step — the one
+    // at its hinted level when the migration left one, else the current one.
     if (!b.listItem) {
-      const n = b._type === "block" ? ({ kind: "html", html: `<p>${inlineHtml(b)}</p>` } as Node) : single(b, ctx);
+      const n: Node | null =
+        b._type === "block" && b.style === "blockquote"
+          ? { kind: "quote", children: [{ kind: "html", html: `<p>${inlineHtml(b)}</p>` }] }
+          : single(b, ctx);
+      const at = b.level ? stack.find((s) => s.level === Number(b.level)) : undefined;
+      if (at) while (stack[stack.length - 1] !== at) stack.pop();
       const item = currentItem();
       if (n && item) item.children.push(n);
       else if (n) roots.push(n);

@@ -41,6 +41,10 @@ const ACCEPTED_NEW_PREFIXES = [
 
 // Differences reviewed and accepted by the lead (2026-10-02). Keep this list short.
 const ACCEPTED = {
+  "/policies/policies/patching/immybot-maintenance-emails": {
+    problem: "list structure differs",
+    why: "source writes steps 1/2/3 as three one-item lists with the screenshot between them; the theme shows each screenshot inside its step (same numbers, same order)",
+  },
   "/education/etop-process/how-to-edit-university-pages": {
     problem: "status 404 -> 200",
     why: "new page added with the migration: how eTop staff edit University pages in the CMS",
@@ -144,8 +148,8 @@ export function deobfuscateEmails(html) {
     .replace(/href="\/cdn-cgi\/l\/email-protection#([0-9a-f]+)"/gi, (_, hex) => `href="mailto:${decodeCfEmail(hex)}"`);
 }
 
-// What a reader sees of every list: each item's depth and its marker (the
-// number for <ol>, "*" for <ul>). Text checks are blind to a list that splits
+// What a reader sees of every list: each item's depth, its marker (the number
+// for <ol>, "*" for <ul>) and how many screenshots/code blocks sit inside it. Text checks are blind to a list that splits
 // and restarts at 1, so this is compared separately.
 export function listShape(main) {
   return main
@@ -154,10 +158,16 @@ export function listShape(main) {
       const list = li.parentNode;
       let depth = 0;
       for (let p = li.parentNode; p; p = p.parentNode) if (/^(ol|ul)$/i.test(p.tagName || "")) depth++;
-      if (!/^ol$/i.test(list?.tagName || "")) return `${depth}*`;
+      // Screenshots/code that sit in this item itself (not in a nested list).
+      const own = li.querySelectorAll("img, pre").filter((e) => {
+        for (let p = e.parentNode; p && p !== li; p = p.parentNode) if (/^(ol|ul)$/i.test(p.tagName || "")) return false;
+        return true;
+      }).length;
+      const media = own ? `+${own}` : "";
+      if (!/^ol$/i.test(list?.tagName || "")) return `${depth}*${media}`;
       const start = Number(list.getAttribute("start") || 1);
       const items = list.childNodes.filter((n) => /^li$/i.test(n.tagName || ""));
-      return `${depth}:${start + items.indexOf(li)}`;
+      return `${depth}:${start + items.indexOf(li)}${media}`;
     })
     .join(" ");
 }

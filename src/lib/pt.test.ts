@@ -116,3 +116,38 @@ test("textAlign is applied from an allowlist", () => {
   assert.equal((nodes[0] as any).html, '<p style="text-align: center">c</p>');
   assert.equal((nodes[1] as any).html, "<p>x</p>");
 });
+
+test("hinted content goes back exactly: parent level after a nested list, any block type", () => {
+  const { nodes } = renderPlan([
+    p([span("step 1")], { listItem: "number", level: 1 }),
+    p([span("sub a")], { listItem: "bullet", level: 2 }),
+    p([span("sub b")], { listItem: "bullet", level: 2 }),
+    { _type: "image", asset: { url: "/parent.png" }, level: 1, listContinuation: true }, // belongs to step 1, not "sub b"
+    p([span("quote")], { style: "blockquote", level: 2, listContinuation: true }),
+    p([span("step 2")], { listItem: "number", level: 1, listStart: 2 }),
+  ]);
+  assert.equal(nodes.length, 1);
+  const ol = nodes[0] as any;
+  assert.equal(ol.items.length, 2);
+  assert.deepEqual(ol.items[0].children.map((c: any) => c.kind), ["html", "list", "image", "quote"]);
+});
+
+test("bullets: hinted screenshots stay in the item; after an editor save, screenshot-only gaps still do", () => {
+  const hinted = renderPlan([
+    p([span("a")], { listItem: "bullet", level: 1 }),
+    { _type: "image", asset: { url: "/1.png" }, level: 1, listContinuation: true },
+    p([span("b")], { listItem: "bullet", level: 1 }),
+  ]).nodes;
+  const saved = renderPlan([
+    p([span("a")], { listItem: "bullet", level: 1 }),
+    { _type: "image", asset: { url: "/1.png" } },
+    p([span("b")], { listItem: "bullet", level: 1 }),
+  ]).nodes;
+  for (const nodes of [hinted, saved]) {
+    assert.equal(nodes.length, 1);
+    assert.equal((nodes[0] as any).items[0].children[1].kind, "image");
+  }
+  // A paragraph then a new bullet list (no hint) stays two lists.
+  const separate = renderPlan([p([span("a")], { listItem: "bullet", level: 1 }), p([span("Next:")]), p([span("b")], { listItem: "bullet", level: 1 })]).nodes;
+  assert.deepEqual(separate.map((n) => n.kind), ["list", "html", "list"]);
+});

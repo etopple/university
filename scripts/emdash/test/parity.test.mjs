@@ -128,7 +128,10 @@ test("list structure: a list split and restarted at 1 is a difference", async ()
   const one = extract("<main><ol><li>a<img src=x></li><li>b</li><li>c</li></ol></main>", "main", "");
   const split = extract("<main><ol><li>a</li></ol><img src=x><ol><li>b</li><li>c</li></ol></main>", "main", "");
   const cont = extract("<main><ol><li>a</li></ol><img src=x><ol start=2><li>b</li><li>c</li></ol></main>", "main", "");
-  assert.equal(one.lists, "1:1 1:2 1:3");
-  assert.notEqual(split.lists, one.lists);
-  assert.equal(cont.lists, one.lists);
+  assert.equal(one.lists, "1:1+1 1:2 1:3");
+  assert.notEqual(split.lists, one.lists); // restarts at 1, screenshot outside the step
+  assert.notEqual(cont.lists, one.lists); // numbers right, but the screenshot left its step
+  const bullets = extract("<main><ul><li>a<img src=x></li><li>b</li></ul></main>", "main", "");
+  const bulletsSplit = extract("<main><ul><li>a</li></ul><img src=x><ul><li>b</li></ul></main>", "main", "");
+  assert.notEqual(bulletsSplit.lists, bullets.lists);
 });

@@ -212,8 +212,8 @@ function listBlocks(node, ctx, level) {
 // listItem/level/listContinuation from images and code, and listContinuation
 // from text, so a step's screenshot would split the list and renumber it on the
 // first save. Store what the editor keeps instead: content inside a step becomes
-// a plain block between list items, and the next numbered item carries its real
-// number in listStart. The theme puts the screenshot back inside the step
+// a block between list items with no listItem (level/listContinuation stay only
+// as hints), and the next numbered item carries its real number in listStart. The theme puts the screenshot back inside the step
 // (src/lib/pt.ts, listEnd) when the list continues after it.
 export function editorSafeLists(blocks) {
   // An item that is only an image gets an empty text item to hang it on.
@@ -236,9 +236,10 @@ export function editorSafeLists(blocks) {
   for (const b of blocks) {
     if (Array.isArray(b.content) && b._type !== "table") editorSafeLists(b.content);
     if (b.listContinuation) {
+      // Keep level + listContinuation as rendering hints: the theme uses them to put
+      // this block back exactly where it was. The editor drops both on save; the
+      // theme then falls back to listStart and its own rules.
       delete b.listItem;
-      delete b.level;
-      delete b.listContinuation;
       gap = true;
     } else if (b.listItem) {
       if (gap && b.listItem === "number" && b._ordinal > 1) b.listStart = b._ordinal;

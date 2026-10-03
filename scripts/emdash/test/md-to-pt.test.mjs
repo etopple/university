@@ -123,8 +123,9 @@ test("content inside a step is stored the way the CMS editor keeps it", () => {
   // Code/extra text inside step 3 sit between the items as plain blocks; step 4
   // carries its real number so the list continues after an editor save.
   const { blocks } = md(["3. one", "   ```", "   x", "   ```", "   then more", "4. two", ""].join("\n"));
-  assert.deepEqual(blocks.map((b) => [b._type, b.listItem ?? null, b.listStart ?? null, !!b.listContinuation]), [
-    ["block", "number", 3, false], ["code", null, null, false], ["block", null, null, false], ["block", "number", 4, false],
+  // listContinuation + level stay as rendering hints (the editor drops them on save).
+  assert.deepEqual(blocks.map((b) => [b._type, b.listItem ?? null, b.listStart ?? null, !!b.listContinuation, b.level ?? null]), [
+    ["block", "number", 3, false, 1], ["code", null, null, true, 1], ["block", null, null, true, 1], ["block", "number", 4, false, 1],
   ]);
 });
 
