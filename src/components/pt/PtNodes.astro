@@ -18,7 +18,7 @@ const H = ["h1", "h2", "h3", "h4", "h5", "h6"] as const;
         return <Fragment set:html={n.html} />;
       case "heading": {
         const Tag = H[n.depth - 1];
-        return <Tag id={n.id} set:html={n.html} />;
+        return <Tag id={n.id} style={n.align ? `text-align: ${n.align}` : undefined} set:html={n.html} />;
       }
       case "quote":
         return (
@@ -68,35 +68,25 @@ const H = ["h1", "h2", "h3", "h4", "h5", "h6"] as const;
           </Aside>
         );
       case "table": {
-        const head = n.rows.filter((r) => r.header);
-        const body = n.rows.filter((r) => !r.header);
-        const style = (i: number) => (n.align[i] ? `text-align: ${n.align[i]}` : undefined);
+        // Leading rows where every cell is a header form the <thead>.
+        let headCount = 0;
+        while (headCount < n.rows.length && n.rows[headCount].cells.length && n.rows[headCount].cells.every((c) => c.header)) headCount++;
+        const row = (r: (typeof n.rows)[number]) => (
+          <tr>
+            {r.cells.map((c) => {
+              const Cell = c.header ? "th" : "td";
+              return (
+                <Cell style={c.align ? `text-align: ${c.align}` : undefined} colspan={c.colspan} rowspan={c.rowspan}>
+                  <Astro.self nodes={c.children} />
+                </Cell>
+              );
+            })}
+          </tr>
+        );
         return (
           <table>
-            {head.length > 0 && (
-              <thead>
-                {head.map((r) => (
-                  <tr>
-                    {r.cells.map((c, i) => (
-                      <th style={style(i)}>
-                        <Astro.self nodes={c} />
-                      </th>
-                    ))}
-                  </tr>
-                ))}
-              </thead>
-            )}
-            <tbody>
-              {body.map((r) => (
-                <tr>
-                  {r.cells.map((c, i) => (
-                    <td style={style(i)}>
-                      <Astro.self nodes={c} />
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
+            {headCount > 0 && <thead>{n.rows.slice(0, headCount).map(row)}</thead>}
+            <tbody>{n.rows.slice(headCount).map(row)}</tbody>
           </table>
         );
       }

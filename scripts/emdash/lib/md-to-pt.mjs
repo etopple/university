@@ -9,7 +9,7 @@
 //   image   { alt, asset: { url }, caption?, title?, align?, width?, height? }
 //   code    { language?, code }
 //   aside   { variant: note|tip|caution|danger, title?, content: PT[] }
-//   table   { align: (left|center|right|null)[], rows: [{ header, cells: [{ content: PT[] }] }] }
+//   table   EmDash editor shape: { hasHeaderRow, rows: [{ _type: "tableRow", cells: [{ _type: "tableCell", content: span[], markDefs?, isHeader?, textAlign? }] }] }
 //   details { summary, content: PT[] }
 //   html    { html }                      raw passthrough, rendered as-is
 //   break   { style: "lineBreak" }        thematic break (---)
@@ -17,7 +17,7 @@
 // List blocks may carry: checked (task lists), listStart (first item of an
 // ordered list not starting at 1), listContinuation (more content of the
 // previous item, not a new item; also set on non-text blocks inside an item).
-// Marks: strong, em, code, strike-through, underline; markDefs link { href, blank? }, highlight { color }.
+// Marks: strong, em, code, strike-through, underline; markDefs link { href, blank? }. (<mark> becomes strong.)
 
 import { unified } from "unified";
 import remarkParse from "remark-parse";
@@ -182,6 +182,16 @@ function listBlocks(node, ctx, level) {
         child.type === "paragraph" ? paragraph(child, ctx, { listItem, level }, "normal") : convertBlock(child, ctx, { listItem, level });
       for (const b of blocks) {
         if (b._type !== "block" || !b.listItem) Object.assign(b, { listItem, level });
+        const prev = itemBlocks[itemBlocks.length - 1];
+        // A second paragraph in the same step joins the step's text with a blank
+        // line: the CMS editor does not keep listContinuation on text, and a
+        // separate block would turn into a new numbered step on its first save.
+        if (b._type === "block" && prev && prev._type === "block" && prev.level === level && (b.style ?? "normal") === "normal") {
+          prev.children.push({ _type: "span", _key: key(ctx), text: "\n\n", marks: [] }, ...b.children);
+          prev.markDefs.push(...b.markDefs);
+          count(ctx, "mergedParagraph");
+          continue;
+        }
         if (itemBlocks.some((x) => x.level === level)) b.listContinuation = true;
         itemBlocks.push(b);
       }
@@ -342,10 +352,9 @@ function inlineHtml(n, ctx, state, list, style) {
       state.markDefs.push({ _type: "link", _key: k, href: el.getAttribute("href") || "", ...(blank ? { blank: true } : {}) });
       state.stack.push({ tag, mark: k });
     } else if (tag === "mark") {
-      const k = key(ctx);
-      const color = (el.getAttribute("style") || "").match(/color:\s*([^;]+)/i)?.[1]?.trim();
-      state.markDefs.push({ _type: "highlight", _key: k, ...(color ? { color } : {}) });
-      state.stack.push({ tag, mark: k });
+      // The CMS editor rejects unknown marks and then locks the whole page body,
+      // so a highlight becomes bold (same text, still stands out).
+      state.stack.push({ tag, mark: "strong" });
     } else {
       state.stack.push({ tag, mark: DECORATOR[tag] });
     }
@@ -391,7 +400,9 @@ function size(img) {
   const out = {};
   for (const k of ["width", "height"]) {
     const v = img.getAttribute(k);
-    if (v && /^\d+(%|px)?$/.test(v.trim())) out[k] = v.trim();
+    // The CMS stores pixel sizes as numbers and drops anything else on save.
+    const m = v && /^(\d+)(px)?$/.exec(v.trim());
+    if (m) out[k] = Number(m[1]);
   }
   return out;
 }
@@ -423,21 +434,43 @@ function asideBlock(node, ctx) {
   return { _type: "aside", _key: key(ctx), variant: node.name, ...(title ? { title } : {}), content: convertChildren(body, ctx, {}) };
 }
 
+// The CMS editor's own table shape: cells hold inline spans (one paragraph),
+// header cells are flagged per cell. Any other shape locks the page body in the editor.
 function tableBlock(node, ctx) {
   count(ctx, "table");
+  const align = node.align || [];
   return {
     _type: "table",
     _key: key(ctx),
-    align: node.align || [],
+    hasHeaderRow: true,
     rows: node.children.map((row, r) => ({
+      _type: "tableRow",
       _key: key(ctx),
-      header: r === 0,
-      cells: row.children.map((cell) => {
+      cells: row.children.map((cell, i) => {
         const state = { out: [], spans: [], markDefs: [], stack: [], unsupported: false };
         walkInline(cell.children, ctx, state, {}, "normal");
-        if (state.unsupported) return { _key: key(ctx), content: htmlBlock(slice(ctx, cell), ctx) };
-        flush(state, ctx, {}, "normal");
-        return { _key: key(ctx), content: state.out };
+        let content = [];
+        let markDefs = [];
+        if (state.unsupported) {
+          content = [{ _type: "span", _key: key(ctx), text: slice(ctx, cell).replace(/^\|?\s*|\s*\|?$/g, ""), marks: [] }];
+          ctx.warnings.push("table cell with inline html kept as plain text");
+        } else {
+          flush(state, ctx, {}, "normal");
+          for (const b of state.out) {
+            if (b._type !== "block") continue;
+            content.push(...b.children);
+            markDefs.push(...b.markDefs);
+          }
+        }
+        if (!content.length) content = [{ _type: "span", _key: key(ctx), text: "", marks: [] }];
+        return {
+          _type: "tableCell",
+          _key: key(ctx),
+          content,
+          ...(markDefs.length ? { markDefs } : {}),
+          ...(r === 0 ? { isHeader: true } : {}),
+          ...(align[i] ? { textAlign: align[i] } : {}),
+        };
       }),
     })),
   };
@@ -466,7 +499,7 @@ export function portableTextToPlain(blocks) {
         parts.push(b.summary, portableTextToPlain(b.content));
         break;
       case "table":
-        for (const r of b.rows) for (const c of r.cells) parts.push(portableTextToPlain(c.content));
+        for (const r of b.rows) for (const c of r.cells) parts.push((c.content || []).map((x) => (x._type === "span" ? x.text : portableTextToPlain([x]))).join(""));
         break;
       case "html":
         parts.push(parseHtml(b.html).textContent);

@@ -61,18 +61,29 @@ test("inline html links keep target=_blank and nested strong", () => {
   assert.ok(s.marks.includes("strong") && s.marks.includes(b.markDefs[0]._key));
 });
 
-test("highlight mark keeps its colour", () => {
-  const { blocks } = md('<mark style="color:yellow;">**New Policy**</mark>\n');
-  assert.equal(blocks[0].markDefs[0]._type, "highlight");
-  assert.equal(blocks[0].markDefs[0].color, "yellow");
+test("highlight becomes strong (the CMS editor rejects unknown marks)", () => {
+  const { blocks } = md('<mark style="color:yellow;">New Policy</mark>\n');
+  assert.equal(blocks[0].markDefs.length, 0);
+  assert.deepEqual(blocks[0].children.find((c) => c.text === "New Policy").marks, ["strong"]);
 });
 
 test("gfm tables", () => {
   const { blocks } = md("| A | B |\n|---|:-:|\n| 1 | **2** |\n");
   assert.equal(blocks[0]._type, "table");
   assert.equal(blocks[0].rows.length, 2);
-  assert.equal(blocks[0].rows[0].header, true);
-  assert.deepEqual(blocks[0].align, [null, "center"]);
+  // EmDash editor shape: tableRow/tableCell, inline spans, per-cell header flag.
+  assert.equal(blocks[0].rows[0]._type, "tableRow");
+  assert.equal(blocks[0].rows[0].cells[0]._type, "tableCell");
+  assert.equal(blocks[0].rows[0].cells[0].isHeader, true);
+  assert.equal(blocks[0].rows[1].cells[0].isHeader, undefined);
+  assert.equal(blocks[0].rows[1].cells[1].textAlign, "center");
+  assert.deepEqual(blocks[0].rows[1].cells[1].content.map((c) => [c._type, c.text, c.marks]), [["span", "2", ["strong"]]]);
+});
+
+test("a second paragraph in a list step joins the step's text (editor keeps it in the step)", () => {
+  const { blocks } = md("1. First line\n\n   More about step one\n2. Two\n");
+  assert.equal(blocks.length, 2);
+  assert.equal(blocks[0].children.map((c) => c.text).join(""), "First line\n\nMore about step one");
 });
 
 test("fenced code keeps language", () => {

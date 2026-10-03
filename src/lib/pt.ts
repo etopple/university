@@ -28,13 +28,13 @@ export type Heading = { depth: number; slug: string; text: string };
 
 export type Node =
   | { kind: "html"; html: string }
-  | { kind: "heading"; depth: number; id: string; html: string }
+  | { kind: "heading"; depth: number; id: string; html: string; align?: string }
   | { kind: "quote"; children: Node[] }
   | { kind: "list"; ordered: boolean; start?: number; items: ListItem[] }
   | { kind: "image"; src: string; alt: string; title?: string; caption?: string; align?: string; link?: string; linkBlank?: boolean; width?: string; height?: string }
   | { kind: "code"; code: string; lang: string }
   | { kind: "aside"; variant: string; title?: string; children: Node[] }
-  | { kind: "table"; align: (string | null)[]; rows: { header: boolean; cells: Node[][] }[] }
+  | { kind: "table"; rows: { cells: TableCell[] }[] }
   | { kind: "details"; summary: string; children: Node[] }
   // A block the EmDash editor makes that this renderer does not own (htmlBlock,
   // gallery, iframe, embed, editor-shaped table or media image, ...): rendered
@@ -42,6 +42,7 @@ export type Node =
   | { kind: "native"; block: PtBlock };
 
 export type ListItem = { checked?: boolean; children: Node[] };
+export type TableCell = { header: boolean; align?: string; colspan?: number; rowspan?: number; children: Node[] };
 
 const ESC: Record<string, string> = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" };
 export const esc = (s: string) => String(s ?? "").replace(/[&<>"]/g, (c) => ESC[c]);
@@ -122,6 +123,9 @@ export function plainText(block: Pick<PtBlock, "children">): string {
   return (block.children ?? []).map((c) => c.text ?? "").join("");
 }
 
+// Alignment the editor saves on paragraphs and headings (allowlisted: it lands in a style attribute).
+const textAlign = (b: PtBlock) => (typeof b.textAlign === "string" && ALIGN.has(b.textAlign) ? b.textAlign : undefined);
+
 type Ctx = { slugger: GithubSlugger; headings: Heading[] };
 
 /** One non-list block (or a list continuation) to a node. */
@@ -135,9 +139,10 @@ function single(b: PtBlock, ctx: Ctx): Node | null {
         const id = ctx.slugger.slug(text);
         const depth = Number(m[1]);
         ctx.headings.push({ depth, slug: id, text });
-        return { kind: "heading", depth, id, html: inlineHtml(b) };
+        return { kind: "heading", depth, id, html: inlineHtml(b), align: textAlign(b) };
       }
-      return { kind: "html", html: `<p>${inlineHtml(b)}</p>` };
+      const align = textAlign(b);
+      return { kind: "html", html: `<p${align ? ` style="text-align: ${align}"` : ""}>${inlineHtml(b)}</p>` };
     }
     case "image": {
       const asset = (b.asset ?? {}) as { url?: string; _ref?: string };
@@ -169,15 +174,8 @@ function single(b: PtBlock, ctx: Ctx): Node | null {
         children: toNodes((b.content as PtBlock[]) ?? [], ctx),
       };
     case "table": {
-      // Migrated tables: rows[].header + cells[].content as PT blocks. Tables
-      // made in the editor use another shape (cell.isHeader, inline spans):
-      // EmDash's own Table component handles those.
-      if (!isLegacyTable(b)) return { kind: "native", block: b };
-      const rows = ((b.rows as { header?: boolean; cells?: { content?: PtBlock[] }[] }[]) ?? []).map((r) => ({
-        header: !!r.header,
-        cells: (r.cells ?? []).map((c) => cellNodes(c.content ?? [], ctx)),
-      }));
-      return { kind: "table", align: (b.align as (string | null)[]) ?? [], rows };
+      const t = tableNode(b, ctx);
+      return t ?? { kind: "native", block: b };
     }
     case "details":
       return { kind: "details", summary: String(b.summary ?? ""), children: toNodes((b.content as PtBlock[]) ?? [], ctx) };
@@ -198,15 +196,37 @@ function imageLink(link: unknown): { href: string; blank: boolean } | undefined 
   return href === null ? undefined : { href, blank: raw.blank === true && !href.startsWith("#") };
 }
 
-function isLegacyTable(b: PtBlock): boolean {
-  const rows = b.rows as { header?: unknown; cells?: { content?: unknown; isHeader?: unknown }[] }[] | undefined;
-  if (!Array.isArray(rows) || rows.length === 0) return false;
-  return rows.every(
-    (r) =>
-      typeof r.header === "boolean" &&
-      Array.isArray(r.cells) &&
-      r.cells.every((c) => c.isHeader === undefined && Array.isArray(c.content) && (c.content as { _type?: string }[]).every((x) => x && x._type !== "span")),
-  );
+const ALIGN = new Set(["left", "center", "right", "justify"]);
+const span1 = (n: unknown) => (Number.isInteger(n) && (n as number) > 1 && (n as number) <= 100 ? (n as number) : undefined);
+
+// Tables in either shape: the CMS editor's (rows[].cells[] of tableCell with inline
+// spans and isHeader) or the first migration's (row.header, cells[].content as
+// PT blocks, block-level align[]). Anything else goes to EmDash's own renderer.
+function tableNode(b: PtBlock, ctx: Ctx): Extract<Node, { kind: "table" }> | null {
+  type RawCell = { content?: unknown; markDefs?: PtMarkDef[]; isHeader?: boolean; textAlign?: string; colspan?: unknown; rowspan?: unknown };
+  const rows = b.rows as { header?: boolean; cells?: RawCell[] }[] | undefined;
+  if (!Array.isArray(rows) || !rows.length || !rows.every((r) => Array.isArray(r.cells))) return null;
+  const legacyAlign = (b.align as (string | null)[] | undefined) ?? [];
+  const tableDefs = (b.markDefs as PtMarkDef[] | undefined) ?? [];
+  return {
+    kind: "table",
+    rows: rows.map((r) => ({
+      cells: r.cells!.map((c, i) => {
+        const content = Array.isArray(c.content) ? (c.content as PtBlock[]) : [];
+        const inline = content.every((x) => x && x._type === "span");
+        const align = c.textAlign ?? legacyAlign[i] ?? undefined;
+        return {
+          header: c.isHeader === true || r.header === true,
+          align: align && ALIGN.has(align) ? align : undefined,
+          colspan: span1(c.colspan),
+          rowspan: span1(c.rowspan),
+          children: inline
+            ? [{ kind: "html", html: inlineHtml({ children: content as PtSpan[], markDefs: [...tableDefs, ...(c.markDefs ?? [])] }) } as Node]
+            : cellNodes(content, ctx),
+        };
+      }),
+    })),
+  };
 }
 
 // Table cells hold one paragraph: render it inline, without the <p>.
@@ -244,9 +264,20 @@ export function toNodes(blocks: PtBlock[], ctx: Ctx): Node[] {
   return out;
 }
 
+// Screenshots and code that belong to a step. The CMS editor does not keep
+// listContinuation (or listItem) on them, so after an editor save they sit
+// between two list blocks: keep them with the step and keep the numbering going.
+const MEDIA = new Set(["image", "code", "html", "htmlBlock", "gallery", "embed", "iframe", "break"]);
+const isMedia = (b: PtBlock) => MEDIA.has(b._type) && b._type !== "break";
+
 function listEnd(blocks: PtBlock[], i: number): number {
-  while (i < blocks.length && blocks[i].listItem) i++;
-  return i;
+  for (;;) {
+    while (i < blocks.length && blocks[i].listItem) i++;
+    let j = i;
+    while (j < blocks.length && !blocks[j].listItem && isMedia(blocks[j])) j++;
+    if (j > i && j < blocks.length && blocks[j].listItem) i = j;
+    else return i;
+  }
 }
 
 // Flat PT list blocks -> nested lists. A block at a deeper level opens a
@@ -261,12 +292,14 @@ function buildLists(blocks: PtBlock[], ctx: Ctx): Node[] {
   };
 
   for (const b of blocks) {
-    const level = Math.max(1, Number(b.level ?? 1));
+    const level = Math.max(1, Number(b.level ?? stack[stack.length - 1]?.level ?? 1));
     const ordered = b.listItem === "number";
     while (stack.length && stack[stack.length - 1].level > level) stack.pop();
 
-    if (b.listContinuation) {
-      const item = stack.length && stack[stack.length - 1].level === level ? currentItem() : undefined;
+    // A screenshot or code block inside a list run is never a step of its own.
+    if (b.listContinuation || (b._type !== "block" && (isMedia(b) || !b.listItem))) {
+      const atLevel = b.listItem ? stack.find((s) => s.level === level) : stack[stack.length - 1];
+      const item = atLevel ? atLevel.list.items[atLevel.list.items.length - 1] : undefined;
       const n = single(b, ctx);
       if (n && item) item.children.push(n);
       else if (n) roots.push(n);

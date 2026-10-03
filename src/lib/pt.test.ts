@@ -47,7 +47,7 @@ test("editor-made blocks go to EmDash's renderer", () => {
   const legacyTable = { _type: "table", align: [null], rows: [{ header: true, cells: [{ content: [p([span("H")])] }] }] };
   const media = { _type: "image", asset: { _ref: "01ABC", url: "/_emdash/api/media/file/x.png" } };
   const { nodes } = renderPlan([editorTable, legacyTable, media, { _type: "htmlBlock", html: "<b>x</b>" }, { _type: "iframe", src: "https://x" }]);
-  assert.deepEqual(nodes.map((n) => n.kind), ["native", "table", "native", "native", "native"]);
+  assert.deepEqual(nodes.map((n) => n.kind), ["table", "table", "native", "native", "native"]);
 });
 
 test("image link: string and editor object forms", () => {
@@ -71,4 +71,44 @@ test("image keeps GitBook width, rejects junk", () => {
   ]);
   assert.equal((nodes[0] as any).width, "375");
   assert.equal((nodes[1] as any).width, undefined);
+});
+
+test("editor-shaped tables render here, with header row and alignment", () => {
+  const editorTable = {
+    _type: "table",
+    hasHeaderRow: true,
+    rows: [
+      { _type: "tableRow", cells: [{ _type: "tableCell", isHeader: true, content: [span("Q")] }, { _type: "tableCell", isHeader: true, content: [span("A")] }] },
+      { _type: "tableRow", cells: [{ _type: "tableCell", content: [span("x", ["strong"])], textAlign: "center" }, { _type: "tableCell", content: [span("y")], textAlign: "bogus" }] },
+    ],
+  };
+  const t = renderPlan([editorTable]).nodes[0] as any;
+  assert.equal(t.kind, "table");
+  assert.equal(t.rows[0].cells[0].header, true);
+  assert.equal(t.rows[1].cells[0].align, "center");
+  assert.equal(t.rows[1].cells[1].align, undefined);
+  assert.equal(t.rows[1].cells[0].children[0].html, "<strong>x</strong>");
+});
+
+test("after an editor save, screenshots between steps stay in the step and numbering continues", () => {
+  const blocks = [
+    p([span("one")], { listItem: "number", level: 1 }),
+    { _type: "image", asset: { url: "/s1.png" } }, // listContinuation and listItem dropped by the editor
+    p([span("two")], { listItem: "number", level: 1 }),
+    { _type: "image", asset: { url: "/s2.png" }, listItem: "number", level: 1 }, // listItem kept, flag dropped
+    p([span("three")], { listItem: "number", level: 1 }),
+    p([span("after")]),
+  ];
+  const { nodes } = renderPlan(blocks);
+  assert.deepEqual(nodes.map((n) => n.kind), ["list", "html"]);
+  const ol = nodes[0] as any;
+  assert.equal(ol.items.length, 3);
+  assert.equal(ol.items[0].children[1].kind, "image");
+  assert.equal(ol.items[1].children[1].kind, "image");
+});
+
+test("textAlign is applied from an allowlist", () => {
+  const { nodes } = renderPlan([p([span("c")], { textAlign: "center" }), p([span("x")], { textAlign: "red;}" })]);
+  assert.equal((nodes[0] as any).html, '<p style="text-align: center">c</p>');
+  assert.equal((nodes[1] as any).html, "<p>x</p>");
 });

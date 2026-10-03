@@ -27,9 +27,9 @@ const min = Number(opt("--min", "1"));
 const ASIDE_TITLES = { note: "Note", tip: "Tip", caution: "Caution", danger: "Danger" };
 function expectedText(body) {
   const withTitles = body.map((b) => (b._type === "aside" && !b.title ? { ...b, title: ASIDE_TITLES[b.variant] } : b));
-  // Cloudflare's email obfuscation rewrites addresses on the live zone; the
-  // EmDash preview on the same zone gets the same treatment, so mirror it here.
-  return normText(portableTextToPlain(withTitles).replace(/[\w.+-]+@[\w-]+\.[\w.-]+\w/g, "[email protected]"));
+  // parity.extract() decodes Cloudflare's email obfuscation on the live page,
+  // so addresses compare as written.
+  return normText(portableTextToPlain(withTitles));
 }
 
 const results = [];
