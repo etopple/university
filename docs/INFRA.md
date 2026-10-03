@@ -50,7 +50,7 @@ only way in, and EmDash re-validates the Access JWT on every `/_emdash` request 
 - Public pages stay public: no Access app covers `/`.
 - Policy (same as eTop Portal Admin): allow `email_domain = etoptechnology.com`, require login method = the Entra IdP. Session 12h, auto-redirect to Entra.
 - Apps, one per env so a preview token cannot open prod:
-  - **University EmDash admin (staff)** `39ca3545-7a40-4047-85c2-ab42a4b817d9`: `university.etop.tech/_emdash[/*]`, `university-emdash.williampote.workers.dev/_emdash[/*]`
+  - **University EmDash admin (staff)** `39ca3545-7a40-4047-85c2-ab42a4b817d9`: `university.etop.tech/_emdash[/*]`, `www.university.etop.tech/_emdash[/*]` (added before cutover so `www` is never open), `university-emdash.williampote.workers.dev/_emdash[/*]`
   - **University EmDash admin PREVIEW (staff)** `ad705bef-5c98-49aa-80cc-e40fe3bd0d2b`: `university-emdash-preview.williampote.workers.dev/_emdash[/*]`.
     Second policy on this app ONLY: **Service Auth**, include service token `university-e2e`, for the QA lane's
     editor E2E (sends `CF-Access-Client-Id/Secret` plus an EmDash admin API token as Bearer). The token secret goes
@@ -137,7 +137,8 @@ Verify: anonymous `GET /_emdash/api/media/file/does-not-exist` gives EmDash's 40
    ```bash
    npm run build && npx wrangler deploy     # wrangler creates the DNS records + certs; it refuses if a CNAME still exists
    ```
-   `www` is served by the same Worker. Optionally add a Single Redirect `www.university.etop.tech/*` to `https://university.etop.tech/${1}`.
+   `www` is served by the same Worker, and the prod Access app already covers `www.university.etop.tech/_emdash[/*]`.
+   Any NEW hostname must be added to that Access app BEFORE it is attached. Optionally add a Single Redirect `www.university.etop.tech/*` to `https://university.etop.tech/${1}`.
 7. **Verify on the real domain:** `/` 200, `/about-us/values` 308 then 200, `/api/search?q=vpn` 200, `/_emdash/admin` 302 to
    `etoptech.cloudflareaccess.com`, then the parity gate with `--candidate https://university.etop.tech`.
 8. **Leave the Pages project `etop-university` in place for a week** as the rollback, then delete it.
@@ -150,7 +151,7 @@ domains, which recreates the CNAMEs. The prod D1 and Worker can stay; nothing on
 
 - `GET <url>/` returns 200 (public site, no login).
 - `GET <url>/_emdash/admin` without a login returns 302 to `etoptech.cloudflareaccess.com`. A 200 here means Access is off: stop.
-- `GET <url>/_emdash/api/content/docs` without a login: 302 to Access (or 401/403), never 200. This proves the Access path covers the API, not just the admin UI.
+- `GET <url>/_emdash/api/content/docs` without a login: 302 to Access. A 401 from EmDash does not count: it means Access is not in front. This proves the Access path covers the API, not just the admin UI.
 - `deploy.sh` runs all three and prints `VERIFY OK` / `VERIFY FAILED`. It fails until the Access apps exist, by design.
 - `npx emdash migrate --check --wrangler-config wrangler.jsonc [--wrangler-env preview]` exits 0.
 - `npx wrangler tail [--env preview]` shows the cron line `"* * * * *" … Ok` each minute.
@@ -171,6 +172,6 @@ npx wrangler secret put CF_ACCESS_AUDIENCE --env preview   # preview AUD
 npx emdash secrets generate        # copy the emdash_enc_v1_... line, then paste it at each prompt:
 npx wrangler secret put EMDASH_ENCRYPTION_KEY
 npx wrangler secret put EMDASH_ENCRYPTION_KEY --env preview   # use a different generated key
-bash scripts/infra/deploy.sh preview
+bash scripts/infra/deploy.sh preview --load-content   # a fresh D1 has no tables; load schema + content first
 # content: scripts/emdash/apply.mjs (content lane), then scripts/emdash/parity.mjs
 ```

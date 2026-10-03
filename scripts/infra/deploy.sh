@@ -89,12 +89,13 @@ done
 echo "public /                        -> $code (want 200)"; [[ "$code" == "200" ]] || fail=1
 read -r st _ <<<"$(probe "$URL/api/search?q=vpn")"
 echo "public /api/search?q=vpn        -> $st (want 200)"; [[ "$st" == "200" ]] || fail=1
-# Admin UI and API must bounce to Access (or be refused), never 200. Unauthenticated
-# probes stop at Access, so they cannot become the first (Admin) EmDash user.
+# Admin UI and API must both bounce to Access. A 401 from EmDash itself is NOT proof that
+# Access is in front, so only a 302 to the eTop team domain passes. Unauthenticated probes
+# stop at Access, so they cannot become the first (Admin) EmDash user.
 for path in /_emdash/admin /_emdash/api/content/docs; do
   read -r st loc <<<"$(probe "$URL$path")"
   echo "unauthenticated $path -> $st ${loc:0:60}"
-  [[ ( "$st" == "302" && "$loc" == *etoptech.cloudflareaccess.com* ) || "$st" == "401" || "$st" == "403" ]] || fail=1
+  [[ "$st" == "302" && "$loc" == https://etoptech.cloudflareaccess.com/* ]] || fail=1
 done
 if [[ $fail -ne 0 ]]; then echo "VERIFY FAILED: see lines above" >&2; exit 1; fi
 echo "VERIFY OK"
