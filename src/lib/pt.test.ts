@@ -90,15 +90,25 @@ test("editor-shaped tables render here, with header row and alignment", () => {
   assert.equal(t.rows[1].cells[0].children[0].html, "<strong>x</strong>");
 });
 
-test("an image-only step stays a step; separate lists stay separate", () => {
+test("editor-safe steps: content between items goes back into the step only when the list continues", () => {
   const { nodes } = renderPlan([
     p([span("one")], { listItem: "number", level: 1 }),
-    { _type: "image", asset: { url: "/s1.png" }, listItem: "number", level: 1 },
+    { _type: "image", asset: { url: "/s1.png" } },
+    p([span("more about one")]),
+    p([span("two")], { listItem: "number", level: 1, listStart: 2 }), // continues: back into step 1
+    p([span("sub")], { listItem: "bullet", level: 2 }),
+    { _type: "image", asset: { url: "/s2.png" } },
+    p([span("sub2")], { listItem: "bullet", level: 2 }), // nested: continues
     { _type: "image", asset: { url: "/between.png" } },
-    p([span("again")], { listItem: "number", level: 1 }),
+    p([span("new list")], { listItem: "number", level: 1 }), // starts at 1: separate list
   ]);
   assert.deepEqual(nodes.map((n) => n.kind), ["list", "image", "list"]);
-  assert.equal((nodes[0] as any).items.length, 2);
+  const ol = nodes[0] as any;
+  assert.equal(ol.items.length, 2);
+  assert.deepEqual(ol.items[0].children.map((c: any) => c.kind), ["html", "image", "html"]);
+  const ul = ol.items[1].children[1];
+  assert.equal(ul.items.length, 2);
+  assert.equal(ul.items[0].children[1].kind, "image");
 });
 
 test("textAlign is applied from an allowlist", () => {

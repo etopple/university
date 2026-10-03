@@ -119,12 +119,18 @@ test("real corpus: every page converts, no warnings, sidebar fully mapped, seed 
   for (const e of a.seed.content.docs) assert.ok(e.data.title, `${e.slug} has no title`);
 });
 
-test("content inside a list item stays in that item (code, continuation)", () => {
+test("content inside a step is stored the way the CMS editor keeps it", () => {
+  // Code/extra text inside step 3 sit between the items as plain blocks; step 4
+  // carries its real number so the list continues after an editor save.
   const { blocks } = md(["3. one", "   ```", "   x", "   ```", "   then more", "4. two", ""].join("\n"));
-  assert.deepEqual(blocks.map((b) => [b._type, b.listItem, b.level, !!b.listContinuation]), [
-    ["block", "number", 1, false], ["code", "number", 1, true], ["block", "number", 1, true], ["block", "number", 1, false],
+  assert.deepEqual(blocks.map((b) => [b._type, b.listItem ?? null, b.listStart ?? null, !!b.listContinuation]), [
+    ["block", "number", 3, false], ["code", null, null, false], ["block", null, null, false], ["block", "number", 4, false],
   ]);
-  assert.equal(blocks[0].listStart, 3);
+});
+
+test("an image-only list item hangs on an empty text item", () => {
+  const { blocks } = md("- ![a](a.png)\n- text\n");
+  assert.deepEqual(blocks.map((b) => [b._type, b.listItem ?? null]), [["block", "bullet"], ["image", null], ["block", "bullet"]]);
 });
 
 test("task lists and linked images keep their state", () => {

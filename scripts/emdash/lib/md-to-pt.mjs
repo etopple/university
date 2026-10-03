@@ -42,7 +42,7 @@ export function markdownToPortableText(markdown) {
   };
   const tree = processor.runSync(processor.parse(markdown));
   collectDefinitions(tree, ctx);
-  const blocks = convertChildren(tree.children, ctx, {});
+  const blocks = editorSafeLists(convertChildren(tree.children, ctx, {}));
   return { blocks, warnings: ctx.warnings, stats: ctx.stats };
 }
 
@@ -198,6 +198,7 @@ function listBlocks(node, ctx, level) {
     }
     if (itemBlocks.length === 0) itemBlocks.push(textBlock([], [], "normal", { listItem, level }, ctx));
     const first = itemBlocks.find((b) => b.level === level);
+    if (first && node.ordered) first._ordinal = (node.start ?? 1) + idx;
     if (first) {
       if (li.checked === true || li.checked === false) first.checked = li.checked;
       if (idx === 0 && node.ordered && node.start != null && node.start !== 1) first.listStart = node.start;
@@ -205,6 +206,49 @@ function listBlocks(node, ctx, level) {
     out.push(...itemBlocks);
   });
   return out;
+}
+
+// The CMS editor keeps list membership only on text list items: it strips
+// listItem/level/listContinuation from images and code, and listContinuation
+// from text, so a step's screenshot would split the list and renumber it on the
+// first save. Store what the editor keeps instead: content inside a step becomes
+// a plain block between list items, and the next numbered item carries its real
+// number in listStart. The theme puts the screenshot back inside the step
+// (src/lib/pt.ts, listEnd) when the list continues after it.
+export function editorSafeLists(blocks) {
+  // An item that is only an image gets an empty text item to hang it on.
+  for (let i = 0; i < blocks.length; i++) {
+    const b = blocks[i];
+    if (b.listItem && b._type !== "block" && !b.listContinuation) {
+      const { listItem, level, listStart, checked, _ordinal } = b;
+      blocks.splice(i, 0, {
+        _type: "block", _key: b._key + "i", style: "normal", markDefs: [],
+        children: [{ _type: "span", _key: b._key + "s", text: "", marks: [] }],
+        listItem, level,
+        ...(listStart ? { listStart } : {}), ...(checked !== undefined ? { checked } : {}), ...(_ordinal ? { _ordinal } : {}),
+      });
+      for (const k of ["listStart", "checked", "_ordinal"]) delete b[k];
+      b.listContinuation = true;
+      i++;
+    }
+  }
+  let gap = false;
+  for (const b of blocks) {
+    if (Array.isArray(b.content) && b._type !== "table") editorSafeLists(b.content);
+    if (b.listContinuation) {
+      delete b.listItem;
+      delete b.level;
+      delete b.listContinuation;
+      gap = true;
+    } else if (b.listItem) {
+      if (gap && b.listItem === "number" && b._ordinal > 1) b.listStart = b._ordinal;
+      gap = false;
+    } else {
+      gap = false;
+    }
+  }
+  for (const b of blocks) delete b._ordinal;
+  return blocks;
 }
 
 function textBlock(children, markDefs, style, list, ctx) {

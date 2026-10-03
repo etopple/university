@@ -2664,10 +2664,7 @@
               "alt": "The Publish changes button",
               "asset": {
                 "url": "/images/editing-university/07-publish.png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -2697,7 +2694,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 2
             },
             {
               "_type": "image",
@@ -2705,10 +2703,7 @@
               "alt": "The confirmation box, with the Publish changes button highlighted",
               "asset": {
                 "url": "/images/editing-university/08-confirm.png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -2868,10 +2863,7 @@
               "alt": "The Revisions list, with the round \"restore\" arrow highlighted",
               "asset": {
                 "url": "/images/editing-university/10-revisions.png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -2901,7 +2893,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 3
             },
             {
               "_type": "image",
@@ -2909,10 +2902,7 @@
               "alt": "The box that asks you to confirm the restore",
               "asset": {
                 "url": "/images/editing-university/12-restore-confirm.png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -2956,7 +2946,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 4
             },
             {
               "_type": "block",
@@ -3161,7 +3152,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/etop-process/how-to-edit-university-pages.md",
-          "migration_hash": "sha256:a750cb07d4225a551d71e49c8e4a1e65"
+          "migration_hash": "sha256:e40dc165b5f1aacbc759896b88fe63b0"
         }
       },
       {
@@ -7019,10 +7010,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1).png"
-              },
-              "listItem": "bullet",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -7046,10 +7034,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png"
-              },
-              "listItem": "bullet",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -7073,10 +7058,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (14).png"
-              },
-              "listItem": "bullet",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -7100,10 +7082,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (18).png"
-              },
-              "listItem": "bullet",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -7127,10 +7106,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1).png"
-              },
-              "listItem": "bullet",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "image",
@@ -7138,10 +7114,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png"
-              },
-              "listItem": "bullet",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -7162,7 +7135,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/backups/server-previous-versions.md",
-          "migration_hash": "sha256:2bff8958958de9114360eddc33afb6f9"
+          "migration_hash": "sha256:e7931c30b1d724f04708d89d2251a313"
         }
       },
       {
@@ -7267,10 +7240,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (5) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -7300,7 +7270,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 3
             },
             {
               "_type": "image",
@@ -7308,10 +7279,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (1) (1) (1) (1) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -7341,7 +7309,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 4
             },
             {
               "_type": "block",
@@ -7365,10 +7334,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (2) (1) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -7398,7 +7364,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 6
             },
             {
               "_type": "block",
@@ -7422,15 +7389,12 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (3) (1) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             }
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/browser-help/extensions-in-microsoft-edge.md",
-          "migration_hash": "sha256:5f8744d175d6044b53152761e3bf9f48"
+          "migration_hash": "sha256:b0b88cabc1d00c6754ab57ef8ba74070"
         }
       },
       {
@@ -8275,10 +8239,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (4) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -8294,7 +8255,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 3
             },
             {
               "_type": "image",
@@ -8302,10 +8264,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -8321,7 +8280,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 4
             },
             {
               "_type": "block",
@@ -8361,10 +8321,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (2) (1) (1) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -8380,7 +8337,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 7
             },
             {
               "_type": "block",
@@ -8435,7 +8393,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/browser-help/setting-up-microsoft-edge-sync.md",
-          "migration_hash": "sha256:e78785fc28a5194eac4c91132fd7abe4"
+          "migration_hash": "sha256:5e59311737f93f07d079b656efabdb25"
         }
       },
       {
@@ -8481,10 +8439,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (5) (1) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -8500,7 +8455,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 2
             },
             {
               "_type": "image",
@@ -8508,10 +8464,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -8527,7 +8480,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 3
             },
             {
               "_type": "image",
@@ -8535,10 +8489,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -8554,7 +8505,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 4
             },
             {
               "_type": "image",
@@ -8562,10 +8514,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -8581,7 +8530,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 5
             },
             {
               "_type": "image",
@@ -8589,10 +8539,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (4) (1) (1) (1) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -8606,15 +8553,12 @@
                   "text": "\\",
                   "marks": []
                 }
-              ],
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              ]
             }
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/change-the-default-application.md",
-          "migration_hash": "sha256:9717394521426cbbfe9ca79a87f25c72"
+          "migration_hash": "sha256:f7b90a198b14bd7b9928f0e99f11de32"
         }
       },
       {
@@ -8735,10 +8679,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (8).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -8754,7 +8695,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 2
             },
             {
               "_type": "image",
@@ -8762,10 +8704,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (6) (1) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -8781,7 +8720,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 3
             },
             {
               "_type": "image",
@@ -8789,10 +8729,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (21).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -8806,10 +8743,7 @@
                   "text": "Click “OK” and the task should run with appropriate elevation. If it fails, you can attempt to complete the task manually.",
                   "marks": []
                 }
-              ],
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              ]
             },
             {
               "_type": "block",
@@ -8825,7 +8759,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 4
             },
             {
               "_type": "image",
@@ -8833,10 +8768,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (13).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -8864,15 +8796,12 @@
                   "text": " for information or assistance.",
                   "marks": []
                 }
-              ],
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              ]
             }
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/etop-tools/deployed-tools/autoelevate.md",
-          "migration_hash": "sha256:1084959dceb384b3ca447ffffc2873df"
+          "migration_hash": "sha256:fd718fd4bdb1a1072218b482f61a53b3"
         }
       },
       {
@@ -9324,14 +9253,28 @@
               "level": 1
             },
             {
+              "_type": "block",
+              "_key": "k0009i",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k0009s",
+                  "text": "",
+                  "marks": []
+                }
+              ],
+              "listItem": "bullet",
+              "level": 2
+            },
+            {
               "_type": "image",
               "_key": "k0009",
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1).png"
-              },
-              "listItem": "bullet",
-              "level": 2
+              }
             },
             {
               "_type": "block",
@@ -9347,7 +9290,24 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 2
+            },
+            {
+              "_type": "block",
+              "_key": "k000ci",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k000cs",
+                  "text": "",
+                  "marks": []
+                }
+              ],
+              "listItem": "bullet",
+              "level": 2
             },
             {
               "_type": "image",
@@ -9355,9 +9315,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (12).png"
-              },
-              "listItem": "bullet",
-              "level": 2
+              }
             },
             {
               "_type": "block",
@@ -9375,7 +9333,24 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 3
+            },
+            {
+              "_type": "block",
+              "_key": "k000fi",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k000fs",
+                  "text": "",
+                  "marks": []
+                }
+              ],
+              "listItem": "bullet",
+              "level": 2
             },
             {
               "_type": "image",
@@ -9383,9 +9358,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (19).png"
-              },
-              "listItem": "bullet",
-              "level": 2
+              }
             },
             {
               "_type": "block",
@@ -9401,7 +9374,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 4
             },
             {
               "_type": "block",
@@ -9468,7 +9442,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/etop-tools/deployed-tools/ublock-origin-ad-blocker.md",
-          "migration_hash": "sha256:340455d8aa66619b93adc194b0633a57"
+          "migration_hash": "sha256:44ccd9de3ffb89e5089828109e32620e"
         }
       },
       {
@@ -9619,10 +9593,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (117).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -9636,10 +9607,7 @@
                   "text": "Click Close",
                   "marks": []
                 }
-              ],
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              ]
             },
             {
               "_type": "image",
@@ -9647,10 +9615,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (118).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -9666,7 +9631,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 2
             },
             {
               "_type": "block",
@@ -9690,10 +9656,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (120).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -9709,7 +9672,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 4
             },
             {
               "_type": "image",
@@ -9717,10 +9681,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (121).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -9736,7 +9697,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 5
             },
             {
               "_type": "image",
@@ -9744,10 +9706,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (122).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -9763,7 +9722,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 6
             },
             {
               "_type": "image",
@@ -9771,10 +9731,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (123).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -9790,7 +9747,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 7
             },
             {
               "_type": "image",
@@ -9798,10 +9756,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (124).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -9817,7 +9772,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 8
             },
             {
               "_type": "image",
@@ -9825,10 +9781,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (131).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -9844,7 +9797,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 9
             },
             {
               "_type": "image",
@@ -9852,10 +9806,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (132).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -9871,7 +9822,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 10
             },
             {
               "_type": "image",
@@ -9879,10 +9831,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (133).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -9898,7 +9847,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 11
             },
             {
               "_type": "image",
@@ -9906,10 +9856,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (134).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -9925,7 +9872,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 12
             },
             {
               "_type": "image",
@@ -9933,10 +9881,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (135).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -9950,10 +9895,7 @@
                   "text": "\\",
                   "marks": []
                 }
-              ],
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              ]
             },
             {
               "_type": "block",
@@ -9969,7 +9911,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 13
             },
             {
               "_type": "image",
@@ -9977,10 +9920,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (125).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -9996,7 +9936,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 14
             },
             {
               "_type": "image",
@@ -10004,10 +9945,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (126).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -10023,7 +9961,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 15
             },
             {
               "_type": "image",
@@ -10031,10 +9970,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (127).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -10050,7 +9986,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 16
             },
             {
               "_type": "image",
@@ -10058,15 +9995,12 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (136).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             }
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/etop-tools/secure-remote-connection/cloudflare-ztna-info/cloudflare-zero-trust-for-ios.md",
-          "migration_hash": "sha256:b8521662fe5938951241c3a03c85b5cb"
+          "migration_hash": "sha256:7a68a4da8ca3850e2e5bc7a52e60bc2d"
         }
       },
       {
@@ -10639,10 +10573,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/Screenshot 2025-03-19 094913.png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -10672,7 +10603,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 2
             },
             {
               "_type": "image",
@@ -10680,10 +10612,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -10699,7 +10628,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 3
             },
             {
               "_type": "image",
@@ -10707,10 +10637,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (2).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -10726,7 +10653,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 4
             },
             {
               "_type": "image",
@@ -10734,10 +10662,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (3).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -10773,7 +10698,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 5
             },
             {
               "_type": "image",
@@ -10781,10 +10707,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (4).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -10800,7 +10723,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 6
             },
             {
               "_type": "image",
@@ -10808,10 +10732,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/Screenshot 2025-03-19 095351.png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -10827,7 +10748,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 7
             },
             {
               "_type": "image",
@@ -10835,10 +10757,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (5).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -10857,7 +10776,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/etop-tools/secure-remote-connection/screen-connect/reset-your-screenconnect-password.md",
-          "migration_hash": "sha256:5ac9e4e6cccaeead5199aefe252acee3"
+          "migration_hash": "sha256:5aec2aa58d9fff05bba8e6d1451692e0"
         }
       },
       {
@@ -10962,10 +10881,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (105).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -10995,7 +10911,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 3
             },
             {
               "_type": "image",
@@ -11003,10 +10920,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (103).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -11022,7 +10936,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 4
             },
             {
               "_type": "image",
@@ -11030,10 +10945,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (106).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -11047,10 +10959,7 @@
                   "text": "Select Allow.",
                   "marks": []
                 }
-              ],
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              ]
             },
             {
               "_type": "block",
@@ -11069,7 +10978,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/etop-tools/secure-remote-connection/screen-connect/screenconnect-on-macos.md",
-          "migration_hash": "sha256:0a57939679418a56d8c0a0d47bbdf239"
+          "migration_hash": "sha256:a82b93f0d169fac801e0c91ffc38356e"
         }
       },
       {
@@ -11116,10 +11025,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "image",
@@ -11127,10 +11033,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (1) (1) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -11146,7 +11049,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 2
             },
             {
               "_type": "image",
@@ -11154,10 +11058,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -11193,7 +11094,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 3
             },
             {
               "_type": "image",
@@ -11201,10 +11103,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -11256,10 +11155,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (1) (1) (1) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -11273,10 +11169,7 @@
                   "text": "and a green check mark in the application (with the option to Disconnect)",
                   "marks": []
                 }
-              ],
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              ]
             },
             {
               "_type": "image",
@@ -11284,10 +11177,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (2) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -11303,7 +11193,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 2
             },
             {
               "_type": "image",
@@ -11311,10 +11202,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (3) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -11328,10 +11216,7 @@
                   "text": "and the option to Connect in the application.",
                   "marks": []
                 }
-              ],
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              ]
             },
             {
               "_type": "image",
@@ -11339,10 +11224,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (4) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -11356,15 +11238,12 @@
                   "text": "Click Connect and enter your user name and password (usually first initial last name with your computer password) and you will be back up and running.\\",
                   "marks": []
                 }
-              ],
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              ]
             }
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/etop-tools/secure-remote-connection/sophos-connect-vpn.md",
-          "migration_hash": "sha256:f2901142a486c1a1b546b81c296a2ed9"
+          "migration_hash": "sha256:e59b140582e81c7aa247dad5f7535b46"
         }
       },
       {
@@ -11668,10 +11547,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (113).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -11685,10 +11561,7 @@
                   "text": ". It could be in the bottom toolbar, menu ribbon, or within the ellipsis menus.",
                   "marks": []
                 }
-              ],
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              ]
             },
             {
               "_type": "block",
@@ -11704,7 +11577,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 2
             },
             {
               "_type": "block",
@@ -11728,10 +11602,7 @@
               "alt": "A signature block with the default icons highlighted",
               "asset": {
                 "url": "/.gitbook/assets/image (114).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -11747,7 +11618,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 4
             },
             {
               "_type": "image",
@@ -11755,10 +11627,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (115).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -11785,7 +11654,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/exclaimer-cloud-synchronized-signatures/using-exclaimer.md",
-          "migration_hash": "sha256:8675b856e211a2127120fa81853a576b"
+          "migration_hash": "sha256:97203b22c0a65af5af865775f5f034e1"
         }
       },
       {
@@ -19100,10 +18969,7 @@
             {
               "_type": "html",
               "_key": "k000k",
-              "html": "<div align=\"left\">",
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              "html": "<div align=\"left\">"
             },
             {
               "_type": "image",
@@ -19111,23 +18977,17 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (99).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "html",
               "_key": "k000m",
-              "html": "</div>",
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              "html": "</div>"
             }
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/office-365-guides/microsoft-authenticator/verify-your-authentication-methods.md",
-          "migration_hash": "sha256:ed31d5c16d267556202a6444d6a544d0"
+          "migration_hash": "sha256:a5bc2ec0bb43e7ca00925b116d0e3e44"
         }
       },
       {
@@ -19220,10 +19080,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (138).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -19239,7 +19096,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 4
             },
             {
               "_type": "image",
@@ -19247,10 +19105,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (139).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -19266,7 +19121,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 5
             },
             {
               "_type": "image",
@@ -19274,10 +19130,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (140).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -19293,7 +19146,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 6
             },
             {
               "_type": "image",
@@ -19301,10 +19155,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (141).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -19320,7 +19171,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 7
             },
             {
               "_type": "block",
@@ -19360,10 +19212,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (142).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -19435,7 +19284,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/office-365-guides/microsoft-authenticator/yubikey-setup-for-microsoft-mfa.md",
-          "migration_hash": "sha256:c758b21f229d0642da3fd21a4458672b"
+          "migration_hash": "sha256:2f16fde58bb63ed31c121eac89261dd9"
         }
       },
       {
@@ -19518,10 +19367,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (28).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -19579,7 +19425,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 3
             },
             {
               "_type": "image",
@@ -19587,10 +19434,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (29).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -19606,7 +19450,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 4
             },
             {
               "_type": "block",
@@ -19625,7 +19470,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/office-365-guides/microsoft-bookings/create-a-booking-page.md",
-          "migration_hash": "sha256:f337c1470300e276903fbfa81f74b1e6"
+          "migration_hash": "sha256:2bb5f3907f3a36188d6bcd2490bdcedc"
         }
       },
       {
@@ -20559,10 +20404,7 @@
             {
               "_type": "code",
               "_key": "k000x",
-              "code": "%appdata%\\Microsoft\\Teams",
-              "listItem": "bullet",
-              "level": 2,
-              "listContinuation": true
+              "code": "%appdata%\\Microsoft\\Teams"
             },
             {
               "_type": "block",
@@ -21691,7 +21533,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/office-365-guides/microsoft-teams/teams-troubleshooting-sign-in-and-common-issues.md",
-          "migration_hash": "sha256:182ab7ed921acd438284108c07d11093"
+          "migration_hash": "sha256:9f0e45d63f29e732d54540283c9d48b2"
         }
       },
       {
@@ -21954,10 +21796,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "image",
@@ -21965,10 +21804,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "image",
@@ -21976,10 +21812,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (2) (1) (1) (1) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -22031,10 +21864,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (3) (1) (1) (1) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -22050,7 +21880,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 2
             },
             {
               "_type": "image",
@@ -22058,10 +21889,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (4) (1) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -22077,7 +21905,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 3
             },
             {
               "_type": "image",
@@ -22085,10 +21914,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (5) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -22104,7 +21930,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 4
             },
             {
               "_type": "block",
@@ -22160,10 +21987,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (50).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -22179,7 +22003,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 8
             },
             {
               "_type": "image",
@@ -22187,10 +22012,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (51).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "image",
@@ -22198,10 +22020,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (52).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -22225,7 +22044,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 9
             },
             {
               "_type": "image",
@@ -22233,10 +22053,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (53).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -22252,7 +22069,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 10
             },
             {
               "_type": "image",
@@ -22260,10 +22078,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (54).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -22279,7 +22094,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 11
             },
             {
               "_type": "image",
@@ -22287,10 +22103,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (55).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -22306,7 +22119,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 12
             },
             {
               "_type": "image",
@@ -22314,10 +22128,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (56).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -22333,7 +22144,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 13
             },
             {
               "_type": "image",
@@ -22341,10 +22153,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (57).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -22360,7 +22169,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 14
             },
             {
               "_type": "image",
@@ -22368,10 +22178,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (58).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -22387,7 +22194,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 15
             },
             {
               "_type": "image",
@@ -22395,10 +22203,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (59).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -22414,7 +22219,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 16
             },
             {
               "_type": "image",
@@ -22422,10 +22228,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (60).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -22441,7 +22244,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 17
             },
             {
               "_type": "image",
@@ -22449,10 +22253,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (61).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -22468,7 +22269,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 18
             },
             {
               "_type": "image",
@@ -22476,10 +22278,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (62).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -22495,7 +22294,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 19
             },
             {
               "_type": "image",
@@ -22503,10 +22303,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (63).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -22522,7 +22319,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 20
             },
             {
               "_type": "image",
@@ -22530,10 +22328,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (64).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -22549,7 +22344,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 21
             },
             {
               "_type": "image",
@@ -22557,10 +22353,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (65).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -22576,7 +22369,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 22
             },
             {
               "_type": "image",
@@ -22584,10 +22378,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (66).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "image",
@@ -22595,10 +22386,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (67).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -22614,7 +22402,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 23
             },
             {
               "_type": "image",
@@ -22622,10 +22411,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (68).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -22641,7 +22427,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 24
             },
             {
               "_type": "image",
@@ -22649,10 +22436,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (69).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "image",
@@ -22660,10 +22444,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (70).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -22679,7 +22460,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 25
             },
             {
               "_type": "image",
@@ -22687,10 +22469,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (71).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -22704,10 +22483,7 @@
                   "text": "\\",
                   "marks": []
                 }
-              ],
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              ]
             },
             {
               "_type": "block",
@@ -22726,7 +22502,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/office-365-guides/mobile-phone-setup/android-phone-setup.md",
-          "migration_hash": "sha256:c551cf337c481fea39028fdda012ed86"
+          "migration_hash": "sha256:a0719c8da521acb8059e1612335b4263"
         }
       },
       {
@@ -22816,10 +22592,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (72).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "image",
@@ -22827,10 +22600,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (73).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "image",
@@ -22838,10 +22608,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (74).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -22909,10 +22676,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (75).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "image",
@@ -22920,10 +22684,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (76).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -22939,7 +22700,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 2
             },
             {
               "_type": "image",
@@ -22947,10 +22709,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (77).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -22966,7 +22725,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 3
             },
             {
               "_type": "image",
@@ -22974,10 +22734,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (78).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "image",
@@ -22985,10 +22742,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (79).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -23004,7 +22758,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 4
             },
             {
               "_type": "image",
@@ -23012,10 +22767,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (80).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -23031,7 +22783,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 5
             },
             {
               "_type": "image",
@@ -23039,10 +22792,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (81).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "image",
@@ -23050,10 +22800,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (82).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -23069,7 +22816,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 6
             },
             {
               "_type": "image",
@@ -23077,10 +22825,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (83).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "image",
@@ -23088,10 +22833,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (84).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -23107,7 +22849,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 7
             },
             {
               "_type": "image",
@@ -23115,10 +22858,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (85).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "image",
@@ -23126,10 +22866,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (86).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -23145,7 +22882,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 8
             },
             {
               "_type": "image",
@@ -23153,10 +22891,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (87).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -23172,7 +22907,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 9
             },
             {
               "_type": "image",
@@ -23180,10 +22916,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (88).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -23199,7 +22932,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 10
             },
             {
               "_type": "image",
@@ -23207,10 +22941,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (89).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -23226,7 +22957,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 11
             },
             {
               "_type": "image",
@@ -23234,10 +22966,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (90).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -23253,7 +22982,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 12
             },
             {
               "_type": "image",
@@ -23261,10 +22991,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (91).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "image",
@@ -23272,10 +22999,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (92).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -23315,10 +23039,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (93).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -23334,7 +23055,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 2
             },
             {
               "_type": "image",
@@ -23342,10 +23064,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (94).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -23361,7 +23080,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 3
             },
             {
               "_type": "image",
@@ -23369,10 +23089,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (95).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -23388,7 +23105,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 4
             },
             {
               "_type": "image",
@@ -23396,10 +23114,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (96).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -23415,7 +23130,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 5
             },
             {
               "_type": "image",
@@ -23423,10 +23139,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (97).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -23466,10 +23179,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (98).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -23485,7 +23195,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 2
             },
             {
               "_type": "block",
@@ -23585,7 +23296,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/office-365-guides/mobile-phone-setup/ios-phone-setup.md",
-          "migration_hash": "sha256:5626f5ff732f30700e443385f32f4362"
+          "migration_hash": "sha256:f0ae572f6fa136b932d1b7bc8c83f2b0"
         }
       },
       {
@@ -24344,10 +24055,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (22).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -24363,7 +24071,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 3
             },
             {
               "_type": "image",
@@ -24371,10 +24080,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (23).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -24390,7 +24096,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 4
             },
             {
               "_type": "block",
@@ -24417,7 +24124,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/office-365-guides/outlook/accessing-another-mailbox.md",
-          "migration_hash": "sha256:8d6d161cddccb1b1e3819c24a4bb264f"
+          "migration_hash": "sha256:2cb4cba76b730fb84afabcd1e8c47d2e"
         }
       },
       {
@@ -24641,10 +24348,7 @@
               "alt": "View Tab Highlighted",
               "asset": {
                 "url": "https://university.etop.tech/assets/outlook-view-tab.png"
-              },
-              "listItem": "bullet",
-              "level": 2,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -24662,7 +24366,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 3
             },
             {
               "_type": "block",
@@ -25251,7 +24956,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/office-365-guides/outlook/how-to-sort-folders-in-the-new-outlook.md",
-          "migration_hash": "sha256:c60cd37873228813872315d4cfd0a766"
+          "migration_hash": "sha256:9805f3ca0716c257a9657b3ace1e1d20"
         }
       },
       {
@@ -26661,10 +26366,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -26680,7 +26382,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 2
             },
             {
               "_type": "block",
@@ -26720,10 +26423,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png"
-              },
-              "listItem": "bullet",
-              "level": 2,
-              "listContinuation": true
+              }
             },
             {
               "_type": "image",
@@ -26731,10 +26431,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1).png"
-              },
-              "listItem": "bullet",
-              "level": 2,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -26748,10 +26445,7 @@
                   "text": "\\",
                   "marks": []
                 }
-              ],
-              "listItem": "bullet",
-              "level": 2,
-              "listContinuation": true
+              ]
             },
             {
               "_type": "block",
@@ -26767,7 +26461,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 4
             },
             {
               "_type": "image",
@@ -26775,10 +26470,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/Image (1).jpg"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "image",
@@ -26786,10 +26478,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/Image (2).jpg"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -26803,10 +26492,7 @@
                   "text": "\\",
                   "marks": []
                 }
-              ],
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              ]
             },
             {
               "_type": "block",
@@ -26842,7 +26528,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 5
             },
             {
               "_type": "image",
@@ -26850,10 +26537,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/Image (3).jpg"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -26869,12 +26553,13 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 6
             }
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/office-365-guides/outlook/outlook-mobile-setup/android-setup.md",
-          "migration_hash": "sha256:1a8b5bf0468adee4081a7c21de4f1c28"
+          "migration_hash": "sha256:72902777b9f8ddb9eba97147cbab1a17"
         }
       },
       {
@@ -27109,10 +26794,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -27128,7 +26810,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 2
             },
             {
               "_type": "block",
@@ -27152,10 +26835,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png"
-              },
-              "listItem": "bullet",
-              "level": 2,
-              "listContinuation": true
+              }
             },
             {
               "_type": "image",
@@ -27163,10 +26843,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1).png"
-              },
-              "listItem": "bullet",
-              "level": 2,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -27180,10 +26857,7 @@
                   "text": "\\",
                   "marks": []
                 }
-              ],
-              "listItem": "bullet",
-              "level": 2,
-              "listContinuation": true
+              ]
             },
             {
               "_type": "block",
@@ -27199,7 +26873,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 3
             },
             {
               "_type": "image",
@@ -27207,10 +26882,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/Image (1).jpg"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "image",
@@ -27218,10 +26890,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/Image (2).jpg"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -27235,10 +26904,7 @@
                   "text": "\\",
                   "marks": []
                 }
-              ],
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              ]
             },
             {
               "_type": "block",
@@ -27274,7 +26940,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 4
             },
             {
               "_type": "image",
@@ -27282,15 +26949,12 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/Image (3).jpg"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             }
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/office-365-guides/outlook/outlook-mobile-setup/ios-setup.md",
-          "migration_hash": "sha256:ac0cab87f66855cb3a279eeb23dc2f9f"
+          "migration_hash": "sha256:85e0e3569f7630c0b1b0c2c187eec492"
         }
       },
       {
@@ -28988,10 +28652,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (1) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -29047,15 +28708,12 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (2) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             }
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/office-365-guides/outlook/report-messages-to-microsoft.md",
-          "migration_hash": "sha256:a85c2d1d2dd0cf445ba54162bf31ab90"
+          "migration_hash": "sha256:b47ff7cfec6f6c35770bd493d6a003a6"
         }
       },
       {
@@ -30391,10 +30049,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/remoteApp.png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -30410,7 +30065,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 2
             },
             {
               "_type": "image",
@@ -30418,10 +30074,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/view details.png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -30437,7 +30090,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 3
             },
             {
               "_type": "image",
@@ -30445,10 +30099,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (6) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -30464,7 +30115,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 4
             },
             {
               "_type": "image",
@@ -30472,10 +30124,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -30491,7 +30140,8 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 5
             },
             {
               "_type": "image",
@@ -30499,10 +30149,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "image",
@@ -30510,10 +30157,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/application.png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -30551,10 +30195,7 @@
               "alt": "",
               "asset": {
                 "url": "/.gitbook/assets/image (112).png"
-              },
-              "listItem": "number",
-              "level": 1,
-              "listContinuation": true
+              }
             },
             {
               "_type": "block",
@@ -30570,12 +30211,13 @@
                 }
               ],
               "listItem": "number",
-              "level": 1
+              "level": 1,
+              "listStart": 2
             }
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/remote-applications.md",
-          "migration_hash": "sha256:64011cb647fbc258084b8c103f7cdcd3"
+          "migration_hash": "sha256:1145972eb7748995e29bca3c83833d09"
         }
       },
       {
