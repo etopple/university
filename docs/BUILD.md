@@ -68,18 +68,24 @@ page path (`education/self-help-guides/backups`; home is `index`), so every URL 
 
 ```bash
 export CLOUDFLARE_API_TOKEN=...          # D1 Edit + Workers Scripts Edit
-scripts/infra/deploy.sh preview          # build -> emdash migrate -> wrangler deploy --env preview -> verify
-scripts/infra/deploy.sh production       # lead only, at cutover, under a Change issue
+bash scripts/infra/deploy.sh preview     # build -> emdash migrate -> wrangler deploy --env preview -> verify
+bash scripts/infra/deploy.sh production  # lead only, at cutover, under a Change issue; asks you to type 'production'
 ```
 
 `wrangler deploy` never runs D1 migrations. The script runs `emdash migrate --wrangler-env …` before it
 deploys and `emdash migrate --check` after. Changes to the content model (collections and fields) are a
 separate step. See EmDash's "Evolving a Deployed Site".
 
+If the build uses the `@cloudflare/vite-plugin` path (Astro writes a flattened `dist/server/wrangler.json`), pick the
+env at build time with `CLOUDFLARE_ENV=preview` and drop `--env` at deploy. Any binding added later (`CACHE`, `LOADER`,
+`IMAGES`) must be repeated under `env.preview`: bindings are not inherited.
+
 **Confirm it worked:**
 
 1. `GET <url>/` returns 200 with no login.
 2. `GET <url>/_emdash/admin` with no login returns **302 to `etoptech.cloudflareaccess.com`**. A 200 here means Access is off: stop.
+   `GET <url>/_emdash/api/content/docs` with no login is also a 302 (or 401/403), never 200: Access covers the API too.
+   `deploy.sh` runs these checks and prints `VERIFY OK` or `VERIFY FAILED`.
 3. `npx emdash migrate --check --wrangler-config wrangler.jsonc [--wrangler-env preview]` exits 0.
 4. `npx wrangler tail [--env preview]` shows the cron line `"* * * * *" … Ok` once a minute.
 5. Preview only, before cutover, all from `tests/e2e/` and `scripts/emdash/`:
@@ -100,9 +106,10 @@ npx wrangler kv namespace create university-emdash-session-preview
 # Access: create the two apps under "Access" below; copy each AUD tag
 npx wrangler secret put CF_ACCESS_AUDIENCE                 # prod AUD
 npx wrangler secret put CF_ACCESS_AUDIENCE --env preview   # preview AUD
-npx emdash secrets generate | npx wrangler secret put EMDASH_ENCRYPTION_KEY
-npx emdash secrets generate | npx wrangler secret put EMDASH_ENCRYPTION_KEY --env preview
-scripts/infra/deploy.sh preview
+npx emdash secrets generate        # copy the emdash_enc_v1_... line, paste it at the next prompt
+npx wrangler secret put EMDASH_ENCRYPTION_KEY
+npx wrangler secret put EMDASH_ENCRYPTION_KEY --env preview   # a different generated key
+bash scripts/infra/deploy.sh preview
 cd scripts/emdash && npm install && EMDASH_TOKEN=... node apply.mjs --url <preview>   # load the 118 pages + sidebar
 node parity.mjs --candidate <preview>                                                # must exit 0
 ```
@@ -123,10 +130,11 @@ export is open (see Known traps).
   - First login auto-creates the EmDash user as **Author** (role 30) unless `roleMapping` in `astro.config.mjs` says otherwise.
   - An Admin can raise a user's role under *Users* in the admin.
 - **Two Access apps, one per env**, so a preview credential cannot open production:
-  - *University EmDash admin (staff)*: `university.etop.tech/_emdash` + `university-emdash.williampote.workers.dev/_emdash`
-  - *University EmDash admin PREVIEW (staff)*: `university-emdash-preview.williampote.workers.dev/_emdash`
-  - They cover `/_emdash` and everything below it. Covering only `/_emdash/admin` breaks the API.
-  - **(pending)**: not created as of 2026-10-02 (waiting on BJ). Until then the preview admin rejects every request.
+  - *University EmDash admin (staff)* `39ca3545-7a40-4047-85c2-ab42a4b817d9`: `university.etop.tech/_emdash[/*]` + `university-emdash.williampote.workers.dev/_emdash[/*]`
+  - *University EmDash admin PREVIEW (staff)* `ad705bef-5c98-49aa-80cc-e40fe3bd0d2b`: `university-emdash-preview.williampote.workers.dev/_emdash[/*]`
+  - Each app lists both `/_emdash` and `/_emdash/*`. Covering only `/_emdash/admin` breaks the API.
+  - Created 2026-10-02 (BJ approved). Checked live: `/_emdash`, `/_emdash/admin` and `/_emdash/api/...` all 302 to Access, and `/` stays 200.
+  - Each app's AUD tag goes into that env's `CF_ACCESS_AUDIENCE` Worker secret. Read it from the app in Zero Trust.
 - **Automation** (E2E, `apply.mjs`): Access service token `university-e2e` under a *Service Auth* policy on the
   **preview app only**, plus an admin-scope EmDash API token. EmDash checks the `Authorization: Bearer` header
   before Access, in every mode. **(pending)**
@@ -140,6 +148,8 @@ export is open (see Known traps).
   Worker, and the cutover moves the custom domain from Pages to the Worker.
 - **2026-10-02** `wrangler deploy` does not migrate D1. Use `scripts/infra/deploy.sh`, which does. A new table
   without its migration returns 500s.
+- **2026-10-02** An Access path of `/_emdash` matches only that exact path. `/_emdash/admin` was reachable without a
+  login until `/_emdash/*` was added. List both.
 - **2026-10-02** `preview_urls: false` in both envs. Cloudflare's per-version preview hostnames would sit outside
   the Access app and expose the admin.
 - **2026-10-02** The Access policy that requires the Entra login method rejects service tokens. Automation needs
