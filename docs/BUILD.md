@@ -72,19 +72,23 @@ page path (`education/self-help-guides/backups`; home is `index`), so every URL 
 ## Deploy
 
 ```bash
-export CLOUDFLARE_API_TOKEN=...                       # D1 Edit + Workers Scripts Edit
-bash scripts/infra/deploy.sh preview --load-content      # EMPTY preview D1 only: schema + migrations + all pages + menu + search index
-bash scripts/infra/deploy.sh preview                     # later deploys: emdash migrate (status, apply, check)
-bash scripts/infra/deploy.sh production --load-content   # ONCE, at cutover (production D1 is empty); lead only, under a Change issue; type 'production'
-bash scripts/infra/deploy.sh production                  # every production deploy after that
+bash scripts/infra/deploy.sh production                  # THE NORMAL WAY TO SHIP A CODE CHANGE (= --code-only); type 'production'
+bash scripts/infra/deploy.sh preview                     # same, to the preview
+bash scripts/infra/deploy.sh production --migrate        # only when an EmDash upgrade brings new core migrations; needs CLOUDFLARE_API_TOKEN (D1 Edit)
+bash scripts/infra/deploy.sh production --load-content   # ONCE, at cutover (production D1 is empty); lead only, under a Change issue
+bash scripts/infra/deploy.sh preview --load-content      # EMPTY or throwaway preview D1 only: schema + migrations + all pages + menu + search; resets seed pages
 ```
 
 - **The env is picked at build time.** `@astrojs/cloudflare` writes a flattened `dist/server/wrangler.json` for
   `CLOUDFLARE_ENV`, and `wrangler deploy` follows it, so deploy takes no `--env`. The script sets `CLOUDFLARE_ENV` and checks the
   built Worker name. Commands that read `wrangler.jsonc` directly (`d1 execute`, `secret put`) need `--config wrangler.jsonc --env preview`.
+- **Code-only is the default, and it refuses when it should not ship.** It compares the build's EmDash migration set
+  (`.emdash/migrations.json`) with the `_emdash_migrations` rows in that D1, and the build's EmDash version with the
+  `emdash=<version>` message on the currently deployed Worker version (every deploy writes one). Any difference prints
+  `REFUSED` and points to `--migrate`. It touches no data, so editors' work is safe. Uses the wrangler login; no API token.
 - **`wrangler deploy` never runs D1 migrations.** `--load-content` runs `scripts/emdash/out/d1-load.sql` (from `d1-sql.mjs`).
   It **overwrites pages with the seed**, so use it only on an empty D1: the preview before cutover, production once at cutover.
-  Never again after editors start working. The default path runs `emdash migrate`, which ignores the
+  Never again after editors start working. `--migrate` runs `emdash migrate`, which ignores the
   wrangler login and needs `CLOUDFLARE_API_TOKEN`. In CI, pass the reviewed fingerprint as `EMDASH_TARGET_FINGERPRINT`.
 - Content-model changes (collections and fields) are a separate step. See EmDash's "Evolving a Deployed Site".
 - Any binding added later (`CACHE`, `LOADER`) must be repeated under `env.preview`: bindings are not inherited. The adapter adds `IMAGES` and `ASSETS` itself.
@@ -93,9 +97,9 @@ bash scripts/infra/deploy.sh production                  # every production depl
 
 1. `GET <url>/` returns 200 with no login.
 2. `GET <url>/_emdash/admin` with no login returns **302 to `etoptech.cloudflareaccess.com`**. A 200 here means Access is off: stop.
-   `GET <url>/_emdash/api/content/docs` with no login is also a 302 (or 401/403), never 200: Access covers the API too.
+   `GET <url>/_emdash/api/content/docs` with no login is also a 302 to Access: Access covers the API too. A 401 from EmDash does not count.
    `deploy.sh` runs these checks and prints `VERIFY OK` or `VERIFY FAILED`.
-3. `npx emdash migrate --check --wrangler-config wrangler.jsonc [--wrangler-env preview]` exits 0.
+3. Every sidebar page link resolves (`deploy.sh` checks it); after `--migrate`, `npx emdash migrate --check …` exits 0.
 4. `npx wrangler tail [--env preview]` shows the cron line `"* * * * *" … Ok` once a minute.
 5. Preview only, before cutover, all from `tests/e2e/` and `scripts/emdash/`:
    - `node parity.mjs --candidate <preview>`: every URL, title and main text matches the live site. Accepted differences

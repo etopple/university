@@ -68,10 +68,13 @@ only way in, and EmDash re-validates the Access JWT on every `/_emdash` request 
 ## Deploy
 
 ```bash
-bash scripts/infra/deploy.sh preview --load-content   # pre-cutover: schema + migrations + all pages via wrangler d1 execute
-bash scripts/infra/deploy.sh preview                  # later deploys: emdash migrate (needs CLOUDFLARE_API_TOKEN, D1 Edit)
-bash scripts/infra/deploy.sh production               # lead only, at cutover; asks you to type 'production'
+bash scripts/infra/deploy.sh production                  # everyday code deploy (= --code-only)
+bash scripts/infra/deploy.sh preview                     # same, preview
+bash scripts/infra/deploy.sh <env> --migrate             # EmDash upgrade with new core migrations (CLOUDFLARE_API_TOKEN, D1 Edit)
+bash scripts/infra/deploy.sh <env> --load-content        # empty D1 only: schema + migrations + all seed pages
 ```
+`--code-only` refuses unless the build's migration set equals the D1's `_emdash_migrations` rows and the build's EmDash
+version equals the `emdash=<version>` message on the deployed Worker version. Full detail: `docs/BUILD.md` > Deploy.
 
 **The env is picked at build time.** `@astrojs/cloudflare` writes a flattened `dist/server/wrangler.json` for
 `CLOUDFLARE_ENV` and `wrangler deploy` follows it, so deploy takes no `--env` (the script sets `CLOUDFLARE_ENV` and
