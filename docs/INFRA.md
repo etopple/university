@@ -57,8 +57,11 @@ only way in, and EmDash re-validates the Access JWT on every `/_emdash` request 
     in a GitHub Actions secret or Hudu, never in git. The prod app has no service-token policy.
 - **Status 2026-10-02: both apps CREATED** (BJ approved). Checked on the live hostname: `/_emdash`, `/_emdash/admin` and
   `/_emdash/api/...` all 302 to `etoptech.cloudflareaccess.com`; `/` stays 200. The AUD tags are not secret but are set as the
-  `CF_ACCESS_AUDIENCE` Worker secret per env (read them from the app in Zero Trust). The E2E service token
-  `university-e2e` is NOT created yet (pending BJ).
+  `CF_ACCESS_AUDIENCE` Worker secret per env (read them from the app in Zero Trust). E2E service token
+  `university-e2e` (id `b07a8b64-e2dc-4665-99e0-40b13f61d48e`, expires 2027-10-03) is CREATED (BJ approved) with policy
+  "E2E service token (preview only)" (Service Auth) on the preview app; the prod app has only the staff policy (checked via API).
+  Credentials: GitHub Actions secrets `UNIVERSITY_E2E_ACCESS_CLIENT_ID` / `UNIVERSITY_E2E_ACCESS_CLIENT_SECRET` on etopple/university.
+  Renew before 2027-10-03 (Zero Trust > Access > Service credentials > Refresh) and update both secrets.
 - `preview_urls: false` in both envs: version-preview hostnames would be outside the Access app.
 - New users are auto-provisioned on first Access login with EmDash's default role (Author, 30); the lead sets `roleMapping` in `astro.config.mjs`.
 
