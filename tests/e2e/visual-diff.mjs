@@ -5,13 +5,22 @@
 //   node visual-diff.mjs --candidate https://<preview> [--base https://university.etop.tech]
 //                        [--threshold 0.5] [--band 2] [--pages /,/about-us/values]
 //
+// Reviewed-baseline mode (compare against saved screenshots instead of another site):
+//
+//   node visual-diff.mjs --candidate <url> --save-baseline <dir>   # shoot <url>, save it as a baseline
+//   (look at the PNGs; when they are right, set "reviewed" in <dir>/baseline.json)
+//   node visual-diff.mjs --candidate <url> --baseline <dir>        # compare <url> with that baseline
+//
+// A baseline that nobody marked reviewed is refused (--allow-unreviewed overrides),
+// so a green run always means "matches what a person accepted".
+//
 // Writes out/visual/<page>-<theme>-{base,candidate,diff}.png and out/visual/report.md.
 // Exit 1 if a page fails to load, differs by more than --threshold % of all pixels or
 // --band % within any 200px strip, or changes height by more than 8px.
 // Sends E2E_CF_ACCESS_CLIENT_ID / E2E_CF_ACCESS_CLIENT_SECRET to the candidate if set.
 
-import { mkdirSync, writeFileSync } from "node:fs";
-import { join, dirname } from "node:path";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { join, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "@playwright/test";
 import pixelmatch from "pixelmatch";
@@ -28,22 +37,49 @@ export const KEY_PAGES = [
   { path: "/education/self-help-guides/office-365-guides/microsoft-authenticator", why: "section index page" },
 ];
 
-function args(argv) {
-  const a = { base: "https://university.etop.tech", candidate: "", threshold: 0.5, band: 2, pages: null, out: "" };
+export function args(argv) {
+  const a = { base: "https://university.etop.tech", baseGiven: false, candidate: "", threshold: 0.5, band: 2, pages: null, out: "", baseline: "", saveBaseline: "", allowUnreviewed: false };
   for (let i = 2; i < argv.length; i++) {
     const k = argv[i];
-    if (k === "--base") a.base = argv[++i];
+    if (k === "--base") (a.base = argv[++i]), (a.baseGiven = true);
     else if (k === "--candidate") a.candidate = argv[++i];
     else if (k === "--threshold") a.threshold = Number(argv[++i]);
     else if (k === "--band") a.band = Number(argv[++i]);
     else if (k === "--pages") a.pages = argv[++i].split(",").map((p) => ({ path: p.trim(), why: "" }));
     else if (k === "--out") a.out = argv[++i];
+    else if (k === "--baseline") a.baseline = argv[++i];
+    else if (k === "--save-baseline") a.saveBaseline = argv[++i];
+    else if (k === "--allow-unreviewed") a.allowUnreviewed = true;
     else throw new Error(`unknown arg ${k}`);
   }
   if (!a.candidate) throw new Error("--candidate <url> is required");
+  if (a.baseline && a.saveBaseline) throw new Error("--baseline and --save-baseline are separate runs: save first, review, then compare");
+  if ((a.baseline || a.saveBaseline) && a.baseGiven) throw new Error("--base is not used with a baseline: the saved screenshots are the base");
   a.base = a.base.replace(/\/$/, "");
   a.candidate = a.candidate.replace(/\/$/, "");
   return a;
+}
+
+export const shotName = (path, theme) => `${path === "/" ? "home" : path.replace(/^\/|\/$/g, "").replace(/\//g, "__")}-${theme}`;
+export const BASELINE_FILE = "baseline.json";
+
+// A baseline is a folder of <page>-<theme>.png plus baseline.json, which records where the
+// shots came from and who reviewed them. "reviewed" stays null until a person fills it in.
+export function readBaseline(dir, { allowUnreviewed = false } = {}) {
+  const file = join(dir, BASELINE_FILE);
+  if (!existsSync(file)) throw new Error(`no ${BASELINE_FILE} in ${dir}: create a baseline with --save-baseline first`);
+  const meta = JSON.parse(readFileSync(file, "utf8"));
+  if (!Array.isArray(meta.pages) || !meta.pages.length) throw new Error(`${file}: "pages" is missing or empty`);
+  const r = meta.reviewed;
+  const reviewed = !!(r && typeof r === "object" && String(r.by || "").trim() && String(r.on || "").trim());
+  if (!reviewed && !allowUnreviewed) {
+    throw new Error(`${file} is not reviewed. Open the PNGs in ${dir}; if they are right, set "reviewed": {"by": "<name>", "on": "<YYYY-MM-DD>", "note": "..."} and run again (or pass --allow-unreviewed for a dry look).`);
+  }
+  return { ...meta, isReviewed: reviewed };
+}
+
+export function baselineMeta({ source, pages, viewport }) {
+  return { source, createdAt: new Date().toISOString(), viewport, pages, reviewed: null };
 }
 
 async function shoot(browser, url, theme, headers) {
@@ -112,21 +148,57 @@ function pad(img, w, h) {
   return out;
 }
 
+// --save-baseline: shoot the candidate and store it as an (unreviewed) baseline. No compare.
+async function saveBaseline(a) {
+  const dir = a.saveBaseline;
+  if (existsSync(join(dir, BASELINE_FILE))) throw new Error(`${dir} already holds a baseline; pick a new folder (baselines are never overwritten)`);
+  mkdirSync(dir, { recursive: true });
+  const pages = a.pages || KEY_PAGES;
+  const browser = await chromium.launch();
+  let failed = 0;
+  try {
+    for (const p of pages) for (const theme of ["light", "dark"]) {
+      const name = shotName(p.path, theme);
+      const shot = await shoot(browser, a.candidate + p.path, theme, accessHeaders());
+      if (shot.status !== 200) { failed++; console.log(`FAIL ${p.path} [${theme}] HTTP ${shot.status}: not saved`); continue; }
+      writeFileSync(join(dir, `${name}.png`), PNG.sync.write(shot.png));
+      console.log(`saved ${name}.png (${shot.png.width}x${shot.png.height})`);
+    }
+  } finally {
+    await browser.close();
+  }
+  if (failed) {
+    console.error(`\n${failed} page(s) did not return 200; no ${BASELINE_FILE} written, so this folder cannot be used as a baseline.`);
+    process.exit(1);
+  }
+  writeFileSync(join(dir, BASELINE_FILE), JSON.stringify(baselineMeta({ source: a.candidate, pages, viewport: { width: 1280, height: 900 } }), null, 2) + "\n");
+  console.log(`\nbaseline saved to ${dir}. It is UNREVIEWED: look at every PNG, then set "reviewed" in ${join(dir, BASELINE_FILE)}.`);
+  process.exit(0);
+}
+
 async function main() {
   const a = args(process.argv);
+  if (a.saveBaseline) return saveBaseline(a);
   const here = dirname(fileURLToPath(import.meta.url));
   const outDir = a.out || join(here, "out", "visual");
   mkdirSync(outDir, { recursive: true });
-  const pages = a.pages || KEY_PAGES;
+  const baseline = a.baseline ? readBaseline(a.baseline, { allowUnreviewed: a.allowUnreviewed }) : null;
+  // Against a baseline, compare the pages it holds (a --pages subset must be in it).
+  const pages = a.pages || (baseline ? baseline.pages : KEY_PAGES);
+  if (baseline) {
+    const missing = pages.filter((p) => !baseline.pages.some((b) => b.path === p.path));
+    if (missing.length) throw new Error(`not in the baseline: ${missing.map((p) => p.path).join(", ")}`);
+  }
+  const baseLabel = baseline ? `baseline ${a.baseline} (${baseline.source}, ${baseline.createdAt}${baseline.isReviewed ? `, reviewed by ${baseline.reviewed.by} on ${baseline.reviewed.on}` : ", NOT REVIEWED"})` : a.base;
   const browser = await chromium.launch();
   const rows = [];
   let failed = 0;
 
   for (const p of pages) {
     for (const theme of ["light", "dark"]) {
-      const name = `${p.path === "/" ? "home" : p.path.replace(/^\/|\/$/g, "").replace(/\//g, "__")}-${theme}`;
+      const name = shotName(p.path, theme);
       try {
-        const base = await shoot(browser, a.base + p.path, theme, {});
+        const base = baseline ? { status: 200, png: PNG.sync.read(readFileSync(join(a.baseline, `${name}.png`))) } : await shoot(browser, a.base + p.path, theme, {});
         const cand = await shoot(browser, a.candidate + p.path, theme, accessHeaders());
         const w = Math.max(base.png.width, cand.png.width);
         const h = Math.max(base.png.height, cand.png.height);
@@ -155,7 +227,7 @@ async function main() {
   await browser.close();
 
   const md = [
-    `# Visual diff: ${a.base} vs ${a.candidate}`,
+    `# Visual diff: ${baseLabel} vs ${a.candidate}`,
     "",
     `Run ${new Date().toISOString()}. FAIL if: HTTP not 200 on both; over ${a.threshold}% of all pixels differ; over ${a.band}% differ in any ${BAND}px band; or heights differ by more than ${MAX_HEIGHT_DELTA}px. Viewport 1280 wide, full page captured in ${TILE}px tiles. "Last updated" stamps hidden.`,
     "",
@@ -171,4 +243,7 @@ async function main() {
   process.exit(failed ? 1 : 0);
 }
 
-main().catch((e) => { console.error(e); process.exit(2); });
+// Run only as a script, so the helpers above can be imported by tests.
+if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
+  main().catch((e) => { console.error(e); process.exit(2); });
+}

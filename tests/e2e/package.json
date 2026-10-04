@@ -6,7 +6,8 @@
   "scripts": {
     "test": "playwright test",
     "test:editor": "playwright test editor.spec.mjs",
-    "visual": "node visual-diff.mjs"
+    "visual": "node visual-diff.mjs",
+    "test:unit": "node --test visual-diff.test.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.55.0",
