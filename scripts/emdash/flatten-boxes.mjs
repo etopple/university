@@ -14,6 +14,9 @@
 // block is untouched, keys included. Guards:
 //   - dry run by default; --apply writes;
 //   - a page that is not published, or has unpublished draft changes, is skipped;
+//   - the publish is pinned to the _rev our save returned: if the page was saved
+//     again in between (another tab), EmDash refuses, the page is left as a draft
+//     for review and reported, and the run exits 1;
 //   - refuses if the listing has no draftRevisionId at all (session cannot see drafts);
 //   - before the first write, every page's full before-JSON goes to out/flatten-backup-<ts>/;
 //   - a page still untouched since the migration gets its migration_hash refreshed,
@@ -132,7 +135,7 @@ async function main() {
   };
   const { tally } = await runFlatten({ api, apply: a.apply, managedFields: MANAGED_FIELDS, sha256hex: nodeSha256, saveBackups });
   console.log(`\n${JSON.stringify(tally)}${a.apply ? "" : " (dry run: nothing written; add --apply)"}`);
-  process.exit(tally.failed ? 1 : 0);
+  process.exit(tally.failed || tally.notPublished ? 1 : 0);
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {

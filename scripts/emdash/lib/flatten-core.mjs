@@ -94,16 +94,37 @@ export async function runFlatten({ api, apply, managedFields, sha256hex, saveBac
   if (!apply || !plans.length) return { tally, plans };
 
   await saveBackups(plans.map((p) => ({ slug: p.slug, id: p.id, before: p.before })));
+  tally.notPublished = 0;
+  const notPublished = [];
   for (const p of plans) {
+    let written;
     try {
-      await api("PUT", `/content/docs/${p.id}`, { data: p.data, _rev: p.rev });
-      await api("POST", `/content/docs/${p.id}/publish`, {});
-      tally.changed++;
-      if (p.refreshed) tally.hashRefreshed++;
+      written = await api("PUT", `/content/docs/${p.id}`, { data: p.data, _rev: p.rev });
     } catch (e) {
       tally.failed++;
       log(`  ${p.slug}: ${e.message}`);
+      continue;
+    }
+    // Publish exactly the revision just written. EmDash's publish takes _rev and
+    // refuses with a conflict if anything saved the page after our PUT (another
+    // tab, another editor), so their unreviewed draft is never promoted by us.
+    const rev = written?._rev;
+    if (typeof rev !== "string" || !rev) {
+      tally.notPublished++;
+      notPublished.push(p.slug);
+      log(`  ${p.slug}: written as a DRAFT but NOT published: the save returned no _rev, so the publish could not be pinned to it. Review and publish it in the admin.`);
+      continue;
+    }
+    try {
+      await api("POST", `/content/docs/${p.id}/publish`, { _rev: rev });
+      tally.changed++;
+      if (p.refreshed) tally.hashRefreshed++;
+    } catch (e) {
+      tally.notPublished++;
+      notPublished.push(p.slug);
+      log(`  ${p.slug}: written as a DRAFT but NOT published (${e.message}). The page changed after our save; review its draft in the admin.`);
     }
   }
-  return { tally, plans };
+  if (notPublished.length) log(`NOT published (draft left for review): ${notPublished.join(", ")}`);
+  return { tally, plans, notPublished };
 }
