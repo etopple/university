@@ -124,7 +124,7 @@ fi
 counts=$(npx wrangler d1 execute DB "${CFG[@]}" --remote --json --command \
   "SELECT (SELECT count(*) FROM ec_docs) AS docs, (SELECT count(*) FROM _emdash_migrations) AS migrations, (SELECT count(*) FROM _emdash_menu_items WHERE type='page') AS page_links, (SELECT count(*) FROM _emdash_menu_items WHERE type='page' AND reference_id IN (SELECT id FROM ec_docs)) AS page_links_ok")
 echo "$counts" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{const r=JSON.parse(s)[0].results[0];console.log('D1:',JSON.stringify(r));process.exit(r.page_links===r.page_links_ok&&r.page_links>0?0:3)})" \
-  || { echo "VERIFY FAILED: sidebar page links do not all resolve" >&2; exit 1; }
+  || { echo "VERIFY FAILED: sidebar page links do not all resolve (after the setup wizard? re-point them with scripts/emdash/relink-menu.mjs, issue #25)" >&2; exit 1; }
 
 probe() { curl -s -o /dev/null -w '%{http_code} %{redirect_url}' "$1"; }
 fail=0

@@ -138,6 +138,10 @@ npx wrangler secret put EMDASH_ENCRYPTION_KEY --config wrangler.jsonc --env prev
 npx emdash seed --on-conflict update && node scripts/emdash/d1-sql.mjs   # seeded SQLite -> scripts/emdash/out/d1-load.sql
 bash scripts/infra/deploy.sh preview --load-content                      # NEW, empty D1 only: loads every page, menu and search index
 # First admin: a named eTop person opens <preview>/_emdash/admin first; in the setup wizard choose "Empty site"
+# The wizard re-applies the seed's menu and, with "Empty site", stores every sidebar page link with no page (#25). Re-point them:
+#   npx wrangler d1 execute DB --config wrangler.jsonc [--env preview] --remote --json --command "SELECT * FROM _emdash_menu_items" > items.json
+#   node scripts/emdash/relink-menu.mjs --items items.json   # review out/relink-menu-check.sql, then run out/relink-menu.sql with --remote --file
+#   then deploy.sh's VERIFY sidebar check must pass
 (cd scripts/emdash && node parity.mjs --candidate <preview>)             # must exit 0
 ```
 
@@ -182,6 +186,10 @@ export is open (see Known traps).
 - **2026-10-02** The first identity through Access becomes EmDash **Admin**, and the setup wizard opens for it. On the preview that
   was BJ (via Entra SSO), and the wizard got **"Empty site"**: the content was already loaded by `deploy.sh --load-content`, and
   both wizard options seed with `onConflict: skip`, but "Empty site" writes no content at all. Do the same at production cutover.
+- **2026-10-04** ...but the wizard ALSO re-applies the seed's menus: it deletes the `docs-sidebar` items and recreates them, resolving
+  each page link only against content applied in that same run. With "Empty site" that is none, so all 119 page links were stored
+  with `reference_id` NULL and rendered as `/#` (prod, 04:56:45Z, 13 s after the first admin was created; found at the #23 deploy,
+  issue #25). Run `scripts/emdash/relink-menu.mjs` right after the wizard; `deploy.sh`'s VERIFY sidebar check catches it.
   Never let the E2E service token be the first identity.
 - **2026-10-02** `preview_urls: false` in both envs. Cloudflare's per-version preview hostnames would sit outside
   the Access app and expose the admin.
