@@ -111,6 +111,12 @@ Everything runs from the repo root on the branch being shipped, after `npm ci`, 
 from that path and treats it as public. Without the bypass, new images are broken for readers. **Status: waiting on BJ.**
 Verify: anonymous `GET /_emdash/api/media/file/does-not-exist` gives EmDash's 404 (not 302), and `/_emdash/admin` still gives 302.
 
+0. **Stop Cloudflare Pages building `starlight` BEFORE the code reaches it.** The Pages project `etop-university`
+   builds the `starlight` branch on every push. This code is a Worker (server output): a Pages build of it publishes
+   no HTML pages and the live site would 404. Dashboard: Workers & Pages > etop-university > Settings > Builds >
+   pause automatic deployments (keep the current deployment serving). Only then merge PR #12 into `starlight` and
+   run the steps below from `starlight`. The old Pages deployment keeps serving until step 5, and stays as the
+   rollback until it is deleted.
 1. **Load prod D1, then deploy the prod Worker (still on workers.dev only).** No request has hit prod yet, so the
    content goes in first:
    ```bash
