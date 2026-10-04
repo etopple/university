@@ -141,6 +141,8 @@ Verify: anonymous `GET /_emdash/api/media/file/does-not-exist` gives EmDash's 40
    ```
 3. **First admin:** a named eTop person (BJ) opens `https://university-emdash.williampote.workers.dev/_emdash/admin`
    through Entra and picks "Empty site" in the wizard, so the loaded content stays. They become Admin; others are Editors (40).
+   The wizard rebuilds the sidebar menu with no page references (#25): re-point them right away with
+   `scripts/emdash/relink-menu.mjs` (see BUILD.md), then re-run the VERIFY sidebar check.
 4. **Parity gate against the prod Worker:** `node scripts/emdash/parity.mjs --candidate https://university-emdash.williampote.workers.dev` exits 0.
 5. **Take the hostnames off the Pages project** (the old site stops serving here):
    ```bash
