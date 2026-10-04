@@ -101,6 +101,17 @@ The adapter adds `IMAGES` and `ASSETS` itself.
 
 Node: EmDash 1.1's registry-verification package wants Node `^22.22.2 || ^24.15 || >=26`; 22.22.0 warns but works.
 
+## Cutover record (2026-10-04)
+
+- Pages builds of `etop-university` paused via API (deployments off); PR #12 and the visual pass PR #18 merged to `starlight`.
+- `deploy.sh production --load-content` → prod Worker `university-emdash` version `1613a3d9`, VERIFY OK, 119/119 menu links.
+- Secrets set: `CF_ACCESS_AUDIENCE` (prod app `39ca3545…`), `EMDASH_ENCRYPTION_KEY` (fresh; no plugin secrets exist yet, so it was not backed up: back it up before any plugin stores a secret).
+- Parity vs the live site against the prod Worker: PASS, 270 pages, 214 assets, 0 differences.
+- Pages custom domains removed; the CNAMEs to `etop-university.pages.dev` could not be deleted (etop-mcp refuses irreversible DNS writes; wrangler login has `zone:read` only), so **zone Worker routes** `university.etop.tech/*` and `www.university.etop.tech/*` → `university-emdash` serve the site. Downtime ~2 min (522 between domain removal and the route).
+- `www` lost its Pages-issued certificate; `www.university.etop.tech` was re-added to the Pages project to restore TLS. The Worker route still serves it.
+- Image-path Access **Bypass** apps exist for `/_emdash/api/media/file/*` on all four hosts (plus a bare-path app on the apex).
+- **Rollback:** delete the two zone routes (Workers & Pages > university-emdash > Settings > Domains & Routes) and re-add `university.etop.tech` to the Pages project; the old deployment still serves at `etop-university.pages.dev`.
+
 ## Cutover runbook (infra side; the lead runs the cutover)
 
 Everything runs from the repo root on the branch being shipped, after `npm ci`, logged in with `npx wrangler login`.
