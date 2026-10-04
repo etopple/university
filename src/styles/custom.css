@@ -193,8 +193,6 @@
   width: 100%;
   border-collapse: collapse;
   border: 1px solid var(--sl-color-hairline-light);
-  border-radius: 8px;
-  overflow: hidden;
 }
 .sl-markdown-content th {
   background: var(--sl-color-accent-low);
