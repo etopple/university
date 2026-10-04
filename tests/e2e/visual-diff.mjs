@@ -5,13 +5,26 @@
 //   node visual-diff.mjs --candidate https://<preview> [--base https://university.etop.tech]
 //                        [--threshold 0.5] [--band 2] [--pages /,/about-us/values]
 //
+// Reviewed-baseline mode (compare against saved screenshots instead of another site):
+//
+//   node visual-diff.mjs --candidate <url> --save-baseline <dir>   # shoot <url>, save it as a baseline
+//   (look at the PNGs; when they are right, set "reviewed" in <dir>/baseline.json,
+//    including the manifest hash the save printed)
+//   node visual-diff.mjs --candidate <url> --baseline <dir>        # compare <url> with that baseline
+//
+// A baseline that nobody marked reviewed is refused (--allow-unreviewed overrides),
+// so a green run always means "matches what a person accepted". baseline.json lists
+// every PNG with its sha256; the review records the hash of that list, and a run
+// refuses the baseline if any PNG was changed, swapped, added or removed since.
+//
 // Writes out/visual/<page>-<theme>-{base,candidate,diff}.png and out/visual/report.md.
 // Exit 1 if a page fails to load, differs by more than --threshold % of all pixels or
 // --band % within any 200px strip, or changes height by more than 8px.
 // Sends E2E_CF_ACCESS_CLIENT_ID / E2E_CF_ACCESS_CLIENT_SECRET to the candidate if set.
 
-import { mkdirSync, writeFileSync } from "node:fs";
-import { join, dirname } from "node:path";
+import { createHash } from "node:crypto";
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { join, dirname, resolve, relative, isAbsolute } from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "@playwright/test";
 import pixelmatch from "pixelmatch";
@@ -28,22 +41,141 @@ export const KEY_PAGES = [
   { path: "/education/self-help-guides/office-365-guides/microsoft-authenticator", why: "section index page" },
 ];
 
-function args(argv) {
-  const a = { base: "https://university.etop.tech", candidate: "", threshold: 0.5, band: 2, pages: null, out: "" };
+export function args(argv) {
+  const a = { base: "https://university.etop.tech", baseGiven: false, candidate: "", threshold: 0.5, band: 2, pages: null, out: "", baseline: "", saveBaseline: "", allowUnreviewed: false };
   for (let i = 2; i < argv.length; i++) {
     const k = argv[i];
-    if (k === "--base") a.base = argv[++i];
+    if (k === "--base") (a.base = argv[++i]), (a.baseGiven = true);
     else if (k === "--candidate") a.candidate = argv[++i];
     else if (k === "--threshold") a.threshold = Number(argv[++i]);
     else if (k === "--band") a.band = Number(argv[++i]);
     else if (k === "--pages") a.pages = argv[++i].split(",").map((p) => ({ path: p.trim(), why: "" }));
     else if (k === "--out") a.out = argv[++i];
+    else if (k === "--baseline") a.baseline = argv[++i];
+    else if (k === "--save-baseline") a.saveBaseline = argv[++i];
+    else if (k === "--allow-unreviewed") a.allowUnreviewed = true;
     else throw new Error(`unknown arg ${k}`);
   }
   if (!a.candidate) throw new Error("--candidate <url> is required");
+  if (a.baseline && a.saveBaseline) throw new Error("--baseline and --save-baseline are separate runs: save first, review, then compare");
+  if ((a.baseline || a.saveBaseline) && a.baseGiven) throw new Error("--base is not used with a baseline: the saved screenshots are the base");
   a.base = a.base.replace(/\/$/, "");
   a.candidate = a.candidate.replace(/\/$/, "");
   return a;
+}
+
+const sha256 = (buf) => createHash("sha256").update(buf).digest("hex");
+
+// File name for one page + theme: a readable slug plus a short hash of the EXACT path,
+// so "/" and "/home", or "/a/b" and "/a__b", can never share a file.
+export function shotName(path, theme) {
+  const slug = (path === "/" ? "home" : path.replace(/^\/+|\/+$/g, "").replace(/[^A-Za-z0-9]+/g, "-")).slice(0, 80) || "page";
+  return `${slug}-${sha256(path).slice(0, 10)}-${theme}`;
+}
+export const THEMES = ["light", "dark"];
+export const BASELINE_FILE = "baseline.json";
+
+// Every page x theme must get its own file; fail before anything is written if not.
+export function assertUniqueNames(pages) {
+  const seen = new Map();
+  for (const p of pages) for (const theme of THEMES) {
+    const name = shotName(p.path, theme);
+    const key = `${p.path} [${theme}]`;
+    if (seen.has(name)) throw new Error(`${key} and ${seen.get(name)} would both be saved as ${name}.png (duplicate page?)`);
+    seen.set(name, key);
+  }
+}
+
+// Manifest = the page list plus { path, theme, file, sha256 } per shot, both sorted; its hash is
+// what a reviewer signs. Pages are in it, so dropping a page (and its shots) changes the hash.
+export const manifestHash = (files, pages) =>
+  sha256(JSON.stringify({
+    pages: pages.map((p) => p.path).sort(),
+    files: [...files].sort((x, y) => (x.file < y.file ? -1 : 1)).map(({ path, theme, file, sha256: h }) => ({ path, theme, file, sha256: h })),
+  }));
+
+const SHOT_FILE = /^[A-Za-z0-9-]+-[0-9a-f]{10}-(light|dark)\.png$/;
+
+// A manifest entry may only name the file this tool would have written for that page and
+// theme, inside the baseline folder: no separators, "..", drive letters or other names.
+function checkEntry(dir, f) {
+  const name = String(f?.file ?? "");
+  if (!SHOT_FILE.test(name) || name !== `${shotName(String(f.path), String(f.theme))}.png`) {
+    throw new Error(`${dir}: manifest entry ${JSON.stringify(name)} for ${f?.path} [${f?.theme}] is not a valid shot file name`);
+  }
+  const root = resolve(dir);
+  const fp = resolve(root, name);
+  const rel = relative(root, fp);
+  if (!rel || rel.startsWith("..") || isAbsolute(rel) || dirname(fp) !== root) throw new Error(`${dir}: manifest entry ${name} points outside the baseline folder`);
+  return fp;
+}
+
+// A baseline is a folder of PNGs plus baseline.json: where the shots came from, the
+// manifest, and who reviewed them. "reviewed" stays null until a person fills it in.
+// Integrity is checked even with --allow-unreviewed: the PNGs on disk must be exactly the manifest.
+export function readBaseline(dir, { allowUnreviewed = false } = {}) {
+  const file = join(dir, BASELINE_FILE);
+  if (!existsSync(file)) throw new Error(`no ${BASELINE_FILE} in ${dir}: create a baseline with --save-baseline first`);
+  const meta = JSON.parse(readFileSync(file, "utf8"));
+  if (!Array.isArray(meta.pages) || !meta.pages.length) throw new Error(`${file}: "pages" is missing or empty`);
+  if (!Array.isArray(meta.files) || !meta.files.length) throw new Error(`${file}: no "files" manifest (saved by an older version?): save a new baseline`);
+  const hash = manifestHash(meta.files, meta.pages);
+  if (meta.manifest !== hash) throw new Error(`${file}: the file list was edited after saving (manifest ${meta.manifest} != ${hash})`);
+  const resolved = new Map(meta.files.map((f) => [f, checkEntry(dir, f)])); // names first: nothing else is read before this
+  const listed = new Set(meta.files.map((f) => f.file));
+  if (listed.size !== meta.files.length) throw new Error(`${file}: the manifest lists a file twice`);
+  const onDisk = readdirSync(dir).filter((f) => f.toLowerCase().endsWith(".png"));
+  const extra = onDisk.filter((f) => !listed.has(f));
+  if (extra.length) throw new Error(`${dir}: PNGs not in the manifest: ${extra.join(", ")}`);
+  // Coverage: exactly one shot per page x theme, and no shot for anything else.
+  const paths = meta.pages.map((p) => p.path);
+  if (new Set(paths).size !== paths.length) throw new Error(`${file}: a page is listed twice`);
+  const want = new Set(paths.flatMap((path) => THEMES.map((theme) => `${theme} ${path}`)));
+  const have = meta.files.map((f) => `${f.theme} ${f.path}`);
+  if (new Set(have).size !== have.length) throw new Error(`${file}: a page/theme has more than one shot`);
+  const stray = have.filter((k) => !want.has(k));
+  if (stray.length) throw new Error(`${file}: shots for pages not in the page list: ${stray.join(", ")}`);
+  const missingShot = [...want].filter((k) => !have.includes(k));
+  if (missingShot.length) throw new Error(`${file}: no screenshot for ${missingShot.join(", ")}`);
+  for (const f of meta.files) {
+    const fp = resolved.get(f);
+    if (!existsSync(fp)) throw new Error(`${dir}: ${f.file} (${f.path} [${f.theme}]) is missing`);
+    if (sha256(readFileSync(fp)) !== f.sha256) throw new Error(`${dir}: ${f.file} (${f.path} [${f.theme}]) changed since the baseline was saved`);
+  }
+  const r = meta.reviewed;
+  const signed = !!(r && typeof r === "object" && String(r.by || "").trim() && String(r.on || "").trim());
+  const reviewed = signed && r.manifest === hash;
+  if (!reviewed && !allowUnreviewed) {
+    const why = signed ? `its "reviewed.manifest" (${r.manifest ?? "missing"}) is not this baseline's manifest ${hash}` : "it is not reviewed";
+    throw new Error(`${file}: ${why}. Open the PNGs in ${dir}; if they are right, set "reviewed": {"by": "<name>", "on": "<YYYY-MM-DD>", "manifest": "${hash}", "note": "..."} and run again (or pass --allow-unreviewed for a dry look).`);
+  }
+  return { ...meta, isReviewed: reviewed, fileFor: (path, theme) => meta.files.find((f) => f.path === path && f.theme === theme)?.file };
+}
+
+export function baselineMeta({ source, pages, viewport, files }) {
+  return { source, createdAt: new Date().toISOString(), viewport, pages, files, manifest: manifestHash(files, pages), reviewed: null };
+}
+
+// Write PNG buffers + baseline.json into dir. shots: [{ path, theme, buf }]. Exported for tests.
+// The folder must not exist yet: a baseline is always a fresh folder.
+const refuseExisting = (dir) => {
+  if (existsSync(dir)) throw new Error(`${dir} already exists; a baseline is saved into a NEW folder (baselines are never overwritten)`);
+};
+export function writeBaseline(dir, { source, pages, viewport, shots }) {
+  refuseExisting(dir);
+  assertUniqueNames(pages);
+  mkdirSync(dirname(resolve(dir)), { recursive: true });
+  mkdirSync(dir); // not recursive: fails if something created it in the meantime
+  const names = shots.map(({ path, theme }) => `${shotName(path, theme)}.png`);
+  if (new Set(names).size !== names.length) throw new Error("two shots map to the same file name; nothing written");
+  for (const n of names) if (existsSync(join(dir, n))) throw new Error(`${join(dir, n)} already exists; refusing to overwrite`);
+  const files = shots.map(({ path, theme, buf }, i) => {
+    writeFileSync(join(dir, names[i]), buf);
+    return { path, theme, file: names[i], sha256: sha256(buf) };
+  });
+  const meta = baselineMeta({ source, pages, viewport, files });
+  writeFileSync(join(dir, BASELINE_FILE), JSON.stringify(meta, null, 2) + "\n");
+  return meta;
 }
 
 async function shoot(browser, url, theme, headers) {
@@ -112,21 +244,61 @@ function pad(img, w, h) {
   return out;
 }
 
+// --save-baseline: shoot the candidate and store it as an (unreviewed) baseline. No compare.
+// Shots are kept in memory and written only if every page returned 200.
+async function saveBaseline(a) {
+  const dir = a.saveBaseline;
+  refuseExisting(dir);
+  const pages = a.pages || KEY_PAGES;
+  assertUniqueNames(pages);
+  const browser = await chromium.launch();
+  const shots = [];
+  let failed = 0;
+  try {
+    for (const p of pages) for (const theme of THEMES) {
+      const shot = await shoot(browser, a.candidate + p.path, theme, accessHeaders());
+      if (shot.status !== 200) { failed++; console.log(`FAIL ${p.path} [${theme}] HTTP ${shot.status}`); continue; }
+      shots.push({ path: p.path, theme, buf: PNG.sync.write(shot.png) });
+      console.log(`shot ${p.path} [${theme}] (${shot.png.width}x${shot.png.height})`);
+    }
+  } finally {
+    await browser.close();
+  }
+  if (failed) {
+    console.error(`\n${failed} page(s) did not return 200; nothing written.`);
+    process.exit(1);
+  }
+  const meta = writeBaseline(dir, { source: a.candidate, pages, viewport: { width: 1280, height: 900 }, shots });
+  console.log(`\nbaseline saved to ${dir}: ${meta.files.length} PNGs, manifest ${meta.manifest}.`);
+  console.log(`It is UNREVIEWED: look at every PNG, then set in ${join(dir, BASELINE_FILE)}:`);
+  console.log(`  "reviewed": {"by": "<name>", "on": "<YYYY-MM-DD>", "manifest": "${meta.manifest}"}`);
+  process.exit(0);
+}
+
 async function main() {
   const a = args(process.argv);
+  if (a.saveBaseline) return saveBaseline(a);
   const here = dirname(fileURLToPath(import.meta.url));
   const outDir = a.out || join(here, "out", "visual");
   mkdirSync(outDir, { recursive: true });
-  const pages = a.pages || KEY_PAGES;
+  const baseline = a.baseline ? readBaseline(a.baseline, { allowUnreviewed: a.allowUnreviewed }) : null;
+  // Against a baseline, compare the pages it holds (a --pages subset must be in it).
+  const pages = a.pages || (baseline ? baseline.pages : KEY_PAGES);
+  assertUniqueNames(pages);
+  if (baseline) {
+    const missing = pages.filter((p) => !baseline.pages.some((b) => b.path === p.path));
+    if (missing.length) throw new Error(`not in the baseline: ${missing.map((p) => p.path).join(", ")}`);
+  }
+  const baseLabel = baseline ? `baseline ${a.baseline} (${baseline.source}, ${baseline.createdAt}${baseline.isReviewed ? `, reviewed by ${baseline.reviewed.by} on ${baseline.reviewed.on}` : ", NOT REVIEWED"})` : a.base;
   const browser = await chromium.launch();
   const rows = [];
   let failed = 0;
 
   for (const p of pages) {
-    for (const theme of ["light", "dark"]) {
-      const name = `${p.path === "/" ? "home" : p.path.replace(/^\/|\/$/g, "").replace(/\//g, "__")}-${theme}`;
+    for (const theme of THEMES) {
+      const name = shotName(p.path, theme);
       try {
-        const base = await shoot(browser, a.base + p.path, theme, {});
+        const base = baseline ? { status: 200, png: PNG.sync.read(readFileSync(join(a.baseline, baseline.fileFor(p.path, theme)))) } : await shoot(browser, a.base + p.path, theme, {});
         const cand = await shoot(browser, a.candidate + p.path, theme, accessHeaders());
         const w = Math.max(base.png.width, cand.png.width);
         const h = Math.max(base.png.height, cand.png.height);
@@ -155,7 +327,7 @@ async function main() {
   await browser.close();
 
   const md = [
-    `# Visual diff: ${a.base} vs ${a.candidate}`,
+    `# Visual diff: ${baseLabel} vs ${a.candidate}`,
     "",
     `Run ${new Date().toISOString()}. FAIL if: HTTP not 200 on both; over ${a.threshold}% of all pixels differ; over ${a.band}% differ in any ${BAND}px band; or heights differ by more than ${MAX_HEIGHT_DELTA}px. Viewport 1280 wide, full page captured in ${TILE}px tiles. "Last updated" stamps hidden.`,
     "",
@@ -171,4 +343,7 @@ async function main() {
   process.exit(failed ? 1 : 0);
 }
 
-main().catch((e) => { console.error(e); process.exit(2); });
+// Run only as a script, so the helpers above can be imported by tests.
+if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
+  main().catch((e) => { console.error(e); process.exit(2); });
+}

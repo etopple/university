@@ -57,6 +57,33 @@ MSYS_NO_PATHCONV=1 node visual-diff.mjs --candidate https://<preview> [--base ht
 - `MSYS_NO_PATHCONV=1` only matters in Git Bash, which otherwise rewrites `/` into a Windows path.
 - Pass rules: HTTP 200 on both sides; at most 0.5% of all pixels differ (`--threshold`); at most 2% differ in any 200px band (`--band`), so a tall page cannot hide a broken block; heights within 8px. Pages are captured in 8000px tiles (one shot of a very tall page can come back blank past ~16k px). A stalled image fails its row after 30s.
 - Credentials go only to the site under test, and never through a redirect: a cross-origin redirect is followed without them (checked with two mock servers).
+### Reviewed baseline (issue #9)
+
+Comparing against another site stops meaning anything once that site's look has legitimately moved (the
+Starlight 0.30 to 0.42 font-metric wrap kept every page at 1-5%, so the gate was always red). Instead,
+compare against screenshots a person has looked at and accepted:
+
+```bash
+# 1. Shoot the site as it is now (e.g. right after a reviewed deploy). Never overwrites an existing folder.
+MSYS_NO_PATHCONV=1 node visual-diff.mjs --candidate https://university.etop.tech --save-baseline baselines/2026-10-04
+# 2. Look at every PNG in that folder. If they are right, record it in baselines/2026-10-04/baseline.json:
+#    "reviewed": { "by": "BJ Pote", "on": "2026-10-04", "manifest": "<hash the save printed>", "note": "..." }
+# 3. Later deploys compare against it; red means a real change again.
+MSYS_NO_PATHCONV=1 node visual-diff.mjs --candidate https://<preview or prod> --baseline baselines/2026-10-04
+```
+
+- A baseline nobody marked reviewed is refused (`--allow-unreviewed` only for a quick look; the report then says NOT REVIEWED).
+- Integrity: `baseline.json` lists every PNG (page, theme, file, sha256) and the hash of that list. The review must
+  carry that hash, and every run checks the folder holds exactly those files with those hashes; a changed, swapped,
+  added or missing PNG is refused, even with `--allow-unreviewed`. Re-shoot means a new folder and a new review.
+- File names are a readable slug plus a hash of the exact path (`home-8a5edab282-light.png`), so two pages can never
+  share a file; a duplicate page in `--pages` fails before anything is written.
+- Same pass rules as above. `--pages` must be a subset of the baseline's pages; `--base` is not allowed with a baseline.
+- Where to keep it: anywhere local. Twelve full-page PNGs run to several MB, so they are not committed by default.
+- Checked 2026-10-04: live vs a baseline of live 12/12 PASS at 0.00%; the local reference build vs that
+  baseline FAIL (0.5-2.4%, worst band up to 99.6%), so red still means something. An unreviewed baseline was refused.
+- Unit checks (no browser): `npm run test:unit`.
+
 - Self-checks run 2026-10-02:
   - live vs live: 12/12 at 0.00%.
   - live home vs live team page (negative control): FAIL, 12.7% light and 66.3% dark (worst band 32% and 99.6%).
