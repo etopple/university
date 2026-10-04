@@ -5,7 +5,9 @@ import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
 import { getEmDashEntry, getMenu } from "emdash";
 import PtNodes from "../components/pt/PtNodes.astro";
 import { renderPlan } from "../lib/pt";
-import { menuToSidebar } from "../lib/sidebar";
+import { menuToSidebar, sectionChildren, topSections } from "../lib/sidebar";
+import SectionCards from "../components/site/SectionCards.astro";
+import HelpPanel from "../components/site/HelpPanel.astro";
 import { isTestPage } from "../lib/all-docs";
 
 export const prerender = false;
@@ -47,5 +49,7 @@ const frontmatter = entry
 ---
 
 <StarlightPage frontmatter={frontmatter} sidebar={sidebar} headings={plan.headings}>
+  {entry && slug === "index" && <HelpPanel sections={topSections(sidebar)} />}
   {entry ? <PtNodes nodes={plan.nodes} /> : <p>Page not found. Check the URL or try using the search bar.</p>}
+  {entry && slug !== "index" && <SectionCards items={sectionChildren(sidebar, "/" + slug)} />}
 </StarlightPage>

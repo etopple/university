@@ -6,7 +6,7 @@
  * eTop brand blue (#1d5dab). */
 
 :root {
-  --sl-font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --sl-font: "Inter Variable", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --sl-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, "Cascadia Code", "Liberation Mono", Menlo, Consolas, monospace;
 }
 
@@ -35,9 +35,9 @@
   --sl-color-text-invert: #0f141c;
 
   /* Accent (eTop blue, brightened for dark bg) */
-  --sl-color-accent-low: #122036;
-  --sl-color-accent: #4f8de6;
-  --sl-color-accent-high: #cfe0ff;
+  --sl-color-accent-low: #0f2538;
+  --sl-color-accent: #4aa3dc;
+  --sl-color-accent-high: #cde6f6;
 
   /* Asides — these key off the matching status color, not accent.
      Tone all of them down so they don't shout against the dark bg. */
@@ -63,15 +63,30 @@
 }
 
 /* ---------- Light mode ---------- */
+/* eTop brand: dark blue #00548B (Pantone 7462 C), bright green #77BC1F (368 C). */
 :root[data-theme="light"] {
-  --sl-color-accent-low: #d9e7fb;
-  --sl-color-accent: #1d5dab;
-  --sl-color-accent-high: #0c2c55;
-  --sl-color-text-accent: #1d5dab;
+  --sl-color-accent-low: #dbe9f3;
+  --sl-color-accent: #00548b;
+  --sl-color-accent-high: #00304f;
+  --sl-color-text-accent: #00548b;
 
-  --sl-color-blue-low: #d9e7fb;
-  --sl-color-blue: #1d5dab;
-  --sl-color-blue-high: #0c2c55;
+  --sl-color-blue-low: #dbe9f3;
+  --sl-color-blue: #00548b;
+  --sl-color-blue-high: #00304f;
+
+  --sl-color-bg-nav: #f6f8fa;
+  --sl-color-bg-sidebar: #f6f8fa;
+  --sl-color-hairline-light: #e3e8ee;
+  --etop-green: #4a7628;
+  --etop-card: #ffffff;
+}
+:root[data-theme="dark"] {
+  --etop-green: #8fcf3c;
+  --etop-card: #161e2a;
+}
+:root {
+  --etop-green: #4a7628;
+  --etop-card: #ffffff;
 }
 
 /* ---------- Layout polish ---------- */
@@ -106,4 +121,230 @@
 .starlight-aside {
   border-inline-start-width: 3px;
   border-radius: 6px;
+}
+
+
+/* ---------- Visual pass 2026-10-03 ---------- */
+
+
+/* Reading width and rhythm. */
+.sl-markdown-content {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+.sl-markdown-content :is(h2, h3) {
+  margin-top: 2.25rem;
+}
+.sl-markdown-content h2 {
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--sl-color-hairline-light);
+}
+.sl-markdown-content hr {
+  border: 0;
+  border-top: 1px solid var(--sl-color-hairline-light);
+  margin-block: 2rem;
+}
+
+/* Screenshots: framed, never wider than the column, never upscaled. */
+.sl-markdown-content :is(p, li, figure, div) > img,
+.sl-markdown-content :is(p, li) > a > img {
+  display: block;
+  max-width: min(100%, 44rem);
+  /* Tall phone screenshots: cap the height, keep the aspect ratio. */
+  max-height: min(75vh, 38rem);
+  height: auto;
+  object-fit: contain;
+  margin-block: 0.75rem;
+  border: 1px solid var(--sl-color-hairline-light);
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 4px 14px rgb(0 0 0 / 0.06);
+  background: var(--etop-card);
+}
+.sl-markdown-content li > img {
+  margin-top: 0.5rem;
+}
+/* Keep an image's own width attribute (team photos are 375px). */
+.sl-markdown-content :is(p, li, figure, div) > img:not([width]),
+.sl-markdown-content :is(p, li) > a > img:not([width]) {
+  width: auto;
+}
+
+/* Step lists: numbers in brand colour, a little air between steps. */
+.sl-markdown-content ol > li::marker {
+  color: var(--sl-color-accent);
+  font-weight: 700;
+}
+.sl-markdown-content :is(ol, ul) > li + li {
+  margin-top: 0.4rem;
+}
+
+/* Inline code and plain code blocks. */
+.sl-markdown-content pre {
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--sl-color-hairline-light);
+  border-radius: 8px;
+  background: var(--sl-color-bg-inline-code);
+  overflow-x: auto;
+}
+
+/* Tables. */
+.sl-markdown-content table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--sl-color-hairline-light);
+}
+.sl-markdown-content th {
+  background: var(--sl-color-accent-low);
+  color: var(--sl-color-white);
+}
+:root[data-theme="light"] .sl-markdown-content th {
+  color: var(--sl-color-accent-high);
+}
+
+/* Collapsible values/policy sections. */
+.sl-markdown-content details {
+  border: 1px solid var(--sl-color-hairline-light);
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  background: var(--etop-card);
+}
+.sl-markdown-content details + details {
+  margin-top: 0.6rem;
+}
+.sl-markdown-content summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+.sl-markdown-content details[open] > summary {
+  margin-bottom: 0.5rem;
+}
+
+/* Previous / Next: smaller, calmer cards. */
+.pagination-links a {
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  box-shadow: none;
+}
+.pagination-links .link-title {
+  font-size: var(--sl-text-base);
+  line-height: 1.35;
+}
+.pagination-links a:hover {
+  border-color: var(--sl-color-accent);
+}
+
+/* Sidebar: current page as a soft pill, not a solid block. */
+.sidebar-content a[aria-current="page"],
+.sidebar-content a[aria-current="page"]:hover,
+.sidebar-content a[aria-current="page"]:focus {
+  background-color: var(--sl-color-accent-low);
+  color: var(--sl-color-accent-high);
+  font-weight: 600;
+}
+:root[data-theme="dark"] .sidebar-content a[aria-current="page"] {
+  color: var(--sl-color-white);
+}
+
+/* "In this section" and home cards. */
+.section-cards {
+  margin-top: 2.5rem;
+}
+.section-cards h2,
+.help-now h2 {
+  font-size: var(--sl-text-h4);
+  margin: 0 0 0.75rem;
+  padding: 0;
+  border: 0;
+}
+.section-cards li {
+  margin: 0 !important;
+}
+.section-cards ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+  gap: 0.75rem;
+}
+.section-cards a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  height: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--sl-color-hairline-light);
+  border-radius: 8px;
+  background: var(--etop-card);
+  color: var(--sl-color-white);
+  text-decoration: none;
+  font-weight: 600;
+  line-height: 1.35;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.section-cards a:hover,
+.section-cards a:focus-visible {
+  border-color: var(--sl-color-accent);
+  transform: translateY(-1px);
+}
+.section-cards .count {
+  font-size: var(--sl-text-xs);
+  font-weight: 400;
+  color: var(--sl-color-gray-3);
+}
+
+/* Home: help panel. */
+.help-panel {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.help-now {
+  padding: 1.1rem 1.25rem;
+  border-radius: 10px;
+  border: 1px solid var(--sl-color-hairline-light);
+  border-left: 4px solid var(--etop-green);
+  background: var(--etop-card);
+}
+.help-now h2 {
+  margin: 0;
+}
+.help-now p {
+  margin: 0.25rem 0 0.75rem;
+  color: var(--sl-color-gray-2);
+}
+.help-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.help-btn {
+  display: inline-block;
+  padding: 0.5rem 0.9rem;
+  border-radius: 6px;
+  border: 1px solid var(--sl-color-accent);
+  color: var(--sl-color-accent);
+  font-weight: 600;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.help-btn.primary {
+  background: var(--sl-color-accent);
+  color: var(--sl-color-text-invert);
+}
+:root[data-theme="light"] .help-btn.primary {
+  color: #ffffff;
+}
+.help-panel .section-cards {
+  margin-top: 0.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-cards a {
+    transition: none;
+  }
+  .section-cards a:hover {
+    transform: none;
+  }
 }
