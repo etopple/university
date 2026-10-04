@@ -10,7 +10,7 @@
 //
 // Works on the page as it is now in the CMS (editors' changes elsewhere on the
 // page are kept), not on the migration seed. Only box blocks change; every other
-// block is untouched, keys included. A page with unpublished draft changes is
+// block is untouched, keys included. A page that is not published, or has unpublished draft changes, is
 // skipped (publishing would publish someone's draft). Dry run by default.
 // university.etop.tech and the production Worker are refused unless --production
 // is passed: changing live content is BJ's call.
@@ -87,9 +87,9 @@ async function main() {
     const before = item.data.body;
     const after = flattenBoxes(before);
     const boxes = before.filter((b) => b._type === "aside" || b._type === "details").length;
-    if (item.draftRevisionId) {
+    if (item.draftRevisionId || item.status !== "published") {
       tally.skippedDraft++;
-      console.log(`skip ${item.slug}: has unpublished draft changes (publish or discard them first)`);
+      console.log(`skip ${item.slug}: ${item.status !== "published" ? `status is ${item.status} (publishing would make it live)` : "has unpublished draft changes (publish or discard them first)"}`);
       continue;
     }
     tally.toChange++;
