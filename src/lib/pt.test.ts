@@ -1,7 +1,7 @@
 // node --experimental-strip-types --test src/lib/pt.test.ts
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { inlineHtml, renderPlan, safeHref } from "./pt.ts";
+import { inlineHtml, renderPlan, safeHref, withStepHints } from "./pt.ts";
 
 const span = (text: string, marks: string[] = []) => ({ _type: "span", text, marks });
 const p = (children: unknown[], extra: Record<string, unknown> = {}) => ({ _type: "block", style: "normal", markDefs: [], children, ...extra });
@@ -251,4 +251,44 @@ test("two editor lists saved back to back stay two lists; across a screenshot th
   const gap = renderPlan([n("a", 1, "x"), { _type: "image", asset: { url: "/1.png" } }, n("b", 2, "y")]).nodes as any[];
   assert.equal(gap.length, 1);
   assert.equal(gap[0].items.length, 2);
+});
+
+test("a step hint never pulls a paragraph the editor turned into a heading into the list", () => {
+  const body = [p([span("one")], { _key: "k1", listItem: "number", level: 1 }), p([span("Next part")], { _key: "k2", style: "h2" })];
+  const { nodes } = renderPlan(body, { stepHints: { k2: ["block", 1] } });
+  assert.deepEqual(nodes.map((x) => x.kind), ["list", "heading"]);
+});
+
+test("a stale step hint is ignored once an editor put other content in front of the block", () => {
+  const img = { _type: "image", _key: "k2", asset: { url: "/1.png" } };
+  const item = p([span("one")], { _key: "k1", listItem: "number", level: 1 });
+  const hints = { k2: ["image", 1] } as Record<string, [string, number]>;
+  // Still right after its step: goes back in.
+  assert.deepEqual(renderPlan([item, img], { stepHints: hints }).nodes.map((x) => x.kind), ["list"]);
+  // An editor added a paragraph between the step and the screenshot: the screenshot stays where they put it.
+  const moved = renderPlan([item, p([span("Then:")], { _key: "k9" }), img], { stepHints: hints }).nodes;
+  assert.deepEqual(moved.map((x) => x.kind), ["list", "html", "image"]);
+  assert.equal((withStepHints([item, p([span("Then:")], { _key: "k9" }), img], hints)[2] as any).listContinuation, undefined);
+  // Moved to the top of the page: no list item before it, hint ignored.
+  assert.deepEqual(renderPlan([img, item], { stepHints: hints }).nodes.map((x) => x.kind), ["image", "list"]);
+});
+
+test("a note box inside a step stays a box inside that step, before and after an editor save", () => {
+  // markdownToPortableText("1. step\n\n   :::note\n   text\n   :::\n\n2. step\n")
+  const migrated = [
+    p([span("step")], { _key: "k1", listItem: "number", level: 1 }),
+    { _type: "asideStart", _key: "k2", variant: "note", level: 1, listContinuation: true },
+    p([span("text")], { _key: "k3" }),
+    { _type: "asideEnd", _key: "k2e", closes: "aside" },
+    p([span("step")], { _key: "k4", listItem: "number", level: 1 }),
+  ];
+  const saved = migrated.map((b: any) => { const { listContinuation, level, ...rest } = b; return b.listItem ? b : rest; });
+  for (const [body, hints] of [[migrated, undefined], [saved, { k2: ["asideStart", 1] }]] as const) {
+    const { nodes } = renderPlan(body as any, { stepHints: hints as any });
+    assert.equal(nodes.length, 1);
+    const ol = nodes[0] as any;
+    assert.equal(ol.items.length, 2);
+    assert.deepEqual(ol.items[0].children.map((c: any) => c.kind), ["html", "aside"]);
+    assert.equal(ol.items[0].children[1].children[0].html, "<p>text</p>");
+  }
 });

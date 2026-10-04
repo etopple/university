@@ -148,3 +148,10 @@ test("task lists and linked images keep their state", () => {
   assert.equal(blocks[2]._type, "image");
   assert.equal(blocks[2].link, "https://x.com");
 });
+
+test("a note box inside a list item keeps the step hint on its start marker", () => {
+  const { blocks } = md("1. step\n\n   :::note\n   text\n   :::\n\n2. step\n");
+  assert.deepEqual(types(blocks), ["block", "asideStart", "block", "asideEnd", "block"]);
+  assert.equal(blocks[1].listContinuation, true);
+  assert.equal(blocks[1].level, 1);
+});

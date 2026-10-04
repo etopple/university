@@ -27,6 +27,7 @@ import remarkGfm from "remark-gfm";
 import remarkDirective from "remark-directive";
 import remarkSmartypants from "remark-smartypants";
 import { parse as parseHtml } from "node-html-parser";
+import { flattenBoxes } from "./flatten-core.mjs";
 
 const ASIDE_VARIANTS = new Set(["note", "tip", "caution", "danger"]);
 // Same pipeline Astro runs for Starlight: GFM, directives (asides) and
@@ -48,28 +49,8 @@ export function markdownToPortableText(markdown) {
   return { blocks, warnings: ctx.warnings, stats: ctx.stats };
 }
 
-// The EmDash editor shows a block type it does not know (aside, details) as a
-// locked card: it keeps it verbatim, but nobody can change the text inside
-// (issue #15). Store each one as a start marker, its content as ordinary
-// top-level blocks, and an end marker. The editor edits the content like any
-// other text; the markers are plugin blocks (src/plugins/university-boxes.mjs)
-// whose fields (variant, title, summary) open in a form. The theme
-// (src/lib/pt.ts) puts the box back together. Keys: the start marker keeps the
-// box's key and the end marker adds "e", so no other block's key changes.
-export function flattenBoxes(blocks) {
-  const out = [];
-  for (const b of blocks) {
-    if ((b._type === "aside" || b._type === "details") && Array.isArray(b.content)) {
-      const { _type, _key, content, ...fields } = b;
-      out.push({ _type: `${_type}Start`, _key, ...fields });
-      out.push(...flattenBoxes(content));
-      out.push({ _type: `${_type}End`, _key: `${_key}e`, closes: _type });
-    } else {
-      out.push(b);
-    }
-  }
-  return out;
-}
+// Boxes are stored flat (start marker, content, end marker): see lib/flatten-core.mjs.
+export { flattenBoxes };
 
 // ---------------------------------------------------------------------------
 
