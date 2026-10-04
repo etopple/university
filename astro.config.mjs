@@ -63,7 +63,7 @@ export default defineConfig({
       pagefind: false,
       lastUpdated: true,
       pagination: true,
-      customCss: ["./src/styles/custom.css"],
+      customCss: ["@fontsource-variable/inter", "./src/styles/custom.css"],
       components: {
         Search: "./src/components/Search.astro",
       },

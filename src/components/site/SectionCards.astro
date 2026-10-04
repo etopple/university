@@ -1,0 +1,27 @@
+---
+// "In this section": the pages under a section, as cards. Theme UI, not page
+// content: data-parity-ignore keeps it out of the URL/content parity gate.
+interface Props {
+  heading?: string;
+  items: { label: string; href: string; count?: number }[];
+}
+const { heading = "In this section", items } = Astro.props;
+---
+
+{
+  items.length > 0 && (
+    <nav class="section-cards not-content" aria-label={heading} data-parity-ignore>
+      <h2>{heading}</h2>
+      <ul>
+        {items.map((it) => (
+          <li>
+            <a href={it.href}>
+              <span class="label">{it.label}</span>
+              {it.count ? <span class="count">{it.count} {it.count === 1 ? "page" : "pages"}</span> : null}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}
