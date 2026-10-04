@@ -8,18 +8,22 @@
 // Reviewed-baseline mode (compare against saved screenshots instead of another site):
 //
 //   node visual-diff.mjs --candidate <url> --save-baseline <dir>   # shoot <url>, save it as a baseline
-//   (look at the PNGs; when they are right, set "reviewed" in <dir>/baseline.json)
+//   (look at the PNGs; when they are right, set "reviewed" in <dir>/baseline.json,
+//    including the manifest hash the save printed)
 //   node visual-diff.mjs --candidate <url> --baseline <dir>        # compare <url> with that baseline
 //
 // A baseline that nobody marked reviewed is refused (--allow-unreviewed overrides),
-// so a green run always means "matches what a person accepted".
+// so a green run always means "matches what a person accepted". baseline.json lists
+// every PNG with its sha256; the review records the hash of that list, and a run
+// refuses the baseline if any PNG was changed, swapped, added or removed since.
 //
 // Writes out/visual/<page>-<theme>-{base,candidate,diff}.png and out/visual/report.md.
 // Exit 1 if a page fails to load, differs by more than --threshold % of all pixels or
 // --band % within any 200px strip, or changes height by more than 8px.
 // Sends E2E_CF_ACCESS_CLIENT_ID / E2E_CF_ACCESS_CLIENT_SECRET to the candidate if set.
 
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "@playwright/test";
@@ -60,26 +64,85 @@ export function args(argv) {
   return a;
 }
 
-export const shotName = (path, theme) => `${path === "/" ? "home" : path.replace(/^\/|\/$/g, "").replace(/\//g, "__")}-${theme}`;
+const sha256 = (buf) => createHash("sha256").update(buf).digest("hex");
+
+// File name for one page + theme: a readable slug plus a short hash of the EXACT path,
+// so "/" and "/home", or "/a/b" and "/a__b", can never share a file.
+export function shotName(path, theme) {
+  const slug = (path === "/" ? "home" : path.replace(/^\/+|\/+$/g, "").replace(/[^A-Za-z0-9]+/g, "-")).slice(0, 80) || "page";
+  return `${slug}-${sha256(path).slice(0, 10)}-${theme}`;
+}
+export const THEMES = ["light", "dark"];
 export const BASELINE_FILE = "baseline.json";
 
-// A baseline is a folder of <page>-<theme>.png plus baseline.json, which records where the
-// shots came from and who reviewed them. "reviewed" stays null until a person fills it in.
+// Every page x theme must get its own file; fail before anything is written if not.
+export function assertUniqueNames(pages) {
+  const seen = new Map();
+  for (const p of pages) for (const theme of THEMES) {
+    const name = shotName(p.path, theme);
+    const key = `${p.path} [${theme}]`;
+    if (seen.has(name)) throw new Error(`${key} and ${seen.get(name)} would both be saved as ${name}.png (duplicate page?)`);
+    seen.set(name, key);
+  }
+}
+
+// Manifest = the list of { path, theme, file, sha256 }, sorted by file; its hash is what a reviewer signs.
+export const manifestHash = (files) =>
+  sha256(JSON.stringify([...files].sort((x, y) => (x.file < y.file ? -1 : 1)).map(({ path, theme, file, sha256: h }) => ({ path, theme, file, sha256: h }))));
+
+// A baseline is a folder of PNGs plus baseline.json: where the shots came from, the
+// manifest, and who reviewed them. "reviewed" stays null until a person fills it in.
+// Integrity is checked even with --allow-unreviewed: the PNGs on disk must be exactly the manifest.
 export function readBaseline(dir, { allowUnreviewed = false } = {}) {
   const file = join(dir, BASELINE_FILE);
   if (!existsSync(file)) throw new Error(`no ${BASELINE_FILE} in ${dir}: create a baseline with --save-baseline first`);
   const meta = JSON.parse(readFileSync(file, "utf8"));
   if (!Array.isArray(meta.pages) || !meta.pages.length) throw new Error(`${file}: "pages" is missing or empty`);
-  const r = meta.reviewed;
-  const reviewed = !!(r && typeof r === "object" && String(r.by || "").trim() && String(r.on || "").trim());
-  if (!reviewed && !allowUnreviewed) {
-    throw new Error(`${file} is not reviewed. Open the PNGs in ${dir}; if they are right, set "reviewed": {"by": "<name>", "on": "<YYYY-MM-DD>", "note": "..."} and run again (or pass --allow-unreviewed for a dry look).`);
+  if (!Array.isArray(meta.files) || !meta.files.length) throw new Error(`${file}: no "files" manifest (saved by an older version?): save a new baseline`);
+  const hash = manifestHash(meta.files);
+  if (meta.manifest !== hash) throw new Error(`${file}: the file list was edited after saving (manifest ${meta.manifest} != ${hash})`);
+  const listed = new Set(meta.files.map((f) => f.file));
+  if (listed.size !== meta.files.length) throw new Error(`${file}: the manifest lists a file twice`);
+  const onDisk = readdirSync(dir).filter((f) => f.toLowerCase().endsWith(".png"));
+  const extra = onDisk.filter((f) => !listed.has(f));
+  if (extra.length) throw new Error(`${dir}: PNGs not in the manifest: ${extra.join(", ")}`);
+  for (const f of meta.files) {
+    const fp = join(dir, f.file);
+    if (!existsSync(fp)) throw new Error(`${dir}: ${f.file} (${f.path} [${f.theme}]) is missing`);
+    if (sha256(readFileSync(fp)) !== f.sha256) throw new Error(`${dir}: ${f.file} (${f.path} [${f.theme}]) changed since the baseline was saved`);
   }
-  return { ...meta, isReviewed: reviewed };
+  for (const p of meta.pages) for (const theme of THEMES) {
+    if (!meta.files.some((f) => f.path === p.path && f.theme === theme)) throw new Error(`${file}: no screenshot for ${p.path} [${theme}]`);
+  }
+  const r = meta.reviewed;
+  const signed = !!(r && typeof r === "object" && String(r.by || "").trim() && String(r.on || "").trim());
+  const reviewed = signed && r.manifest === hash;
+  if (!reviewed && !allowUnreviewed) {
+    const why = signed ? `its "reviewed.manifest" (${r.manifest ?? "missing"}) is not this baseline's manifest ${hash}` : "it is not reviewed";
+    throw new Error(`${file}: ${why}. Open the PNGs in ${dir}; if they are right, set "reviewed": {"by": "<name>", "on": "<YYYY-MM-DD>", "manifest": "${hash}", "note": "..."} and run again (or pass --allow-unreviewed for a dry look).`);
+  }
+  return { ...meta, isReviewed: reviewed, fileFor: (path, theme) => meta.files.find((f) => f.path === path && f.theme === theme)?.file };
 }
 
-export function baselineMeta({ source, pages, viewport }) {
-  return { source, createdAt: new Date().toISOString(), viewport, pages, reviewed: null };
+export function baselineMeta({ source, pages, viewport, files }) {
+  return { source, createdAt: new Date().toISOString(), viewport, pages, files, manifest: manifestHash(files), reviewed: null };
+}
+
+// Write PNG buffers + baseline.json into dir. shots: [{ path, theme, buf }]. Exported for tests.
+export function writeBaseline(dir, { source, pages, viewport, shots }) {
+  if (existsSync(join(dir, BASELINE_FILE))) throw new Error(`${dir} already holds a baseline; pick a new folder (baselines are never overwritten)`);
+  assertUniqueNames(pages);
+  mkdirSync(dir, { recursive: true });
+  const names = shots.map(({ path, theme }) => `${shotName(path, theme)}.png`);
+  if (new Set(names).size !== names.length) throw new Error("two shots map to the same file name; nothing written");
+  for (const n of names) if (existsSync(join(dir, n))) throw new Error(`${join(dir, n)} already exists; refusing to overwrite`);
+  const files = shots.map(({ path, theme, buf }, i) => {
+    writeFileSync(join(dir, names[i]), buf);
+    return { path, theme, file: names[i], sha256: sha256(buf) };
+  });
+  const meta = baselineMeta({ source, pages, viewport, files });
+  writeFileSync(join(dir, BASELINE_FILE), JSON.stringify(meta, null, 2) + "\n");
+  return meta;
 }
 
 async function shoot(browser, url, theme, headers) {
@@ -149,30 +212,33 @@ function pad(img, w, h) {
 }
 
 // --save-baseline: shoot the candidate and store it as an (unreviewed) baseline. No compare.
+// Shots are kept in memory and written only if every page returned 200.
 async function saveBaseline(a) {
   const dir = a.saveBaseline;
   if (existsSync(join(dir, BASELINE_FILE))) throw new Error(`${dir} already holds a baseline; pick a new folder (baselines are never overwritten)`);
-  mkdirSync(dir, { recursive: true });
   const pages = a.pages || KEY_PAGES;
+  assertUniqueNames(pages);
   const browser = await chromium.launch();
+  const shots = [];
   let failed = 0;
   try {
-    for (const p of pages) for (const theme of ["light", "dark"]) {
-      const name = shotName(p.path, theme);
+    for (const p of pages) for (const theme of THEMES) {
       const shot = await shoot(browser, a.candidate + p.path, theme, accessHeaders());
-      if (shot.status !== 200) { failed++; console.log(`FAIL ${p.path} [${theme}] HTTP ${shot.status}: not saved`); continue; }
-      writeFileSync(join(dir, `${name}.png`), PNG.sync.write(shot.png));
-      console.log(`saved ${name}.png (${shot.png.width}x${shot.png.height})`);
+      if (shot.status !== 200) { failed++; console.log(`FAIL ${p.path} [${theme}] HTTP ${shot.status}`); continue; }
+      shots.push({ path: p.path, theme, buf: PNG.sync.write(shot.png) });
+      console.log(`shot ${p.path} [${theme}] (${shot.png.width}x${shot.png.height})`);
     }
   } finally {
     await browser.close();
   }
   if (failed) {
-    console.error(`\n${failed} page(s) did not return 200; no ${BASELINE_FILE} written, so this folder cannot be used as a baseline.`);
+    console.error(`\n${failed} page(s) did not return 200; nothing written.`);
     process.exit(1);
   }
-  writeFileSync(join(dir, BASELINE_FILE), JSON.stringify(baselineMeta({ source: a.candidate, pages, viewport: { width: 1280, height: 900 } }), null, 2) + "\n");
-  console.log(`\nbaseline saved to ${dir}. It is UNREVIEWED: look at every PNG, then set "reviewed" in ${join(dir, BASELINE_FILE)}.`);
+  const meta = writeBaseline(dir, { source: a.candidate, pages, viewport: { width: 1280, height: 900 }, shots });
+  console.log(`\nbaseline saved to ${dir}: ${meta.files.length} PNGs, manifest ${meta.manifest}.`);
+  console.log(`It is UNREVIEWED: look at every PNG, then set in ${join(dir, BASELINE_FILE)}:`);
+  console.log(`  "reviewed": {"by": "<name>", "on": "<YYYY-MM-DD>", "manifest": "${meta.manifest}"}`);
   process.exit(0);
 }
 
@@ -185,6 +251,7 @@ async function main() {
   const baseline = a.baseline ? readBaseline(a.baseline, { allowUnreviewed: a.allowUnreviewed }) : null;
   // Against a baseline, compare the pages it holds (a --pages subset must be in it).
   const pages = a.pages || (baseline ? baseline.pages : KEY_PAGES);
+  assertUniqueNames(pages);
   if (baseline) {
     const missing = pages.filter((p) => !baseline.pages.some((b) => b.path === p.path));
     if (missing.length) throw new Error(`not in the baseline: ${missing.map((p) => p.path).join(", ")}`);
@@ -195,10 +262,10 @@ async function main() {
   let failed = 0;
 
   for (const p of pages) {
-    for (const theme of ["light", "dark"]) {
+    for (const theme of THEMES) {
       const name = shotName(p.path, theme);
       try {
-        const base = baseline ? { status: 200, png: PNG.sync.read(readFileSync(join(a.baseline, `${name}.png`))) } : await shoot(browser, a.base + p.path, theme, {});
+        const base = baseline ? { status: 200, png: PNG.sync.read(readFileSync(join(a.baseline, baseline.fileFor(p.path, theme)))) } : await shoot(browser, a.base + p.path, theme, {});
         const cand = await shoot(browser, a.candidate + p.path, theme, accessHeaders());
         const w = Math.max(base.png.width, cand.png.width);
         const h = Math.max(base.png.height, cand.png.height);
