@@ -169,7 +169,7 @@ function single(b: PtBlock, ctx: Ctx): Node | null {
     case "aside":
       return {
         kind: "aside",
-        variant: ["note", "tip", "caution", "danger"].includes(String(b.variant)) ? String(b.variant) : "note",
+        variant: asideVariant(b.variant),
         title: b.title ? String(b.title) : undefined,
         children: toNodes((b.content as PtBlock[]) ?? [], ctx),
       };
@@ -181,6 +181,11 @@ function single(b: PtBlock, ctx: Ctx): Node | null {
       return { kind: "details", summary: String(b.summary ?? ""), children: toNodes((b.content as PtBlock[]) ?? [], ctx) };
     case "html":
       return { kind: "html", html: String(b.html ?? "") };
+    case "asideStart":
+    case "asideEnd":
+    case "detailsStart":
+    case "detailsEnd":
+      return null; // box markers: toNodes builds the box
     case "break":
       return { kind: "html", html: "<hr>" };
     default:
@@ -237,12 +242,49 @@ function cellNodes(content: PtBlock[], ctx: Ctx): Node[] {
   return toNodes(content, ctx);
 }
 
+// Boxes stored flat so the editor can change their content (flattenBoxes in
+// scripts/emdash/lib/md-to-pt.mjs): asideStart/detailsStart, the content as
+// ordinary blocks, then asideEnd/detailsEnd. A start without its end runs to the
+// end of the page; an end without a start is ignored. Boxes may nest.
+const BOX_START: Record<string, "aside" | "details"> = { asideStart: "aside", detailsStart: "details" };
+const BOX_END = new Set(["asideEnd", "detailsEnd"]);
+
+function boxEnd(blocks: PtBlock[], i: number, kind: "aside" | "details"): number {
+  let depth = 0;
+  for (let j = i + 1; j < blocks.length; j++) {
+    if (blocks[j]._type === `${kind}Start`) depth++;
+    else if (blocks[j]._type === `${kind}End`) {
+      if (depth === 0) return j;
+      depth--;
+    }
+  }
+  return blocks.length;
+}
+
+const asideVariant = (v: unknown) => (["note", "tip", "caution", "danger"].includes(String(v)) ? String(v) : "note");
+
 /** A PT array to render nodes. Also fills ctx.headings. */
 export function toNodes(blocks: PtBlock[], ctx: Ctx): Node[] {
   const out: Node[] = [];
   let i = 0;
   while (i < blocks.length) {
     const b = blocks[i];
+    const box = BOX_START[b._type];
+    if (box) {
+      const end = boxEnd(blocks, i, box);
+      const children = toNodes(blocks.slice(i + 1, end), ctx);
+      out.push(
+        box === "aside"
+          ? { kind: "aside", variant: asideVariant(b.variant), title: b.title ? String(b.title) : undefined, children }
+          : { kind: "details", summary: String(b.summary ?? ""), children },
+      );
+      i = end + 1;
+      continue;
+    }
+    if (BOX_END.has(b._type)) {
+      i++;
+      continue;
+    }
     if (b.listItem) {
       const end = listEnd(blocks, i);
       out.push(...buildLists(blocks.slice(i, end), ctx));
@@ -278,14 +320,19 @@ const isHinted = (b: PtBlock) => !b.listItem && b.listContinuation === true;
 const isGap = (b: PtBlock) => !b.listItem && (isHinted(b) || MEDIA_TYPES.has(b._type) || (b._type === "block" && (b.style ?? "normal") === "normal"));
 
 function listEnd(blocks: PtBlock[], i: number): number {
-  const counters = new Map<number, { ordered: boolean; n: number }>();
+  const counters = new Map<number, { ordered: boolean; n: number; listId?: string }>();
   const count = (b: PtBlock) => {
     const level = Math.max(1, Number(b.level ?? 1));
     for (const l of [...counters.keys()]) if (l > level) counters.delete(l);
     const ordered = b.listItem === "number";
+    const listId = typeof b.listId === "string" ? b.listId : undefined;
     const c = counters.get(level);
-    if (c && c.ordered === ordered) c.n = ordered && b.listStart ? Number(b.listStart) : c.n + 1;
+    // The editor writes its list's start number on EVERY item of that list (with a
+    // shared listId), so listStart only restarts the count on a list's first item.
+    const sameList = !!c && listId !== undefined && c.listId === listId;
+    if (c && c.ordered === ordered) c.n = ordered && b.listStart && !sameList ? Number(b.listStart) : c.n + 1;
     else counters.set(level, { ordered, n: ordered && b.listStart ? Number(b.listStart) : 1 });
+    counters.get(level)!.listId = listId;
   };
   for (;;) {
     while (i < blocks.length && blocks[i].listItem) count(blocks[i++]);
@@ -379,8 +426,29 @@ function buildLists(blocks: PtBlock[], ctx: Ctx): Node[] {
   return roots;
 }
 
-export function renderPlan(body: unknown) {
+/**
+ * _key -> [_type, level] for blocks that sat inside a step, or ["li", level] for a
+ * nested list item that resumes after a step's screenshot/code
+ * (src/_generated/step-hints.json, from scripts/emdash/step-hints.mjs).
+ */
+export type StepHints = Record<string, [string, number]>;
+
+// The editor drops listContinuation/level on save (and saves a sub-list that
+// resumes after a non-list block at level 1) but keeps _key: put the hints back
+// on migrated blocks the page still has (same key, same kind of block).
+export function withStepHints(body: PtBlock[], hints: StepHints | undefined): PtBlock[] {
+  if (!hints) return body;
+  return body.map((b) => {
+    const h = b._key ? hints[b._key] : undefined;
+    if (!h) return b;
+    if (h[0] === "li") return b.listItem && b._type === "block" && Number(b.level ?? 1) < h[1] ? { ...b, level: h[1] } : b;
+    if (b.listItem || b.listContinuation === true || h[0] !== b._type) return b;
+    return { ...b, listContinuation: true, level: h[1] };
+  });
+}
+
+export function renderPlan(body: unknown, opts: { stepHints?: StepHints } = {}) {
   const ctx: Ctx = { slugger: new GithubSlugger(), headings: [] };
-  const nodes = Array.isArray(body) ? toNodes(body as PtBlock[], ctx) : [];
+  const nodes = Array.isArray(body) ? toNodes(withStepHints(body as PtBlock[], opts.stepHints), ctx) : [];
   return { nodes, headings: ctx.headings };
 }

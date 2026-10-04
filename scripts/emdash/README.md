@@ -14,6 +14,8 @@ proves nothing changed for readers before cutover.
 | Fidelity check | `node content-check.mjs` | Compares each page's Portable Text with the live rendered text. Currently 118/118 exact. |
 | **Cutover gate** | `node parity.mjs --candidate https://<preview>` | Crawls every URL on the live site and the preview; compares status, `<title>`, and main-content text; checks every asset. Exit 0 = parity. Report in `out/parity-report.md`; moved pages get a line in `out/redirects.suggested`. |
 | Gate rules | | Exact text match (order matters); same status; same redirect target; same in-content link targets and image srcs; same asset status and type. Fetch errors, 5xx, a missing selector or non-HTML 200 fail. `--limit` runs are always FAIL (partial). The live crawl must reach every seed page. |
+| Step hints | `node step-hints.mjs [--check]` | Writes `src/_generated/step-hints.json`: for every block that sits inside a numbered step (and every sub-list item that resumes after one), its `_key` and level. The editor drops those hints on save but keeps keys; the theme reads this file so saved pages keep their screenshots in the right step (#13, #14). Re-run after `build-seed.mjs`. |
+| Make boxes editable | `node flatten-boxes.mjs --url <site> (--dev-bypass \| EMDASH_TOKEN=…) [--apply]` | Rewrites each live page's old nested aside/details as start/end markers. Keeps every other block and key; skips pages with unpublished drafts. Renders the same (parity checked locally). |
 | Tests | `npm test` | Converter, seed determinism, and the parity gate against fake sites (pass and fail cases). |
 
 ## Content model
@@ -28,8 +30,12 @@ proves nothing changed for readers before cutover.
 - Body blocks the theme must render: standard PT blocks (h1–h6, normal, blockquote, bullet/number lists
   with `level`), marks `strong` `em` `code` `strike-through` `underline`, markDefs `link {href, blank?}`
   and `highlight {color}`, plus custom blocks `image {alt, asset.url, caption?, align?}`,
-  `code {language, code}`, `aside {variant, title?, content}`, `table {align, rows[{header, cells[{content}]}]}`,
-  `details {summary, content}`, `html {html}` (raw passthrough, used twice), `break`.
+  `code {language, code}`, `table {align, rows[{header, cells[{content}]}]}`, `html {html}` (raw passthrough, used twice), `break`.
+- Boxes (issue #15) are stored flat so the editor can change their text: `asideStart {variant, title?}`, the
+  content as ordinary blocks, `asideEnd {closes: "aside"}`; likewise `detailsStart {summary}` ... `detailsEnd`.
+  The start marker keeps the box's `_key`, the end marker adds `e`. The theme also still renders the old
+  nested `aside {variant, title?, content}` / `details {summary, content}` (pages loaded before 2026-10-04).
+  `flatten-boxes.mjs` rewrites those in place (dry run by default; production needs `--production`).
 - List blocks may also carry `listContinuation` (more content of the previous item, also set on code/image
   blocks inside an item, so render it inside that `<li>`), `checked` (task lists) and `listStart`.
   An `image` may carry `link`.

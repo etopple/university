@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { markdownToPortableText as md, portableTextToPlain } from "../lib/md-to-pt.mjs";
+import { markdownToPortableText as md, portableTextToPlain, flattenBoxes } from "../lib/md-to-pt.mjs";
 import { buildSeed, slugForFile } from "../build-seed.mjs";
 
 const types = (bs) => bs.map((b) => b._type);
@@ -18,12 +18,21 @@ test("nested lists keep level and type", () => {
   assert.deepEqual(blocks.map((b) => [b.listItem, b.level]), [["number", 1], ["bullet", 2], ["number", 1]]);
 });
 
-test("asides become aside blocks with variant and title", () => {
+test("asides become editable content between start/end markers (#15)", () => {
   const { blocks } = md(":::caution[Heads up]\nBe **careful**\n:::\n");
-  assert.equal(blocks[0]._type, "aside");
-  assert.equal(blocks[0].variant, "caution");
-  assert.equal(blocks[0].title, "Heads up");
-  assert.equal(portableTextToPlain(blocks[0].content), "Be careful");
+  assert.deepEqual(types(blocks), ["asideStart", "block", "asideEnd"]);
+  assert.deepEqual(blocks[0], { _type: "asideStart", _key: blocks[0]._key, variant: "caution", title: "Heads up" });
+  assert.deepEqual(blocks[2], { _type: "asideEnd", _key: blocks[0]._key + "e", closes: "aside" });
+  assert.equal(portableTextToPlain([blocks[1]]), "Be careful");
+});
+
+test("flattenBoxes: nested boxes flatten in order; keys of other blocks never change", () => {
+  const inner = { _type: "block", _key: "k3", children: [] };
+  const flat = flattenBoxes([
+    { _type: "block", _key: "k1", children: [] },
+    { _type: "details", _key: "k2", summary: "S", content: [inner, { _type: "aside", _key: "k4", variant: "tip", content: [] }] },
+  ]);
+  assert.deepEqual(flat.map((b) => `${b._type}:${b._key}`), ["block:k1", "detailsStart:k2", "block:k3", "asideStart:k4", "asideEnd:k4e", "detailsEnd:k2e"]);
 });
 
 test("emoji shortcodes are not eaten by the directive parser", () => {
@@ -46,10 +55,9 @@ test("images inside a paragraph split the paragraph", () => {
 
 test("details spread over several nodes", () => {
   const { blocks } = md("<details>\n\n<summary>🚀 Integrity</summary>\n\nBody **text**\n\n</details>\n");
-  assert.equal(blocks.length, 1);
-  assert.equal(blocks[0]._type, "details");
+  assert.deepEqual(types(blocks), ["detailsStart", "block", "detailsEnd"]);
   assert.equal(blocks[0].summary, "🚀 Integrity");
-  assert.equal(portableTextToPlain(blocks[0].content), "Body text");
+  assert.equal(portableTextToPlain([blocks[1]]), "Body text");
 });
 
 test("inline html links keep target=_blank and nested strong", () => {

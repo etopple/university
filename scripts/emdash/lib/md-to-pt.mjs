@@ -8,9 +8,11 @@
 // Custom block types emitted (the theme must render these):
 //   image   { alt, asset: { url }, caption?, title?, align?, width?, height? }
 //   code    { language?, code }
-//   aside   { variant: note|tip|caution|danger, title?, content: PT[] }
+//   asideStart { variant: note|tip|caution|danger, title? } ... asideEnd { closes: "aside" }
 //   table   EmDash editor shape: { hasHeaderRow, rows: [{ _type: "tableRow", cells: [{ _type: "tableCell", content: span[], markDefs?, isHeader?, textAlign? }] }] }
-//   details { summary, content: PT[] }
+//   detailsStart { summary } ... detailsEnd { closes: "details" }
+//     (an aside/details is converted nested, then flattened by flattenBoxes: the
+//     content sits between the two markers as ordinary blocks, so editors can change it)
 //   html    { html }                      raw passthrough, rendered as-is
 //   break   { style: "lineBreak" }        thematic break (---)
 //   image may carry link (href it points to).
@@ -42,8 +44,31 @@ export function markdownToPortableText(markdown) {
   };
   const tree = processor.runSync(processor.parse(markdown));
   collectDefinitions(tree, ctx);
-  const blocks = editorSafeLists(convertChildren(tree.children, ctx, {}));
+  const blocks = flattenBoxes(editorSafeLists(convertChildren(tree.children, ctx, {})));
   return { blocks, warnings: ctx.warnings, stats: ctx.stats };
+}
+
+// The EmDash editor shows a block type it does not know (aside, details) as a
+// locked card: it keeps it verbatim, but nobody can change the text inside
+// (issue #15). Store each one as a start marker, its content as ordinary
+// top-level blocks, and an end marker. The editor edits the content like any
+// other text; the markers are plugin blocks (src/plugins/university-boxes.mjs)
+// whose fields (variant, title, summary) open in a form. The theme
+// (src/lib/pt.ts) puts the box back together. Keys: the start marker keeps the
+// box's key and the end marker adds "e", so no other block's key changes.
+export function flattenBoxes(blocks) {
+  const out = [];
+  for (const b of blocks) {
+    if ((b._type === "aside" || b._type === "details") && Array.isArray(b.content)) {
+      const { _type, _key, content, ...fields } = b;
+      out.push({ _type: `${_type}Start`, _key, ...fields });
+      out.push(...flattenBoxes(content));
+      out.push({ _type: `${_type}End`, _key: `${_key}e`, closes: _type });
+    } else {
+      out.push(b);
+    }
+  }
+  return out;
 }
 
 // ---------------------------------------------------------------------------
@@ -547,6 +572,12 @@ export function portableTextToPlain(blocks) {
         break;
       case "details":
         parts.push(b.summary, portableTextToPlain(b.content));
+        break;
+      case "asideStart":
+        if (b.title) parts.push(b.title);
+        break;
+      case "detailsStart":
+        parts.push(b.summary);
         break;
       case "table":
         for (const r of b.rows) for (const c of r.cells) parts.push((c.content || []).map((x) => (x._type === "span" ? x.text : portableTextToPlain([x]))).join(""));

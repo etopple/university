@@ -151,3 +151,87 @@ test("bullets: hinted screenshots stay in the item; after an editor save, screen
   const separate = renderPlan([p([span("a")], { listItem: "bullet", level: 1 }), p([span("Next:")]), p([span("b")], { listItem: "bullet", level: 1 })]).nodes;
   assert.deepEqual(separate.map((n) => n.kind), ["list", "html", "list"]);
 });
+
+// Shapes below are what the real EmDash editor saved on a local round-trip
+// (tests/e2e/roundtrip.mjs): listContinuation/level gone from step content, the
+// list's start number and a shared listId on EVERY item of each editor list.
+test("after an editor save: listStart repeated on every item does not split the list (#13)", () => {
+  const n = (t: string, ls: number, id: string) => p([span(t)], { listItem: "number", level: 1, listStart: ls, listId: id });
+  const img = (u: string) => ({ _type: "image", asset: { url: u } });
+  const { nodes } = renderPlan([
+    n("one", 1, "a"),
+    img("/1.png"),
+    n("two", 2, "b"),
+    n("three", 2, "b"), // same editor list: still item 3, not a restart at 2
+    img("/2.png"),
+    n("four", 4, "c"),
+  ]);
+  assert.equal(nodes.length, 1);
+  const ol = nodes[0] as any;
+  assert.equal(ol.items.length, 4);
+  assert.deepEqual(ol.items.map((it: any) => it.children.map((c: any) => c.kind).join("+")), ["html+image", "html", "html+image", "html"]);
+});
+
+test("step hints put saved screenshots back, the last step's too (#14)", () => {
+  const saved = [
+    p([span("one")], { _key: "k1", listItem: "number", level: 1 }),
+    { _type: "image", _key: "k2", asset: { url: "/1.png" } },
+    p([span("sub")], { _key: "k3", listItem: "bullet", level: 2 }),
+    { _type: "image", _key: "k4", asset: { url: "/2.png" } }, // belonged to step one (level 1), after the sub-list
+    p([span("After the list.")], { _key: "k5" }),
+  ];
+  // Without hints the last screenshot falls out of the list (the #14 symptom).
+  assert.deepEqual(renderPlan(saved).nodes.map((x) => x.kind), ["list", "image", "html"]);
+  const hints = { k2: ["image", 1], k4: ["image", 1], k5: ["image", 1] } as Record<string, [string, number]>; // k5: wrong type, ignored
+  const { nodes } = renderPlan(saved, { stepHints: hints });
+  assert.deepEqual(nodes.map((x) => x.kind), ["list", "html"]);
+  const item = (nodes[0] as any).items[0];
+  assert.deepEqual(item.children.map((c: any) => c.kind), ["html", "image", "list", "image"]);
+  // A hint never turns a list item into continuation content.
+  const li = renderPlan([p([span("x")], { _key: "k1", listItem: "number", level: 1 })], { stepHints: { k1: ["block", 1] } }).nodes as any;
+  assert.equal(li[0].items.length, 1);
+});
+
+test("box markers render exactly like the nested aside/details they replace (#15)", () => {
+  const body = [p([span("Body")]), p([span("more", ["strong"])])];
+  const nested = renderPlan([
+    { _type: "aside", variant: "tip", title: "T", content: body },
+    { _type: "details", summary: "S", content: [p([span("x")]), { _type: "aside", variant: "bogus", content: [p([span("in")])] }] },
+  ]).nodes;
+  const flat = renderPlan([
+    { _type: "asideStart", _key: "a", variant: "tip", title: "T" },
+    ...body,
+    { _type: "asideEnd", _key: "ae", closes: "aside" },
+    { _type: "detailsStart", _key: "d", summary: "S" },
+    p([span("x")]),
+    { _type: "asideStart", _key: "b", variant: "bogus" },
+    p([span("in")]),
+    { _type: "asideEnd", _key: "be", closes: "aside" },
+    { _type: "detailsEnd", _key: "de", closes: "details" },
+  ]).nodes;
+  assert.deepEqual(flat, nested);
+  // A start with no end runs to the end of the page; a stray end renders nothing.
+  const open = renderPlan([{ _type: "asideEnd" }, { _type: "asideStart", variant: "note" }, p([span("a")]), p([span("b")])]).nodes as any;
+  assert.equal(open.length, 1);
+  assert.equal(open[0].kind, "aside");
+  assert.equal(open[0].children.length, 2);
+});
+
+test("step hints: a sub-list the editor flattened after a step's code block goes back to its level", () => {
+  // Saved by the real editor (teams-troubleshooting): code lost its hint, the bullets came back at level 1.
+  const saved = [
+    p([span("Clear the cache")], { _key: "k1", listItem: "number", level: 1, listStart: 1, listId: "a" }),
+    p([span("Open:")], { _key: "k2", listItem: "bullet", level: 2 }),
+    { _type: "code", _key: "k3", code: "%appdata%" },
+    p([span("Delete it")], { _key: "k4", listItem: "bullet", level: 1 }),
+    p([span("Next")], { _key: "k5", listItem: "number", level: 1, listStart: 2, listId: "b" }),
+  ];
+  const hints = { k3: ["code", 2], k4: ["li", 2] } as Record<string, [string, number]>;
+  const { nodes } = renderPlan(saved, { stepHints: hints });
+  assert.equal(nodes.length, 1);
+  const ol = nodes[0] as any;
+  assert.equal(ol.items.length, 2);
+  const sub = ol.items[0].children[1];
+  assert.equal(sub.kind, "list");
+  assert.deepEqual(sub.items.map((it: any) => it.children.map((c: any) => c.kind).join("+")), ["html+code", "html"]);
+});

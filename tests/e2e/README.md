@@ -45,6 +45,31 @@ token carries no email, so it cannot become an EmDash user. EmDash does accept `
 on admin pages and the API in every auth mode. The Access service token gets the request through
 Cloudflare's edge, and the Bearer token identifies the EmDash user.
 
+## Real-editor round-trip (`roundtrip.mjs`)
+
+Opens pages in the real EmDash editor on a LOCAL `astro dev`, types two characters into the first
+paragraph and deletes them, then Saves and Publishes, so the editor writes back its own version of the
+stored Portable Text. Compare the site before and after with `scripts/emdash/parity.mjs` (text AND list
+structure, including screenshots per step). A text-only check misses split lists.
+
+```bash
+node roundtrip.mjs --base http://localhost:4321 --all            # or --slugs a/b,c/d
+# results: out/roundtrip/results.json (+ <slug>.before/after.json): which fields the editor dropped or added
+```
+
+- Refuses anything but localhost: it publishes every page it opens. Sign-in is EmDash's dev-bypass.
+- It aborts a page (nothing saved) if the typed text does not land at the caret or the image count changes:
+  a block the editor still holds selected (e.g. an image at the top) would otherwise be replaced by the typing.
+- A second run on an already-saved page reports "save stayed disabled": the editor's output is a fixed point.
+- Pages with an empty body (section index pages) have nothing to save.
+- Proof run 2026-10-04 (local, starlight + this fix): 108 pages saved through the editor (the 11 others have an
+  empty body); parity against an untouched reference instance: PASS, 270 pages, 0 differences. With the old theme,
+  the same saved content failed on 23 pages (list structure).
+- Gotcha: `astro dev` inside `.claude/worktrees/<name>` of a checkout with no `node_modules` fails with
+  "Tsconfig not found astro/tsconfigs/strict" (Vite reads the outer checkout's tsconfig). Run it from a copy
+  outside the checkout, with its own `npm ci` and a local D1 loaded from `scripts/emdash/out/d1-load.sql`
+  (`npx wrangler d1 execute DB --local --config wrangler.jsonc --file ...`).
+
 ## Visual diff (`visual-diff.mjs`)
 
 ```bash
