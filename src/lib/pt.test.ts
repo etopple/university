@@ -235,3 +235,20 @@ test("step hints: a sub-list the editor flattened after a step's code block goes
   assert.equal(sub.kind, "list");
   assert.deepEqual(sub.items.map((it: any) => it.children.map((c: any) => c.kind).join("+")), ["html+code", "html"]);
 });
+
+test("links: tabs/newlines/control chars cannot smuggle a javascript: scheme", () => {
+  for (const h of ["java\nscript:alert(1)", "java\tscript:alert(1)", "\x01javascript:alert(1)", " javascript:alert(1)"]) assert.equal(safeHref(h), null, JSON.stringify(h));
+  assert.equal(safeHref("vision.md"), "vision.md");
+  assert.equal(safeHref("/a b/c"), "/a b/c");
+});
+
+test("two editor lists saved back to back stay two lists; across a screenshot they are one run", () => {
+  const n = (t: string, ls: number, id: string) => p([span(t)], { listItem: "number", level: 1, listStart: ls, listId: id });
+  const adjacent = renderPlan([n("a", 1, "x"), n("b", 1, "x"), n("c", 5, "y"), n("d", 5, "y")]).nodes as any[];
+  assert.equal(adjacent.length, 2);
+  assert.equal(adjacent[1].start, 5);
+  assert.equal(adjacent[1].items.length, 2);
+  const gap = renderPlan([n("a", 1, "x"), { _type: "image", asset: { url: "/1.png" } }, n("b", 2, "y")]).nodes as any[];
+  assert.equal(gap.length, 1);
+  assert.equal(gap[0].items.length, 2);
+});

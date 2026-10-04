@@ -50,7 +50,9 @@ export const esc = (s: string) => String(s ?? "").replace(/[&<>"]/g, (c) => ESC[
 // Only http(s), mailto, tel, relative and fragment links render as links.
 // Anything else (javascript:, data:) is dropped to plain text.
 export function safeHref(href: string | undefined): string | null {
-  const h = String(href ?? "").trim();
+  // Browsers drop tabs/newlines anywhere and C0 controls/spaces at the ends before
+  // reading the scheme ("java\nscript:" runs as javascript:), so check that form.
+  const h = String(href ?? "").replace(/[\t\n\r]/g, "").replace(/^[\x00-\x20]+|[\x00-\x20]+$/g, "");
   if (!h) return null;
   if (/^(https?:|mailto:|tel:)/i.test(h) || /^[/#?.]/.test(h) || !/^[a-z][a-z0-9+.-]*:/i.test(h)) return h;
   return null;
@@ -373,13 +375,16 @@ function listEnd(blocks: PtBlock[], i: number): number {
 function buildLists(blocks: PtBlock[], ctx: Ctx): Node[] {
   const roots: Node[] = [];
   // stack[d] = the list open at depth d (0-based)
-  const stack: { list: Extract<Node, { kind: "list" }>; level: number }[] = [];
+  const stack: { list: Extract<Node, { kind: "list" }>; level: number; listId?: string }[] = [];
+  let prevItem: PtBlock | undefined; // the block just before, if it was a list item
   const currentItem = (): ListItem | undefined => {
     const top = stack[stack.length - 1];
     return top?.list.items[top.list.items.length - 1];
   };
 
   for (const b of blocks) {
+    const before = prevItem;
+    prevItem = b.listItem && !b.listContinuation ? b : undefined;
     // Content between items inside a run (see listEnd): part of a step — the one
     // at its hinted level when the migration left one, else the current one.
     if (!b.listItem) {
@@ -408,7 +413,14 @@ function buildLists(blocks: PtBlock[], ctx: Ctx): Node[] {
     }
 
     let top = stack[stack.length - 1];
-    if (!top || top.level < level || top.list.ordered !== ordered) {
+    const listId = typeof b.listId === "string" ? b.listId : undefined;
+    // Two editor lists saved back to back (different listId, the item right before
+    // is the same kind at the same level) stay two lists. Across a screenshot or a
+    // flattened sub-list the editor also mints a new listId, but that is the same
+    // run of steps (#13, #14), so only that direct adjacency splits.
+    const adjacent = !!before && before.listItem === b.listItem && Math.max(1, Number(before.level ?? 1)) === level;
+    const otherList = !!top && top.level === level && adjacent && !!listId && !!top.listId && top.listId !== listId;
+    if (!top || top.level < level || top.list.ordered !== ordered || otherList) {
       if (top && top.level === level) stack.pop(); // list type changed at the same level: new list
       const list: Extract<Node, { kind: "list" }> = { kind: "list", ordered, items: [] };
       if (ordered && b.listStart && b.listStart !== 1) list.start = b.listStart;
@@ -418,6 +430,7 @@ function buildLists(blocks: PtBlock[], ctx: Ctx): Node[] {
       stack.push({ list, level });
       top = stack[stack.length - 1];
     }
+    if (listId) top.listId = listId;
     const first = b._type === "block" ? ({ kind: "html", html: inlineHtml(b) } as Node) : single(b, ctx);
     const item: ListItem = { children: first ? [first] : [] };
     if (typeof b.checked === "boolean") item.checked = b.checked;
