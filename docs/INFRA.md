@@ -110,7 +110,8 @@ Node: EmDash 1.1's registry-verification package wants Node `^22.22.2 || ^24.15 
 - Pages custom domains removed; the CNAMEs to `etop-university.pages.dev` could not be deleted (etop-mcp refuses irreversible DNS writes; wrangler login has `zone:read` only), so **zone Worker routes** `university.etop.tech/*` and `www.university.etop.tech/*` → `university-emdash` serve the site. Downtime ~2 min (522 between domain removal and the route).
 - `www` lost its Pages-issued certificate; `www.university.etop.tech` was re-added to the Pages project to restore TLS. The Worker route still serves it.
 - Image-path Access **Bypass** apps exist for `/_emdash/api/media/file/*` on all four hosts (plus a bare-path app on the apex).
-- **Rollback:** delete the two zone routes (Workers & Pages > university-emdash > Settings > Domains & Routes) and re-add `university.etop.tech` to the Pages project; the old deployment still serves at `etop-university.pages.dev`.
+- **2026-10-04, #20:** hosts moved from zone routes on the Pages CNAMEs to Worker custom domains (`routes` with `custom_domain: true` in `wrangler.jsonc`). Order: delete both CNAMEs, deploy immediately (a custom-domain deploy is refused while another record exists for the host, error 100117), check TLS and serving, delete the two zone routes, remove www from the Pages project. Rollback: recreate both CNAMEs (`etop-university.pages.dev`, proxied), redeploy the zone-route config, re-add www to Pages.
+- **Rollback (before #20):** delete the two zone routes (Workers & Pages > university-emdash > Settings > Domains & Routes) and re-add `university.etop.tech` to the Pages project; the old deployment still serves at `etop-university.pages.dev`.
 
 ## Cutover runbook (infra side; the lead runs the cutover)
 

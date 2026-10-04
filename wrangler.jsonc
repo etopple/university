@@ -35,13 +35,13 @@
   "kv_namespaces": [
     { "binding": "SESSION", "id": "1b71a62ab53a43a0b55248bca303c933" }
   ],
-  // Live since 2026-10-04 (cutover). Zone routes, not custom domains: the proxied CNAMEs to
-  // etop-university.pages.dev could not be deleted at cutover (no DNS write), so the Worker
-  // takes every request on these hosts by route. www keeps its TLS certificate through its
-  // Pages custom domain. Cleanup to custom domains: issue in etopple/university.
+  // Worker custom domains (since 2026-10-04, issue #20): Cloudflare owns the DNS record and the
+  // TLS certificate for each host. Before this the hosts were zone routes on proxied CNAMEs to
+  // etop-university.pages.dev (cutover record and rollback: docs/INFRA.md).
+  // A custom-domain deploy is refused (error 100117) while another DNS record exists for the host.
   "routes": [
-    { "pattern": "university.etop.tech/*", "zone_id": "7249450dba03104707c4d7e70da64595" },
-    { "pattern": "www.university.etop.tech/*", "zone_id": "7249450dba03104707c4d7e70da64595" }
+    { "pattern": "university.etop.tech", "custom_domain": true },
+    { "pattern": "www.university.etop.tech", "custom_domain": true }
   ],
 
   "env": {
