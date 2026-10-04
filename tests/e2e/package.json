@@ -7,7 +7,8 @@
     "test": "playwright test",
     "test:editor": "playwright test editor.spec.mjs",
     "visual": "node visual-diff.mjs",
-    "test:unit": "node --test visual-diff.test.mjs"
+    "test:unit": "node --test visual-diff.test.mjs",
+    "roundtrip": "node roundtrip.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.55.0",

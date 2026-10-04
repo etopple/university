@@ -4,7 +4,8 @@
 import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
 import { getEmDashEntry, getMenu } from "emdash";
 import PtNodes from "../components/pt/PtNodes.astro";
-import { renderPlan } from "../lib/pt";
+import { renderPlan, type StepHints } from "../lib/pt";
+import STEP_HINTS from "../_generated/step-hints.json";
 import { menuToSidebar, sectionChildren, topSections } from "../lib/sidebar";
 import SectionCards from "../components/site/SectionCards.astro";
 import HelpPanel from "../components/site/HelpPanel.astro";
@@ -17,7 +18,7 @@ const slug = raw === "" ? "index" : raw;
 // The old site served its 404 page at /404 with status 200.
 const is404Page = raw === "404";
 
-type Doc = { id?: string; title: string; description?: string; body?: unknown; template?: string; updatedAt?: Date };
+type Doc = { id?: string; title: string; description?: string; body?: unknown; template?: string; updatedAt?: Date; legacy_source?: string };
 const [{ entry, error }, menu] = await Promise.all([
   is404Page || (slug === "index" && raw !== "") ? Promise.resolve({ entry: null, error: undefined }) : getEmDashEntry("docs", slug),
   getMenu("docs-sidebar"),
@@ -33,7 +34,8 @@ if (entry && !Astro.url.pathname.endsWith("/")) return Astro.redirect(`/${slug =
 
 const sidebar = menuToSidebar(menu?.items ?? []);
 const data = entry?.data as Doc | undefined;
-const plan = renderPlan(data?.body);
+// Migrated pages: where each screenshot sat inside its step (survives editor saves).
+const plan = renderPlan(data?.body, { stepHints: data?.legacy_source ? (STEP_HINTS as Record<string, StepHints>)[data.legacy_source] : undefined });
 if (!entry) Astro.response.status = is404Page ? 200 : 404;
 
 const frontmatter = entry

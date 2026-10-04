@@ -5,6 +5,7 @@ import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
 import emdash from "emdash/astro";
 import { d1, r2, access } from "@emdash-cms/cloudflare";
+import { universityBoxes } from "./src/plugins/university-boxes.mjs";
 
 // Editor sign-in: Cloudflare Access (eTop's Entra SSO). The Access app covers
 // /_emdash/* only, so the public site stays public. The first person to open
@@ -42,6 +43,8 @@ export default defineConfig({
       database: d1({ binding: "DB" }),
       storage: r2({ binding: "MEDIA" }),
       auth,
+      // Note boxes and collapsible sections as editable blocks (issue #15).
+      plugins: [universityBoxes()],
     }),
     starlight({
       title: "eTop University",

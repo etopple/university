@@ -1108,527 +1108,551 @@
               ]
             },
             {
-              "_type": "details",
+              "_type": "detailsStart",
               "_key": "k0003",
-              "summary": "🚀 Integrity",
-              "content": [
+              "summary": "🚀 Integrity"
+            },
+            {
+              "_type": "block",
+              "_key": "k0006",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
                 {
-                  "_type": "block",
-                  "_key": "k0006",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k0005",
-                      "text": "Integrity, as a core value, is a fundamental pillar that underscores every aspect of our work at eTop University. It instills trust, shapes our culture, and guides our actions.",
-                      "marks": []
-                    }
-                  ]
-                },
-                {
-                  "_type": "block",
-                  "_key": "k0008",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k0007",
-                      "text": "In the realm of technology and digital learning, integrity takes on special significance. It means we are committed to providing accurate, timely, and relevant information to our clients. It assures our clients that their business needs, data security, and trust are our utmost priorities.",
-                      "marks": []
-                    }
-                  ]
-                },
-                {
-                  "_type": "block",
-                  "_key": "k000a",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k0009",
-                      "text": "But more than just a guiding principle, integrity is a promise – a promise that we will act with honesty, fairness, and transparency, even when no one is watching. It’s a commitment to doing the right thing, whether it’s admitting mistakes, rectifying issues, or standing up for our clients’ needs.",
-                      "marks": []
-                    }
-                  ]
-                },
-                {
-                  "_type": "block",
-                  "_key": "k000c",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k000b",
-                      "text": "Integrity allows us to build strong, lasting relationships with our clients. It ensures that we deliver on our promises, providing reliable and effective solutions that truly empower our clients to navigate their technological landscapes confidently.",
-                      "marks": []
-                    }
-                  ]
-                },
-                {
-                  "_type": "block",
-                  "_key": "k000e",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k000d",
-                      "text": "In essence, integrity is not just a core value – it’s the foundation of our mission at eTop University. By upholding integrity, we ensure the quality, reliability, and authenticity of our platform and services, making a meaningful difference in the technological journey of our clients.",
-                      "marks": []
-                    }
-                  ]
+                  "_type": "span",
+                  "_key": "k0005",
+                  "text": "Integrity, as a core value, is a fundamental pillar that underscores every aspect of our work at eTop University. It instills trust, shapes our culture, and guides our actions.",
+                  "marks": []
                 }
               ]
             },
             {
-              "_type": "details",
+              "_type": "block",
+              "_key": "k0008",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k0007",
+                  "text": "In the realm of technology and digital learning, integrity takes on special significance. It means we are committed to providing accurate, timely, and relevant information to our clients. It assures our clients that their business needs, data security, and trust are our utmost priorities.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "k000a",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k0009",
+                  "text": "But more than just a guiding principle, integrity is a promise – a promise that we will act with honesty, fairness, and transparency, even when no one is watching. It’s a commitment to doing the right thing, whether it’s admitting mistakes, rectifying issues, or standing up for our clients’ needs.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "k000c",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k000b",
+                  "text": "Integrity allows us to build strong, lasting relationships with our clients. It ensures that we deliver on our promises, providing reliable and effective solutions that truly empower our clients to navigate their technological landscapes confidently.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "k000e",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k000d",
+                  "text": "In essence, integrity is not just a core value – it’s the foundation of our mission at eTop University. By upholding integrity, we ensure the quality, reliability, and authenticity of our platform and services, making a meaningful difference in the technological journey of our clients.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "detailsEnd",
+              "_key": "k0003e",
+              "closes": "details"
+            },
+            {
+              "_type": "detailsStart",
               "_key": "k000f",
-              "summary": "🔑Ownership",
-              "content": [
+              "summary": "🔑Ownership"
+            },
+            {
+              "_type": "block",
+              "_key": "k000h",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
                 {
-                  "_type": "block",
-                  "_key": "k000h",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k000g",
-                      "text": "🔑 At eTop University, ‘Ownership’ is more than a core value - it’s the heart of our commitment to our clients and our work.",
-                      "marks": []
-                    }
-                  ]
-                },
-                {
-                  "_type": "block",
-                  "_key": "k000j",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k000i",
-                      "text": "Ownership, for us, means taking responsibility for our actions and their outcomes. It’s about owning our successes and learning from our missteps. It signifies our dedication to go the extra mile, to take initiative, and to deliver results that we can proudly stand behind.",
-                      "marks": []
-                    }
-                  ]
-                },
-                {
-                  "_type": "block",
-                  "_key": "k000l",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k000k",
-                      "text": "Moreover, it extends to how we empower our clients. We aim to instill a sense of ownership over their technological journeys, equipping them with the knowledge, tools, and confidence to take charge of their IT environments.",
-                      "marks": []
-                    }
-                  ]
-                },
-                {
-                  "_type": "block",
-                  "_key": "k000n",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k000m",
-                      "text": "In embodying Ownership, we strive not just for accountability, but for constant improvement and innovation. Because when we own our actions, we shape our future. 🔑",
-                      "marks": []
-                    }
-                  ]
+                  "_type": "span",
+                  "_key": "k000g",
+                  "text": "🔑 At eTop University, ‘Ownership’ is more than a core value - it’s the heart of our commitment to our clients and our work.",
+                  "marks": []
                 }
               ]
             },
             {
-              "_type": "details",
+              "_type": "block",
+              "_key": "k000j",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k000i",
+                  "text": "Ownership, for us, means taking responsibility for our actions and their outcomes. It’s about owning our successes and learning from our missteps. It signifies our dedication to go the extra mile, to take initiative, and to deliver results that we can proudly stand behind.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "k000l",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k000k",
+                  "text": "Moreover, it extends to how we empower our clients. We aim to instill a sense of ownership over their technological journeys, equipping them with the knowledge, tools, and confidence to take charge of their IT environments.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "k000n",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k000m",
+                  "text": "In embodying Ownership, we strive not just for accountability, but for constant improvement and innovation. Because when we own our actions, we shape our future. 🔑",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "detailsEnd",
+              "_key": "k000fe",
+              "closes": "details"
+            },
+            {
+              "_type": "detailsStart",
               "_key": "k000o",
-              "summary": "🏆Excellence",
-              "content": [
+              "summary": "🏆Excellence"
+            },
+            {
+              "_type": "block",
+              "_key": "k000q",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
                 {
-                  "_type": "block",
-                  "_key": "k000q",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k000p",
-                      "text": "🏆 At eTop University, we hold ‘Excellence’ as a fundamental core value. It is the beacon that guides our endeavors and the standard by which we measure our outcomes.",
-                      "marks": []
-                    }
-                  ]
-                },
-                {
-                  "_type": "block",
-                  "_key": "k000s",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k000r",
-                      "text": "Excellence, for us, means constantly striving for the highest quality in everything we do. It’s about surpassing the ordinary, pushing the boundaries of learning and technology, and delivering solutions that not only meet but exceed our clients’ expectations.",
-                      "marks": []
-                    }
-                  ]
-                },
-                {
-                  "_type": "block",
-                  "_key": "k000u",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k000t",
-                      "text": "Our commitment to excellence drives us to constantly improve, innovate, and refine our platform and resources. It inspires us to seek out the best knowledge and practices to share with our clients, and to ensure their experience with us is nothing short of exceptional.",
-                      "marks": []
-                    }
-                  ]
-                },
-                {
-                  "_type": "block",
-                  "_key": "k000w",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k000v",
-                      "text": "In our pursuit of excellence, we aspire not just to succeed, but to set new benchmarks in technological learning and client empowerment. After all, we believe that when we aim for excellence, we achieve progress. 🏆",
-                      "marks": []
-                    }
-                  ]
+                  "_type": "span",
+                  "_key": "k000p",
+                  "text": "🏆 At eTop University, we hold ‘Excellence’ as a fundamental core value. It is the beacon that guides our endeavors and the standard by which we measure our outcomes.",
+                  "marks": []
                 }
               ]
             },
             {
-              "_type": "details",
+              "_type": "block",
+              "_key": "k000s",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k000r",
+                  "text": "Excellence, for us, means constantly striving for the highest quality in everything we do. It’s about surpassing the ordinary, pushing the boundaries of learning and technology, and delivering solutions that not only meet but exceed our clients’ expectations.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "k000u",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k000t",
+                  "text": "Our commitment to excellence drives us to constantly improve, innovate, and refine our platform and resources. It inspires us to seek out the best knowledge and practices to share with our clients, and to ensure their experience with us is nothing short of exceptional.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "k000w",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k000v",
+                  "text": "In our pursuit of excellence, we aspire not just to succeed, but to set new benchmarks in technological learning and client empowerment. After all, we believe that when we aim for excellence, we achieve progress. 🏆",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "detailsEnd",
+              "_key": "k000oe",
+              "closes": "details"
+            },
+            {
+              "_type": "detailsStart",
               "_key": "k000x",
-              "summary": "💬 Communication",
-              "content": [
+              "summary": "💬 Communication"
+            },
+            {
+              "_type": "block",
+              "_key": "k000z",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
                 {
-                  "_type": "block",
-                  "_key": "k000z",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k000y",
-                      "text": "💬 At eTop University, ‘Communication’ stands as a pivotal core value that shapes our interactions, collaborations, and services.",
-                      "marks": []
-                    }
-                  ]
-                },
-                {
-                  "_type": "block",
-                  "_key": "k0011",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k0010",
-                      "text": "To us, communication means creating a two-way street of open, honest, and effective dialogue with our clients. It’s about listening and understanding their unique needs, concerns, and goals, and responding with timely, accurate, and accessible information.",
-                      "marks": []
-                    }
-                  ]
-                },
-                {
-                  "_type": "block",
-                  "_key": "k0013",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k0012",
-                      "text": "Effective communication allows us to tailor our services and resources to best serve our clients. It fosters a sense of community, trust, and mutual respect. Furthermore, it’s through communication that we receive valuable feedback, allowing us to continuously improve and evolve our platform.",
-                      "marks": []
-                    }
-                  ]
-                },
-                {
-                  "_type": "block",
-                  "_key": "k0015",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k0014",
-                      "text": "In championing Communication, we strive to create a culture of transparency and inclusivity, ensuring that every voice is heard, valued, and responded to. After all, great communication is the bridge to greater understanding. 💬",
-                      "marks": []
-                    }
-                  ]
+                  "_type": "span",
+                  "_key": "k000y",
+                  "text": "💬 At eTop University, ‘Communication’ stands as a pivotal core value that shapes our interactions, collaborations, and services.",
+                  "marks": []
                 }
               ]
             },
             {
-              "_type": "details",
+              "_type": "block",
+              "_key": "k0011",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k0010",
+                  "text": "To us, communication means creating a two-way street of open, honest, and effective dialogue with our clients. It’s about listening and understanding their unique needs, concerns, and goals, and responding with timely, accurate, and accessible information.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "k0013",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k0012",
+                  "text": "Effective communication allows us to tailor our services and resources to best serve our clients. It fosters a sense of community, trust, and mutual respect. Furthermore, it’s through communication that we receive valuable feedback, allowing us to continuously improve and evolve our platform.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "k0015",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k0014",
+                  "text": "In championing Communication, we strive to create a culture of transparency and inclusivity, ensuring that every voice is heard, valued, and responded to. After all, great communication is the bridge to greater understanding. 💬",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "detailsEnd",
+              "_key": "k000xe",
+              "closes": "details"
+            },
+            {
+              "_type": "detailsStart",
               "_key": "k0016",
-              "summary": "🤝 Service",
-              "content": [
+              "summary": "🤝 Service"
+            },
+            {
+              "_type": "block",
+              "_key": "k0019",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
                 {
-                  "_type": "block",
-                  "_key": "k0019",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k0018",
-                      "text": "🤝 ‘Service’ is more than just a core value at eTop University—it’s the essence of our mission and the foundation of our commitment to our clients.",
-                      "marks": []
-                    }
-                  ]
-                },
-                {
-                  "_type": "block",
-                  "_key": "k001b",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k001a",
-                      "text": "Service, to us, means putting our clients’ needs at the forefront of everything we do. It’s about providing responsive, reliable, and personalized support to help our clients navigate their technological landscapes with confidence and ease.",
-                      "marks": []
-                    }
-                  ]
-                },
-                {
-                  "_type": "block",
-                  "_key": "k001d",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k001c",
-                      "text": "Our commitment to service drives us to continuously refine and expand our resources, to ensure our clients have the right tools and knowledge at their fingertips. It inspires us to go above and beyond, to not just meet, but exceed our clients’ expectations.",
-                      "marks": []
-                    }
-                  ]
-                },
-                {
-                  "_type": "block",
-                  "_key": "k001f",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k001e",
-                      "text": "By embodying Service, we strive to build strong, lasting relationships with our clients and make a real, positive impact on their businesses. After all, in serving others, we fulfill our purpose. 🤝",
-                      "marks": []
-                    }
-                  ]
+                  "_type": "span",
+                  "_key": "k0018",
+                  "text": "🤝 ‘Service’ is more than just a core value at eTop University—it’s the essence of our mission and the foundation of our commitment to our clients.",
+                  "marks": []
                 }
               ]
             },
             {
-              "_type": "details",
+              "_type": "block",
+              "_key": "k001b",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k001a",
+                  "text": "Service, to us, means putting our clients’ needs at the forefront of everything we do. It’s about providing responsive, reliable, and personalized support to help our clients navigate their technological landscapes with confidence and ease.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "k001d",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k001c",
+                  "text": "Our commitment to service drives us to continuously refine and expand our resources, to ensure our clients have the right tools and knowledge at their fingertips. It inspires us to go above and beyond, to not just meet, but exceed our clients’ expectations.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "k001f",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k001e",
+                  "text": "By embodying Service, we strive to build strong, lasting relationships with our clients and make a real, positive impact on their businesses. After all, in serving others, we fulfill our purpose. 🤝",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "detailsEnd",
+              "_key": "k0016e",
+              "closes": "details"
+            },
+            {
+              "_type": "detailsStart",
               "_key": "k001g",
-              "summary": "🌐 Open Mindedness",
-              "content": [
+              "summary": "🌐 Open Mindedness"
+            },
+            {
+              "_type": "block",
+              "_key": "k001i",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
                 {
-                  "_type": "block",
-                  "_key": "k001i",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k001h",
-                      "text": "🌐 At eTop University, we treasure ‘Open-Mindedness’ as a core value. This principle sits at the heart of our operations and guides our approach to technological learning and client service.",
-                      "marks": []
-                    }
-                  ]
-                },
-                {
-                  "_type": "block",
-                  "_key": "k001k",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k001j",
-                      "text": "Open-mindedness, to us, means embracing diversity, novel ideas, and fresh perspectives. It’s about being receptive to change and willing to adapt, evolve, and grow. It signifies our dedication to continuous learning, unlearning, and relearning, acknowledging that the realm of technology is ever-changing and expansive.",
-                      "marks": []
-                    }
-                  ]
-                },
-                {
-                  "_type": "block",
-                  "_key": "k001m",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k001l",
-                      "text": "This value guides us in our commitment to provide a wide range of resources and tools to our clients. It allows us to understand and address the unique needs and goals of each business we serve.",
-                      "marks": []
-                    }
-                  ]
-                },
-                {
-                  "_type": "block",
-                  "_key": "k001o",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k001n",
-                      "text": "By championing open-mindedness, we foster an inclusive, innovative, and forward-thinking environment. After all, with an open mind, we unlock endless possibilities. 🌐",
-                      "marks": []
-                    }
-                  ]
+                  "_type": "span",
+                  "_key": "k001h",
+                  "text": "🌐 At eTop University, we treasure ‘Open-Mindedness’ as a core value. This principle sits at the heart of our operations and guides our approach to technological learning and client service.",
+                  "marks": []
                 }
               ]
             },
             {
-              "_type": "details",
+              "_type": "block",
+              "_key": "k001k",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k001j",
+                  "text": "Open-mindedness, to us, means embracing diversity, novel ideas, and fresh perspectives. It’s about being receptive to change and willing to adapt, evolve, and grow. It signifies our dedication to continuous learning, unlearning, and relearning, acknowledging that the realm of technology is ever-changing and expansive.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "k001m",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k001l",
+                  "text": "This value guides us in our commitment to provide a wide range of resources and tools to our clients. It allows us to understand and address the unique needs and goals of each business we serve.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "k001o",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k001n",
+                  "text": "By championing open-mindedness, we foster an inclusive, innovative, and forward-thinking environment. After all, with an open mind, we unlock endless possibilities. 🌐",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "detailsEnd",
+              "_key": "k001ge",
+              "closes": "details"
+            },
+            {
+              "_type": "detailsStart",
               "_key": "k001p",
-              "summary": "🌳Environment",
-              "content": [
+              "summary": "🌳Environment"
+            },
+            {
+              "_type": "block",
+              "_key": "k001r",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
                 {
-                  "_type": "block",
-                  "_key": "k001r",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k001q",
-                      "text": "At eTop University, we regard ‘Team Environment’ as a crucial core value that shapes our work culture and team interactions.",
-                      "marks": []
-                    }
-                  ]
-                },
-                {
-                  "_type": "block",
-                  "_key": "k001t",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k001s",
-                      "text": "Our commitment to fostering a positive team environment revolves around creating a workspace that encourages collaboration, mutual respect, and open communication. It’s about recognizing the unique strengths of each team member and fostering an atmosphere where everyone feels valued, heard, and inspired to contribute.",
-                      "marks": []
-                    }
-                  ]
-                },
-                {
-                  "_type": "block",
-                  "_key": "k001v",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k001u",
-                      "text": "In this environment, we champion diversity, inclusion, and mutual support. We celebrate team victories, learn from our challenges, and continuously grow together. This cultivates a culture of unity and productivity where everyone can thrive.",
-                      "marks": []
-                    }
-                  ]
-                },
-                {
-                  "_type": "block",
-                  "_key": "k001x",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k001w",
-                      "text": "By valuing our Team Environment, we not only enhance our team’s well-being and job satisfaction, but we also foster a workspace that drives innovation, excellence, and superior client service. After all, when we work together, we achieve more.",
-                      "marks": []
-                    }
-                  ]
+                  "_type": "span",
+                  "_key": "k001q",
+                  "text": "At eTop University, we regard ‘Team Environment’ as a crucial core value that shapes our work culture and team interactions.",
+                  "marks": []
                 }
               ]
             },
             {
-              "_type": "details",
-              "_key": "k001y",
-              "summary": "🔒 Culture of Security",
-              "content": [
+              "_type": "block",
+              "_key": "k001t",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
                 {
-                  "_type": "block",
-                  "_key": "k0021",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k0020",
-                      "text": "🔒 At eTop University, we firmly believe in fostering a ‘Culture of Security.’ As a core value, this principle goes beyond merely implementing security protocols. It means integrating security awareness into every aspect of our business and learning platform.",
-                      "marks": []
-                    }
-                  ]
-                },
-                {
-                  "_type": "block",
-                  "_key": "k0023",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k0022",
-                      "text": "We understand that in today’s digital landscape, information security is not a luxury but a necessity. That’s why we aim to cultivate a mindset where security is second nature, a standard part of every process, decision, and interaction.",
-                      "marks": []
-                    }
-                  ]
-                },
-                {
-                  "_type": "block",
-                  "_key": "k0025",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k0024",
-                      "text": "This culture of security not only safeguards our platform but also empowers our clients, providing them with the knowledge and tools to protect their digital environments. It’s about proactive protection, vigilant detection, and swift response.",
-                      "marks": []
-                    }
-                  ]
-                },
-                {
-                  "_type": "block",
-                  "_key": "k0027",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k0026",
-                      "text": "Remember, in our Culture of Security, we’re all guardians of data. Because when security thrives, so does trust. 🔒",
-                      "marks": []
-                    }
-                  ]
+                  "_type": "span",
+                  "_key": "k001s",
+                  "text": "Our commitment to fostering a positive team environment revolves around creating a workspace that encourages collaboration, mutual respect, and open communication. It’s about recognizing the unique strengths of each team member and fostering an atmosphere where everyone feels valued, heard, and inspired to contribute.",
+                  "marks": []
                 }
               ]
+            },
+            {
+              "_type": "block",
+              "_key": "k001v",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k001u",
+                  "text": "In this environment, we champion diversity, inclusion, and mutual support. We celebrate team victories, learn from our challenges, and continuously grow together. This cultivates a culture of unity and productivity where everyone can thrive.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "k001x",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k001w",
+                  "text": "By valuing our Team Environment, we not only enhance our team’s well-being and job satisfaction, but we also foster a workspace that drives innovation, excellence, and superior client service. After all, when we work together, we achieve more.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "detailsEnd",
+              "_key": "k001pe",
+              "closes": "details"
+            },
+            {
+              "_type": "detailsStart",
+              "_key": "k001y",
+              "summary": "🔒 Culture of Security"
+            },
+            {
+              "_type": "block",
+              "_key": "k0021",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k0020",
+                  "text": "🔒 At eTop University, we firmly believe in fostering a ‘Culture of Security.’ As a core value, this principle goes beyond merely implementing security protocols. It means integrating security awareness into every aspect of our business and learning platform.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "k0023",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k0022",
+                  "text": "We understand that in today’s digital landscape, information security is not a luxury but a necessity. That’s why we aim to cultivate a mindset where security is second nature, a standard part of every process, decision, and interaction.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "k0025",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k0024",
+                  "text": "This culture of security not only safeguards our platform but also empowers our clients, providing them with the knowledge and tools to protect their digital environments. It’s about proactive protection, vigilant detection, and swift response.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "k0027",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k0026",
+                  "text": "Remember, in our Culture of Security, we’re all guardians of data. Because when security thrives, so does trust. 🔒",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "detailsEnd",
+              "_key": "k001ye",
+              "closes": "details"
             }
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/about-us/values.md",
-          "migration_hash": "sha256:c881d8d321bae4ebf93dcb52b23f5b71"
+          "migration_hash": "sha256:ae32f5171793843a3a2152c12dae742e"
         }
       },
       {
@@ -2198,39 +2222,42 @@
               ]
             },
             {
-              "_type": "aside",
+              "_type": "asideStart",
               "_key": "k000r",
-              "variant": "tip",
-              "content": [
+              "variant": "tip"
+            },
+            {
+              "_type": "block",
+              "_key": "k000v",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
                 {
-                  "_type": "block",
-                  "_key": "k000v",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k000s",
-                      "text": "Already looking at the page you want to change? Scroll to the bottom of it and click ",
-                      "marks": []
-                    },
-                    {
-                      "_type": "span",
-                      "_key": "k000t",
-                      "text": "Edit page",
-                      "marks": [
-                        "strong"
-                      ]
-                    },
-                    {
-                      "_type": "span",
-                      "_key": "k000u",
-                      "text": ". You’ll sign in first (step 1), then land straight on step 3.",
-                      "marks": []
-                    }
+                  "_type": "span",
+                  "_key": "k000s",
+                  "text": "Already looking at the page you want to change? Scroll to the bottom of it and click ",
+                  "marks": []
+                },
+                {
+                  "_type": "span",
+                  "_key": "k000t",
+                  "text": "Edit page",
+                  "marks": [
+                    "strong"
                   ]
+                },
+                {
+                  "_type": "span",
+                  "_key": "k000u",
+                  "text": ". You’ll sign in first (step 1), then land straight on step 3.",
+                  "marks": []
                 }
               ]
+            },
+            {
+              "_type": "asideEnd",
+              "_key": "k000re",
+              "closes": "aside"
             },
             {
               "_type": "block",
@@ -3160,7 +3187,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/etop-process/how-to-edit-university-pages.md",
-          "migration_hash": "sha256:6078d36cc3d03a2959a80601a57facb0"
+          "migration_hash": "sha256:a02d8f4107de96c167f36cc867620f6a"
         }
       },
       {
@@ -9531,25 +9558,28 @@
               ]
             },
             {
-              "_type": "aside",
+              "_type": "asideStart",
               "_key": "k0003",
-              "variant": "note",
-              "content": [
+              "variant": "note"
+            },
+            {
+              "_type": "block",
+              "_key": "k0005",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
                 {
-                  "_type": "block",
-                  "_key": "k0005",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k0004",
-                      "text": "We recognize this might seem like a lot but we know you will interact with and see these tools while working with us and we’d like to make sure you know how to use them!",
-                      "marks": []
-                    }
-                  ]
+                  "_type": "span",
+                  "_key": "k0004",
+                  "text": "We recognize this might seem like a lot but we know you will interact with and see these tools while working with us and we’d like to make sure you know how to use them!",
+                  "marks": []
                 }
               ]
+            },
+            {
+              "_type": "asideEnd",
+              "_key": "k0003e",
+              "closes": "aside"
             },
             {
               "_type": "block",
@@ -9610,7 +9640,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/etop-tools/index.md",
-          "migration_hash": "sha256:2a401fbe1260f3d7108c5faf9971ef18"
+          "migration_hash": "sha256:f3257d3d030cda250acc0e81b1393d3b"
         }
       },
       {
@@ -17567,110 +17597,116 @@
               ]
             },
             {
-              "_type": "details",
+              "_type": "detailsStart",
               "_key": "k0019",
-              "summary": "Link to Google Play Store",
-              "content": [
+              "summary": "Link to Google Play Store"
+            },
+            {
+              "_type": "image",
+              "_key": "k001a",
+              "alt": "",
+              "asset": {
+                "url": "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RWHRpj?ver=90bf&q=90&m=2&h=2147483647&w=2147483647&b=%23FFFFFFFF&aim=true"
+              }
+            },
+            {
+              "_type": "block",
+              "_key": "k001c",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
                 {
-                  "_type": "image",
-                  "_key": "k001a",
-                  "alt": "",
-                  "asset": {
-                    "url": "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RWHRpj?ver=90bf&q=90&m=2&h=2147483647&w=2147483647&b=%23FFFFFFFF&aim=true"
-                  }
-                },
-                {
-                  "_type": "block",
-                  "_key": "k001c",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k001b",
-                      "text": "Google Play",
-                      "marks": [
-                        "strong"
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_type": "block",
-                  "_key": "k001f",
-                  "style": "normal",
-                  "markDefs": [
-                    {
-                      "_type": "link",
-                      "_key": "k001d",
-                      "href": "https://go.microsoft.com/fwlink/p/?LinkID=2168850&clcid=0x409&culture=en-us&country=US"
-                    }
-                  ],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k001e",
-                      "text": "Get the app",
-                      "marks": [
-                        "k001d"
-                      ]
-                    }
+                  "_type": "span",
+                  "_key": "k001b",
+                  "text": "Google Play",
+                  "marks": [
+                    "strong"
                   ]
                 }
               ]
             },
             {
-              "_type": "details",
-              "_key": "k001g",
-              "summary": "Link to IOS App Store",
-              "content": [
+              "_type": "block",
+              "_key": "k001f",
+              "style": "normal",
+              "markDefs": [
                 {
-                  "_type": "image",
-                  "_key": "k001i",
-                  "alt": "",
-                  "asset": {
-                    "url": "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RWHRpz?ver=9319&q=90&m=2&h=2147483647&w=2147483647&b=%23FFFFFFFF&aim=true"
-                  }
-                },
+                  "_type": "link",
+                  "_key": "k001d",
+                  "href": "https://go.microsoft.com/fwlink/p/?LinkID=2168850&clcid=0x409&culture=en-us&country=US"
+                }
+              ],
+              "children": [
                 {
-                  "_type": "block",
-                  "_key": "k001k",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k001j",
-                      "text": "App Store",
-                      "marks": [
-                        "strong"
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_type": "block",
-                  "_key": "k001n",
-                  "style": "normal",
-                  "markDefs": [
-                    {
-                      "_type": "link",
-                      "_key": "k001l",
-                      "href": "https://go.microsoft.com/fwlink/p/?LinkID=2168643&clcid=0x409&culture=en-us&country=US"
-                    }
-                  ],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k001m",
-                      "text": "Get the app",
-                      "marks": [
-                        "k001l"
-                      ]
-                    }
+                  "_type": "span",
+                  "_key": "k001e",
+                  "text": "Get the app",
+                  "marks": [
+                    "k001d"
                   ]
                 }
               ]
+            },
+            {
+              "_type": "detailsEnd",
+              "_key": "k0019e",
+              "closes": "details"
+            },
+            {
+              "_type": "detailsStart",
+              "_key": "k001g",
+              "summary": "Link to IOS App Store"
+            },
+            {
+              "_type": "image",
+              "_key": "k001i",
+              "alt": "",
+              "asset": {
+                "url": "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RWHRpz?ver=9319&q=90&m=2&h=2147483647&w=2147483647&b=%23FFFFFFFF&aim=true"
+              }
+            },
+            {
+              "_type": "block",
+              "_key": "k001k",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k001j",
+                  "text": "App Store",
+                  "marks": [
+                    "strong"
+                  ]
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "k001n",
+              "style": "normal",
+              "markDefs": [
+                {
+                  "_type": "link",
+                  "_key": "k001l",
+                  "href": "https://go.microsoft.com/fwlink/p/?LinkID=2168643&clcid=0x409&culture=en-us&country=US"
+                }
+              ],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "k001m",
+                  "text": "Get the app",
+                  "marks": [
+                    "k001l"
+                  ]
+                }
+              ]
+            },
+            {
+              "_type": "detailsEnd",
+              "_key": "k001ge",
+              "closes": "details"
             },
             {
               "_type": "block",
@@ -17697,7 +17733,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/education/self-help-guides/office-365-guides/microsoft-authenticator/index.md",
-          "migration_hash": "sha256:40c964ddb606e2617bb1b1d4029ea1b7"
+          "migration_hash": "sha256:281b50d4fc80142a001c40ab5e6b902c"
         }
       },
       {
@@ -38644,38 +38680,41 @@
           "description": "Overall list of Policies applied to clients",
           "body": [
             {
-              "_type": "aside",
+              "_type": "asideStart",
               "_key": "k0001",
-              "variant": "note",
-              "content": [
+              "variant": "note"
+            },
+            {
+              "_type": "block",
+              "_key": "k0004",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
                 {
-                  "_type": "block",
-                  "_key": "k0004",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k0002",
-                      "text": "GitBook tip:",
-                      "marks": [
-                        "strong"
-                      ]
-                    },
-                    {
-                      "_type": "span",
-                      "_key": "k0003",
-                      "text": " you can embed public links, like a Typeform, to make data capture a breeze. Paste a URL below and try it out.",
-                      "marks": []
-                    }
+                  "_type": "span",
+                  "_key": "k0002",
+                  "text": "GitBook tip:",
+                  "marks": [
+                    "strong"
                   ]
+                },
+                {
+                  "_type": "span",
+                  "_key": "k0003",
+                  "text": " you can embed public links, like a Typeform, to make data capture a breeze. Paste a URL below and try it out.",
+                  "marks": []
                 }
               ]
+            },
+            {
+              "_type": "asideEnd",
+              "_key": "k0001e",
+              "closes": "aside"
             }
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/policies/policies/index.md",
-          "migration_hash": "sha256:1406aabf962f357b8bfce49451fe38bf"
+          "migration_hash": "sha256:fb2e351ff744a3c90e41681a327a083d"
         }
       },
       {
@@ -40681,33 +40720,36 @@
           "title": "👋 Meet the Team!",
           "body": [
             {
-              "_type": "aside",
+              "_type": "asideStart",
               "_key": "k0001",
-              "variant": "note",
-              "content": [
+              "variant": "note"
+            },
+            {
+              "_type": "block",
+              "_key": "k0004",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
                 {
-                  "_type": "block",
-                  "_key": "k0004",
-                  "style": "normal",
-                  "markDefs": [],
-                  "children": [
-                    {
-                      "_type": "span",
-                      "_key": "k0002",
-                      "text": "GitBook tip:",
-                      "marks": [
-                        "strong"
-                      ]
-                    },
-                    {
-                      "_type": "span",
-                      "_key": "k0003",
-                      "text": " an employee directory can be a great way to help new folks get familiar with everyone they’re going to be working with.",
-                      "marks": []
-                    }
+                  "_type": "span",
+                  "_key": "k0002",
+                  "text": "GitBook tip:",
+                  "marks": [
+                    "strong"
                   ]
+                },
+                {
+                  "_type": "span",
+                  "_key": "k0003",
+                  "text": " an employee directory can be a great way to help new folks get familiar with everyone they’re going to be working with.",
+                  "marks": []
                 }
               ]
+            },
+            {
+              "_type": "asideEnd",
+              "_key": "k0001e",
+              "closes": "aside"
             },
             {
               "_type": "block",
@@ -41177,7 +41219,7 @@
           ],
           "template": "doc",
           "legacy_source": "src/content/docs/team/meet-the-team.md",
-          "migration_hash": "sha256:7681fec4ec0e6b806e0e4e6d2711ddef"
+          "migration_hash": "sha256:c4d0dcee717e42747bc8b6f5c86b1efb"
         }
       }
     ]

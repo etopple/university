@@ -26,7 +26,7 @@ const min = Number(opt("--min", "1"));
 // default title ("Note", "Tip", ...) that is not part of the source text.
 const ASIDE_TITLES = { note: "Note", tip: "Tip", caution: "Caution", danger: "Danger" };
 function expectedText(body) {
-  const withTitles = body.map((b) => (b._type === "aside" && !b.title ? { ...b, title: ASIDE_TITLES[b.variant] } : b));
+  const withTitles = body.map((b) => ((b._type === "aside" || b._type === "asideStart") && !b.title ? { ...b, title: ASIDE_TITLES[b.variant] } : b));
   // parity.extract() decodes Cloudflare's email obfuscation on the live page,
   // so addresses compare as written.
   return normText(portableTextToPlain(withTitles));
