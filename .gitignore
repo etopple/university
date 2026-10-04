@@ -24,3 +24,19 @@ pnpm-debug.log*
 # OS
 .DS_Store
 Thumbs.db
+
+# EmDash build manifest (generated per build; never commit)
+.emdash/migrations.json
+.wrangler/
+.dev.vars*
+# EmDash local state
+data.db
+data.db-*
+uploads/
+.dev.vars
+emdash-env.d.ts
+.wrangler-seed.sql
+.wrangler-fts.sql
+review_results.txt
+.wrangler-migrations.json
+cos_diff.txt
