@@ -28,7 +28,7 @@ Github: [https://github.com/etopple](https://github.com/etopple) <- don't expect
 
 👋 CFO — 💌 Sara Pote -- US Redlands Ca (GMT -7 PST)
 
-<figure><img src="https://media.licdn.com/dms/image/C5603AQHKEF1AFekEHA/profile-displayphoto-shrink_800_800/0/1517341709347?e=1692230400&#x26;v=beta&#x26;t=O9WImfdmOp_5nYOYnc7gVz-WuNJNAhso6MO61d5QwSw" alt=""><figcaption><p>Sara Pote - The glue that makes it all run!</p></figcaption></figure>
+*Sara Pote - The glue that makes it all run!*
 
 LinkedIn: [https://www.linkedin.com/in/sara-pote-2210a5106/](https://www.linkedin.com/in/sara-pote-2210a5106/)
 

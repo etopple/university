@@ -16,8 +16,7 @@ This guide explains how to **sort folders A to Z** or use a **custom folder orde
 1. **Open Outlook (New Version)**\
    Ensure you are using the **New Outlook** interface. You can toggle this at the top-right corner if you see the option “Try the New Outlook.”
 2. **Go to the View Tab**
-   * Click on the **View** tab in the ribbon at the top of Outlook.\
-     ![View Tab Highlighted](https://university.etop.tech/assets/outlook-view-tab.png)
+   * Click on the **View** tab in the ribbon at the top of Outlook.
 3. **Open the Folder Pane Settings**
    * Under the **View** tab, locate the **Folder Pane** section.
    * Click the **Folder Pane** button to open its menu.
