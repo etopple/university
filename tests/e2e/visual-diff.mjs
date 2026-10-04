@@ -24,7 +24,7 @@
 
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
-import { join, dirname, resolve } from "node:path";
+import { join, dirname, resolve, relative, isAbsolute } from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "@playwright/test";
 import pixelmatch from "pixelmatch";
@@ -86,9 +86,29 @@ export function assertUniqueNames(pages) {
   }
 }
 
-// Manifest = the list of { path, theme, file, sha256 }, sorted by file; its hash is what a reviewer signs.
-export const manifestHash = (files) =>
-  sha256(JSON.stringify([...files].sort((x, y) => (x.file < y.file ? -1 : 1)).map(({ path, theme, file, sha256: h }) => ({ path, theme, file, sha256: h }))));
+// Manifest = the page list plus { path, theme, file, sha256 } per shot, both sorted; its hash is
+// what a reviewer signs. Pages are in it, so dropping a page (and its shots) changes the hash.
+export const manifestHash = (files, pages) =>
+  sha256(JSON.stringify({
+    pages: pages.map((p) => p.path).sort(),
+    files: [...files].sort((x, y) => (x.file < y.file ? -1 : 1)).map(({ path, theme, file, sha256: h }) => ({ path, theme, file, sha256: h })),
+  }));
+
+const SHOT_FILE = /^[A-Za-z0-9-]+-[0-9a-f]{10}-(light|dark)\.png$/;
+
+// A manifest entry may only name the file this tool would have written for that page and
+// theme, inside the baseline folder: no separators, "..", drive letters or other names.
+function checkEntry(dir, f) {
+  const name = String(f?.file ?? "");
+  if (!SHOT_FILE.test(name) || name !== `${shotName(String(f.path), String(f.theme))}.png`) {
+    throw new Error(`${dir}: manifest entry ${JSON.stringify(name)} for ${f?.path} [${f?.theme}] is not a valid shot file name`);
+  }
+  const root = resolve(dir);
+  const fp = resolve(root, name);
+  const rel = relative(root, fp);
+  if (!rel || rel.startsWith("..") || isAbsolute(rel) || dirname(fp) !== root) throw new Error(`${dir}: manifest entry ${name} points outside the baseline folder`);
+  return fp;
+}
 
 // A baseline is a folder of PNGs plus baseline.json: where the shots came from, the
 // manifest, and who reviewed them. "reviewed" stays null until a person fills it in.
@@ -99,20 +119,28 @@ export function readBaseline(dir, { allowUnreviewed = false } = {}) {
   const meta = JSON.parse(readFileSync(file, "utf8"));
   if (!Array.isArray(meta.pages) || !meta.pages.length) throw new Error(`${file}: "pages" is missing or empty`);
   if (!Array.isArray(meta.files) || !meta.files.length) throw new Error(`${file}: no "files" manifest (saved by an older version?): save a new baseline`);
-  const hash = manifestHash(meta.files);
+  const hash = manifestHash(meta.files, meta.pages);
   if (meta.manifest !== hash) throw new Error(`${file}: the file list was edited after saving (manifest ${meta.manifest} != ${hash})`);
+  const resolved = new Map(meta.files.map((f) => [f, checkEntry(dir, f)])); // names first: nothing else is read before this
   const listed = new Set(meta.files.map((f) => f.file));
   if (listed.size !== meta.files.length) throw new Error(`${file}: the manifest lists a file twice`);
   const onDisk = readdirSync(dir).filter((f) => f.toLowerCase().endsWith(".png"));
   const extra = onDisk.filter((f) => !listed.has(f));
   if (extra.length) throw new Error(`${dir}: PNGs not in the manifest: ${extra.join(", ")}`);
+  // Coverage: exactly one shot per page x theme, and no shot for anything else.
+  const paths = meta.pages.map((p) => p.path);
+  if (new Set(paths).size !== paths.length) throw new Error(`${file}: a page is listed twice`);
+  const want = new Set(paths.flatMap((path) => THEMES.map((theme) => `${theme} ${path}`)));
+  const have = meta.files.map((f) => `${f.theme} ${f.path}`);
+  if (new Set(have).size !== have.length) throw new Error(`${file}: a page/theme has more than one shot`);
+  const stray = have.filter((k) => !want.has(k));
+  if (stray.length) throw new Error(`${file}: shots for pages not in the page list: ${stray.join(", ")}`);
+  const missingShot = [...want].filter((k) => !have.includes(k));
+  if (missingShot.length) throw new Error(`${file}: no screenshot for ${missingShot.join(", ")}`);
   for (const f of meta.files) {
-    const fp = join(dir, f.file);
+    const fp = resolved.get(f);
     if (!existsSync(fp)) throw new Error(`${dir}: ${f.file} (${f.path} [${f.theme}]) is missing`);
     if (sha256(readFileSync(fp)) !== f.sha256) throw new Error(`${dir}: ${f.file} (${f.path} [${f.theme}]) changed since the baseline was saved`);
-  }
-  for (const p of meta.pages) for (const theme of THEMES) {
-    if (!meta.files.some((f) => f.path === p.path && f.theme === theme)) throw new Error(`${file}: no screenshot for ${p.path} [${theme}]`);
   }
   const r = meta.reviewed;
   const signed = !!(r && typeof r === "object" && String(r.by || "").trim() && String(r.on || "").trim());
@@ -125,14 +153,19 @@ export function readBaseline(dir, { allowUnreviewed = false } = {}) {
 }
 
 export function baselineMeta({ source, pages, viewport, files }) {
-  return { source, createdAt: new Date().toISOString(), viewport, pages, files, manifest: manifestHash(files), reviewed: null };
+  return { source, createdAt: new Date().toISOString(), viewport, pages, files, manifest: manifestHash(files, pages), reviewed: null };
 }
 
 // Write PNG buffers + baseline.json into dir. shots: [{ path, theme, buf }]. Exported for tests.
+// The folder must not exist yet: a baseline is always a fresh folder.
+const refuseExisting = (dir) => {
+  if (existsSync(dir)) throw new Error(`${dir} already exists; a baseline is saved into a NEW folder (baselines are never overwritten)`);
+};
 export function writeBaseline(dir, { source, pages, viewport, shots }) {
-  if (existsSync(join(dir, BASELINE_FILE))) throw new Error(`${dir} already holds a baseline; pick a new folder (baselines are never overwritten)`);
+  refuseExisting(dir);
   assertUniqueNames(pages);
-  mkdirSync(dir, { recursive: true });
+  mkdirSync(dirname(resolve(dir)), { recursive: true });
+  mkdirSync(dir); // not recursive: fails if something created it in the meantime
   const names = shots.map(({ path, theme }) => `${shotName(path, theme)}.png`);
   if (new Set(names).size !== names.length) throw new Error("two shots map to the same file name; nothing written");
   for (const n of names) if (existsSync(join(dir, n))) throw new Error(`${join(dir, n)} already exists; refusing to overwrite`);
@@ -215,7 +248,7 @@ function pad(img, w, h) {
 // Shots are kept in memory and written only if every page returned 200.
 async function saveBaseline(a) {
   const dir = a.saveBaseline;
-  if (existsSync(join(dir, BASELINE_FILE))) throw new Error(`${dir} already holds a baseline; pick a new folder (baselines are never overwritten)`);
+  refuseExisting(dir);
   const pages = a.pages || KEY_PAGES;
   assertUniqueNames(pages);
   const browser = await chromium.launch();

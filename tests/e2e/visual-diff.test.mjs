@@ -1,10 +1,10 @@
 // node --test visual-diff.test.mjs   (no browser: argument, naming and baseline-integrity checks only)
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync, readFileSync, renameSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { args, readBaseline, writeBaseline, assertUniqueNames, shotName, BASELINE_FILE, THEMES } from "./visual-diff.mjs";
+import { args, readBaseline, writeBaseline, assertUniqueNames, shotName, manifestHash, BASELINE_FILE, THEMES } from "./visual-diff.mjs";
 
 const argv = (...a) => ["node", "visual-diff.mjs", ...a];
 const PAGES = [{ path: "/", why: "home" }, { path: "/about-us/values", why: "asides" }];
@@ -89,4 +89,60 @@ test("swapped, edited, extra or missing PNGs are refused, even with --allow-unre
   m.files[0] = { ...m.files[0], sha256: m.files[1].sha256, file: m.files[1].file };
   writeFileSync(f, JSON.stringify(m));
   assert.throws(() => readBaseline(edited.dir), /edited after saving/);
+});
+
+// Rewrite baseline.json as a determined editor would: recompute the manifest hash and sign it.
+const forge = (dir, mutate) => {
+  const f = join(dir, BASELINE_FILE);
+  const m = JSON.parse(readFileSync(f, "utf8"));
+  mutate(m);
+  m.manifest = manifestHash(m.files, m.pages);
+  m.reviewed = { by: "BJ", on: "2026-10-04", manifest: m.manifest };
+  writeFileSync(f, JSON.stringify(m));
+};
+
+test("manifest file names cannot leave the baseline folder or be anything but a shot name", () => {
+  for (const bad of ["../outside.png", "..\\outside.png", "x\\home-8a5edab282-light.png","sub/x.png", "C:x.png", "C:/x.png", "x.png", "home-8a5edab282-light.PNG"]) {
+    const { dir } = save();
+    forge(dir, (m) => { m.files[0].file = bad; });
+    assert.throws(() => readBaseline(dir), /not a valid shot file name|outside the baseline/, bad);
+    assert.throws(() => readBaseline(dir, { allowUnreviewed: true }), /not a valid shot file name|outside the baseline/, bad);
+  }
+  // A valid-looking name for ANOTHER page is refused too.
+  const { dir, meta } = save();
+  forge(dir, (m) => { m.files[0].file = meta.files.find((f) => f.path !== m.files[0].path).file; });
+  assert.throws(() => readBaseline(dir), /not a valid shot file name|more than one shot|twice/);
+});
+
+test("coverage cannot shrink and stay reviewed: pages are in the hash, shots must match pages one to one", () => {
+  const pages3 = [...PAGES, { path: "/team/meet-the-team", why: "photos" }];
+  const a = save(pages3), b = save(PAGES);
+  // Same shots for the shared pages, but a different page list => a different hash.
+  assert.notEqual(manifestHash(a.meta.files.filter((f) => f.path !== "/team/meet-the-team"), pages3), manifestHash(b.meta.files, PAGES));
+  // Dropping a page and its shots after review breaks the reviewed hash.
+  const { dir } = save(pages3);
+  review(dir);
+  const f = join(dir, BASELINE_FILE);
+  const m = JSON.parse(readFileSync(f, "utf8"));
+  const gone = m.files.filter((x) => x.path === "/team/meet-the-team");
+  m.pages = m.pages.filter((p) => p.path !== "/team/meet-the-team");
+  m.files = m.files.filter((x) => x.path !== "/team/meet-the-team");
+  m.manifest = manifestHash(m.files, m.pages); // reviewed.manifest still holds the old hash
+  writeFileSync(f, JSON.stringify(m));
+  for (const g of gone) renameSync(join(dir, g.file), join(dir, g.file + ".bak"));
+  assert.throws(() => readBaseline(dir), /reviewed\.manifest/);
+  // A page listed without its shots, or a shot for an unlisted page, is refused even when re-signed.
+  const c = save();
+  forge(c.dir, (x) => { x.files = x.files.filter((y) => !(y.path === "/" && y.theme === "dark")); });
+  renameSync(join(c.dir, shotName("/", "dark") + ".png"), join(c.dir, "dark.bak"));
+  assert.throws(() => readBaseline(c.dir), /no screenshot for dark \//);
+  const d = save();
+  forge(d.dir, (x) => { x.pages = x.pages.filter((p) => p.path !== "/"); });
+  assert.throws(() => readBaseline(d.dir), /not in the page list/);
+});
+
+test("saving refuses a folder that already exists, even an empty one", () => {
+  const dir = join(mkdtempSync(join(tmpdir(), "vd-")), "b");
+  mkdirSync(dir);
+  assert.throws(() => writeBaseline(dir, { source: "s", pages: PAGES, viewport: {}, shots: fakeShots(PAGES) }), /already exists/);
 });
