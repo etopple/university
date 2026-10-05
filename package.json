@@ -9,7 +9,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test": "node --experimental-strip-types --test src/lib/pt.test.ts && npm test --prefix scripts/emdash"
+    "test": "node --experimental-strip-types --test src/lib/pt.test.ts scripts/infra/wrangler-env.test.mjs && npm test --prefix scripts/emdash"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.3.3",

@@ -47,6 +47,11 @@ npm run build
 built=$(node -e "console.log(require('./dist/server/wrangler.json').name)")
 want=$([[ "$ENV" == preview ]] && echo university-emdash-preview || echo university-emdash)
 [[ "$built" == "$want" ]] || { echo "build targeted $built, expected $want" >&2; exit 1; }
+# The routes in the built config are what wrangler deploy will claim (issue #29): preview none,
+# production exactly the two university hosts.
+want_routes=$([[ "$ENV" == preview ]] && echo "" || echo "university.etop.tech/*,www.university.etop.tech/*")
+built_routes=$(node -e "const r=require('./dist/server/wrangler.json').routes||[];console.log(r.map(x=>typeof x==='string'?x:x.pattern).sort().join(','))")
+[[ "$built_routes" == "$want_routes" ]] || { echo "REFUSED: build for $ENV carries routes [$built_routes], expected [$want_routes]" >&2; exit 1; }
 
 EMDASH_VERSION=$(node -p "require('./.emdash/migrations.json').emdashVersion")
 d1json() { npx wrangler d1 execute DB "${CFG[@]}" --remote --json --command "$1" 2>/dev/null; }

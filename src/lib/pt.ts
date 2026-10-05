@@ -181,8 +181,16 @@ function single(b: PtBlock, ctx: Ctx): Node | null {
     }
     case "details":
       return { kind: "details", summary: String(b.summary ?? ""), children: toNodes((b.content as PtBlock[]) ?? [], ctx) };
-    case "html":
-      return { kind: "html", html: String(b.html ?? "") };
+    case "html": {
+      // Never print raw editor HTML (issue #30: stored XSS on public pages, which share an
+      // origin with the admin). Hand it to EmDash's htmlBlock, which runs sanitizeContent.
+      // Only `html` is carried over, so a raw block cannot opt into the isolated js/css frame.
+      const html = typeof b.html === "string" ? b.html : "";
+      // A lone <div ...> or </div> (the seed's two left-align wrappers) is a layout no-op,
+      // and sanitizing it on its own would only leave an empty, spaced-out box.
+      if (!html.trim() || /^\s*<\/?div\b[^<>]*>\s*$/i.test(html)) return null;
+      return { kind: "native", block: { _type: "htmlBlock", _key: b._key, html } };
+    }
     case "asideStart":
     case "asideEnd":
     case "detailsStart":

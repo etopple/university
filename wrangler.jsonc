@@ -48,6 +48,9 @@
     "preview": {
       // Deploys as university-emdash-preview.williampote.workers.dev
       "name": "university-emdash-preview",
+      // `routes` is inheritable: without this the preview Worker claims the production
+      // hostnames above (issue #29). Keep it empty; scripts/infra/wrangler-env.test.mjs pins it.
+      "routes": [],
       "workers_dev": true,
       "preview_urls": false,
       "observability": { "enabled": true },

@@ -292,3 +292,25 @@ test("a note box inside a step stays a box inside that step, before and after an
     assert.equal(ol.items[0].children[1].children[0].html, "<p>text</p>");
   }
 });
+
+// Issue #30: a raw `html` block used to reach the page unescaped (stored XSS on a public page
+// that shares an origin with the admin). It must go through EmDash's sanitized htmlBlock renderer.
+test("raw html blocks never reach the page unsanitized (#30)", () => {
+  const evil = '<img src=x onerror="fetch(\'/_emdash/api/admin/users\')"><script>alert(1)</script>';
+  const { nodes } = renderPlan([
+    { _type: "html", _key: "h1", html: evil, isolated: true, js: "alert(2)", css: "x" },
+    { _type: "html", _key: "h2", html: '<div align="left">' },
+    p([span("text")]),
+    { _type: "html", _key: "h3", html: "</div>" },
+  ]);
+  const walk = (ns: any[]): any[] => ns.flatMap((n) => [n, ...walk(n.children ?? []), ...(n.items ?? []).flatMap((it: any) => walk(it.children))]);
+  for (const n of walk(nodes)) {
+    if (n.kind === "html") {
+      assert.ok(!/<script|onerror/i.test(n.html), `raw html leaked: ${n.html}`);
+    }
+  }
+  // The payload goes to EmDash's htmlBlock (sanitizeContent), inline only: no js/css/isolated carried over.
+  assert.deepEqual(nodes[0], { kind: "native", block: { _type: "htmlBlock", _key: "h1", html: evil } });
+  // The seed's lone <div align="left"> / </div> wrappers are layout no-ops: dropped.
+  assert.deepEqual(nodes.map((n) => n.kind), ["native", "html"]);
+});
