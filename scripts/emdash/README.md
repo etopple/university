@@ -31,7 +31,7 @@ proves nothing changed for readers before cutover.
 - Body blocks the theme must render: standard PT blocks (h1–h6, normal, blockquote, bullet/number lists
   with `level`), marks `strong` `em` `code` `strike-through` `underline`, markDefs `link {href, blank?}`
   and `highlight {color}`, plus custom blocks `image {alt, asset.url, caption?, align?}`,
-  `code {language, code}`, `table {align, rows[{header, cells[{content}]}]}`, `html {html}` (raw passthrough, used twice), `break`.
+  `code {language, code}`, `table {align, rows[{header, cells[{content}]}]}`, `html {html}` (rendered through EmDash's sanitized htmlBlock, never raw; lone `<div>`/`</div>` wrappers are dropped; issue #30), `break`.
 - Boxes (issue #15) are stored flat so the editor can change their text: `asideStart {variant, title?}`, the
   content as ordinary blocks, `asideEnd {closes: "aside"}`; likewise `detailsStart {summary}` ... `detailsEnd`.
   The start marker keeps the box's `_key`, the end marker adds `e`. The theme also still renders the old
