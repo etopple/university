@@ -132,8 +132,8 @@ npx wrangler kv namespace create university-emdash-session-preview
 - **Owner:** BJ Pote. Cloudflare account admins of **eTop Technology** manage the Worker, D1, R2, KV and Access. Grant account access under *Manage Account > Members*.
 - **Editors** sign in at `<site>/_emdash/admin` through Cloudflare Access. Team `etoptech.cloudflareaccess.com`, Entra identity provider. Policy: allow email domain `etoptechnology.com`, require the Entra login. Session 12 hours. First sign-in creates an **Editor** (role 40: edit and publish any page). An Admin can change roles under *Users*; BJ is Admin.
 - **Two Access apps, one per env**, so a preview credential cannot open production:
-  - *University EmDash admin (staff)* `39ca3545-7a40-4047-85c2-ab42a4b817d9`: `/_emdash[/*]` on `university.etop.tech`, `www.university.etop.tech`, and the production workers.dev host.
-  - *University EmDash admin PREVIEW (staff)* `ad705bef-5c98-49aa-80cc-e40fe3bd0d2b`: `/_emdash[/*]` on the preview host. Also holds a Service Auth policy for the E2E token.
+  - *University EmDash admin (staff)* (app id in the Zero Trust dashboard): `/_emdash[/*]` on `university.etop.tech`, `www.university.etop.tech`, and the production workers.dev host.
+  - *University EmDash admin PREVIEW (staff)* (app id in the Zero Trust dashboard): `/_emdash[/*]` on the preview host. Also holds a Service Auth policy for the E2E token.
   - List both `/_emdash` and `/_emdash/*`; a bare `/_emdash` matches only that exact path.
   - Image-path Bypass apps exist for `/_emdash/api/media/file/*` so uploaded pictures are public (per PR #39 and the live 404 check above).
 - **Automation:** Access service token `university-e2e` (preview only) and an EmDash API token, stored as GitHub Actions secrets. Both expire 2027-10-03. Renew in Zero Trust > Access > Service credentials, then update both GitHub secrets.
